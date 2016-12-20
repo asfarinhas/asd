@@ -1,1 +1,16 @@
-# ET3_Grupo4
+# ET3 Grupo4
+----- ----- ----- ----- ----- // PROCESO DE INSTALACIÓN // ----- ----- ----- ----- -----
+
+
+1.- Ejecutar en el terminal el fichero "install.sh".
+
+2.- Ejecutar en el navegador de internet el archivo "install.php".
+
+3.- Acceder a la aplicación con cualquiera de los siguientes usuarios:
+    
+    - USER: ADMIN   &  PASSWORD: ADMIN          [ROL: Administrador]
+    - USER: secret  &  PASSWORD: secret         [ROL: Secretario] 
+    - USER: monit   &  PASSWORD: monit          [ROL: Monitor]
+
+
+----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
