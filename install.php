@@ -9,7 +9,7 @@
     <body>
         <p> [ Introduzca el Usuario y Contraseña root de la base de datos ] </p>
         
-        <form action="./ET3/install_finish.php" method="post">
+        <form action="./et1_iu/install_finish.php" method="post">
 
             <p>Usuario <input type="text" name="usuario"></p>
             <p>Contraseña <input type="password" name="password"></p>

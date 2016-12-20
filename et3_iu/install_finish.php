@@ -4,7 +4,7 @@ if ($mysqli->connect_errno) {
     echo "Fallo al conectar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 } else {
     $sql = '';
-    $fichero = file('ET3.sql');
+    $fichero = file('IU2016.sql');
     foreach ($fichero as $linea) {
         if (substr($linea, 0, 2) === '--' || $linea === '') {
             continue;
