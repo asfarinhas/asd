@@ -19,7 +19,7 @@ class Miembro_Model{
      * @param $CONTRASEÑA
      * @param $CORREO
      */
-    public function __construct($DNI, $NOMBRE, $APELLIDO1, $APELLIDO2, $USUARIO, $CONTRASEÑA, $CORREO){
+    public function __construct($DNI=NULL, $NOMBRE=NULL, $APELLIDO1=NULL, $APELLIDO2=NULL, $USUARIO=NULL, $CONTRASEÑA=NULL, $CORREO=NULL){
         $this->DNI = $DNI;
         $this->NOMBRE = $NOMBRE;
         $this->APELIDO1 = $APELLIDO1;
@@ -35,9 +35,8 @@ class Miembro_Model{
         return $this->DNI;
     }
 
-    private  function _setDNI($DNI){
+    public function setDNI($DNI){
         $this->DNI =  $DNI;
-        return $this;
     }
 
 
@@ -45,9 +44,8 @@ class Miembro_Model{
         return $this->NOMBRE;
     }
 
-    private function _setNombre($nombre){
+    public function setNombre($nombre){
         $this->NOMBRE = $nombre;
-        return $this;
     }
 
 
@@ -55,9 +53,8 @@ class Miembro_Model{
         return $this->APELIDO1;
     }
 
-    private function _setApellido1($apellido1){
+    public function setApellido1($apellido1){
         $this->APELIDO1 = $apellido1;
-        return $this;
     }
 
 
@@ -65,9 +62,8 @@ class Miembro_Model{
         return $this->APELLIDO2;
     }
 
-    private function _setApellido2($apellido2){
+    public function setApellido2($apellido2){
         $this->APELLIDO2 = $apellido2;
-        return $this;
     }
 
 
@@ -75,9 +71,8 @@ class Miembro_Model{
         return $this->USUARIO;
     }
 
-    private function _setUsuario($usuario){
+    public function setUsuario($usuario){
         $this->USUARIO = $usuario;
-        return $this;
     }
 
 
@@ -85,9 +80,8 @@ class Miembro_Model{
         return $this->CONTRASEÑA;
     }
 
-    private function _setContraseña($contraseña){
+    public function setContraseña($contraseña){
         $this->CONTRASEÑA = $contraseña;
-        return $this;
     }
 
 
@@ -95,7 +89,7 @@ class Miembro_Model{
         return $this->CORREO;
     }
 
-    private function _setCorreo($correo){
+    public function setCorreo($correo){
         $this->CORREO = $correo;
     }
 
