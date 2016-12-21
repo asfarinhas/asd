@@ -108,7 +108,7 @@ Switch ($_REQUEST['accion']) {
     case $strings['Borrar']: //Borrado de proyecto
         if (!isset($_REQUEST['ID_PROYECTO'])) {
             $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
-            $valores = $proyecto->RellenaDatos();
+            $valores = $proyecto->RellenaDatos($proyecto->getNOMBRE());
             if (!tienePermisos('Proyecto_Delete')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {

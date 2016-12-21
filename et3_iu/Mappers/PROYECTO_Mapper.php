@@ -19,16 +19,12 @@ class ProyectoMapper {
    */
   private $mysqli;
 
-  public function __construct() {
-    $this->db = PDOConnection::getInstance();
-  }
-
 
   public function conectarBD(){
 
       $this->mysqli = new mysqli("localhost","iu2016","iu2016","IU2016");
 
-      if($mysqli_connect_errno()){
+      if(mysqli_connect_errno()){
           echo "Fallo al conectar MySQL: " . $this->mysqli->connect_error();
       }
   }
@@ -124,6 +120,23 @@ class ProyectoMapper {
 
   }
 
+
+    //Devuelve la información correspondiente a un proyecto
+    function RellenaDatos($nombre)
+    {
+        $this->ConectarBD();
+        $sql = "select * from PROYECTO where NOMBRE = '".$nombre."'";
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
+            $result = $resultado->fetch_array();
+
+
+            return $result;
+        }
+    }
+
   /**
    * Updates a Post in the database
    *
@@ -134,7 +147,7 @@ class ProyectoMapper {
     public function modificar(Proyecto $proyecto) {
 
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '". $proyecto->getNOMBRE(). "' AND DESCRIPCION = '" . $proyecto->getDESCRIPCION(). "' AND '". $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP(). "','" . $proyecto->getFECHAE(). "','" . $proyecto->getFECHAFP(). "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS(). "','"<. $proyecto->getDIRECTOR(). "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
+        $sql = "UPDATE PROYECTO SET NOMBRE= '". $proyecto->getNOMBRE(). "', DESCRIPCION = '" . $proyecto->getDESCRIPCION(). "', FECHAI ='". $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP(). "', FECHAE ='" . $proyecto->getFECHAE(). "', FECHAFP = '" . $proyecto->getFECHAFP(). "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS(). "', NUMEROHORAS= '" . $proyecto->getNUMEROHORAS(). "', DIRECTOR= '" . $proyecto->getDIRECTOR(). "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
 
     if($this->mysqli->query($sql) === TRUE){
         return "modificacion exitosa";
