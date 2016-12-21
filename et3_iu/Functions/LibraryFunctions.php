@@ -1472,9 +1472,6 @@ function añadirFuncionalidades($NOM) {
                 case "CONSULTA EMPLEADOS":
                     ?><a style="font-size:20px;" href='../Controllers/EMPLEADO_Controller.php'><?php echo $strings['Consulta de Empleados'] ?></a><br><br> <?php
                     break;
-                case "GESTION PAGOS": // ------ ET2 -----
-                    ?><!--<a style="font-size:20px;" href='../Controllers/PAGO_Controller.php'><?php echo $strings['Gestión de Pagos'] ?></a><br><br> --><?php
-                    break;
                 case "GESTION PROYECTOS":
                     ?><a style="font-size:20px;" href='../Controllers/PROYECTO_Controller.php'><?php echo $strings['Gestión de Proyectos'] ?></a><br><br> <?php
                     break;
