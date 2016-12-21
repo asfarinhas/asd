@@ -9,11 +9,6 @@ if (!IsAuthenticated()){
 }
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 
-//Genera los includes según las páginas a las que tiene acceso
-$pags=generarIncludes();
-for ($z=0;$z<count($pags);$z++){
-    include $pags[$z];
-}
 
 function get_data_form(){
 
