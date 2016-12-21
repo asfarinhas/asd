@@ -166,7 +166,7 @@ Switch ($_REQUEST['accion']) {
         } else {
             $proyecto = get_data_form();
         }
-        $datos = $pagina->ConsultarTodo();
+        $datos = $proyecto->listar();
         if (!tienePermisos('Proyecto_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {

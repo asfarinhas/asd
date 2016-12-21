@@ -37,20 +37,35 @@ class ProyectoMapper {
    * @throws PDOException if a database error occurs
    * @return mixed Array of Post instances (without comments)
    */
-  public function listar() {
 
-      $this->conectarBD();
 
-    $sql= "SELECT * FROM PROYECTO";
-    $resultado = $this->mysqli->query($sql);
 
-    if($resultado ->num_rows!=0){
-        $proyectos= $resultado->fetch_array();
+    //Listar todas las paginas
+    function listar()
+    {
+        $this->ConectarBD();
+        $sql = "select * from PROYECTO ORDER BY ID_PROYECTO;";
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
 
+            $toret=array();
+            $i=0;
+
+            while ($fila= $resultado->fetch_array()) {
+
+
+                $toret[$i]=$fila;
+                $i++;
+
+            }
+
+
+            return $toret;
+
+        }
     }
-
-    return $proyectos;
-  }
 
   //Buscar por.... lo que sea
   public function buscar($search) {
