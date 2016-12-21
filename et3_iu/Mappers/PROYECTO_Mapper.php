@@ -3,6 +3,7 @@
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__ . "/../Models/PROYECTO_Model.php");
 
+
 /**
  * Class PostMapper
  *
@@ -130,9 +131,17 @@ class ProyectoMapper {
    * @throws PDOException if a database error occurs
    * @return void
    */
-  public function modificar(Proyecto $proyecto) {
-      $this->conectarBD();
-  $sql = "UPDATE PROYECTO SET NOMBRE= '". $proyecto->getNOMBRE(). "' AND DESCRIPCION = '" . $proyecto->getDESCRIPCION(). "' AND '". /////////// . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
+    public function modificar(Proyecto $proyecto) {
+
+        $this->conectarBD();
+        $sql = "UPDATE PROYECTO SET NOMBRE= '". $proyecto->getNOMBRE(). "' AND DESCRIPCION = '" . $proyecto->getDESCRIPCION(). "' AND '". $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP(). "','" . $proyecto->getFECHAE(). "','" . $proyecto->getFECHAFP(). "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS(). "','"<. $proyecto->getDIRECTOR(). "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
+
+    if($this->mysqli->query($sql) === TRUE){
+        return "modificacion exitosa";
+    }else{
+        return "error modificacion";
+    }
+
   }
 
   /**
