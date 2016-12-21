@@ -3,6 +3,7 @@
 include '../Models/PROYECTO_Model.php';
 include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
+require_once("../Mappers/PROYECTO_Mapper.php");
 include '../Views/MENSAJE_Vista.php';
 if (!IsAuthenticated()){
     header('Location:../index.php');
@@ -14,6 +15,13 @@ $pags=generarIncludes();
 for ($z=0;$z<count($pags);$z++){
     include $pags[$z];
 }
+
+private $proyectoMapper;
+
+public function __construct() {
+    $this->proyectoMapper = new ProyectoMapper();
+}
+
 
 function get_data_form(){
 
@@ -166,7 +174,7 @@ Switch ($_REQUEST['accion']) {
         } else {
             $proyecto = get_data_form();
         }
-        $datos = $proyecto->listar();
+        $datos = $this->proyectoMapper->listar();
         if (!tienePermisos('Proyecto_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
