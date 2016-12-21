@@ -410,7 +410,17 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('secret', 301),
 ('secret', 302),
 ('secret', 303),
-('secret', 304);
+('secret', 304),
+('ADMIN', 400),
+('ADMIN', 401),
+('ADMIN', 402),
+('ADMIN', 403),
+('ADMIN', 404),
+('secret', 400),
+('secret', 401),
+('secret', 402),
+('secret', 403),
+('secret', 404);
 
 -- --------------------------------------------------------
 
@@ -497,7 +507,8 @@ INSERT INTO `FUNCIONALIDAD` (`FUNCIONALIDAD_ID`, `FUNCIONALIDAD_NOM`) VALUES
 (3, 'GESTION FUNCIONALIDADES'),
 (4, 'GESTION PAGINAS'),
 (5, 'CONSULTA EMPLEADOS'),
-(300, 'GESTION PAGOS');
+(300, 'GESTION PAGOS'),
+(400, 'GESTION PROYECTOS');
 
 -- --------------------------------------------------------
 
@@ -543,7 +554,12 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (300, 301),
 (300, 302),
 (300, 303),
-(300, 304);
+(300, 304),
+(400, 400),
+(400, 401),
+(400, 402),
+(400, 403),
+(400, 404);
 
 -- --------------------------------------------------------
 
@@ -662,7 +678,13 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (301, '../Views/PAGO_DELETE_Vista.php', 'PAGO DELETE'),
 (302, '../Views/PAGO_EDIT_Vista.php', 'PAGO EDIT'),
 (303, '../Views/PAGO_SHOW_ALL_Vista.php', 'PAGO SHOW ALL'),
-(304, '../Views/PAGO_SHOW_Vista.php', 'PAGO SHOW');
+(304, '../Views/PAGO_SHOW_Vista.php', 'PAGO SHOW'),
+(400, '../Views/PROYECTO_ADD_Vista.php', 'PROYECTO ADD'),
+(401, '../Views/PROYECTO_DELETE_Vista.php', 'PROYECTO DELETE'),
+(402, '../Views/PROYECTO_EDIT_Vista.php', 'PROYECTO EDIT'),
+(403, '../Views/PROYECTO_SHOW_ALL_Vista.php', 'PROYECTO SHOW ALL'),
+(404, '../Views/PROYECTO_SHOW_Vista.php', 'PROYECTO SHOW');
+
 
 -- --------------------------------------------------------
 
@@ -749,7 +771,9 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 (1, 5),
 (1, 300),
 (2, 5),
-(2, 300);
+(2, 300),
+(1, 400),
+(2, 400);
 
 
 --

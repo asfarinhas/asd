@@ -189,7 +189,7 @@ $strings = array(
 	'Usuario'=>'Usuario',
 
 	//Proyecto
-    'Nombre proyecto' => 'Nombre proyecto';
+    'Nombre proyecto' => 'Nombre proyecto',
 
         'GESTION PAGOS'=>'GESTION PAGOS',
     'Gestión de Pagos'=>'Gestion de Pagos',
