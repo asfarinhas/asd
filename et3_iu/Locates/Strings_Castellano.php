@@ -190,6 +190,7 @@ $strings = array(
 
 	//Proyecto
     'Nombre proyecto' => 'Nombre proyecto',
+    'Gestión de Proyectos' => 'Gestión de Proyectos',
 
         'GESTION PAGOS'=>'GESTION PAGOS',
     'Gestión de Pagos'=>'Gestion de Pagos',
