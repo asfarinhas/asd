@@ -829,7 +829,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO` (
   `FECHAFP` date NOT NULL,
   `NUMEROMIEBROS` int(3) NOT NULL,
   `NUMEROHORAS` int(5) NOT NULL,
-  `DIRECTOR` int(11) NOT NULL
+  `DIRECTOR` int(11) NOT NULL,
+  `BORRADO` tinyint(1) NOT NULL DEFAULT'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
