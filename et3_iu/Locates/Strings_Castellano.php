@@ -188,6 +188,9 @@ $strings = array(
 	'Gestiones Secundarias'=>'Gestiones Secundarias',
 	'Usuario'=>'Usuario',
 
+	//Proyecto
+    'Nombre proyecto' => 'Nombre proyecto';
+
         'GESTION PAGOS'=>'GESTION PAGOS',
     'Gestión de Pagos'=>'Gestion de Pagos',
 'PAGO_ID'=> 'Identificador del pago',
