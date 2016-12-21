@@ -1476,7 +1476,7 @@ function añadirFuncionalidades($NOM) {
                     ?><!--<a style="font-size:20px;" href='../Controllers/PAGO_Controller.php'><?php echo $strings['Gestión de Pagos'] ?></a><br><br> --><?php
                     break;
                 case "GESTION PROYECTO":
-                    ?><!<a style="font-size:20px;" href='../Controllers/PROYECTO_Controller.php'><?php echo $strings['Gestión de Proyectos'] ?></a><br><br> --><?php
+                    ?><a style="font-size:20px;" href='../Controllers/PROYECTO_Controller.php'><?php echo $strings['Gestión de Proyectos'] ?></a><br><br> --><?php
                     break;
                 default:
                     $link = str_replace(" ", "_", ConsultarNOMFuncionalidad($fila['FUNCIONALIDAD_ID'])) . "_Controller.php";
