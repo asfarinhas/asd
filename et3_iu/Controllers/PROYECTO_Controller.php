@@ -77,7 +77,7 @@ function get_data_form(){
     }else{
         $PROYECTO_DIRECTOR = null;
     }
-    
+
     $accion = $_REQUEST['accion'];
 
     $proyecto = new Proyecto($ID_PROYECTO,$PROYECTO_NOMBRE,$PROYECTO_DESCRIPCION,$PROYECTO_FECHAI,$PROYECTO_FECHAIP,$PROYECTO_FECHAE,$PROYECTO_FECHAFP,$PROYECTO_NUMEROMIEMBROS,$PROYECTO_NUMEROHORAS,$PROYECTO_DIRECTOR);
@@ -100,7 +100,7 @@ Switch ($_REQUEST['accion']) {
         } else {
 
             $proyecto= get_data_form();
-            $respuesta = $proyecto->insert_proyecto();
+            $respuesta = $proyecto->insertar();
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
 
         }
