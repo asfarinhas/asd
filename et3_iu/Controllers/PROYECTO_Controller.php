@@ -84,6 +84,8 @@ if (!isset($_REQUEST['accion'])){
     $_REQUEST['accion'] = '';
 }
 
+$proyectoMapper= new ProyectoMapper();
+
 Switch ($_REQUEST['accion']) {
     case $strings['Insertar']: //Inserción de proyecto
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
@@ -160,7 +162,7 @@ Switch ($_REQUEST['accion']) {
             $proyecto = new Proyecto('', '','','','','','','','','');
         } else {
             $proyecto = get_data_form();
-            $proyectoMapper= new ProyectoMapper();
+
         }
         $datos = $proyectoMapper->listar();
         if (!tienePermisos('Proyecto_Default')) {

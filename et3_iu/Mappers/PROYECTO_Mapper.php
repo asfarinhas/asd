@@ -1,6 +1,5 @@
 <?php
 // file: model/PostMapper.php
-require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__ . "/../Models/PROYECTO_Model.php");
 
 
