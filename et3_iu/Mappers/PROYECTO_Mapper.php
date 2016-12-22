@@ -1,6 +1,7 @@
 <?php
 // file: model/PostMapper.php
 require_once(__DIR__ . "/../Models/PROYECTO_Model.php");
+require_once(__DIR__ . "/../Models/MIEMBRO_Model.php");
 
 
 /**
@@ -51,16 +52,15 @@ class ProyectoMapper {
 
             $toret=array();
             $i=0;
-
             while ($fila= $resultado->fetch_array()) {
 
-
+                //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
+                $fila[9] = new Miembro_Model(2);//Insertamos un objeto en la posicion 10
+                $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
                 $toret[$i]=$fila;
+
                 $i++;
-
             }
-
-
             return $toret;
 
         }

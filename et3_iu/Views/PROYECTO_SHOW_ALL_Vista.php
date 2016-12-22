@@ -10,34 +10,21 @@ class Proyecto_Default{
         $this->datos = $array;
         $this->volver = $volver;
         $this->render();
+
     }
 
     function render(){
         ?>
 
-        <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" /></head>
         <p>
             <h2>
-                <?php
-
-
-                include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
-
-
-                ?>
                 <div>
-
-                    <head>
-                        <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
-                        <link rel="stylesheet" type="text/css" href="../Styles/print.css" media="print" />
+                    <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
+                        <?php   include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
                     </head>
                     <div id="wrapper">
-
                         <nav>
-
                             <div class="menu">
-
-
                                 <ul>
                                     <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                                     <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
@@ -45,74 +32,38 @@ class Proyecto_Default{
                                 </ul>
 
                                 <?php echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>"; ?></li>
-                                <a href='./PAGINA_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a>
-                                <a href='./PAGINA_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
-
-
+                                <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a>
+                                <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
                             </div>
                         </nav>
                         <table id="btable" border = 1>
                             <tr>
-                                <?php
-
-                                foreach($lista as $titulo){
-
-                                    echo "<th>";
-
-                                    ?>
-                                    <?php
-                                    echo $strings[$titulo];
-                                    ?>
-                                    </th>
-                                    <?php
-                                }
-                                ?>
+                                <th>  <?=$strings['NOMBRE'] ?> </th>
+                                <th>  <?=$strings['DIRECTOR'] ?> </th>
+                                <th>  <?=$strings['FECHAI'] ?> </th>
+                                <th>  <?=$strings['FECHAE'] ?> </th>
+                                <th>  <?=$strings['NUMEROHORAS'] ?> </th>
                             </tr>
                             <?php
-
-
-                            for ($j=0;$j<count($this->datos);$j++){
-
-
-
-                                echo "<tr>";
-                                foreach ($this->datos [$j] as $clave => $valor) {
-                                    for ($i = 0; $i < count($lista); $i++) {
-                                        if ($clave === $lista[$i]) {
-                                            ?>
-
-                                            <?php
-
-                                            echo "<td>";
-
-
-                                            echo $valor;
-
-                                            echo "</td>";
-                                        }
-                                    }
-                                }
-                                ?>
-
-                                <?php
-
-
-                                ?>
-
-                                <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['PROYECTO_NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                                </td>
-                                <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['PROYECTO_NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                                </td>
-
-
-                                <?php
-
-                                echo "<tr>";
-
+                            foreach($this->datos as $proyecto){
+                                echo "<td> " . $proyecto['NOMBRE']."</td>";
+                                echo "<td>" . $proyecto[9]->getNombre()."</td>";
+                                echo "<td> " . $proyecto['FECHAI']."</td>";
+                                echo "<td> " . $proyecto['FECHAE']."</td>";
+                                echo "<td> " . $proyecto['NUMEROHORAS']."</td>";
                             }
                             ?>
+
+
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Ver'] ?></a>
+                            </td>
 
                         </table>
 

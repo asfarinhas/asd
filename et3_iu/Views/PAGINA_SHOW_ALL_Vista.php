@@ -14,8 +14,8 @@ class Pagina_default{
 
 	function render(){
 		?>
-
-		<head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" /></head>
+        <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
+		<head></head>
 			<p>
 				<h2>
 					<?php

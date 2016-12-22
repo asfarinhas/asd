@@ -26,7 +26,7 @@ class Proyecto
      * @param $NUMEROHORAS
      * @param $DIRECTOR
      */
-    public function __construct($ID_PROYECTO=NULL, $NOMBRE=NULL, $DESCRIPCION=NULL, $FECHAI=NULL, $FECHAIP=NULL, $FECHAE=NULL, $FECHAFP=NULL, $NUMEROMIEMBROS=NULL, $NUMEROHORAS=NULL, $DIRECTOR=NULL)
+    public function __construct($ID_PROYECTO=NULL, $NOMBRE=NULL, $DESCRIPCION=NULL, $FECHAI=NULL, $FECHAIP=NULL, $FECHAE=NULL, $FECHAFP=NULL, $NUMEROMIEMBROS=NULL, $NUMEROHORAS=NULL,Miembro_Model $DIRECTOR=NULL)
     {
         $this->ID_PROYECTO = $ID_PROYECTO;
         $this->NOMBRE = $NOMBRE;
@@ -195,7 +195,7 @@ class Proyecto
     /**
      * @param null $DIRECTOR
      */
-    public function setDIRECTOR($DIRECTOR)
+    public function setDIRECTOR(Miembro_Model $DIRECTOR)
     {
         $this->DIRECTOR = $DIRECTOR;
     }
