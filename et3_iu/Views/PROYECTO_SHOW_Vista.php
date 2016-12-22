@@ -19,10 +19,6 @@ class Proyecto_Show{
              </p>
                 <h2>
 
-
-
-
-
                 </p>
                      <br><br>
                     <form action='PROYECTO_Controller.php' method='post'>
