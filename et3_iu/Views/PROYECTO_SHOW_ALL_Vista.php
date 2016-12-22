@@ -10,39 +10,21 @@ class Proyecto_Default{
         $this->datos = $array;
         $this->volver = $volver;
         $this->render();
+
     }
 
     function render(){
         ?>
 
-        <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" /></head>
         <p>
             <h2>
-                <?php
-
-
-                include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
-
-
-                ?>
                 <div>
-                    <?php
-
-                    $lista = array('NOMBRE','FECHAI','FECHAE','NUMEROMIEMBROS','NUMEROHORAS','DIRECTOR');
-
-
-                    ?>
                     <head>
-                        <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
-                        <link rel="stylesheet" type="text/css" href="../Styles/print.css" media="print" />
+                        <?php   include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
                     </head>
                     <div id="wrapper">
-
                         <nav>
-
                             <div class="menu">
-
-
                                 <ul>
                                     <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                                     <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
@@ -52,70 +34,18 @@ class Proyecto_Default{
                                 <?php echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>"; ?></li>
                                 <a href='./PAGINA_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a>
                                 <a href='./PAGINA_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
-
-
                             </div>
                         </nav>
                         <table id="btable" border = 1>
                             <tr>
-                                <?php
+                                <th>  <?=$strings['NOMBRE'] ?> </th>
 
-                                foreach($lista as $titulo){
-
-                                    echo "<th>";
-
-                                    ?>
-                                    <?php
-                                    echo $strings[$titulo];
-                                    ?>
-                                    </th>
-                                    <?php
-                                }
-                                ?>
+                                <th>  <?=$strings['DIRECTOR'] ?> </th>
                             </tr>
                             <?php
-
-
-                            for ($j=0;$j<count($this->datos);$j++){
-
-
-
-                                echo "<tr>";
-                                foreach ($this->datos [$j] as $clave => $valor) {
-                                    for ($i = 0; $i < count($lista); $i++) {
-                                        if ($clave === $lista[$i]) {
-                                            ?>
-
-                                            <?php
-
-                                            echo "<td>";
-
-
-                                            echo $valor;
-
-                                            echo "</td>";
-                                        }
-                                    }
-                                }
-                                ?>
-
-                                <?php
-
-
-                                ?>
-
-                                <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                                </td>
-                                <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                                </td>
-
-
-                                <?php
-
-                                echo "<tr>";
-
+                            foreach($this->datos as $proyecto){
+                                echo "<td> " . $proyecto['NOMBRE']."</td>";
+                                echo "<td>" . $proyecto[9]->getNombre()."</td>";
                             }
                             ?>
 
