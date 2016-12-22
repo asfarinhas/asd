@@ -57,7 +57,7 @@ class Proyecto_Default{
                                 <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                             </td>
                             <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Buscar'] ?></a>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>
 
                         </table>
