@@ -16,7 +16,7 @@ for ($z=0;$z<count($pags);$z++){
     include $pags[$z];
 }
 
-
+$proyectoMapper=new ProyectoMapper();
 
 function get_data_form(){
 
@@ -165,11 +165,11 @@ Switch ($_REQUEST['accion']) {
     default:
         //La vista por defecto lista todas los proyectos
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            $proyecto = new Proyecto('', '','','','','','','','','');
+            $proyecto = new Proyecto('', '','','','','','','','',null);
         } else {
             $proyecto = get_data_form();
         }
-        $datos = $this->proyectoMapper->listar();
+        $datos = $proyectoMapper->listar();
         if (!tienePermisos('Proyecto_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
