@@ -19,7 +19,7 @@ class Proyecto_Default{
         <p>
             <h2>
                 <div>
-                    <head>
+                    <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
                         <?php   include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
                     </head>
                     <div id="wrapper">
