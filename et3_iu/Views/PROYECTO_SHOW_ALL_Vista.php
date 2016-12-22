@@ -39,13 +39,20 @@ class Proyecto_Default{
                         <table id="btable" border = 1>
                             <tr>
                                 <th>  <?=$strings['NOMBRE'] ?> </th>
-
+                                <th>  <?=$strings['DIRECTOR'] ?> </th>
+                                <th>  <?=$strings['FECHAI'] ?> </th>
+                                <th>  <?=$strings['FECHAE'] ?> </th>
+                                <th>  <?=$strings['NUMEROHORAS'] ?> </th>
                                 <th>  <?=$strings['DIRECTOR'] ?> </th>
                             </tr>
                             <?php
                             foreach($this->datos as $proyecto){
                                 echo "<td> " . $proyecto['NOMBRE']."</td>";
                                 echo "<td>" . $proyecto[9]->getNombre()."</td>";
+                                echo "<td> " . $proyecto['FECHAI']."</td>";
+                                echo "<td> " . $proyecto['FECHAE']."</td>";
+                                echo "<td> " . $proyecto['NUMEROHORAS']."</td>";
+
                             }
                             ?>
 
