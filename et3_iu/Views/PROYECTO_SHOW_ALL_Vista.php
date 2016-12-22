@@ -7,11 +7,11 @@ class Proyecto_Default{
     private $volver;
 
     function __construct($array, $volver){
-        $this->datos = $array;
-        $this->volver = $volver;
-        $this->render();
+    $this->datos = $array;
+    $this->volver = $volver;
+    $this->render();
 
-    }
+}
 
     function render(){
         ?>

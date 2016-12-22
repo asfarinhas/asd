@@ -204,6 +204,8 @@ $strings = array(
 	'BORRADO' =>'Borrado',
 	'Ver' => 'Ver',
 	'Buscar' => 'Buscar',
+	'Consultar proyecto' => 'Consultar proyecto',
+	'nombre' => 'Nombre',
 
 
 

@@ -9,41 +9,44 @@ class Proyecto_Show{
 
     function render(){
         ?>
-
         <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" /></head>
-        <p>
+        <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
+            <p>
+                <h1><span class="form-title">
+			        <?php echo $strings['Consultar proyecto']; ?><br>
+
+                 </h1>
+             </p>
+                <h2>
 
 
-            <?php
-            include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 
 
-            ?>
-        <h1><span class="form-title">
-			<?php echo $strings['Consultar proyecto']; ?><br>
-        </h1>
-        </p>
-        <p>
-        <h3>
 
-            <br><br>
-            <form action='PROYECTO_Controller.php' method='post'>
-                <ul class="form-style-1">
+                </p>
+                     <br><br>
+                    <form action='PROYECTO_Controller.php' method='post'>
+                    <ul class="form-style-1">
+                        <!-- Campo Nombre -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="nombre" class="control-label"><?php echo $strings['nombre']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="nombre"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
 
-                    <li><label><?php echo $string['Nombre proyecto'];?> </label></li>
 
-                    <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'><br>
 
-            </form>
-            <br>
-            <?php
-            echo '<a class="form-link" href=\'PROYECTO_Controller.php\'>' . $strings['Volver'] . '</a>';
-            ?>
+                    <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
+                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                    </form>
 
-        </h3>
-        </p>
+                </h2>
 
-        </div>
+
+                </div>
 
         <?php
     }
