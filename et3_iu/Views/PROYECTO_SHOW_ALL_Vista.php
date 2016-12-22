@@ -43,7 +43,6 @@ class Proyecto_Default{
                                 <th>  <?=$strings['FECHAI'] ?> </th>
                                 <th>  <?=$strings['FECHAE'] ?> </th>
                                 <th>  <?=$strings['NUMEROHORAS'] ?> </th>
-                                <th>  <?=$strings['DIRECTOR'] ?> </th>
                             </tr>
                             <?php
                             foreach($this->datos as $proyecto){
@@ -52,7 +51,6 @@ class Proyecto_Default{
                                 echo "<td> " . $proyecto['FECHAI']."</td>";
                                 echo "<td> " . $proyecto['FECHAE']."</td>";
                                 echo "<td> " . $proyecto['NUMEROHORAS']."</td>";
-
                             }
                             ?>
 
