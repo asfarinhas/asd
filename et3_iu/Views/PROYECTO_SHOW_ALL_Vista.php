@@ -26,7 +26,12 @@ class Proyecto_Default{
 
                 ?>
                 <div>
+                    <?php
 
+                    $lista = array('NOMBRE','FECHAI','FECHAE','NUMEROMIEMBROS','NUMEROHORAS','DIRECTOR');
+
+
+                    ?>
                     <head>
                         <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
                         <link rel="stylesheet" type="text/css" href="../Styles/print.css" media="print" />
@@ -100,10 +105,10 @@ class Proyecto_Default{
                                 ?>
 
                                 <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['PROYECTO_NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
+                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
                                 </td>
                                 <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['PROYECTO_NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                                 </td>
 
 

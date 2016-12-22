@@ -191,6 +191,23 @@ $strings = array(
 	//Proyecto
     'Nombre proyecto' => 'Nombre proyecto',
     'Gestión de Proyectos' => 'Gestión de Proyectos',
+	'ID_PROYECTO' => 'ID Proyecto',
+	'NOMBRE' => 'Nombre',
+	'DESCRIPCION' => 'Descripcion',
+	'FECHAI' => 'Fecha Inicio',
+	'FECHAIP' => 'Fecha Incio Planificada',
+	'FECHAE' => 'Fecha Entrega',
+	'FECHAFP' => 'Fecha Final Planificada',
+	'NUMEROMIEMBROS' =>'Numero miembros',
+	'NUMEROHORAS' =>'Numero horas',
+	'DIRECTOR' =>'Director Proyecto',
+	'BORRADO' =>'Borrado',
+
+
+
+
+
+
 
         'GESTION PAGOS'=>'GESTION PAGOS',
     'Gestión de Pagos'=>'Gestion de Pagos',
