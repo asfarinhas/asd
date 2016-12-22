@@ -29,7 +29,7 @@ class Proyecto_Show{
                                 <label for="nombre" class="control-label"><?php echo $strings['nombre']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="nombre"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
