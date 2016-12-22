@@ -202,6 +202,7 @@ $strings = array(
 	'NUMEROHORAS' =>'Numero horas',
 	'DIRECTOR' =>'Director Proyecto',
 	'BORRADO' =>'Borrado',
+	'Buscar' => 'Buscar',
 
 
 
