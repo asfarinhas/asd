@@ -10,14 +10,6 @@ if (!IsAuthenticated()){
 }
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 
-
-private $proyectoMapper;
-
-public function __construct() {
-    $this->proyectoMapper = new ProyectoMapper();
-}
-
-
 function get_data_form(){
 
 //Recoge la información del formulario
@@ -169,8 +161,9 @@ Switch ($_REQUEST['accion']) {
         } else {
             $proyecto = get_data_form();
         }
-        $datos = $this->proyectoMapper->listar();
-        if (!tienePermisos('Proyecto_Default')) {
+        $proyectoMapper = new ProyectoMapper();
+        $datos = $proyectoMapper->listar();
+        if (!tienePermisos('Pagina_default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
             new Proyecto_Default($datos, '../Views/DEFAULT_Vista.php');
