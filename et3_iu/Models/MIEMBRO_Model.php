@@ -97,9 +97,3 @@ class Miembro_Model{
 
 }
 ?>
-/**
- * Created by PhpStorm.
- * User: RaquelMarcos
- * Date: 18/12/16
- * Time: 16:11
- */
