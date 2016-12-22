@@ -1,29 +1,29 @@
 <?php
 
-class Tarea_Model{
+class Tarea{
 
     private $id_tarea;
     private $nombre;
     private $descripcion;
-    private $id_tarea_padre;
+    private $tarea_padre;
     private $fecha_inicio_plan;
     private $fecha_entrega_plan;
     private $fecha_inicio_real;
     private $fecha_entrega_real;
     private $horas_plan;
     private $horas_real;
-    private $id_miembro;
+    private $id_miembro; //tipo miembro/usuario
     private $entregable;
     private $estado_tarea;
     private $comentario;
 
-    public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, $id_tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
-                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $id_miembro=NULL, $entregable=NULL, $estado_tarea=NULL, $comentario=NULL){
+    public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, Tarea $tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
+                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $id_miembro=NULL, array $entregable=NULL, $estado_tarea=NULL, $comentario=NULL){
 
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
-        $this->id_tarea_padre = $id_tarea_padre;
+        $this->tarea_padre = $tarea_padre;
         $this->fecha_inicio_plan = $fecha_inicio_plan;
         $this->fecha_entrega_plan = $fecha_entrega_plan;
         $this->fecha_inicio_real = $fecha_inicio_real;
@@ -83,17 +83,17 @@ class Tarea_Model{
     /**
      * @return null
      */
-    public function getIdTareaPadre()
+    public function getTareaPadre()
     {
-        return $this->id_tarea_padre;
+        return $this->tarea_padre;
     }
 
     /**
      * @param null $id_tarea_padre
      */
-    public function setIdTareaPadre($id_tarea_padre)
+    public function setTareaPadre(Tarea $tarea_padre)
     {
-        $this->id_tarea_padre = $id_tarea_padre;
+        $this->tarea_padre = $tarea_padre;
     }
 
     /**
@@ -219,7 +219,7 @@ class Tarea_Model{
     /**
      * @param null $entregable
      */
-    public function setEntregable($entregable)
+    public function setEntregable(array $entregable)
     {
         $this->entregable = $entregable;
     }
