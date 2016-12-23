@@ -206,6 +206,11 @@ $strings = array(
     'El pago ha sido borrado correctamente'=>'The payment has been erased successfully',
     'Modificar Pago' => 'Edit Payment',
     'El pago se ha modificado correctamente'=>'The payment has been edited successfully',
-    'El DNI introducido no pertenece a ningun cliente'=>"Introduced DNI doesn't belong to any client"
+    'El DNI introducido no pertenece a ningun cliente'=>"Introduced DNI doesn't belong to any client",
+
+	//SUBTAREA
+	'Descripcion' => 'Description',
+	'Fechainicioplan' => 'Planned beginning date',
+    'Fechaentregaplan' => 'Planned ending date'
 )
 ?>

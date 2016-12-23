@@ -207,9 +207,10 @@ $strings = array(
 	'Consultar proyecto' => 'Consultar proyecto',
 	'nombre' => 'Nombre',
 
-
-
-
+	//SUBTAREA
+    'Descripcion' => 'Descripcion',
+    'Fechainicioplan' => 'Fecha de inicio planificada',
+    'Fechaentregaplan' => 'Fecha de entrega planificada',
 
 
 

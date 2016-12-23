@@ -1,5 +1,5 @@
 <?php
-//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 class Subtarea_add
 {
 
@@ -25,11 +25,25 @@ class Subtarea_add
         <!-- <form action="" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
          <div>
-             $strings['Nombre']<br/>
+             <?//= $strings['nombre']?> <br/>
+             <input type="text" name="nombre" placeholder="<?//= $strings['nombre']?>"  id="nombre" required ><br/>
+         </div>
 
-                 <input type="text" name="nombre" placeholder="Nombre" value="$array[0]->getNombre()" id="nombre" required ><br/>
+        <div>
+            <?//= $strings['Descripcion']?> <br/>
+            <input type="text" name="descripcion" placeholder="<?//= $strings['Descripcion']?>"  id="descripcion" required ><br/>
+        </div>
 
-             </div>-->
+        <div>
+            <?//= $strings['Fechainicioplan']?> <br/>
+            <input type="text" name="fecha_inicio_plan" placeholder="<?//= $strings['Fechainicioplan']?>"  id="fecha_inicio_plan" required ><br/>
+        </div>
+
+        <div>
+            <? //= $strings['Fechaentregaplan']?> <br/>
+            <input type="text" name="fecha_entrega_plan" placeholder="<?//= $strings['Fechaentregaplan']?>"  id="fecha_entrega_plan" required ><br/>
+        </div>-->
+
         <?php
     }
 }
