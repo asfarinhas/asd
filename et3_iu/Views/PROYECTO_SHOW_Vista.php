@@ -111,7 +111,7 @@ class Proyecto_Show{
 
 
 
-                    <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
+                    
                                 <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                     </form>
 

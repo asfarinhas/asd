@@ -132,7 +132,7 @@ switch ($_REQUEST['accion']) {
             $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
             $valores = $proyectoMapper->RellenaDatos();
 
-            if (!tienePermisos('Proyecto_Delete')) {
+            if (!tienePermisos('Proyecto_M')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
 

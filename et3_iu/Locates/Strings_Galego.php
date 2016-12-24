@@ -63,6 +63,7 @@ $strings = array(
 'Modificar' => 'Modificar',
 'Borrar' => 'Borrar',
 'Consultar' => 'Consultar',
+'ConsultarBorrados' => 'Consultar Borrados',
 'Update' => 'Update',
 'Delete' => 'Delete',
 'Cerrar Sesión' => 'Pechar Sesión',
@@ -201,8 +202,29 @@ $strings = array(
     'Modificar Pago' =>'Modificar Pago',
     'El pago se ha modificado correctamente'=>'O pago modificouse correctamente',
     'El DNI introducido no pertenece a ningun cliente'=>'O DNI introducido non pertence a ningún cliente',
+//Proyecto
+    'Nombre proyecto' => 'Nome proxecto',
+    'Gestión de Proyectos' => 'Xestión de Proxectos',
+    'ID_PROYECTO' => 'ID Proxecto',
+    'NOMBRE' => 'Nome',
+    'DESCRIPCION' => 'Descrición',
+    'FECHAI' => 'Data Inicio',
+    'FECHAIP' => 'Data Incio Planificada',
+    'FECHAE' => 'Data Entrega',
+    'FECHAFP' => 'Data Final Planificada',
+    'NUMEROMIEMBROS' =>'Número membros',
+    'NUMEROHORAS' =>'Número horas',
+    'DIRECTOR' =>'Diretor Proxecto',
+    'BORRADO' =>'Borrado',
+    'Ver' => 'Ver',
+    'Buscar' => 'Atopar',
+    'Consultar proyecto' => 'Consultar proxecto',
+    'Insertar Proyecto' => 'Inserir Proxecto',
+    'Borrar proyecto' => 'Borrar proxecto',
+    'El proyecto ha sido borrado correctamente'=>'O proyecto foi borrado correctamente',
 
-	//SUBTAREA
+
+    //SUBTAREA
     'Descripcion' => 'Descripcion',
     'Fechainicioplan' => 'Data de comenzo programada',
     'Fechaentregaplan' => ''
