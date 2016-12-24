@@ -62,7 +62,7 @@ class Proyecto_Default{
                                 <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                             </td>
                             <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Ver'] ?></a>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Consultar']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>
                             </tr>
     <?php                        }

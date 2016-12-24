@@ -106,7 +106,7 @@ class ProyectoMapper {
 
       $resultado = $this->mysqli->query($sql);
 
-      if($resultado ->num_row!=0){
+      if($resultado->num_rows!=0){
           $proyecto= $resultado->fetch_array();
 
       }
@@ -115,6 +115,22 @@ class ProyectoMapper {
 
   }
 
+//Buscar por nombre
+    public function buscarNombre($proyectoNombre){
+        $this ->conectarBD();
+        $sql = "SELECT * FROM PROYECTO WHERE NOMBRE = '" . $proyectoNombre . "';";
+
+
+        $resultado = $this->mysqli->query($sql);
+
+        if($resultado ->num_rows!=0){
+            $proyecto= $resultado->fetch_array();
+
+        }
+
+        return $proyecto;
+
+    }
 
   public function insertar(Proyecto $proyecto) {
         $this->conectarBD();

@@ -149,15 +149,15 @@ switch ($_REQUEST['accion']) {
         break;
     case $strings['Consultar']: //Consulta de proyecto
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            new Proyecto_Show();
+            new Proyecto_Show('','');
         } else {
             $proyecto = get_data_form();
-            $datos = $proyectoMapper->buscar($proyecto->getNOMBRE());
+            $datos = $proyectoMapper->buscarNombre($_REQUEST['PROYECTO_NOMBRE']);
             if (!tienePermisos('Proyecto_Show')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
 
-                new Proyecto_default($datos, 'PROYECTO_Controller.php');
+                new Proyecto_Show($datos, 'PROYECTO_Controller.php');
             }
         }
         break;

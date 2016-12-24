@@ -36,7 +36,7 @@ class Proyecto_Add
                         <!-- Campo Nombre -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="nombre" class="control-label"><?php echo $strings['nombre']; ?>:</label>
+                                <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error nombre proyecto']; ?>" >
@@ -45,7 +45,7 @@ class Proyecto_Add
                         <!-- Campo Descripcion -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="descripcion" class="control-label"><?php echo $strings['descripcion']; ?>:</label>
+                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
                                 <textarea name="DESCRIPCION" rows="10" cols="40"></textarea>
@@ -54,7 +54,7 @@ class Proyecto_Add
                         <!-- Campo Fecha Inicio -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAI" class="control-label"><?php echo $strings['fechai']; ?>:</label>
+                                <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
 
@@ -63,7 +63,7 @@ class Proyecto_Add
                         <!-- Campo Fecha Entrega -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAE" class="control-label"><?php echo $strings['fechae']; ?>:</label>
+                                <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
 
@@ -73,7 +73,7 @@ class Proyecto_Add
                         <!-- Campo Fecha Inicio Planificada -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAIP" class="control-label"><?php echo $strings['fechaip']; ?>:</label>
+                                <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
 
@@ -83,7 +83,7 @@ class Proyecto_Add
                         <!-- Campo Fecha Final Planificada -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAFP" class="control-label"><?php echo $strings['fechafp']; ?>:</label>
+                                <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
 
@@ -93,7 +93,7 @@ class Proyecto_Add
                         <!-- Campo Numero miembros -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="numeromiembros" class="control-label"><?php echo $strings['numero miembros']; ?>:</label>
+                                <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="NUMEROMIEMBROS"  title="<?php echo $strings['error nombre proyecto']; ?>" >
@@ -102,7 +102,7 @@ class Proyecto_Add
                         <!-- Campo Numero horas -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="numerohoras" class="control-label"><?php echo $strings['numerohoras']; ?>:</label>
+                                <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error nombre proyecto']; ?>" >
