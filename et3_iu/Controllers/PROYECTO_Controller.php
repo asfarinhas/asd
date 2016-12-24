@@ -92,10 +92,10 @@ if (!isset($_REQUEST['accion'])){
     $_REQUEST['accion'] = '';
 }
 
-Switch ($_REQUEST['accion']) {
+switch ($_REQUEST['accion']) {
     case $strings['Insertar']: //Inserción de proyecto
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            if (!tienePermisos('FUNCIONALIDAD_Show')) {
+            if (!tienePermisos('Proyecto_Add')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
                 new Proyecto_Add();
@@ -103,7 +103,7 @@ Switch ($_REQUEST['accion']) {
         } else {
 
             $proyecto= get_data_form();
-            $respuesta = $proyecto->insertar();
+            $respuesta = $proyectoMappper->insertar($proyecto);
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
 
         }
@@ -111,7 +111,7 @@ Switch ($_REQUEST['accion']) {
     case $strings['Borrar']: //Borrado de proyecto
         if (!isset($_REQUEST['ID_PROYECTO'])) {
             $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
-            $valores = $proyecto->RellenaDatos($proyecto->getNOMBRE());
+            $valores = $proyectoMapper->RellenaDatos($proyecto->getNOMBRE());
             if (!tienePermisos('Proyecto_Delete')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
@@ -121,7 +121,7 @@ Switch ($_REQUEST['accion']) {
 
 
             $proyecto = get_data_form();
-            $respuesta = $proyecto->delete_proyecto();
+            $respuesta = $proyectoMapper->borrar($proyecto);
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
         }
         break;
@@ -130,7 +130,7 @@ Switch ($_REQUEST['accion']) {
         if (!isset($_REQUEST['ID_PROYECTO'])) {
 
             $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
-            $valores = $proyecto->RellenaDatos();
+            $valores = $proyectoMapper->RellenaDatos();
 
             if (!tienePermisos('Proyecto_Delete')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
@@ -142,7 +142,7 @@ Switch ($_REQUEST['accion']) {
 
             $proyecto = get_data_form();
 
-            $respuesta = $proyecto->update_proyecto($_REQUEST['ID_PROYECTO']);
+            $respuesta = $proyectoMapper->modificar($proyecto);
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
 
         }
@@ -152,8 +152,8 @@ Switch ($_REQUEST['accion']) {
             new Proyecto_Show();
         } else {
             $proyecto = get_data_form();
-            $datos = $proyecto->select_proyecto();
-            if (!tienePermisos('Proyecto_Delete')) {
+            $datos = $proyectoMapper->buscar($proyecto->getNOMBRE());
+            if (!tienePermisos('Proyecto_Show')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
 

@@ -32,6 +32,16 @@ class Proyecto_Show{
                                 <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
+                        <!-- Campo ID -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="id" class="control-label"><?php echo $strings['id_proyecto']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="ID_PROYECTO"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+
 
 
 

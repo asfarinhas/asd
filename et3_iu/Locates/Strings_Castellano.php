@@ -206,6 +206,14 @@ $strings = array(
 	'Buscar' => 'Buscar',
 	'Consultar proyecto' => 'Consultar proyecto',
 	'nombre' => 'Nombre',
+    'Insertar Proyecto' => 'Insertar Proyecto',
+	'descripcion' => 'Descripción',
+	'fechai' => 'Fecha inicio',
+	'fechae' => 'Fecha entrega',
+	'fechaip' => 'Fecha inicio planificada',
+	'fechafp' => 'Fecha final planificada',
+	'numero miembros' => 'Número de miembros',
+	'numerohoras' => 'Número de miembros',
 
 	//SUBTAREA
     'Descripcion' => 'Descripcion',
