@@ -46,25 +46,27 @@ class Proyecto_Default{
                             </tr>
                             <?php
                             foreach($this->datos as $proyecto){
-                                echo "<td> " . $proyecto['NOMBRE']."</td>";
+                                echo "<tr><td> " . $proyecto['NOMBRE']."</td>";
                                 echo "<td>" . $proyecto[9]->getNombre()."</td>";
                                 echo "<td> " . $proyecto['FECHAI']."</td>";
                                 echo "<td> " . $proyecto['FECHAE']."</td>";
                                 echo "<td> " . $proyecto['NUMEROHORAS']."</td>";
-                            }
+
+        ?>
+
+
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Ver'] ?></a>
+                            </td>
+                            </tr>
+    <?php                        }
                             ?>
-
-
-                            <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $this->datos[$j]['NOMBRE'] . '&accion='.$strings['Buscar']; ?>'><?php echo $strings['Ver'] ?></a>
-                            </td>
-
                         </table>
 
                     </div>
