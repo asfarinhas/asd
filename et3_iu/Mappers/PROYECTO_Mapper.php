@@ -44,7 +44,7 @@ class ProyectoMapper {
     function listar()
     {
         $this->ConectarBD();
-        $sql = "select * from PROYECTO ORDER BY ID_PROYECTO;";
+        $sql = "select * from PROYECTO WHERE BORRADO ='0' ORDER BY ID_PROYECTO;";
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }
@@ -65,6 +65,34 @@ class ProyectoMapper {
 
         }
     }
+
+
+    function listarBorrados()
+    {
+        $this->ConectarBD();
+        $sql = "select * from PROYECTO WHERE BORRADO ='1' ORDER BY ID_PROYECTO;";
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
+
+            $toret=array();
+            $i=0;
+            while ($fila= $resultado->fetch_array()) {
+
+                //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
+                $fila[9] = new Miembro_Model(2);//Insertamos un objeto en la posicion 10
+                $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
+                $toret[$i]=$fila;
+
+                $i++;
+            }
+            return $toret;
+
+        }
+    }
+
+
 
   //Buscar por.... lo que sea
   public function buscar($search) {
@@ -196,10 +224,10 @@ class ProyectoMapper {
    */
   public function borrar(Proyecto $proyecto) {
       $this->conectarBD();
-      $sql = "UPDATE PROYECTO SET BORRADO= '1' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
+      $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE()."';";
       
       if($this->mysqli->query($sql) === TRUE){
-          return "borrado exito";
+          return "El proyecto ha sido borrado correctamente";
       }else{
           return "error borrado";
       }

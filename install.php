@@ -8,7 +8,7 @@
 
     <body>
         <p> [ Introduzca el Usuario y Contraseña root de la base de datos ] </p>
-        
+
         <form action="./et3_iu/install_finish.php" method="post">
 
             <p>Usuario <input type="text" name="usuario"></p>

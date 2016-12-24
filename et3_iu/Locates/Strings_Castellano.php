@@ -66,6 +66,7 @@ $strings = array(
 'Modificar' => 'Modificar',
 'Borrar' => 'Borrar',
 'Consultar' => 'Consultar',
+'ConsultarBorrados' => 'Consultar Borrados',
 'Update' => 'Update',
 'Delete' => 'Delete',
 'Cerrar Sesión' => 'Cerrar Sesión',
@@ -206,6 +207,8 @@ $strings = array(
 	'Buscar' => 'Buscar',
 	'Consultar proyecto' => 'Consultar proyecto',
     'Insertar Proyecto' => 'Insertar Proyecto',
+	'Borrar proyecto' => 'Borrar proyecto',
+    'El proyecto ha sido borrado correctamente'=>'El proyecto ha sido borrado correctamente',
 
 	//SUBTAREA
     'Descripcion' => 'Descripcion',

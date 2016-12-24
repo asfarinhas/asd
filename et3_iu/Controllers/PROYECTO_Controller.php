@@ -110,12 +110,12 @@ switch ($_REQUEST['accion']) {
         break;
     case $strings['Borrar']: //Borrado de proyecto
         if (!isset($_REQUEST['ID_PROYECTO'])) {
-            $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
+            $proyecto = get_data_form();
             $valores = $proyectoMapper->RellenaDatos($proyecto->getNOMBRE());
-            if (!tienePermisos('Proyecto_Delete')) {
+            if (!tienePermisos('Proyecto_Borrar')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
-                new Proyecto_Delete($valores, 'PROYECTO_Controller.php');
+                new Proyecto_Borrar($valores, 'PROYECTO_Controller.php');
             }
         } else {
 
@@ -161,6 +161,26 @@ switch ($_REQUEST['accion']) {
             }
         }
         break;
+
+
+    case $strings['ConsultarBorrados']: //Consulta de proyectos borrados
+
+
+        //La vista por defecto lista todas los proyectos
+        if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
+            $proyecto = new Proyecto('', '','','','','','','','',null);
+        } else {
+            $proyecto = get_data_form();
+        }
+        $datos = $proyectoMapper->listarBorrados();
+        if (!tienePermisos('Proyecto_Default')) {
+            new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+        } else {
+            new Proyecto_Default($datos, 'PROYECTO_Controller.php');
+
+        }
+        break;
+
 
     default:
         //La vista por defecto lista todas los proyectos
