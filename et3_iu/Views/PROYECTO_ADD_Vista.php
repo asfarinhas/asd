@@ -57,7 +57,7 @@ class Proyecto_Add
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-
+                                <input type="text" class="form-control" name="FECHAI"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -66,7 +66,7 @@ class Proyecto_Add
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-
+                                <input type="text" class="form-control" name="FECHAE"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
                         </div>
 
@@ -76,7 +76,7 @@ class Proyecto_Add
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-
+                                <input type="text" class="form-control" name="FECHAIP"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
                         </div>
 
@@ -86,7 +86,7 @@ class Proyecto_Add
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-
+                                <input type="text" class="form-control" name="FECHAFP"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
                         </div>
 

@@ -99,7 +99,6 @@ class ProyectoMapper {
       $this ->conectarBD();
     $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%$search%' OR
          NOMBRE LIKE '%$search%' OR
-        DESCRIPCION LIKE '%$search%' OR
               FECHAI LIKE '%$search%' OR
               FECHAIP LIKE '%$search%'OR
               FECHAE LIKE '%$search%'OR
@@ -107,14 +106,25 @@ class ProyectoMapper {
              NUMEROHORAS LIKE '%$search%'OR
               DIRECTOR LIKE '%$search%';";
 
-    $resultado = $this->mysqli->query($sql);
+      if (!($resultado = $this->mysqli->query($sql))){
+          return 'Error en la consulta sobre la base de datos';
+      }
+      else{
 
-    if($resultado ->num_rows!=0){
-        $proyectos= $resultado->fetch_array();
+          $toret=array();
+          $i=0;
+          while ($fila= $resultado->fetch_array()) {
 
-    }
+              //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
+              $fila[9] = new Miembro_Model(2);//Insertamos un objeto en la posicion 10
+              $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
+              $toret[$i]=$fila;
 
-    return $proyectos;
+              $i++;
+          }
+          return $toret;
+
+      }
   }
 
   /**
@@ -165,7 +175,7 @@ class ProyectoMapper {
 
         $sql= "SELECT * FROM PROYECTO WHERE NOMBRE ='" . $proyecto->getNOMBRE()."';";
             $resultado = $this->mysqli->query($sql);
-            if($resultado->num_row!=0){
+            if($resultado->num_rows!=0){
                 return "nombre de proyecto ya existe";
             }else{
                 $sql = "INSERT INTO PROYECTO (ID_PROYECTO,NOMBRE,DESCRIPCION,FECHAI,FECHAIP,FECHAE,FECHAFP,NUMEROMIEMBROS,NUMEROHORAS,DIRECTOR) VALUES ('" . $proyecto->getIDPROYECTO()."','" . $proyecto->getNOMBRE() ."','" . $proyecto->getDESCRIPCION() . "','" . $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP() . "','" . $proyecto->getFECHAE() . "','" . $proyecto->getFECHAFP() . "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS()."','". $proyecto->getDIRECTOR()."');";
@@ -205,12 +215,12 @@ class ProyectoMapper {
     public function modificar(Proyecto $proyecto) {
 
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '". $proyecto->getNOMBRE(). "', DESCRIPCION = '" . $proyecto->getDESCRIPCION(). "', FECHAI ='". $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP(). "', FECHAE ='" . $proyecto->getFECHAE(). "', FECHAFP = '" . $proyecto->getFECHAFP(). "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS(). "', NUMEROHORAS= '" . $proyecto->getNUMEROHORAS(). "', DIRECTOR= '" . $proyecto->getDIRECTOR(). "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO()."';";
+        $sql = "UPDATE PROY
+        return "error modificaECTO SET NOMBRE= '\". $proyecto->getNOMBRE(). \"', DESCRIPCION = '\" . $proyecto->getDESCRIPCION(). \"', FECHAI ='\". $proyecto->getFECHAI() . \"', FECHAIP ='\" . $proyecto->getFECHAIP(). \"', FECHAE ='\" . $proyecto->getFECHAE(). \"', FECHAFP = '\" . $proyecto->getFECHAFP(). \"', NUMEROMIEMBROS='\" . $proyecto->getNUMEROMIEMBROS(). \"', NUMEROHORAS= '\" . $proyecto->getNUMEROHORAS(). \"', DIRECTOR= '\" . $proyecto->getDIRECTOR(). \"' WHERE ID_PROYECTO= '\" . $proyecto->getIDPROYECTO().\"';\";
 
     if($this->mysqli->query($sql) === TRUE){
-        return "modificacion exitosa";
-    }else{
-        return "error modificacion";
+        return \"modificacion exitosa\";
+    }else{cion";
     }
 
   }

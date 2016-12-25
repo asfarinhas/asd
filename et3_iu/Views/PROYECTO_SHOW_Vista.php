@@ -3,8 +3,9 @@
 class Proyecto_Show{
 //VISTA PARA MOSTRAR CONSULTA DE PROYECTO
 
-    function __construct($array,$volver){
-        $this->datos = $array;
+    function __construct($buscar,$array,$volver){
+        $this->datos=$array;
+        $this->buscar= $buscar;
         $this->volver = $volver;
         $this->render();
     }
@@ -15,7 +16,105 @@ class Proyecto_Show{
         <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
             <p>
                 <h1><span class="form-title">
-			        <?php echo $strings['Consultar proyecto']; ?><br>
+
+              <?php  if($this->buscar!='buscar'){
+
+			         echo $strings['Consultar proyecto']; ?><br>
+
+                 </h1>
+             </p>
+                <h2>
+
+                </p>
+                     <br><br>
+                    <form action='PROYECTO_Controller.php' method='post'>
+                    <ul class="form-style-1">
+                        <!-- Campo Nombre -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+                        <!-- Campo ID -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="id" class="control-label"><?php echo $strings['ID_PROYECTO']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control"  name="SEARCH"   title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+                        <!-- Campo Fecha Inicio -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+                        <!-- Campo Fecha Entrega -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+
+                        <!-- Campo Fecha Inicio Planificada -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+
+                        <!-- Campo Fecha Final Planificada -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
+
+                        <!-- Campo Numero miembros -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                        </div>
+                        <!-- Campo Numero horas -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                        </div>
+
+
+
+                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                                <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
+
+                    </form>
+
+                </h2>
+
+                <?php }else{
+
+  echo $strings['Ver proyecto']; ?><br>
 
                  </h1>
              </p>
@@ -41,15 +140,6 @@ class Proyecto_Show{
                             </div>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" readonly name="ID_PROYECTO"  value="<?php echo $this->datos['ID_PROYECTO'];?>" title="<?php echo $strings['error trabajador']; ?>" >
-                            </div>
-                        </div>
-                        <!-- Campo Descripcion -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <textarea name="DESCRIPCION" readonly  rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>
                             </div>
                         </div>
                         <!-- Campo Fecha Inicio -->
@@ -111,16 +201,16 @@ class Proyecto_Show{
 
 
 
-                    
+
                                 <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                     </form>
 
                 </h2>
 
 
-                </div>
 
         <?php
+        }
     }
 
 }

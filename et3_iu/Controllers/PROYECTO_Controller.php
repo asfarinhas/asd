@@ -103,7 +103,7 @@ switch ($_REQUEST['accion']) {
         } else {
 
             $proyecto= get_data_form();
-            $respuesta = $proyectoMappper->insertar($proyecto);
+            $respuesta = $proyectoMapper->insertar($proyecto);
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
 
         }
@@ -147,9 +147,9 @@ switch ($_REQUEST['accion']) {
 
         }
         break;
-    case $strings['Consultar']: //Consulta de proyecto
+    case $strings['Ver']: //Consulta de proyecto
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            new Proyecto_Show('','');
+            new Proyecto_Show('','','');
         } else {
             $proyecto = get_data_form();
             $datos = $proyectoMapper->buscarNombre($_REQUEST['PROYECTO_NOMBRE']);
@@ -157,7 +157,22 @@ switch ($_REQUEST['accion']) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
 
-                new Proyecto_Show($datos, 'PROYECTO_Controller.php');
+                new Proyecto_Show('buscar',$datos, 'PROYECTO_Controller.php');
+            }
+        }
+        break;
+
+
+    case $strings['Consultar']: //Consulta de proyecto
+        if (!isset($_REQUEST['SEARCH'])) {
+            new Proyecto_Show('','','');
+        } else {
+            $datos = $proyectoMapper->buscar($_REQUEST['SEARCH']);
+            if (!tienePermisos('Proyecto_Show')) {
+                new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
+            } else {
+
+                new Proyecto_Default($datos, 'PROYECTO_Controller.php');
             }
         }
         break;

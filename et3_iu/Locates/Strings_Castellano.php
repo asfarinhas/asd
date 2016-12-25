@@ -209,6 +209,8 @@ $strings = array(
     'Insertar Proyecto' => 'Insertar Proyecto',
 	'Borrar proyecto' => 'Borrar proyecto',
     'El proyecto ha sido borrado correctamente'=>'El proyecto ha sido borrado correctamente',
+    'nombre de proyecto ya existe' =>  'Proyecto ya existe',
+	'creado exito' => 'Proyecto creado con éxito',
 
 	//SUBTAREA
     'Descripcion' => 'Descripcion',
