@@ -164,7 +164,6 @@ INSERT INTO `FUNCIONALIDAD` (`FUNCIONALIDAD_ID`, `FUNCIONALIDAD_NOM`) VALUES
   (2, 'GESTION ROLES'),
   (3, 'GESTION FUNCIONALIDADES'),
   (4, 'GESTION PAGINAS'),
-  (5, 'CONSULTA EMPLEADOS'),
   (400, 'GESTION PROYECTOS');
 
 -- --------------------------------------------------------
@@ -189,7 +188,6 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
   (1, 4),
   (1, 5),
   (1, 6),
-  (5, 6),
   (3, 7),
   (3, 8),
   (3, 9),
@@ -327,8 +325,6 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
   (1, 2),
   (1, 3),
   (1, 4),
-  (1, 5),
-  (2, 5),
   (1, 400),
   (2, 400);
 
