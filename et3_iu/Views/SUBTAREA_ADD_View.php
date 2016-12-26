@@ -22,7 +22,7 @@ class Subtarea_add
 
         ?>
 
-        <!-- <form action="" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+        <form action="" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
          <div>
              <?//= $strings['nombre']?> <br/>
@@ -36,15 +36,41 @@ class Subtarea_add
 
         <div>
             <?//= $strings['Fechainicioplan']?> <br/>
-            <input type="text" name="fecha_inicio_plan" placeholder="<?//= $strings['Fechainicioplan']?>"  id="fecha_inicio_plan" required ><br/>
+            <input type="date" name="fecha_inicio_plan" placeholder="dd/mm/aaaa"  id="fecha_inicio_plan" required ><br/>
         </div>
 
         <div>
             <? //= $strings['Fechaentregaplan']?> <br/>
-            <input type="text" name="fecha_entrega_plan" placeholder="<?//= $strings['Fechaentregaplan']?>"  id="fecha_entrega_plan" required ><br/>
-        </div>-->
+            <input type="date" name="fecha_entrega_plan" placeholder="dd/mm/aaaa"  id="fecha_entrega_plan" required ><br/>
+        </div>
 
-        <?php
+         <div>
+             <?//= $strings['Fechainicioreal']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
+             <input type="date" name="fecha_inicio_real" placeholder="dd/mm/aaaa"  id="fecha_inicio_real"><br/>
+         </div>
+
+         <div>
+             <?//=$strings['Fechaentregareal']?><br/>
+             <input type="date" name="fecha_entrega_real" placeholder="dd/mm/aaaa"  id="fecha_entrega_real"><br/>
+         </div>
+
+         <div>
+             <?//=$strings['Horasplan']?><br/>
+             <input type="number" name="horas_plan" placeholder="8"  id="horas_plan" required ><br/>
+         </div>
+
+        <div>
+            <?//=$strings['Horasreal']?><br/>
+            <input type="number" name="horas_real" placeholder="8"  id="horas_real"><br/>
+        </div>
+
+        <div>
+            <?//=$strings['Miembro']?>
+            <input type="text" name="miembro" placeholder="<?//= $strings['nombre']?>"  id="miembro"><br/>
+
+
+
+            <?php
     }
 }
 ?>

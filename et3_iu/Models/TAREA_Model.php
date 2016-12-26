@@ -12,13 +12,13 @@ class Tarea{
     private $fecha_entrega_real;
     private $horas_plan;
     private $horas_real;
-    private $id_miembro; //tipo miembro/usuario
+    private $miembro; //tipo miembro/usuario
     private $entregable;
     private $estado_tarea;
     private $comentario;
 
     public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, Tarea $tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
-                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $id_miembro=NULL, array $entregable=NULL, $estado_tarea=NULL, $comentario=NULL){
+                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $miembro=NULL, array $entregable=NULL, $estado_tarea=NULL, $comentario=NULL){
 
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
@@ -30,7 +30,7 @@ class Tarea{
         $this->fecha_entrega_real = $fecha_entrega_real;
         $this->horas_plan = $horas_plan;
         $this->horas_real = $horas_real;
-        $this->id_miembro = $id_miembro;
+        $this->miembro = $miembro;
         $this->entregable = $entregable;
         $this->estado_tarea = $estado_tarea;
         $this->comentario = $comentario;
@@ -195,7 +195,7 @@ class Tarea{
     /**
      * @return null
      */
-    public function getIdMiembro()
+    public function getMiembro()
     {
         return $this->id_miembro;
     }
@@ -203,9 +203,9 @@ class Tarea{
     /**
      * @param null $id_miembro
      */
-    public function setIdMiembro($id_miembro)
+    public function setMiembro($miembro)
     {
-        $this->id_miembro = $id_miembro;
+        $this->miembro = $miembro;
     }
 
     /**
