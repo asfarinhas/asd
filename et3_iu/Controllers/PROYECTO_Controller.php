@@ -127,16 +127,16 @@ switch ($_REQUEST['accion']) {
         break;
     case $strings['Modificar']: //Modificación de proyecto
 
-        if (!isset($_REQUEST['ID_PROYECTO'])) {
+        if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
 
-            $proyecto = new Proyecto('', $_REQUEST['PROYECTO_NOMBRE'],$_REQUEST['PROYECTO_DESCRIPCION'],$_REQUEST['PROYECTO_FECHAI'],$_REQUEST['PROYECTO_FECHAIP'],$_REQUEST['PROYECTO_FECHAE'],$_REQUEST['PROYECTO_FECHAFP'],$_REQUEST['PROYECTO_NUMEROMIEMBROS'],$_REQUEST['PROYECTO_NUMEROHORAS'],$_REQUEST['PROYECTO_DIRECTOR']);
-            $valores = $proyectoMapper->RellenaDatos();
+            $proyecto = get_data_form();
+            $valores = $proyectoMapper->RellenaDatos($proyecto);
 
-            if (!tienePermisos('Proyecto_M')) {
+            if (!tienePermisos('Proyecto_Modificar')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
 
-                new Proyecto_Edit($valores, 'PROYECTO_Controller.php');
+                new Proyecto_Modificar($valores, 'PROYECTO_Controller.php');
             }
         } else {
 

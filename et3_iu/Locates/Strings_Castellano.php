@@ -213,6 +213,8 @@ $strings = array(
 	'creado exito' => 'Proyecto creado con éxito',
     'Ver proyecto' => 'Ver proyecto',
 	'Gestionar Miembros' => 'Miembros',
+    'Modificar Proyecto' => 'Modificar proyecto',
+    'modificacion exitosa' => 'El proyecto ha sido modificado correctamente',
 
 	//SUBTAREA
     'Descripcion' => 'Descripcion',
