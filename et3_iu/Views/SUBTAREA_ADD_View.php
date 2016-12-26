@@ -19,10 +19,11 @@ class Subtarea_add
     public function showView()
     {
         $miembros = $this->getArrayDatos();
-
+        //**********************************************--------FALTA EL CAMPO TAREA PADRE--------***************************
+        //*************************************************************************************************************
         ?>
 
-        <form action="" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+        <form action="add" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
          <div>
              <?//= $strings['nombre']?> <br/>

@@ -197,7 +197,7 @@ class Tarea{
      */
     public function getMiembro()
     {
-        return $this->id_miembro;
+        return $this->miembro;
     }
 
     /**
