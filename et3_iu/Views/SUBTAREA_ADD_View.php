@@ -18,7 +18,7 @@ class Subtarea_add
 
     public function showView()
     {
-       // $array = $this->array_datos;
+        $miembros = $this->getArrayDatos();
 
         ?>
 
@@ -66,11 +66,35 @@ class Subtarea_add
 
         <div>
             <?//=$strings['Miembro']?>
-            <input type="text" name="miembro" placeholder="<?//= $strings['nombre']?>"  id="miembro"><br/>
 
+            <select name="miembro">
+                <?php foreach ($miembros as $miembro): ?>
+                    <option value="<?= $miembro["USUARIO"] ?>"><?= $miembro["NOMBRE"] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
 
+        <div>
+            <?//=$strings['Estado']?>
 
-            <?php
+            <select name="estado_tarea">
+               <option value="Pendiente"><?//=$strings['Pendiente']?></option>
+               <option value="Finalizado"><?//=$strings['Finalizado']?></option>
+            </select>
+        </div>
+
+        <div>
+            <?//=$strings['comentario']?><br/>
+            <textarea type="textarea" name="comentario" rows="4" cols="50"></textarea>
+        </div>
+
+        <div>
+         <!-- AÑADIR ENLACE A LA VISTA QUE CREA LOS ENTREGABLES -->
+          <a href="" ><?//=$strings['AddEntregables']?></a><br/>
+        </div>
+
+         <input type="submit" value="<?//= $strings['Enviar'] ?>">
+        <?php
     }
 }
 ?>
