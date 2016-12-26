@@ -163,7 +163,7 @@
          * Cambia el estado de un miembro a activo en la BBDD
          * @param Miembro $miembro
          */
-        public function ActivaMiembro(Miembro $miembro) {
+        public function activaMiembro(Miembro $miembro) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$miembro -> getUser()' ";
             $this -> mysqli -> query($sql);
