@@ -32,7 +32,7 @@ class NotificacionMapper {
     function listarEnviadas()
     {
         $this->ConectarBD();
-        $sql = "select * from NOTIFICACION where EMISOR='" . $__SESSION['user'] . "' ORDER BY FECHAENVIO;";
+        $sql = "select * from NOTIFICACION where EMISOR='" . $_SESSION['user'] . "' ORDER BY FECHAENVIO;";
         $resultado = $this->mysql->query($sql);
         if (!$resultado->num_row > 0){
             return 'No hay notificaciones';
@@ -49,7 +49,7 @@ class NotificacionMapper {
     function listarRecibidas()
     {
         $this->ConectarBD();
-        $sql = "select * from NOTIFICACION where RECEPTOR='" .$__SESSION['user'] . "' ORDER BY FECHAENVIO;";
+        $sql = "select * from NOTIFICACION where RECEPTOR='" .$_SESSION['user'] . "' ORDER BY FECHAENVIO;";
         $resultado = $this->mysql->query($sql);
         if (!$resultado->num_row > 0){
             return 'No hay notificaciones';
@@ -99,7 +99,7 @@ class NotificacionMapper {
   //Buscar por id
   public function buscarEmisor($emisorId){
       $this ->conectarBD();
-      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" . $__SESSION['user'] . "' AND EMISOR = '" . $emisorId . "' ORDER BY FECHAENVIO;";
+      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" . $_SESSION['user'] . "' AND EMISOR = '" . $emisorId . "' ORDER BY FECHAENVIO;";
       $resultado = $this->mysqli->query($sql);
       if($resultado ->num_row!=0){
           $notificacion= $resultado->fetch_array();
@@ -109,7 +109,7 @@ class NotificacionMapper {
   //Buscar no leidas
   public function buscarNoLeidas(){
       $this ->conectarBD();
-      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" . $__SESSION['user'] "' AND FECHALECTURA = 'NULL' ORDER BY FECHAENVIO;";
+      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" . $_SESSION['user'] "' AND FECHALECTURA = 'NULL' ORDER BY FECHAENVIO;";
       $resultado = $this->mysqli->query($sql);
       if($resultado ->num_row!=0){
           $notificacion= $resultado->fetch_array();
