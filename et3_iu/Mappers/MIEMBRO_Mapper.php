@@ -152,7 +152,7 @@
          * Cambia el estado de un miembro a inactivo en la BBDD
          * @param Miembro $miembro
          */
-        public function desactivaMiembro(Miembro $miembro) {
+        public function desactivarMiembro(Miembro $miembro) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Inactivo' WHERE EMP_USER = '$miembro -> getUser()' ";
             $this -> mysqli -> query($sql);
@@ -163,7 +163,7 @@
          * Cambia el estado de un miembro a activo en la BBDD
          * @param Miembro $miembro
          */
-        public function activaMiembro(Miembro $miembro) {
+        public function activarMiembro(Miembro $miembro) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$miembro -> getUser()' ";
             $this -> mysqli -> query($sql);
