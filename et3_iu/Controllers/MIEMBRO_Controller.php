@@ -33,7 +33,7 @@ if (!isset($_REQUEST['accion'])){
 }
 
 switch ($_REQUEST['accion']) {
-
+    //case
 }
 
 ?>
