@@ -215,12 +215,13 @@ class ProyectoMapper {
     public function modificar(Proyecto $proyecto) {
 
         $this->conectarBD();
-        $sql = "UPDATE PROY
-        return "error modificaECTO SET NOMBRE= '\". $proyecto->getNOMBRE(). \"', DESCRIPCION = '\" . $proyecto->getDESCRIPCION(). \"', FECHAI ='\". $proyecto->getFECHAI() . \"', FECHAIP ='\" . $proyecto->getFECHAIP(). \"', FECHAE ='\" . $proyecto->getFECHAE(). \"', FECHAFP = '\" . $proyecto->getFECHAFP(). \"', NUMEROMIEMBROS='\" . $proyecto->getNUMEROMIEMBROS(). \"', NUMEROHORAS= '\" . $proyecto->getNUMEROHORAS(). \"', DIRECTOR= '\" . $proyecto->getDIRECTOR(). \"' WHERE ID_PROYECTO= '\" . $proyecto->getIDPROYECTO().\"';\";
+        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', DIRECTOR= '" . $proyecto->getDIRECTOR() . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
+
 
     if($this->mysqli->query($sql) === TRUE){
-        return \"modificacion exitosa\";
-    }else{cion";
+        return "modificacion exitosa";
+    }else{
+        return "error modificacion";
     }
 
   }
