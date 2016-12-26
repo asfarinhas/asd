@@ -6,7 +6,7 @@
  * Time: 15:03
  */
 
-    require_once("../Models/Miembro_Model.php");
+    require_once("../Models/MIEMBRO_Model.php");
 
 
     class MiembroMapper {
