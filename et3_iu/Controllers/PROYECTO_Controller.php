@@ -109,9 +109,9 @@ switch ($_REQUEST['accion']) {
         }
         break;
     case $strings['Borrar']: //Borrado de proyecto
-        if (!isset($_REQUEST['ID_PROYECTO'])) {
+        if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
             $proyecto = get_data_form();
-            $valores = $proyectoMapper->RellenaDatos($proyecto->getNOMBRE());
+            $valores = $proyectoMapper->RellenaDatos($proyecto->getIDPROYECTO());
             if (!tienePermisos('Proyecto_Borrar')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
@@ -130,7 +130,7 @@ switch ($_REQUEST['accion']) {
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
 
             $proyecto = get_data_form();
-            $valores = $proyectoMapper->RellenaDatos($proyecto);
+            $valores = $proyectoMapper->RellenaDatos($proyecto->getIDPROYECTO());
 
             if (!tienePermisos('Proyecto_Modificar')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');

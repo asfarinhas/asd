@@ -190,10 +190,10 @@ class ProyectoMapper {
 
 
     //Devuelve la información correspondiente a un proyecto
-    function RellenaDatos(Proyecto $proyecto)
+    function RellenaDatos($idProyecto)
     {
         $this->ConectarBD();
-        $sql = "select * from PROYECTO where ID_PROYECTO = '".$proyecto->getIDPROYECTO()."'";
+        $sql = "select * from PROYECTO where ID_PROYECTO = '". $idProyecto ."'";
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }
