@@ -211,6 +211,8 @@ $strings = array(
     'El proyecto ha sido borrado correctamente'=>'El proyecto ha sido borrado correctamente',
     'nombre de proyecto ya existe' =>  'Proyecto ya existe',
 	'creado exito' => 'Proyecto creado con éxito',
+    'Ver proyecto' => 'Ver proyecto',
+	'Gestionar Miembros' => 'Miembros',
 
 	//SUBTAREA
     'Descripcion' => 'Descripcion',
