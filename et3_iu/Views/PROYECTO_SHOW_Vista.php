@@ -35,7 +35,7 @@ class Proyecto_Show{
                                 <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo ID -->
@@ -44,7 +44,7 @@ class Proyecto_Show{
                                 <label for="id" class="control-label"><?php echo $strings['ID_PROYECTO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control"  name="SEARCH"   title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control"  name="ID_PROYECTO"   title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Inicio -->
@@ -53,7 +53,7 @@ class Proyecto_Show{
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -62,7 +62,7 @@ class Proyecto_Show{
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -72,7 +72,7 @@ class Proyecto_Show{
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -82,7 +82,7 @@ class Proyecto_Show{
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -92,7 +92,7 @@ class Proyecto_Show{
                                 <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
                         <!-- Campo Numero horas -->
                         <div class="form-group">
@@ -100,12 +100,12 @@ class Proyecto_Show{
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="SEARCH"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
 
+                            <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
-
-                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                                <a class="form-link" href='<?php echo $this->volver; ?> '><?php echo $strings['Volver']; ?> </a>
                                 <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
 
                     </form>
