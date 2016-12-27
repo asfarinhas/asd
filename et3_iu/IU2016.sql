@@ -285,8 +285,24 @@ INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHA
   (1, 'Prueba', 'proyecto de prueba', '2016-11-20', '2016-11-26', '2016-12-20', '2016-11-29', 5, 7, 'ADMIN', 0),
   (2, 'Prueba2', 'proyecto de prueba222', '2016-10-20', '2016-09-13', '2017-12-20', '2017-12-29', 6, 6, 'ADMIN', 0);
 
--- --------------------------------------------------------
 
+-- --------------------------------------------------------
+--
+-- Estructura de tabla para la tabla `PROYECTO_MIEMBRO`
+--
+
+--CREATE TABLE IF NOT EXISTS `PROYECTO_MIEMBRO` (
+--  `ID_PROYECTO` int(3) NOT NULL,
+--  `ID_MIEMBRO` varchar(9) NOT NULL
+--) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `PROYECTO`
+--
+
+--INSERT INTO `PROYECTO` (`ID_PROYECTO`, `ID_MIEMBRO`) VALUES
+--  (1, ),
+--  (2, );
 --
 -- Estructura de tabla para la tabla `ROL`
 --
