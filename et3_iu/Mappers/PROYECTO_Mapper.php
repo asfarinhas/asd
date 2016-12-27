@@ -97,13 +97,13 @@ class ProyectoMapper {
   //Buscar por.... lo que sea
   public function buscar($search) {
       $this ->conectarBD();
-    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%$search%' OR
-         NOMBRE LIKE '%$search%' OR
-              FECHAI LIKE '%$search%' OR
-              FECHAIP LIKE '%$search%'OR
-              FECHAE LIKE '%$search%'OR
-              FECHAFP LIKE '%$search%'OR
-             NUMEROHORAS LIKE '%$search%'OR
+    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%$search%' AND
+         NOMBRE LIKE '%$search%' AND
+              FECHAI LIKE '%$search%' AND
+              FECHAIP LIKE '%$search%'AND 
+              FECHAE LIKE '%$search%'AND 
+              FECHAFP LIKE '%$search%'AND 
+             NUMEROHORAS LIKE '%$search%'AND 
               DIRECTOR LIKE '%$search%';";
 
       if (!($resultado = $this->mysqli->query($sql))){
