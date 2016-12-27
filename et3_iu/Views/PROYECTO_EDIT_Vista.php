@@ -116,7 +116,9 @@ class Proyecto_Modificar{
                                 <label for="borrado" class="control-label"><?php echo $strings['BORRADO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['BORRADO'];?>"class="form-control" name="BORRADO"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <Select name="Borrado">
+                                    <option value="Activo"><?php echo $strings['Activo'];?></option>
+                                    <option value="Inactivo"><?php echo $strings['Inactivo'];?></option></Select>
                         </div>
 
 

@@ -26,7 +26,7 @@ class Proyecto
      * @param $NUMEROHORAS
      * @param $DIRECTOR
      */
-    public function __construct($ID_PROYECTO=NULL, $NOMBRE=NULL, $DESCRIPCION=NULL, $FECHAI=NULL, $FECHAIP=NULL, $FECHAE=NULL, $FECHAFP=NULL, $NUMEROMIEMBROS=NULL, $NUMEROHORAS=NULL,Miembro_Model $DIRECTOR=NULL)
+    public function __construct($ID_PROYECTO=NULL, $NOMBRE=NULL, $DESCRIPCION=NULL, $FECHAI=NULL, $FECHAIP=NULL, $FECHAE=NULL, $FECHAFP=NULL, $NUMEROMIEMBROS=NULL, $NUMEROHORAS=NULL,Miembro_Model $DIRECTOR=NULL,$BORRADO)
     {
         $this->ID_PROYECTO = $ID_PROYECTO;
         $this->NOMBRE = $NOMBRE;
@@ -38,6 +38,23 @@ class Proyecto
         $this->NUMEROMIEMBROS = $NUMEROMIEMBROS;
         $this->NUMEROHORAS = $NUMEROHORAS;
         $this->DIRECTOR = $DIRECTOR;
+        $this->BORRADO = $BORRADO;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBORRADO()
+    {
+        return $this->BORRADO;
+    }
+
+    /**
+     * @param mixed $BORRADO
+     */
+    public function setBORRADO($BORRADO)
+    {
+        $this->BORRADO = $BORRADO;
     }
 
     /**
