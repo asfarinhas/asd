@@ -80,10 +80,15 @@ function get_data_form(){
     }else{
         $PROYECTO_DIRECTOR = null;
     }
+    if(isset($_REQUEST['BORRADO'])){
+        $PROYECTO_BORRADO=$_REQUEST['BORRADO'];
+    }else{
+        $PROYECTO_BORRADO = null;
+    }
 
     $accion = $_REQUEST['accion'];
 
-    $proyecto = new Proyecto($ID_PROYECTO,$PROYECTO_NOMBRE,$PROYECTO_DESCRIPCION,$PROYECTO_FECHAI,$PROYECTO_FECHAIP,$PROYECTO_FECHAE,$PROYECTO_FECHAFP,$PROYECTO_NUMEROMIEMBROS,$PROYECTO_NUMEROHORAS,$PROYECTO_DIRECTOR);
+    $proyecto = new Proyecto($ID_PROYECTO,$PROYECTO_NOMBRE,$PROYECTO_DESCRIPCION,$PROYECTO_FECHAI,$PROYECTO_FECHAIP,$PROYECTO_FECHAE,$PROYECTO_FECHAFP,$PROYECTO_NUMEROMIEMBROS,$PROYECTO_NUMEROHORAS,$PROYECTO_DIRECTOR,$PROYECTO_BORRADO);
 
     return $proyecto;
 }
@@ -183,7 +188,7 @@ switch ($_REQUEST['accion']) {
 
         //La vista por defecto lista todas los proyectos
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            $proyecto = new Proyecto('', '','','','','','','','',null);
+            $proyecto = new Proyecto('', '','','','','','','','',null,'');
         } else {
             $proyecto = get_data_form();
         }
@@ -200,7 +205,7 @@ switch ($_REQUEST['accion']) {
     default:
         //La vista por defecto lista todas los proyectos
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
-            $proyecto = new Proyecto('', '','','','','','','','',null);
+            $proyecto = new Proyecto('', '','','','','','','','',null,'');
         } else {
             $proyecto = get_data_form();
         }

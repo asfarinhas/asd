@@ -187,6 +187,9 @@ $strings = array(
 	'Gestionar Miembros' => 'Miembros',
 	'Modificar Proyecto' => 'Modificar proyecto',
 	'modificacion exitosa' => 'El proyecto ha sido modificado correctamente',
+	'Activo' => 'Activo',
+	'Inactivo' => 'Inactivo',
+	'error modificacion' => 'Error al modificar',
 
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',

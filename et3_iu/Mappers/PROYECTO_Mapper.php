@@ -236,8 +236,13 @@ class ProyectoMapper {
    */
     public function modificar(Proyecto $proyecto) {
 
+        if($proyecto->getBORRADO() == 'Activo'){
+            $aux=0;
+        }else{
+            $aux=1;
+        }
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', DIRECTOR= '" . $proyecto->getDIRECTOR() . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
+        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', DIRECTOR= '" . $proyecto->getDIRECTOR() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
 
 
     if($this->mysqli->query($sql) === TRUE){
