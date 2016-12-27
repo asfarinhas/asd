@@ -117,16 +117,16 @@ class ProyectoMapper {
 
 
     //Buscar por.... lo que sea
-  public function buscar($search) {
+  public function buscar(Proyecto $proyecto) {
       $this ->conectarBD();
-    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%$search%' AND
-         NOMBRE LIKE '%$search%' AND
-              FECHAI LIKE '%$search%' AND
-              FECHAIP LIKE '%$search%'AND 
-              FECHAE LIKE '%$search%'AND 
-              FECHAFP LIKE '%$search%'AND 
-             NUMEROHORAS LIKE '%$search%'AND 
-              DIRECTOR LIKE '%$search%';";
+    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%" . $this->proyecto->getIDPROYECTO(). "%' AND
+         NOMBRE LIKE '%" . $this->proyecto->getNombre() . "%' AND
+              FECHAI LIKE '%" . $this->proyecto->getFECHAI() . "%' AND
+              FECHAIP LIKE '%" . $this->proyecto->getFECHAIP() . "%'AND 
+              FECHAE LIKE '%" . $this->proyecto->getFECHAE() . "%'AND 
+              FECHAFP LIKE '%" . $this->proyecto->getFECHAFP() . "%'AND 
+             NUMEROHORAS LIKE '%" . $this->proyecto->getNUMEROHORAS() . "%'AND 
+              DIRECTOR LIKE '%" . $this->proyecto->getDIRECTOR() . "%';";
 
       if (!($resultado = $this->mysqli->query($sql))){
           return 'Error en la consulta sobre la base de datos';
