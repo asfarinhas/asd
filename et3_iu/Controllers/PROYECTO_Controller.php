@@ -151,7 +151,7 @@ switch ($_REQUEST['accion']) {
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
             new Proyecto_Show('','','');
         } else {
-            $proyecto = get_data_form();
+
             $datos = $proyectoMapper->buscarNombre($_REQUEST['PROYECTO_NOMBRE']);
             if (!tienePermisos('Proyecto_Show')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
@@ -167,6 +167,7 @@ switch ($_REQUEST['accion']) {
         if (!isset($_REQUEST['SEARCH'])) {
             new Proyecto_Show('','','');
         } else {
+            $proyecto = get_data_form();
             $datos = $proyectoMapper->buscar($_REQUEST['SEARCH']);
             if (!tienePermisos('Proyecto_Show')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
