@@ -94,7 +94,29 @@ class ProyectoMapper {
 
 
 
-  //Buscar por.... lo que sea
+    //Listar todas las paginas
+    function listarMiembrosProyecto()
+    {
+        $this->ConectarBD();
+        $sql = "select * from PROYECTO_MIEMBROS WHERE BORRADO ='0';";
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
+
+            if($resultado ->num_rows!=0){
+                $proyecto= $resultado->fetch_array();
+
+            }
+            return $toret;
+
+        }
+    }
+
+
+
+
+    //Buscar por.... lo que sea
   public function buscar($search) {
       $this ->conectarBD();
     $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%$search%' AND
