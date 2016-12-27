@@ -108,7 +108,15 @@ class Proyecto_Modificar{
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="BORRADO"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                        </div>
+                        <!-- Campo Borrado -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="borrado" class="control-label"><?php echo $strings['BORRADO']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text"  value="<?php echo $this->datos['BORRADO'];?>"class="form-control" name="BORRADO"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
 
 
