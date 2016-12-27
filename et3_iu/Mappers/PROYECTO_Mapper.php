@@ -119,14 +119,14 @@ class ProyectoMapper {
     //Buscar por.... lo que sea
   public function buscar(Proyecto $proyecto) {
       $this ->conectarBD();
-    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%" . $this->proyecto->getIDPROYECTO(). "%' AND
-         NOMBRE LIKE '%" . $this->proyecto->getNombre() . "%' AND
-              FECHAI LIKE '%" . $this->proyecto->getFECHAI() . "%' AND
-              FECHAIP LIKE '%" . $this->proyecto->getFECHAIP() . "%'AND 
-              FECHAE LIKE '%" . $this->proyecto->getFECHAE() . "%'AND 
-              FECHAFP LIKE '%" . $this->proyecto->getFECHAFP() . "%'AND 
-             NUMEROHORAS LIKE '%" . $this->proyecto->getNUMEROHORAS() . "%'AND 
-              DIRECTOR LIKE '%" . $this->proyecto->getDIRECTOR() . "%';";
+    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO LIKE '%" . $proyecto->getIDPROYECTO(). "%' AND
+         NOMBRE LIKE '%" . $proyecto->getNombre() . "%' AND
+              FECHAI LIKE '%" . $proyecto->getFECHAI() . "%' AND
+              FECHAIP LIKE '%" . $proyecto->getFECHAIP() . "%'AND 
+              FECHAE LIKE '%" . $proyecto->getFECHAE() . "%'AND 
+              FECHAFP LIKE '%" . $proyecto->getFECHAFP() . "%'AND 
+             NUMEROHORAS LIKE '%" . $proyecto->getNUMEROHORAS() . "%'AND 
+              DIRECTOR LIKE '%" . $proyecto->getDIRECTOR() . "%';";
 
       if (!($resultado = $this->mysqli->query($sql))){
           return 'Error en la consulta sobre la base de datos';
