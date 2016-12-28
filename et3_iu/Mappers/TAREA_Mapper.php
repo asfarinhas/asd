@@ -43,18 +43,37 @@ class TAREA_Mapper{
     }
 
     /**
-    *Lista las tareas con padre X
+    *Lista las subtareas con padre X
     */
-    function listarTareasPadre($padre){
+    function listarSubtareasPadre(Tarea $padre){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE PADRE = '" . $padre . "' ORDER BY FECHAIP";
+        $sql = "SELECT * FROM TAREA,MIEMBRO WHERE TAREA.PADRE = '" . $padre . "' ORDER BY FECHAIP";
 
         if(!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }else{
-            $tareas = $resultado->fetch_array();
-            return $tareas;
+            $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
+
+            $tareas_model = array();
+
+            foreach ($tareas_bd as $row){
+
+                $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                    $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                    $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"],
+                    $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+
+                $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                    $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+
+
+                array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre,
+                    $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                    $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"],
+                    $miembro, $row["estado_tarea"], $row["comentario"]));
+            }
+            return $tareas_model;
         }
     }
 
