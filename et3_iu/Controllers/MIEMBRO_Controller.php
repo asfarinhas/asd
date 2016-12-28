@@ -46,8 +46,10 @@ function edit_miembro(){  //claudia
             }
 
         }else{
+            //muestra la vista
             $datosmiembro = $miembroMapper->buscarMiembroPorUsuario($username);
             $vista_modificar = new MiembroEditView($datosmiembro);
+            $vista_modificar->showView();
 
         }//fin parametros
 }//fin funcion editar

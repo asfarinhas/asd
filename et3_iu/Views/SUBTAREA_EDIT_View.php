@@ -40,7 +40,7 @@ $miembros = $this->getMiembros();
 
 ?>
 
-<form action="edit" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+<form action="TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
     <div> <!-- ID de la tarea padre-->
         <input type="number" hidden name="tarea_padre" value="<?=$datos->getTareaPadre()->getIdTadrea()?>" >
