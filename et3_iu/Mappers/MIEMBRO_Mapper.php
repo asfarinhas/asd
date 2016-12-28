@@ -76,7 +76,7 @@
         /**
          * Busca el miembro que tenga el dni pasado por parámetro
          * @param $dni
-         * @return false si se produce algún error o no se encuentra o se devuelve el Miembro, en caso contrario
+         * @return false si se produce algún error o no se encuentra; o se devuelve el Miembro, en caso contrario
          */
         public function buscarMiembroPorDNI($dni) {
 
@@ -97,7 +97,7 @@
         /**
          * Busca el miembro que tenga el usuario pasado por parámetro
          * @param $user
-         * @return false si se produce algún error o no se encuentra o se devuelve el Miembro, en caso contrario
+         * @return false si se produce algún error o no se encuentra; o se devuelve el Miembro, en caso contrario
          */
         public function buscarMiembroPorUsuario($user) {
 
@@ -136,12 +136,12 @@
          * Actualiza un miembro en la BBDD
          * @param Miembro $miembro, el miembro con los nuevos datos, el usuario permanece constante (clave primaria)
          */
-        public function updateMiembro(Miembro $miembro) {
+        public function updateMiembro(Miembro $miembro, $user) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_PASSWORD` = '$miembro -> getPassword()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
             `EMP_DNI` = '$miembro -> getDNI()',`EMP_FECH_NAC` = '$miembro -> getFechaNacimiento()',`EMP_EMAIL` = '$miembro -> getEmail()',`EMP_TELEFONO` = '$miembro -> getTelefono',
             `EMP_CUENTA` = '$miembro -> getCuenta()', `EMP_DIRECCION` = '$miembro -> getDireccion()',`EMP_COMENTARIOS`='$miembro -> getComentarios()', `EMP_TIPO` = '$miembro -> getTipo()',
-            `EMP_ESTADO` = '$miembro -> getEstado()',`EMP_FOTO` = '$miembro -> getFoto()', `EMP_NOMINA` = '$miembro -> getNomina()' WHERE EMP_USER = '$miembro -> getUser()' ";
+            `EMP_ESTADO` = '$miembro -> getEstado()',`EMP_FOTO` = '$miembro -> getFoto()', `EMP_NOMINA` = '$miembro -> getNomina()' WHERE EMP_USER = '$user' ";
 
             $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
