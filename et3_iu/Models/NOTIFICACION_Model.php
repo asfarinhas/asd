@@ -1,17 +1,18 @@
 <?php
-class Notificacion_Model{
+class Notificacion{
 
 	//Métodos
 	private $id;
 	private $emisor;
 	private $receptor;
+	private $contenido;
 	private $fechaEnvio;
 	private $fechaLectura;
-	private $contenido;
+
 
 
 	//Constructor
-	public function __construct($id , $emisor, $receptor, $fechaEnvio, $fechaLectura=NULL, $contenido){
+	public function __construct($id , $emisor, $receptor, $contenido, $fechaEnvio, $fechaLectura=NULL){
 		$this->id = $id;
 		$this->emisor = $emisor;
 		$this->receptor = $receptor;

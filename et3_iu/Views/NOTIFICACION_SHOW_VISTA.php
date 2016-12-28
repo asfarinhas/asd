@@ -1,6 +1,6 @@
 <?php
 
-class Proyecto_Show{
+class Notificacion_Show{
 //VISTA PARA MOSTRAR CONSULTA DE NOTIFICACION
 
     function __construct($buscar,$datos,$volver){
@@ -92,5 +92,3 @@ class Proyecto_Show{
         <?php
         }
     }
-
-}

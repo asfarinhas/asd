@@ -27,29 +27,28 @@ class Notificacion_Add
             <p>
             <h1>
 			<span class="form-title">
-			<?php echo $strings['Crear Notificacion'] ?><br>
+			<?php echo $strings['Insertar Notificacion'] ?><br>
             </h1>
             <h3>
 
                 <form action='NOTIFICACION_Controller.php' method='post'>
                     <ul class="form-style-1">
-
-                        <!-- Campo Receptor -->
+                        <!-- Campo Nombre -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="nombre" class="control-label"><?php echo $strings['Receptor']; ?>:</label>
+                                <label for="Receptor" class="control-label"><?php echo $strings['RECEPTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error de receptor']; ?>" >
+                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error receptor']; ?>" >
                             </div>
                         </div>
-                        <!-- Campo Contenido -->
+                        <!-- Campo Descripcion -->
                         <div class="form-group">
                             <div class="col-sm-4">
                                 <label for="Contenido" class="control-label"><?php echo $strings['CONTENIDO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="CONTENIDO" rows="10" cols="60"></textarea>
+                                <textarea name="CONTENIDO" rows="10" cols="40"></textarea>
                             </div>
                         </div>
 
@@ -63,10 +62,10 @@ class Notificacion_Add
 
 
 
-                        <br>
-                        <?php
-                        echo '<a class="form-link" href=\'NOTIFICACION_Controller.php\'>' . $strings['Volver'] . " </a>";
-                        ?>
+
+                <?php
+                echo '<a class="form-link" href=\'NOTIFICACION_Controller.php\'>' . $strings['Volver'] . " </a>";
+                ?>
             </h3>
             </p>
 
