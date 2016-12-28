@@ -46,7 +46,7 @@ function get_data_form(){
         $FECHAENVIO= date('Y-m-d H:i:s');
     }
 
-    $FECHALECTURA = null;
+    $FECHALECTURA = NULL;
     $accion = $_REQUEST['accion'];
     $notificacion = new Notificacion ($ID_NOTIFICACION,$EMISOR,$RECEPTOR,$CONTENIDO,$FECHAENVIO,$FECHALECTURA);
     return $notificacion;
@@ -98,6 +98,7 @@ Switch ($_REQUEST['accion']) {
             $notificacion= get_data_form();
         }
         $datos = $notificacionMapper->listarRecibidas();
+        
         if (!tienePermisos('Notificacion_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {

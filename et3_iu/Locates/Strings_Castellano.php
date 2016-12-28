@@ -216,7 +216,14 @@ $strings = array(
 		    'Ver notificacion' => 'Ver notificacion',
 				'ConsultarRecibidas' => 'Consultar Recibidas',
 				'ConsultarEnviadas' => 'Consultar Enviadas',
-				'error de receptor' => 'Error de receptor'
+				'error de receptor' => 'Error de receptor',
+				'SINLEER' => 'Notificaciones no leidas',
+				'creado exitoN' =>'Notificacion creada con exito',
+				'error creadoP' => 'Error notificacion',
+				'borrado exitoN' =>'Notificacion borrada con exito',
+				'error borradoN' => 'Error borrado notificacion'
+
+
 
 
 )

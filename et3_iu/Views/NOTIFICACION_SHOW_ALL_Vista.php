@@ -50,23 +50,21 @@ class Notificacion_Default{
                             // PARA QUE??
                             if($this->datos != NULL){
 
-
-                                  echo "<td> " . $this->datos['ID_NOTIFICACION']."</td>";
-                                  echo "<td>" .  $this->datos['EMISOR']."</td>";
-                                  echo "<td> " . $this->datos['RECEPTOR']."</td>";
-                                  echo "<td> " . $this->datos['FECHAENVIO']."</td>";
-                                  echo "<td> " . $this->datos['FECHALECTURA']."</td>";
-
-
+                                foreach($this->datos as $notificacion){
+                                  echo "<tr> <td> " . $notificacion['ID_NOTIFICACION']."</td>";
+                                  echo "<td>" .  $notificacion['EMISOR']."</td>";
+                                  echo "<td> " . $notificacion['RECEPTOR']."</td>";
+                                  echo "<td> " . $notificacion['FECHAENVIO']."</td>";
+                                  echo "<td> " . $notificacion['FECHALECTURA']."</td>";
         ?>
 
 
 
                             <td>
-                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $this->datos['ID_NOTIFICACION'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $notificacion['ID_NOTIFICACION'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                             </td>
                             <td>
-                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $this->datos['ID_NOTIFICACION'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $notificacion['ID_NOTIFICACION'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>
 
                             </tr>
@@ -88,4 +86,5 @@ class Notificacion_Default{
         <?php
     } //fin metodo render
 
+}
 }
