@@ -36,11 +36,15 @@ public function showView()
 {
 $datos = $this->getArrayDatos();    //datos de la subtarea
 $miembros = $this->getMiembros();
-$entregables = $datos->getEntregable();
+//$entregables = $datos->getEntregable();
 
 ?>
 
 <form action="edit" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+
+    <div> <!-- ID de la tarea padre-->
+        <input type="number" hidden name="tarea_padre" value="<?=$datos->getTareaPadre()->getIdTadrea()?>" >
+    </div>
 
     <div>
         <?//= $strings['nombre']?> <br/>
@@ -107,12 +111,12 @@ $entregables = $datos->getEntregable();
     </div>
 
     <div>
-        <!-- AÑADIR ENLACE A LA VISTA QUE CREA LOS ENTREGABLES -->
+        <!-- AÑADIR ENLACE A LA VISTA QUE MODIFICA LOS ENTREGABLES -->
         <a href="" ><?//=$strings['ModifEntregables']?></a><br/>
 
     </div>
 
-    <input type="submit" value="<?//= $strings['Enviar'] ?>">
+    <input type="submit" name="accion" value="edit"><?//= $strings['Edit'] ?>
     <?php
     }
     }

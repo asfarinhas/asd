@@ -22,8 +22,16 @@ class Subtarea_add
         //**********************************************--------FALTA EL CAMPO TAREA PADRE--------***************************
         //*************************************************************************************************************
         ?>
+        <head>
+            <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
 
-        <form action="add" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+        </head>
+
+        <form action="TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+
+         <div> <!-- ID de la tarea padre-->
+             <input type="number" hidden name="tarea_padre" value="<?=$_GET['idpadre']?>" >
+         </div>
 
          <div>
              <?//= $strings['nombre']?> <br/>
@@ -94,7 +102,7 @@ class Subtarea_add
           <a href="" ><?//=$strings['AddEntregables']?></a><br/>
         </div>
 
-         <input type="submit" value="<?//= $strings['Enviar'] ?>">
+         <input type="submit" name="accion" value="add"><?//= $strings['Add'] ?>
         <?php
     }
 }
