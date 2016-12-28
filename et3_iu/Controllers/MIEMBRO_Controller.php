@@ -8,64 +8,70 @@
 include '../Models/MIEMBRO_Model.php';
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/MIEMBRO_Mapper.php';
-
+include '../Views/MIEMBRO_EDIT_View.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
 }
 
-//obtener los datos del formulario
-function get_data_form(){
-
-    $NOMBRE = $_REQUEST['NOMBRE'];
-    $APELLIDOS = $_REQUEST['APELLLIDOS'];
-   // $APELLIDO2 = $_REQUEST('APELIDO2');
-    $USUARIO = $_REQUEST['USUARIO'];
-    $CONTRASEÑA = $_REQUEST['CONTRASEÑA'];
-    $CORREO = $_REQUEST['CORREO'];
 
 
-    $toret = new Miembro_Model($NOMBRE, $APELLIDOS, $USUARIO, $CONTRASEÑA, $CORREO);
-    return $toret;
-}
-
-function add_miembro(){
-    $miembro = get_data_form();
-    $miembroMapper = new MiembroMapper();
-    if($miembro->getUsuario()!=null){
-
-        $aux = $miembroMapper->buscarMiembroPorUsuario($miembro->getUsuario());
-        if($aux != NULL){ //existe
-            echo "Username existente, introduzca otro";
-        }else{
-            $miembroMapper->insertarMiembro($miembro);
-        }
-
-    }else{
-        //redirigir la vista alta miembro(registro)
-
-    }
-
-}
-function edit_miembro(){
+function edit_miembro(){  //claudia
     $username = $_SESSION['login'];
-    $miembro = get_data_form();
     $miembroMapper = new MiembroMapper();
-    if($username != $miembro->getUsuario()){
-        //comprobar que no existe el usuario en la bd
-        $aux = $miembroMapper->buscarMiembroPorUsuario($miembro->getUsuario());
-        if($aux != NULL){ //existe
-            echo "Username existente, introduzca otro";
+
+        //parametros del formulario
+        if(isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDOS']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASEÑA']) && isset($_REQUEST['CORREO'])){
+            $nombre = $_REQUEST['NOMBRE'];
+            $apellidos = $_REQUEST['APELLIDOS'];
+            $usuario = $_REQUEST['USUARIO'];
+            $contraseña = $_REQUEST['CONTRASEÑA'];
+            $correo =  $_REQUEST['CORREO'];
+
+            $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
+
+            //si ha modificado el campo username
+            if($username != $usuario){
+                //comprobar que no existe el usuario en la bd
+                $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
+                if($aux != NULL){ //existe
+                    echo "Username existente, introduzca otro";
+                }else{ //no existe
+                    $miembroMapper->updateMiembro($miembro, $username);
+                }
+
+            }else{ //no modifico el campo username
+                $miembroMapper->updateMiembro($miembro, $username);
+
+            }
+
         }else{
-            $miembroMapper->updateMiembro($miembro, $username);
-        }
+            $datosmiembro = $miembroMapper->buscarMiembroPorUsuario($username);
+            $vista_modificar = new MiembroEditView($datosmiembro);
 
-    }else{
-        $miembroMapper->updateMiembro($miembro, $username);
+        }//fin parametros
+}//fin funcion editar
 
-    }
+function add_miembro()
+{
+    //comprobar que no existe en la BD (username)
+    //si existe: mensasje de username existente
+    //si no existe: insertar en la BD
+}
+
+function delete_miembro(){
 
 }
+
+function consultar_miembro(){
+
+}
+
+function showTareasMiembro(){
+
+}
+
+
 
 if (!isset($_REQUEST['accion'])){
     $accion = '';
@@ -74,26 +80,30 @@ if (!isset($_REQUEST['accion'])){
 }
 
 
-switch ($accion) {
-    case "add":
+switch ($accion) { //los nombres del case llamadle como querais, como tengais puesto en el formulario en la vista. Esto es solo orientativo
+
+    case "add": //insertar usuario nuevo a traves de registro
         add_miembro();
         break;
 
-    case "edit":
+    case "showcurrent": // consultar perfil propio del usuario
+        consultar_miembro();
+        break;
+
+    case "edit": //editar perfil propio del usuario
         edit_miembro();
         break;
 
     case "delete":
+        delete_miembro(); //eliminar perfil
         break;
 
-    case "showcurrent":
-        break;
-
-    case "showAll":
+    case "show_tareas_miembro": // filtrar la busqueda de un miembro y mostrar sus tareas
+        showTareasMiembro();
         break;
 
     default:
-        echo "mostrar vista principal";
+        consultar_miembro();
 
 }
 
