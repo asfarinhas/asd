@@ -37,7 +37,7 @@ class TAREA_Mapper{
         if(!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }else{
-            $tareas = $resultado->fetch_array();
+            $tareas = $resultado->fetch_assoc();
             return $tareas;
         }
     }
@@ -45,16 +45,15 @@ class TAREA_Mapper{
     /**
     *Lista las tareas con padre X
     */
-    function listarTareasPadre($padre){
+    function listarTareasPadre(Tarea $padre){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE PADRE = '" . $padre . "' ORDER BY FECHAIP";
+        $sql = "SELECT * FROM TAREA WHERE PADRE = '" . $padre->getTareaPadre() . "' ORDER BY FECHAIP";
 
         if(!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }else{
-            $tareas = $resultado->fetch_array();
-            return $tareas;
+            $row = $fila = $resultado->fetch_assoc()
         }
     }
 
@@ -63,7 +62,7 @@ class TAREA_Mapper{
      * @param $idMiembro
      * @return string
      */
-    function listarTareasPendientesMiembro($idMiembro){
+    function listarTareasPendientesMiembro(Miembro $miembro){
         $this->conectarBD();
 
         $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro . "' AND  ESTADO < 100 ORDER BY FECHAIP";
