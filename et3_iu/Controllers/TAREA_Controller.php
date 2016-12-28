@@ -166,7 +166,7 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
         break;
 
     default:
-        break;
+        showall_tarea();
 
 }
 
