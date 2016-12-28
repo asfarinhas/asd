@@ -45,7 +45,7 @@ function show_tarea(){
     //Mostrar una vista con todos los datos //Incluir las subtarea o un enlace al showall de subtareas y un + para añadir  subtareas?
 }
 
-function show_all_tarea(){
+function showall_tarea(){
     //Acceder a la base de datos y consultar todas las tareas con padre == null
     //Mostrar un listado con algunos de los datos de las tareas (id, fecha inicio, fecha fin, estado, por ejemplo) y los botones consultar
     //modificar, eliminar
@@ -79,7 +79,7 @@ function show_subtarea(){
     //Mostrar una vista con todos esos datos
 }
 
-function show_all_subtarea(){
+function showall_subtarea(){
     //Acceder a la base de datos y consultar todas las tareas con padre == id_tarea del padre
     //Mostrar un listado con algunos de los datos de las subtareas (id, fecha inicio, fecha fin, estado, por ejemplo) y los botones consultar
     //modificar, eliminar
