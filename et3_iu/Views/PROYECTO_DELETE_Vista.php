@@ -111,10 +111,9 @@ class Proyecto_Borrar{
                     </div>
 
 
-
-
-                    <input type='submit' name='accion' value='<?php echo $strings['Borrar']; ?>'>
                     <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                    <input type='submit' name='accion' value='<?php echo $strings['Borrar']; ?>'>
+
             </form>
 
         </h2>

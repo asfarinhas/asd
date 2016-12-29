@@ -116,11 +116,8 @@ class Proyecto_Add
                         <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Insertar'] ?>
                         <ul>
 
-
-
-
                         <br>
-                
+
             </h3>
             </p>
 
