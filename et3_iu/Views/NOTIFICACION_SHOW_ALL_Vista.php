@@ -83,7 +83,7 @@ class Notificacion_Default{
 echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
  ?>
 
-<a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['Buscar']?>'><?php echo $strings['Buscar']?></a>
+
 
 
 

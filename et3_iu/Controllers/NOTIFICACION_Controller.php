@@ -9,7 +9,6 @@ include '../Views/NOTIFICACION_SHOW_ENVIADA_Vista.php';
 
 
 
-
 if (!IsAuthenticated()){
     header('Location:../index.php');
 }
@@ -130,30 +129,18 @@ Switch ($_REQUEST['accion']) {
                     new Proyecto_Show('','','');
                 } else {
                     $notificacion = get_data_form();
+                    $notificacionMapper->marcarLeido($notificacion);
                     $datos = $notificacionMapper->buscarId($_REQUEST['ID_NOTIFICACION']);
                     if (!tienePermisos('Notificacion_Show')) {
                         new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
                     } else {
-
                         new Notificacion_Show('buscar',$datos, 'NOTIFICACION_Controller.php');
+
                     }
                 }
                 break;
 
-                case $strings['Buscar']: //Consulta en detalle de una notifiacion
-                    if (!isset($_REQUEST['BUSCAR'])) {
-                        new Notificacion_Show('','','');
-                    } else {
-                        $notificacion = get_data_form();
-                        $datos = $notificacionMapper->buscar($notificacion);
-                        if (!tienePermisos('Notificacion_Show')) {
-                            new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
-                        } else {
 
-                            new Notificacion_Show('buscar',$datos, 'NOTIFICACION_Controller.php');
-                        }
-                    }
-                    break;
 
 
         default:
