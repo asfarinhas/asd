@@ -1,7 +1,7 @@
 <?php
 
 class ProyectoMiembro_Default{
-    //VISTA PARA LISTAR PROYECTOS
+    //VISTA PARA LISTAR MIEMBROS DE PROYECTO
 
     private $datos;
     private $volver;
@@ -40,34 +40,26 @@ class ProyectoMiembro_Default{
                         <table id="btable" border = 1>
                             <tr>
                                 <th>  <?=$strings['NOMBRE'] ?> </th>
-                                <th>  <?=$strings['DIRECTOR'] ?> </th>
-                                <th>  <?=$strings['FECHAI'] ?> </th>
-                                <th>  <?=$strings['FECHAE'] ?> </th>
-                                <th>  <?=$strings['NUMEROHORAS'] ?> </th>
+                                <th>  <?=$strings['APELLIDOS'] ?> </th>
+                                <th>  <?=$strings['EMAIL'] ?> </th>
+                                <th>  <?=$strings['USUARIO'] ?> </th>
+
                             </tr>
                             <?php
                             foreach($this->datos as $proyecto){
-                                echo "<tr><td> " . $proyecto['NOMBRE']."</td>";
-                                echo "<td>" . $proyecto[9]->getNombre()."</td>";
-                                echo "<td> " . $proyecto['FECHAI']."</td>";
-                                echo "<td> " . $proyecto['FECHAE']."</td>";
-                                echo "<td> " . $proyecto['NUMEROHORAS']."</td>";
-
+                                echo "<tr><td> " . $miembro['NOMBRE']."</td>";
+                                echo "<td>" . $miembro['APELLIDOS'] ."</td>";
+                                echo "<td> " . $miembro['EMAIL']."</td>";
+                                echo "<td> " . $miembro['USUARIO']."</td>";
                                 ?>
 
-
-                                <td>
-                                    <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto['ID_PROYECTO'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                                </td>
                                 <td>
                                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto['ID_PROYECTO'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                                 </td>
                                 <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                    <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                                 </td>
-                                <td>
-                                    <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Gestionar Miembros']; ?>'><?php echo $strings['Gestionar Miembros'] ?></a>
-                                </td>
+
                                 </tr>
                             <?php                        }
                             ?>

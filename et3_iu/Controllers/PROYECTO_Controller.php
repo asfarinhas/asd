@@ -203,6 +203,15 @@ switch ($_REQUEST['accion']) {
         break;
 
 
+    case  $strings['Gestionar Miembros']:
+        if (!isset($_REQUEST['MIEMBRO_ID'])) {
+            $proyecto = new Proyecto('', '', '', '', '', '', '', '', '', null, '');
+        }
+        break;
+
+
+
+
     default:
         //La vista por defecto lista todas los proyectos
         if (!isset($_REQUEST['PROYECTO_NOMBRE'])) {
