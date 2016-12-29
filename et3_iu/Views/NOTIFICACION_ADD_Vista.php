@@ -33,7 +33,7 @@ class Notificacion_Add
 
                 <form action='NOTIFICACION_Controller.php' method='post'>
                     <ul class="form-style-1">
-                        <!-- Campo Nombre -->
+                        <!-- Campo Receptor -->
                         <div class="form-group">
                             <div class="col-sm-4">
                                 <label for="Receptor" class="control-label"><?php echo $strings['RECEPTOR']; ?>:</label>

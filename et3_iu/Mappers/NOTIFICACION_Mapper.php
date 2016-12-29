@@ -88,12 +88,13 @@ class NotificacionMapper {
 
     function marcarLeido ($notificacion){
         $this->ConectarBD();
-        $sql = "select * from NOTIFICACION where ID_NOTIFICACION='".$notificacion->getid()."';";
+        $sql = "select * from NOTIFICACION where ID_NOTIFICACION='".$notificacion->getId()."';";
         $resultado = $this->mysqli->query($sql);
         if(!$resultado->num_rows > 0){
           return 'No hay notificaciones';
         }else{
           $sql = "UPDATE NOTIFICACION SET FECHALECTURA= '" .date('Y-m-d H:i:s'). "' WHERE ID_NOTIFICACION= '" . $notificacion->getId()."';";
+          $resultado = $this->mysqli->query($sql);
         }
     }
 
