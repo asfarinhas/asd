@@ -121,14 +121,9 @@ class Proyecto_Modificar{
                                     <option value="Inactivo"><?php echo $strings['Inactivo'];?></option></Select>
                         </div>
 
-
-
-
-
+                            <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                         <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia()" >
                 </form>
-
-<a class="form-link" href='<?php echo $this->volver; ?> '><?php echo $strings['Volver']; ?> </a>
         </p>
 
 </div>
