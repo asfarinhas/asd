@@ -1,7 +1,6 @@
 <?php
 class Miembro_Model{
 
-    private $DNI;
     private $NOMBRE;
     private $APELLIDOS;
     private $USUARIO;
@@ -10,30 +9,20 @@ class Miembro_Model{
 
     /**
      * Miembro_Model constructor.
-     * @param $DNI
      * @param $NOMBRE
      * @param $APELLIDOS
-     * @param $USUARIO
+     * @param $USUARIO ser el ID
      * @param $CONTRASEÑA
      * @param $CORREO
      */
-    public function __construct($DNI=NULL, $NOMBRE=NULL, $APELLIDOS=NULL, $USUARIO=NULL, $CONTRASEÑA=NULL, $CORREO=NULL){
-        $this->DNI = $DNI;
+    public function __construct( $NOMBRE=NULL, $APELLIDOS=NULL, $USUARIO=NULL, $CONTRASEÑA=NULL, $CORREO=NULL){
+
         $this->NOMBRE = $NOMBRE;
         $this->APELLIDOS = $APELLIDOS;
         $this->USUARIO = $USUARIO;
         $this->CONTRASEÑA = $CONTRASEÑA;
         $this->CORREO = $CORREO;
 
-    }
-
-
-    public function getDNI(){
-        return $this->DNI;
-    }
-
-    public function setDNI($DNI){
-        $this->DNI =  $DNI;
     }
 
 
