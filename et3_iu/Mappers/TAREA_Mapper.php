@@ -43,12 +43,19 @@ class TAREA_Mapper{
 
             foreach ($tareas_bd as $row) {
 
-                 $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"], $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+                 $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                     $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                     $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
+                     $row["estado_tarea"], $row["comentario"]);
 
-                 $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                 $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                     $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
 
 
-                 array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"], $row["comentario"]));
+                 array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                     $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                     $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"],
+                     $row["comentario"]));
             }
             return $tareas_model;
             }
@@ -71,12 +78,19 @@ class TAREA_Mapper{
 
                 foreach ($tareas_bd as $row) {
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"], $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
+                        $row["estado_tarea"], $row["comentario"]);
 
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
 
 
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"], $row["comentario"]));
+                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
+                        $row["estado_tarea"], $row["comentario"]));
                 }
                 return $tareas_model;
             }
@@ -102,12 +116,19 @@ class TAREA_Mapper{
 
                 foreach ($tareas_bd as $row) {
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"], $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
+                        $row["estado_tarea"], $row["comentario"]);
 
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
 
 
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"], $row["comentario"]));
+                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
+                        $row["estado_tarea"], $row["comentario"]));
                 }
                 return $tareas_model;
             }
@@ -202,12 +223,19 @@ class TAREA_Mapper{
 
                 foreach ($tareas_bd as $row) {
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"], $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
+                        $row["estado_tarea"], $row["comentario"]);
 
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
 
 
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"], $row["comentario"]));
+                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
+                        $row["estado_tarea"], $row["comentario"]));
                 }
                 return $tareas_model;
             } else {
@@ -234,12 +262,19 @@ class TAREA_Mapper{
 
                 foreach ($tareas_bd as $row) {
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"], $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"], $row["estado_tarea"], $row["comentario"]);
+                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
+                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
+                        $row["estado_tarea"], $row["comentario"]);
 
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
 
 
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"], $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"], $row["comentario"]));
+                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
+                        $row["estado_tarea"], $row["comentario"]));
                 }
                 return $tareas_model;
             } else {
