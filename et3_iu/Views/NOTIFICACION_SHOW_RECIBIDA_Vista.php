@@ -1,6 +1,6 @@
 <?php
 
-class Notificacion_Default{
+class Notificacion_Recibida{
     //VISTA PARA LISTAR PROYECTOS
 
     private $datos;
@@ -37,7 +37,7 @@ class Notificacion_Default{
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['ConsultarEnviadas']?></a>
                             </div>
                         </nav>
-                      <tr> <font color="white"> <?=$strings['SINLEER'] ?> </font></tr>
+                      <tr> <font color="white"> <?=$strings['Recibidas'] ?> </font></tr>
                         <table id="btable" border = 1>
                             <tr>
                                 <th>  <?=$strings['ID_NOTIFICACION'] ?> </th>
@@ -69,22 +69,36 @@ class Notificacion_Default{
 
                             </tr>
     <?php                        }
+                            ?>
+                        </table>
 
+                    </div>
+                    <h3>
+        <p>
+            <?php
+            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
+            ?>
+            </h3>
+        </p>
+
+        </div>
+
+        <?php
     } //fin metodo render
     ?>
-</table>
+  </table>
 
-</div>
-<h3>
-<p>
-<?php
-echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-?>
-</h3>
-</p>
+  </div>
+  <h3>
+  <p>
+  <?php
+  echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
+  ?>
+  </h3>
+  </p>
 
-</div>
+  </div>
 
-<?php
+  <?php
 }
 }

@@ -31,18 +31,17 @@ class NotificacionMapper {
     //Listar todas las notificaciones enviadas
     function listarEnviadas()
     {
-        $this->ConectarBD();
-        $sql = "select * from NOTIFICACION where EMISOR='" . $_SESSION['user'] . "' ORDER BY FECHAENVIO;";
-        $resultado = $this->mysqli->query($sql);
-        if (!$resultado->num_rows > 0){
-            return 'No hay notificaciones';
+      $notificacion = array();
+      $this ->conectarBD();
+      $sql = "SELECT * FROM NOTIFICACION WHERE EMISOR = '" .$_SESSION['login']. "' ORDER BY FECHAENVIO";
+      if($resultado = $this->mysqli->query($sql)){
+        $aux=$resultado->num_rows;
+        while($aux>0){
+          $notificacion[$resultado->num_rows - $aux] = $resultado->fetch_array();
+          $aux = $aux -1;
         }
-        else{
-          while($row = $resultado->fetch_array()) {
-            if(strcmp($row['EMISOR'],$_SESSION['user']) != 0 )
-              echo "<tr> <td>".$row['ID_NOTIFICACION']."</td> <td>".$row['EMISOR']."</td> <td>".$row['RECEPTOR']."</td> <td>".$row['FECHAENVIO']."</td> <td>".$row['FECHALECTURA']."</td> </tr>";
-          }
-        }
+        return $notificacion;
+      }
     }
 
     //Listar todas las notificaciones recibidas
@@ -50,7 +49,7 @@ class NotificacionMapper {
     {
       $notificacion = array();
       $this ->conectarBD();
-      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" .$_SESSION['login']. "'";
+      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" .$_SESSION['login']. "' ORDER BY FECHAENVIO";
       if($resultado = $this->mysqli->query($sql)){
         $aux=$resultado->num_rows;
         while($aux>0){
@@ -108,9 +107,9 @@ class NotificacionMapper {
    * if the Post is not found
    */
   //Buscar por id
-  public function buscarEmisor($emisorId){
+  public function buscarId($Id){
       $this ->conectarBD();
-      $sql = "SELECT * FROM NOTIFICACION WHERE RECEPTOR = '" . $_SESSION['user'] . "' AND EMISOR = '" . $emisorId . "' ORDER BY FECHAENVIO;";
+      $sql = "SELECT * FROM NOTIFICACION WHERE ID_NOTIFICACION = '" . $_SESSION['user'] . "'  ORDER BY FECHAENVIO;";
 
       $resultado = $this->mysqli->query($sql);
       if($resultado ->num_rows!=0){

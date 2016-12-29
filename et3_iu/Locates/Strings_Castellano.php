@@ -221,7 +221,10 @@ $strings = array(
 				'creado exitoN' =>'Notificacion creada con exito',
 				'error creadoP' => 'Error notificacion',
 				'borrado exitoN' =>'Notificacion borrada con exito',
-				'error borradoN' => 'Error borrado notificacion'
+				'error borradoN' => 'Error borrado notificacion',
+				'Recibidas' => 'Notificaciones Recibidas',
+					'Enviadas' => 'Notificaciones Enviadas'
+
 
 
 

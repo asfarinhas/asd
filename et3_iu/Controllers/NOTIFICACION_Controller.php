@@ -4,6 +4,9 @@ include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
 include '../Mappers/NOTIFICACION_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
+include '../Views/NOTIFICACION_SHOW_RECIBIDA_Vista.php';
+include '../Views/NOTIFICACION_SHOW_ENVIADA_Vista.php';
+
 
 
 
@@ -98,11 +101,11 @@ Switch ($_REQUEST['accion']) {
             $notificacion= get_data_form();
         }
         $datos = $notificacionMapper->listarRecibidas();
-        
+
         if (!tienePermisos('Notificacion_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
-            new Notificacion_Default($datos, 'NOTIFICACION_Controller.php');
+            new Notificacion_Recibida($datos, 'NOTIFICACION_Controller.php');
 
         }
         break;
@@ -117,7 +120,7 @@ Switch ($_REQUEST['accion']) {
             if (!tienePermisos('Notificacion_Default')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
-                new Notificacion_Default($datos, 'NOTIFICACION_Controller.php');
+                new Notificacion_Enviada($datos, 'NOTIFICACION_Controller.php');
 
             }
             break;
@@ -127,7 +130,7 @@ Switch ($_REQUEST['accion']) {
                     new Proyecto_Show('','','');
                 } else {
                     $notificacion = get_data_form();
-                    $datos = $notificacionMapper->buscarNombre($_REQUEST['ID_NOTIFICACION']);
+                    $datos = $notificacionMapper->buscarId($_REQUEST['ID_NOTIFICACION']);
                     if (!tienePermisos('Notificacion_Show')) {
                         new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
                     } else {
