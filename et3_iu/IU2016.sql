@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
   `NOMBRE` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` int(11) NOT NULL,
   `URL` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `ID_MIEMBRO` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  `ID_MIEMBRO` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `FECHASUBIDA` date NOT NULL,
   `ID_TAREA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
