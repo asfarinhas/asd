@@ -297,7 +297,7 @@ INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHA
 --) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
--- Volcado de datos para la tabla `PROYECTO`
+-- Volcado de datos para la tabla `PROYECTO_MIEMBRO`
 --
 
 --INSERT INTO `PROYECTO` (`ID_PROYECTO`, `ID_MIEMBRO`) VALUES
