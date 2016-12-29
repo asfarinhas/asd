@@ -13,12 +13,12 @@ class Tarea{
     private $horas_plan;
     private $horas_real;
     private $miembro; //tipo miembro/usuario
-    private $entregable;
+    //private $entregable;
     private $estado_tarea;
     private $comentario;
 
     public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, Tarea $tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
-                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $miembro=NULL, array $entregable=NULL, $estado_tarea=NULL, $comentario=NULL){
+                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, $miembro=NULL, /*array $entregable=NULL,*/ $estado_tarea=NULL, $comentario=NULL){
 
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
@@ -31,7 +31,7 @@ class Tarea{
         $this->horas_plan = $horas_plan;
         $this->horas_real = $horas_real;
         $this->miembro = $miembro;
-        $this->entregable = $entregable;
+       // $this->entregable = $entregable;
         $this->estado_tarea = $estado_tarea;
         $this->comentario = $comentario;
     }
@@ -211,18 +211,15 @@ class Tarea{
     /**
      * @return null
      */
-    public function getEntregable()
+   /* public function getEntregable()
     {
         return $this->entregable;
     }
 
-    /**
-     * @param null $entregable
-     */
     public function setEntregable(array $entregable)
     {
         $this->entregable = $entregable;
-    }
+    }*/
 
     /**
      * @return null

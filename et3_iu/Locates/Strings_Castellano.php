@@ -194,7 +194,37 @@ $strings = array(
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',
 	'Fechainicioplan' => 'Fecha de inicio planificada',
-	'Fechaentregaplan' => 'Fecha de entrega planificada'
+	'Fechaentregaplan' => 'Fecha de entrega planificada',
+	//NOTIFICACIONES
+	'Gestión de Notificaciones' => 'Gestión de Notificaciones',
+			'ID_NOTIFICACION' => 'ID Notificación',
+			'EMISOR' => 'Emisor',
+			'RECEPTOR' => 'Receptor',
+			'CONTENIDO' => 'Contenido',
+			'FECHAENVIO' => 'Fecha Envio',
+			'FECHALECTURA' => 'Fecha Lectura',
+			'BORRADO' =>'Borrado',
+			'Ver' => 'Ver',
+			'Buscar' => 'Buscar',
+			'Consultar notificacion' => 'Consultar notificacion',
+		    'Insertar Notificacion' => 'Insertar Notificacion',
+				'Crear Notificacion' => 'Crear Notificacion',
+			'Borrar Notificacion' => 'Borrar Notificacion',
+		    'La notificacion ha sido borrada correctamente'=>'La notificacion ha sido borrada correctamente',
+		    'ID de notificacion ya existe' =>  'Notificacion ya existe',
+			'creado exito notificacion' => 'notificacion creado con éxito',
+		    'Ver notificacion' => 'Ver notificacion',
+				'ConsultarRecibidas' => 'Consultar Recibidas',
+				'ConsultarEnviadas' => 'Consultar Enviadas',
+				'error de receptor' => 'Error de receptor',
+				'SINLEER' => 'Notificaciones no leidas',
+				'creado exitoN' =>'Notificacion creada con exito',
+				'error creadoP' => 'Error notificacion',
+				'borrado exitoN' =>'Notificacion borrada con exito',
+				'error borradoN' => 'Error borrado notificacion'
+
+
+
 
 )
 ?>

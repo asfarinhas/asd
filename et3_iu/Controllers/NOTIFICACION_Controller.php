@@ -2,8 +2,10 @@
 include '../Models/NOTIFICACION_Model.php';
 include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
-require_once("../Mappers/NOTIFICACION_Mapper.php");
+include '../Mappers/NOTIFICACION_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
+
+
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
@@ -14,14 +16,20 @@ $pags=generarIncludes();
 for ($z=0;$z<count($pags);$z++){
     include $pags[$z];
 }
+
+$notificacionMapper=new NotificacionMapper();
 function get_data_form(){
 //Recoge la información del formulario
-
-
-    $ID_NOTIFICACION=
-
-    $EMISOR=$_SESSION['user'];
-
+    if(isset($_REQUEST['ID_NOTIFICACION'])){
+        $ID_NOTIFICACION = $_REQUEST['ID_NOTIFICACION'];
+    }else{
+          $ID_NOTIFICACION=str_shuffle("abcdefghijklmnopqrstuvwxyz0123456789".uniqid());
+    }
+    if(isset($_REQUEST['EMISOR'])){
+        $EMISOR =$_REQUEST['EMISOR'];
+    }else{
+        $EMISOR  = $_SESSION['login'];
+    }
     if(isset($_REQUEST['RECEPTOR'])){
         $RECEPTOR=$_REQUEST['RECEPTOR'];
     }else{
@@ -32,16 +40,15 @@ function get_data_form(){
     }else{
         $CONTENIDO = null;
     }
-    $FECHAENVIO=getdate();
-
-    if(isset($_REQUEST['FECHALECTURA'])){
-        $FECHALECTURA=$_REQUEST['FECHALECTURA'];
+    if(isset($_REQUEST['FECHAENVIO'])){
+        $FECHAENVIO=$_REQUEST['FECHAENVIO'];
     }else{
-        $FECHALECTURA = null;
+        $FECHAENVIO= date('Y-m-d H:i:s');
     }
 
+    $FECHALECTURA = NULL;
     $accion = $_REQUEST['accion'];
-    $notificacion = new Notificacion ('',$EMISOR,$RECEPTOR,$CONTENIDO,$FECHAENVIO,$FECHALECTURA);
+    $notificacion = new Notificacion ($ID_NOTIFICACION,$EMISOR,$RECEPTOR,$CONTENIDO,$FECHAENVIO,$FECHALECTURA);
     return $notificacion;
 }
 if (!isset($_REQUEST['accion'])){
@@ -50,7 +57,7 @@ if (!isset($_REQUEST['accion'])){
 
 Switch ($_REQUEST['accion']) {
     case $strings['Insertar']: //Crear una nueva notificacion
-        if (!isset($_REQUEST['ID_NOTIFICACION'])) {
+        if (!isset($_REQUEST['RECEPTOR'])) {
             if (!tienePermisos('Notificacion_add')) {
                 new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
             } else {
@@ -58,7 +65,7 @@ Switch ($_REQUEST['accion']) {
             }
         } else {
             $notificacion= get_data_form();
-            $respuesta = $notificacionMappper->insertar($notifiacion);
+            $respuesta = $notificacionMapper->insertar($notificacion);
             new Mensaje($respuesta, 'NOTIFICACION_Controller.php');
 
 
@@ -66,12 +73,12 @@ Switch ($_REQUEST['accion']) {
         break;
     case $strings['Borrar']: //Borrado de notificacion
         if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-            $notifiacion = get_data_form();
-            $valores = $notificacionMapper->RellenaDatos($notificacion->getID());
+            $notificacion = get_data_form();
+            $valores = $notificacionMapper->RellenaDatos($notificacion->getId());
             if (!tienePermisos('Notificacion_Borrar')) {
                 new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
             } else {
-                new Proyecto_Borrar($valores, 'NOTIFICACION_Controller.php');
+                new Notificacion_Borrar($valores, 'NOTIFICACION_Controller.php');
             }
         } else {
 
@@ -86,11 +93,12 @@ Switch ($_REQUEST['accion']) {
     case $strings['ConsultarRecibidas']: //Consulta de notificaciones recibidas
 
         if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-            $notificacion = new Notificacion('', '','','','','',null);
+            $notificacion = new Notificacion('', '','','','','');
         } else {
             $notificacion= get_data_form();
         }
         $datos = $notificacionMapper->listarRecibidas();
+        
         if (!tienePermisos('Notificacion_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
@@ -101,7 +109,7 @@ Switch ($_REQUEST['accion']) {
 
         case $strings['ConsultarEnviadas']: //Consulta de notificaciones enviadas
             if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-                $notificacion = new Notificacion('', '','','','','',null);
+                $notificacion = new Notificacion('', '','','','','');
             } else {
                 $notificacion= get_data_form();
             }
@@ -113,14 +121,31 @@ Switch ($_REQUEST['accion']) {
 
             }
             break;
+
+            case $strings['Ver']: //Consulta en detalle de una notifiacion
+                if (!isset($_REQUEST['ID_NOTIFICACION'])) {
+                    new Proyecto_Show('','','');
+                } else {
+                    $notificacion = get_data_form();
+                    $datos = $notificacionMapper->buscarNombre($_REQUEST['ID_NOTIFICACION']);
+                    if (!tienePermisos('Notificacion_Show')) {
+                        new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
+                    } else {
+
+                        new Notificacion_Show('buscar',$datos, 'NOTIFICACION_Controller.php');
+                    }
+                }
+                break;
+
         default:
-        //La vista por defecto lista todas los proyectos
+        //La vista por defecto lista las notificaciones que estan sin leer
         if (!isset($_REQUEST['ID_NOTIFICACION'])) {
             $notificacion = new Notificacion('', '','','','','');
+
         } else {
             $notificacion = get_data_form();
         }
-        $datos = $notificacionMapper->listar();
+        $datos = $notificacionMapper->buscarNoLeidas();
         if (!tienePermisos('Notificacion_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {
