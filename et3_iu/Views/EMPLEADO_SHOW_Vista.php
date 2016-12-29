@@ -17,7 +17,7 @@ function render(){
 <?php
 
 
-	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI');
+	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO');
 
 ?>
 	</h2>

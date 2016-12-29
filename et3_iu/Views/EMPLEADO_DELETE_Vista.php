@@ -18,13 +18,8 @@ function render(){
 	include '../Functions/EMPLEADODeleteDefForm.php';
 	//include '../Functions/LibraryFunctions.php';
 
-	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI','EMP_FECH_NAC', 'EMP_EMAIL','EMP_TELEFONO', 'EMP_CUENTA', 'EMP_DIRECCION', 'EMP_COMENTARIOS', 'EMP_TIPO');
-	if ($this->valores['EMP_FOTO']!==''){
-		array_push($lista,'EMP_FOTO');
-	}
-	if ($this->valores['EMP_NOMINA']!==''){
-		array_push($lista,'EMP_NOMINA');
-	}
+	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_EMAIL', 'EMP_TIPO');
+
 ?>
 <html>
 	<head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />

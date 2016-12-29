@@ -51,7 +51,7 @@ include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 		</nav>
 <?php
 	//$gen_datos = new gen_form($arrayDefForm);
-	$lista = array('EMP_USER','EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI','EMP_FECH_NAC', 'EMP_EMAIL',  'EMP_TELEFONO', 'EMP_CUENTA', 'EMP_DIRECCION', 'EMP_COMENTARIOS', 'EMP_TIPO','EMP_FOTO','EMP_NOMINA');
+	$lista = array('EMP_USER','EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_EMAIL', 'EMP_TIPO');
 
 
 ?>

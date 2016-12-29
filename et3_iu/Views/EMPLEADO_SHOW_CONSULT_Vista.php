@@ -51,7 +51,7 @@ include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 		</nav><!-- end of top nav --><!-- div de muestra de datos.... titulos y datos -->
 <?php
 
-	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI','EMP_FECH_NAC', 'EMP_EMAIL', 'EMP_TELEFONO', 'EMP_CUENTA', 'EMP_DIRECCION', 'EMP_COMENTARIOS', 'EMP_TIPO','EMP_FOTO','EMP_NOMINA','EMP_ESTADO');
+	$lista = array('EMP_USER', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_EMAIL', 'EMP_TIPO','EMP_ESTADO');
 
 
 ?>

@@ -18,7 +18,7 @@ function render(){
 <?php //VISTA PARA LA INSERCIÓN DE EMPLEADOS
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 				include '../Functions/EMPLEADOShowAllDefForm.php';
-				$lista = array('EMP_USER','EMP_PASSWORD', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI', 'EMP_FECH_NAC', 'EMP_EMAIL','EMP_TELEFONO', 'EMP_CUENTA', 'EMP_DIRECCION', 'EMP_COMENTARIOS', 'EMP_TIPO', 'EMP_FOTO','EMP_NOMINA');
+				$lista = array('EMP_USER','EMP_PASSWORD', 'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_EMAIL', 'EMP_TIPO');
 
 ?>
 			

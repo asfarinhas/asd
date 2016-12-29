@@ -17,7 +17,7 @@ function render(){
 	include '../Functions/EMPLEADOShowAllDefForm.php';
 	//include '../Functions/LibraryFunctions.php';
 	
-	$lista = array('EMP_USER', 'EMP_PASSWORD',  'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_DNI','EMP_FECH_NAC', 'EMP_EMAIL', 'EMP_TELEFONO', 'EMP_CUENTA', 'EMP_DIRECCION', 'EMP_COMENTARIOS', 'EMP_ESTADO','EMP_FOTO','EMP_NOMINA');
+	$lista = array('EMP_USER', 'EMP_PASSWORD',  'EMP_NOMBRE', 'EMP_APELLIDO', 'EMP_EMAIL', 'EMP_ESTADO');
 
 ?>
 <html>
