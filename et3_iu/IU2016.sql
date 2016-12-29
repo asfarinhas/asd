@@ -125,6 +125,8 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('secret', 403),
 ('ADMIN', 404),
 ('secret', 404),
+('ADMIN', 405),
+('secret', 405),
 ('ADMIN', 500),
 ('ADMIN', 501),
 ('ADMIN', 503),
@@ -141,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
   `NOMBRE` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` int(11) NOT NULL,
   `URL` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `ID_MIEMBRO` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  `ID_MIEMBRO` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `FECHASUBIDA` date NOT NULL,
   `ID_TAREA` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -212,7 +214,7 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (400, 401),
 (400, 402),
 (400, 403),
-(400, 404),
+(400, 405),
 (500, 500),
 (500, 501),
 (500, 503),
@@ -278,6 +280,7 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (402, '../Views/PROYECTO_EDIT_Vista.php', 'PROYECTO EDIT'),
 (403, '../Views/PROYECTO_SHOW_ALL_Vista.php', 'PROYECTO SHOW ALL'),
 (404, '../Views/PROYECTO_SHOW_Vista.php', 'PROYECTO SHOW'),
+(405, '../Views/PROYECTO_MIEMBRO_SHOW_ALL_Vista.php', 'PROYECTO MIEMBRO SHOW ALL'),
 (500, '../Views/NOTIFICACION_ADD_Vista.php', 'NOTIFICACION ADD'),
 (501, '../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
 (503, '../Views/NOTIFICACION_SHOW_ALL_Vista.php', 'NOTIFICACION SHOW ALL'),
@@ -317,20 +320,20 @@ INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHA
 -- Estructura de tabla para la tabla `PROYECTO_MIEMBRO`
 --
 
--- CREATE TABLE IF NOT EXISTS `PROYECTO_MIEMBRO` (
---  `ID_PROYECTO` int(3) NOT NULL,
---  `ID_MIEMBRO` varchar(9) NOT NULL
--- ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+CREATE TABLE IF NOT EXISTS `PROYECTO_MIEMBRO` (
+  `ID_PROYECTO` int(3) NOT NULL,
+  `EMP_USER` varchar(25) NOT NULL,
+  `BORRADO` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `PROYECTO_MIEMBRO`
 --
 
--- INSERT INTO `PROYECTO` (`ID_PROYECTO`, `ID_MIEMBRO`) VALUES
---  (1, ),
---  (2, );
-
-
+INSERT INTO `PROYECTO_MIEMBRO` (`ID_PROYECTO`, `EMP_USER`,`BORRADO`) VALUES
+ (1,'monit', 0),
+ (1,'ADMIN', 0),
+ (2,'secret',0 );
 --
 -- Estructura de tabla para la tabla `ROL`
 --
