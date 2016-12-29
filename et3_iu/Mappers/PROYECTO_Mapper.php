@@ -98,17 +98,16 @@ class ProyectoMapper {
     function listarMiembrosProyecto()
     {
         $this->ConectarBD();
-        $sql = "select * from PROYECTO_MIEMBROS WHERE BORRADO ='0';";
+        $sql = "select * from PROYECTO_MIEMBRO WHERE BORRADO='0';";
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }
         else{
 
-            if($resultado ->num_rows!=0){
-                $proyecto= $resultado->fetch_array();
-
+            if ($resultado->num_rows > 0){
+                $row=$resultado->fetch_array();
             }
-            return $toret;
+            return $row;
 
         }
     }
@@ -227,7 +226,25 @@ class ProyectoMapper {
         }
     }
 
-  /**
+    //Devuelve la información correspondiente a un proyecto
+    function RellenaDatosMiembro($idMiembro)
+    {
+        $this->ConectarBD();
+        $sql = "select * from EMPLEADOS where EMP_USER = '". $idMiembro ."'";
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
+            $result = $resultado->fetch_array();
+
+
+            return $result;
+        }
+    }
+
+
+
+    /**
    * Updates a Post in the database
    *
    * @param Post $post The post to be updated

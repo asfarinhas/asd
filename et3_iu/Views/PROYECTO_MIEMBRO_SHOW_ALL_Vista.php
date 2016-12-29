@@ -3,11 +3,13 @@
 class ProyectoMiembro_Default{
     //VISTA PARA LISTAR MIEMBROS DE PROYECTO
 
-    private $datos;
+    private $datos1;
+    private $datos2;
     private $volver;
 
-    function __construct($array, $volver){
-        $this->datos = $array;
+    function __construct($array1, $array2, $volver){
+        $this->datos1 = $array1;
+        $this->datos2 = $array2;
         $this->volver = $volver;
         $this->render();
 
@@ -46,11 +48,11 @@ class ProyectoMiembro_Default{
 
                             </tr>
                             <?php
-                            foreach($this->datos as $proyecto){
-                                echo "<tr><td> " . $miembro['NOMBRE']."</td>";
-                                echo "<td>" . $miembro['APELLIDOS'] ."</td>";
-                                echo "<td> " . $miembro['EMAIL']."</td>";
-                                echo "<td> " . $miembro['USUARIO']."</td>";
+                            foreach($this->datos2 as $miembro){
+                                echo "<tr><td> " . $miembro['EMP_NOMBRE']."</td>";
+                                echo "<td>" . $miembro['EMP_APELLIDO'] ."</td>";
+                                echo "<td> " . $miembro['EMP_EMAIL']."</td>";
+                                echo "<td> " . $miembro['EMP_USER']."</td>";
                                 ?>
 
                                 <td>

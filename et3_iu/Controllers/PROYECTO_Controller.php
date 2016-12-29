@@ -4,6 +4,7 @@ include '../Models/PROYECTO_Model.php';
 include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
 require_once("../Mappers/PROYECTO_Mapper.php");
+require_once("../Mappers/MIEMBRO_Mapper.php");
 include '../Views/MENSAJE_Vista.php';
 if (!IsAuthenticated()){
     header('Location:../index.php');
@@ -17,6 +18,7 @@ for ($z=0;$z<count($pags);$z++){
 }
 
 $proyectoMapper=new ProyectoMapper();
+
 
 function get_data_form(){
 
@@ -204,9 +206,17 @@ switch ($_REQUEST['accion']) {
 
 
     case  $strings['Gestionar Miembros']:
-        if (!isset($_REQUEST['MIEMBRO_ID'])) {
-            $proyecto = new Proyecto('', '', '', '', '', '', '', '', '', null, '');
-        }
+            $info = $proyectoMapper->listarMiembrosProyecto();
+            var_dump($info);
+            $proyecto = $proyectoMapper->RellenaDatos($info['EMP_USER']);
+            $miembro = $proyectoMapper->RellenaDatosMiembro($info['EMP_USER']);
+            if (!tienePermisos('ProyectoMiembro_Default')) {
+                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
+            } else {
+                new ProyectoMiembro_Default($proyecto, $miembro, '../Views/DEFAULT_Vista.php');
+
+            }
+
         break;
 
 
