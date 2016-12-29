@@ -112,7 +112,7 @@ class Proyecto_Add
 
 
 
-
+                        <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                         <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Insertar'] ?>
                         <ul>
 
@@ -120,9 +120,7 @@ class Proyecto_Add
 
 
                         <br>
-                <?php
-                echo '<a class="form-link" href=\'PROYECTO_Controller.php\'>' . $strings['Volver'] . " </a>";
-                ?>
+                
             </h3>
             </p>
 
