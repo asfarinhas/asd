@@ -69,21 +69,7 @@ class Notificacion_Recibida{
 
                             </tr>
     <?php                        }
-                            ?>
-                        </table>
 
-                    </div>
-                    <h3>
-        <p>
-            <?php
-            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-            ?>
-            </h3>
-        </p>
-
-        </div>
-
-        <?php
     } //fin metodo render
     ?>
   </table>

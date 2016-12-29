@@ -223,7 +223,8 @@ $strings = array(
 				'borrado exitoN' =>'Notificacion borrada con exito',
 				'error borradoN' => 'Error borrado notificacion',
 				'Recibidas' => 'Notificaciones Recibidas',
-					'Enviadas' => 'Notificaciones Enviadas'
+				'Enviadas' => 'Notificaciones Enviadas',
+				'buscar notificacion' => 'Buscar notificación'
 
 
 

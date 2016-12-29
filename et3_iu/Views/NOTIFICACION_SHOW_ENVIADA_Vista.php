@@ -65,40 +65,26 @@ class Notificacion_Enviada{
                             </td>
                             <td>
                                 <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $notificacion['ID_NOTIFICACION'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
-                            </td>
+                              </td>
 
-                            </tr>
-    <?php                        }
-                            ?>
-                        </table>
+                              </tr>
+      <?php                        }
 
-                    </div>
-                    <h3>
-        <p>
-            <?php
-            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-            ?>
-            </h3>
-        </p>
+      } //fin metodo render
+      ?>
+    </table>
 
-        </div>
-
-        <?php
-    } //fin metodo render
+    </div>
+    <h3>
+    <p>
+    <?php
+    echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
     ?>
-  </table>
+    </h3>
+    </p>
 
-  </div>
-  <h3>
-  <p>
-  <?php
-  echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-  ?>
-  </h3>
-  </p>
+    </div>
 
-  </div>
-
-  <?php
-}
-}
+    <?php
+  }
+  }

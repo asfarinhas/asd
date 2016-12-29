@@ -140,6 +140,22 @@ Switch ($_REQUEST['accion']) {
                 }
                 break;
 
+                case $strings['Buscar']: //Consulta en detalle de una notifiacion
+                    if (!isset($_REQUEST['BUSCAR'])) {
+                        new Notificacion_Show('','','');
+                    } else {
+                        $notificacion = get_data_form();
+                        $datos = $notificacionMapper->buscar($notificacion);
+                        if (!tienePermisos('Notificacion_Show')) {
+                            new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
+                        } else {
+
+                            new Notificacion_Show('buscar',$datos, 'NOTIFICACION_Controller.php');
+                        }
+                    }
+                    break;
+
+
         default:
         //La vista por defecto lista las notificaciones que estan sin leer
         if (!isset($_REQUEST['ID_NOTIFICACION'])) {

@@ -35,6 +35,8 @@ class Notificacion_Default{
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarRecibidas']?>'><?php echo $strings['ConsultarRecibidas']?></a>
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['ConsultarEnviadas']?></a>
+
+
                             </div>
                         </nav>
                       <tr> <font color="white"> <?=$strings['SINLEER'] ?> </font></tr>
@@ -79,7 +81,12 @@ class Notificacion_Default{
 <p>
 <?php
 echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-?>
+ ?>
+
+<a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['Buscar']?>'><?php echo $strings['Buscar']?></a>
+
+
+
 </h3>
 </p>
 

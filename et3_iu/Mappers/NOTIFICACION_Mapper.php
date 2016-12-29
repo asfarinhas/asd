@@ -109,7 +109,7 @@ class NotificacionMapper {
   //Buscar por id
   public function buscarId($Id){
       $this ->conectarBD();
-      $sql = "SELECT * FROM NOTIFICACION WHERE ID_NOTIFICACION = '" . $_SESSION['user'] . "'  ORDER BY FECHAENVIO;";
+      $sql = "SELECT * FROM NOTIFICACION WHERE ID_NOTIFICACION = '" . $Id . "'  ORDER BY FECHAENVIO;";
 
       $resultado = $this->mysqli->query($sql);
       if($resultado ->num_rows!=0){
@@ -147,6 +147,37 @@ class NotificacionMapper {
                 }
             }
     }
+
+    public function buscar(Notificacion $notificacion) {
+        $this ->conectarBD();
+      $sql = "SELECT * FROM PROYECTO WHERE
+                ID_PROYECTO LIKE '%" . $notificacion->getId(). "%' AND
+                EMISOR LIKE '%" . $notificacion->getEmisor() . "%' AND
+                RECEPTOR LIKE '%" . $notificacion->getReceptor() . "%' AND
+                FECHAENVIO LIKE '%" . $notificacion->getFechaEnv() . "%'AND
+                FECHALECTURA LIKE '%" . $notificacion->getFechaLec() . "%';";
+
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }
+        else{
+
+            $toret=array();
+            $i=0;
+            while ($fila= $resultado->fetch_array()) {
+
+                //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
+                $fila[9] = new Notificacion_Model(2);//Insertamos un objeto en la posicion 10
+                $fila[9]->setId("Id".$i);//Le asignamos un nombre porque esta vacío
+                $toret[$i]=$fila;
+
+                $i++;
+            }
+            return $toret;
+
+        }
+    }
+
 
     //Devuelve la información correspondiente a una notificacion
     function mostrarNotificacion($id)
