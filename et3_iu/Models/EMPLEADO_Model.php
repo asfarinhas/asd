@@ -11,39 +11,23 @@ class EMPLEADOS_Modelo
 //Parámetros de la clase empleado
 	var $EMP_USER;
 	var $EMP_PASSWORD;
-	var $EMP_FECH_NAC;
 	var $EMP_EMAIL;
 	var $EMP_NOMBRE;
 	var $EMP_APELLIDO;
-	var $EMP_DNI;
-	var $EMP_TELEFONO;
-	var $EMP_CUENTA;
-	var $EMP_DIRECCION;
-	var $EMP_COMENTARIOS;
 	var $EMP_TIPO;
 	var $EMP_ESTADO;
-	var $EMP_FOTO;
-	var $EMP_NOMINA;
 	var $mysqli;
 
 //Constructor de la clase empleado
-function __construct($EMP_USER, $EMP_PASSWORD, $EMP_FECH_NAC, $EMP_EMAIL, $EMP_NOMBRE, $EMP_APELLIDO, $EMP_DNI, $EMP_TELEFONO, $EMP_CUENTA, $EMP_DIRECCION, $EMP_COMENTARIOS,  $EMP_TIPO, $EMP_ESTADO, $EMP_FOTO, $EMP_NOMINA)
+function __construct($EMP_USER, $EMP_PASSWORD, $EMP_EMAIL, $EMP_NOMBRE, $EMP_APELLIDO,  $EMP_TIPO, $EMP_ESTADO)
 {
     $this->EMP_USER =  $EMP_USER;
 	$this->EMP_PASSWORD = $EMP_PASSWORD;
-	$this->EMP_FECH_NAC = $EMP_FECH_NAC;
 	$this->EMP_EMAIL = $EMP_EMAIL;
 	$this->EMP_NOMBRE =  $EMP_NOMBRE;
 	$this->EMP_APELLIDO =  $EMP_APELLIDO;
-	$this->EMP_DNI = $EMP_DNI;
-	$this->EMP_TELEFONO =  $EMP_TELEFONO;
-	$this->EMP_CUENTA =$EMP_CUENTA;
-	$this->EMP_DIRECCION =$EMP_DIRECCION;
-	$this->EMP_COMENTARIOS =$EMP_COMENTARIOS;
 	$this->EMP_TIPO =$EMP_TIPO;
 	$this->EMP_ESTADO =$EMP_ESTADO;
-	$this->EMP_FOTO=$EMP_FOTO;
-	$this->EMP_NOMINA=$EMP_NOMINA;
 
 }
 
@@ -72,9 +56,9 @@ function Insertar()
 			if ($result->num_rows == 0){
 
 				//Insertamos en la tabla EMPLEADOS
-				$sql = "INSERT INTO EMPLEADOS (EMP_USER, EMP_PASSWORD, EMP_FECH_NAC, EMP_EMAIL, EMP_NOMBRE, EMP_APELLIDO, EMP_DNI, EMP_TELEFONO, EMP_CUENTA, EMP_DIRECCION, EMP_COMENTARIOS, EMP_TIPO, EMP_ESTADO, EMP_FOTO, EMP_NOMINA) VALUES ('";
+				$sql = "INSERT INTO EMPLEADOS (EMP_USER, EMP_PASSWORD, EMP_EMAIL, EMP_NOMBRE, EMP_APELLIDO, EMP_TIPO, EMP_ESTADO) VALUES ('";
 
-				$sql = $sql . "$this->EMP_USER', '".md5($this->EMP_PASSWORD)."', '$this->EMP_FECH_NAC', '$this->EMP_EMAIL', '$this->EMP_NOMBRE', '$this->EMP_APELLIDO', '$this->EMP_DNI', '$this->EMP_TELEFONO','$this->EMP_CUENTA', '$this->EMP_DIRECCION', '$this->EMP_COMENTARIOS',  '$this->EMP_TIPO', '$this->EMP_ESTADO', '$this->EMP_FOTO', '$this->EMP_NOMINA')";
+				$sql = $sql . "$this->EMP_USER', '".md5($this->EMP_PASSWORD)."','$this->EMP_EMAIL', '$this->EMP_NOMBRE', '$this->EMP_APELLIDO', '$this->EMP_TIPO', '$this->EMP_ESTADO')";
 
 				$this->mysqli->query($sql);
 				//Cogemos las páginas que le corresponden por pertenecer a un determinado rol
@@ -110,12 +94,13 @@ function __destruct()
 
 }
 
-//Consulta por nombre y apellido, o por dni o por nombre de usuario devolviendo todos los empleados que cumplan la condición
+//Consulta por nombre y apellido, o por nombre de usuario devolviendo todos los empleados que cumplan la condición
 function Consultar()
 {
     $this->ConectarBD();
-    $sql = "select EMP_USER, EMP_PASSWORD, EMP_NOMBRE, EMP_APELLIDO, EMP_DNI, EMP_FECH_NAC, EMP_EMAIL, EMP_TELEFONO, EMP_CUENTA, EMP_DIRECCION, EMP_COMENTARIOS, EMP_TIPO, EMP_FOTO, EMP_NOMINA, EMP_ESTADO from EMPLEADOS where  ((EMP_NOMBRE ="."'$this->EMP_NOMBRE'".") AND (EMP_APELLIDO="."'$this->EMP_APELLIDO'".")) OR (EMP_DNI="."'$this->EMP_DNI'".") OR (EMP_USER="."'$this->EMP_USER'".")";
-
+    $sql = "select EMP_USER, EMP_PASSWORD, EMP_NOMBRE, EMP_APELLIDO, EMP_EMAIL,  EMP_TIPO from EMPLEADOS 
+			where  ((EMP_NOMBRE ="."'$this->EMP_NOMBRE'".") AND (EMP_APELLIDO="."'$this->EMP_APELLIDO'".")) OR (EMP_USER='{$this->EMP_USER}')";
+	echo $sql;
 	if (!($resultado = $this->mysqli->query($sql))){
 	return 'Error en la consulta sobre la base de datos';
 	}
@@ -203,19 +188,8 @@ function Modificar()
     {if ($this->EMP_USER==='ADMIN') {
     	$this->EMP_TIPO=1;
 	}
-	$sql = "UPDATE EMPLEADOS SET EMP_PASSWORD = '".md5($this->EMP_PASSWORD)."',EMP_FECH_NAC ='".$this->EMP_FECH_NAC."',EMP_EMAIL= '".$this->EMP_EMAIL."',EMP_NOMBRE= '".$this->EMP_NOMBRE."',EMP_APELLIDO = '".$this->EMP_APELLIDO."',EMP_DNI= '".$this->EMP_DNI."',EMP_TELEFONO= '".$this->EMP_TELEFONO."',EMP_CUENTA= '".$this->EMP_CUENTA."',EMP_DIRECCION= '".$this->EMP_DIRECCION."',EMP_COMENTARIOS= '".$this->EMP_COMENTARIOS."',EMP_ESTADO= '".$this->EMP_ESTADO."'";
-	 if($this->EMP_FOTO!=''){
-	 	$sql.=", EMP_FOTO='".$this->EMP_FOTO."'";
-	 }
-		if($this->EMP_NOMINA!=''){
-			$sql.=", EMP_NOMINA='".$this->EMP_NOMINA."'";
-		}
-		$sql.=" WHERE EMP_USER='".$this->EMP_USER."'";
-
-
-
-
-
+	$sql = "UPDATE EMPLEADOS SET EMP_PASSWORD = '".md5($this->EMP_PASSWORD)."',EMP_EMAIL= '".$this->EMP_EMAIL."',EMP_NOMBRE= '".$this->EMP_NOMBRE."',EMP_APELLIDO = '".$this->EMP_APELLIDO."',EMP_ESTADO= '".$this->EMP_ESTADO."' WHERE EMP_USER = '{$this->EMP_USER}'";
+	echo $sql;
 		if (!($resultado = $this->mysqli->query($sql))){
 		return "Se ha producido un error en la modificación del empleado"; // sustituir por un try
 	}
@@ -299,27 +273,9 @@ function Modificar()
 
 			}
 
-
 			return $toret;
 
 		}
 	}
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
