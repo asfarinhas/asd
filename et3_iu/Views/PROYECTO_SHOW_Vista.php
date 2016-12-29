@@ -105,7 +105,7 @@ class Proyecto_Show{
 
                             <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
-                                <a class="form-link" href='<?php echo $this->volver; ?> '><?php echo $strings['Volver']; ?> </a>
+                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                                 <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
 
                     </form>
