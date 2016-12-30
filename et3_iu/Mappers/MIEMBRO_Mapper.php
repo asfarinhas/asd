@@ -9,12 +9,12 @@
     require_once("../Models/MIEMBRO_Model.php");
 
 
-    class MiembroMapper {
+    class MIEMBRO_Mapper {
 
         private $mysqli;
 
         public function __construct() {
-            $this->mysqli = $this -> ConectarBD();
+            $this -> ConectarBD();
         }
 
         //Extraer esta función
@@ -29,7 +29,7 @@
 
         /**
          * Devuelve todos los miembros
-         * @return array con las instancias de cada miembro; si se produce algún error o no hay datos en la tabla
+         * @return array | bool; array con las instancias de cada miembro, si se produce algún error o no hay datos en la tabla return false
          */
 
         public function consultarMiembros() {
@@ -72,6 +72,54 @@
             return $miembros;
         }
 
+        /**
+         * Devuelve los miembros activos
+         * @return array con las instancia de los Miembros activos | false si se produce o error o no devuelve filas
+         */
+        public function consultarMiembrosActivos() {
+
+            $sql = "SELECT * FROM empleados WHERE EMP_ESTADO = 'Activo' ";
+            $resultado = $this -> mysqli -> query($sql);
+
+            if($resultado == false || $resultado -> numrows == 0) return false;
+
+            $miembros = array();
+            while($obj = $resultado -> fetch_object()){
+                $miembro = new Miembro($obj -> empleados_user, $obj -> empleados_password, $obj -> empleados_nombre, $obj -> empleados_apellido, $obj -> empleado_dni,
+                    $obj -> empleados_fech_nac, $obj -> empleados_email, $obj -> empleados_telefono, $obj -> empleados_cuenta, $obj -> empleados_direccion,
+                    $obj -> empleados_comentarios, $obj -> empleados_tipo, $obj -> empleados_estado, $obj -> empleados_foto, $obj -> empleados_nomina);
+
+                array_push($miembros, $miembro);
+            }
+
+            return $miembros;
+        }
+
+        /**
+         * Devuelve los miembros inactivos
+         * @return array con las instancia de los Miembros inactivos | false si se produce o error o no devuelve filas
+         */
+        public function consultarMiembrosInactivos() {
+
+            $sql = "SELECT * FROM empleados WHERE EMP_ESTADO = 'Inactivo' ";
+            $resultado = $this -> mysqli -> query($sql);
+
+            if($resultado == false || $resultado -> numrows == 0) return false;
+
+            $miembros = array();
+            while($obj = $resultado -> fetch_object()){
+                $miembro = new Miembro($obj -> empleados_user, $obj -> empleados_password, $obj -> empleados_nombre, $obj -> empleados_apellido, $obj -> empleado_dni,
+                    $obj -> empleados_fech_nac, $obj -> empleados_email, $obj -> empleados_telefono, $obj -> empleados_cuenta, $obj -> empleados_direccion,
+                    $obj -> empleados_comentarios, $obj -> empleados_tipo, $obj -> empleados_estado, $obj -> empleados_foto, $obj -> empleados_nomina);
+
+                array_push($miembros, $miembro);
+            }
+
+            return $miembros;
+        }
+
+
+
 
         /**
          * Busca el miembro que tenga el dni pasado por parámetro
@@ -80,7 +128,7 @@
          */
         public function buscarMiembroPorDNI($dni) {
 
-            $sql = "SELECT * FROM empleados where empleados_dni LIKE '%$dni%' ";
+            $sql = "SELECT * FROM empleados where empleados_dni = '%$dni%' ";
             $resultado = $this -> mysqli -> query($sql);
 
             if($resultado == false || $resultado -> numrows == 0) return false;
@@ -101,7 +149,7 @@
          */
         public function buscarMiembroPorUsuario($user) {
 
-            $sql = "SELECT * FROM empleados where empleados_user LIKE '%$user%' ";
+            $sql = "SELECT * FROM empleados where empleados_user = '%$user%' ";
             $resultado = $this -> mysqli -> query($sql);
 
             if($resultado == false || $resultado -> numrows == 0) return false;
@@ -123,8 +171,8 @@
 
             $sql = "INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_DNI`, `EMP_FECH_NAC`, `EMP_EMAIL`, `EMP_TELEFONO`, 
                                               `EMP_CUENTA`, `EMP_DIRECCION`, `EMP_COMENTARIOS`, `EMP_TIPO`, `EMP_ESTADO`, `EMP_FOTO`, `EMP_NOMINA`)
-                                               VALUES ('$miembro -> getUser()', '$miembro -> getPassword()', '$miembro -> getNombre()', '$miembro -> getApellidos()',
-                                                      '$miembro -> getDNI()', '$miembro -> getFechaNacimiento()', '$miembro -> getEmail()', '$miembro -> getTelefono()',
+                                               VALUES ('$miembro -> getUsuario()', '$miembro -> getContraseña()', '$miembro -> getNombre()', '$miembro -> getApellidos()',
+                                                      '$miembro -> getDNI()', '$miembro -> getFechaNacimiento()', '$miembro -> getCorreo()', '$miembro -> getTelefono()',
                                                        '$miembro -> getCuenta()', '$miembro -> getDireccion()', '$miembro -> getComentarios()', '$miembro -> getTipo()', 
                                                        '$miembro -> getEstado()', '$miembro -> getFoto()', '$miembro -> getNomina()')";
             $this -> mysqli ->query($sql);
@@ -134,12 +182,12 @@
 
         /**
          * Actualiza un miembro en la BBDD
-         * @param Miembro $miembro, el miembro con los nuevos datos, el usuario permanece constante (clave primaria)
+         * @param Miembro $miembro, el miembro con los nuevos datos; $user el usuario existente en la BBDD (antiguo si se cambia)
          */
         public function updateMiembro(Miembro $miembro, $user) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_PASSWORD` = '$miembro -> getPassword()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
-            `EMP_DNI` = '$miembro -> getDNI()',`EMP_FECH_NAC` = '$miembro -> getFechaNacimiento()',`EMP_EMAIL` = '$miembro -> getEmail()',`EMP_TELEFONO` = '$miembro -> getTelefono',
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_USER` = '$miembro -> getUsuario()', `EMP_PASSWORD` = '$miembro -> getContraseña()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
+            `EMP_DNI` = '$miembro -> getDNI()',`EMP_FECH_NAC` = '$miembro -> getFechaNacimiento()',`EMP_EMAIL` = '$miembro -> getCorreo()',`EMP_TELEFONO` = '$miembro -> getTelefono',
             `EMP_CUENTA` = '$miembro -> getCuenta()', `EMP_DIRECCION` = '$miembro -> getDireccion()',`EMP_COMENTARIOS`='$miembro -> getComentarios()', `EMP_TIPO` = '$miembro -> getTipo()',
             `EMP_ESTADO` = '$miembro -> getEstado()',`EMP_FOTO` = '$miembro -> getFoto()', `EMP_NOMINA` = '$miembro -> getNomina()' WHERE EMP_USER = '$user' ";
 
@@ -154,7 +202,7 @@
          */
         public function desactivarMiembro(Miembro $miembro) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Inactivo' WHERE EMP_USER = '$miembro -> getUser()' ";
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Inactivo' WHERE EMP_USER = '$miembro -> getUsuario()' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
         }
@@ -165,7 +213,7 @@
          */
         public function activarMiembro(Miembro $miembro) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$miembro -> getUser()' ";
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$miembro -> getUsuario()' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
         }
@@ -175,12 +223,12 @@
          * Elimina un miembro de la BBDD
          * @param Miembro $miembro
          */
-        public function eliminarMiembro(Miembro $miembro) {
-            $user = $miembro -> getUser();
+       /* public function eliminarMiembro(Miembro $miembro) {
+            $user = $miembro -> getUsuario();
             $sql = "DELETE from miembro WHERE id = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
-        }
+        }*/
 
 
         /**
