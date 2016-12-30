@@ -9,7 +9,6 @@ include '../Views/NOTIFICACION_SHOW_ENVIADA_Vista.php';
 
 
 
-
 if (!IsAuthenticated()){
     header('Location:../index.php');
 }
@@ -64,9 +63,7 @@ Switch ($_REQUEST['accion']) {
             if (!tienePermisos('Notificacion_add')) {
                 new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
             } else {
-
-                $miembros = $notificacionMapper->listarMiembros();
-                new Notificacion_Add($miembros);
+                new Notificacion_Add();
             }
         } else {
             $notificacion= get_data_form();
@@ -129,7 +126,7 @@ Switch ($_REQUEST['accion']) {
 
             case $strings['Ver']: //Consulta en detalle de una notifiacion
                 if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-                    new Notificacion_Show('','','');
+                    new Proyecto_Show('','','');
                 } else {
                     $notificacion = get_data_form();
                     $notificacionMapper->marcarLeido($notificacion);

@@ -44,19 +44,6 @@ class NotificacionMapper {
       }
     }
 
-    function listarMiembros()
-    {
-        $this->ConectarBD();
-        $sql = "select * from EMPLEADOS";
-        if($resultado = $this->mysqli->query($sql)){
-          $aux=$resultado->num_rows;
-          while($aux>0){
-            $notificacion[$resultado->num_rows - $aux] = $resultado->fetch_array();
-            $aux = $aux -1;
-          }
-          return $notificacion;
-        }
-    }
     //Listar todas las notificaciones recibidas
     function listarRecibidas()
     {

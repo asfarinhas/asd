@@ -3,10 +3,9 @@
 class Notificacion_Add
 {
     //VISTA PARA INSERTAR PAGINAS
-    private $miembros ;
-    function __construct($array)
+
+    function __construct()
     {
-        $this->miembros = $array;
         $this->render();
     }
 
@@ -40,14 +39,8 @@ class Notificacion_Add
                                 <label for="Receptor" class="control-label"><?php echo $strings['RECEPTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                              <select name= "RECEPTOR">
-                                  <?php
-
-                                      foreach($this->miembros as $m){
-                                        echo '<option value="'.$m["EMP_USER"].'">'.$m["EMP_USER"].'</option>';
-                                      }
-                                  ?>
-                                </select>
+                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error receptor']; ?>" >
+                            </div>
                         </div>
                         <!-- Campo Descripcion -->
                         <div class="form-group">
