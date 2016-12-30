@@ -1,5 +1,22 @@
 <?php
-include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+$string_idioma = $_SESSION['IDIOMA'];
+//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+switch ($string_idioma){
+    case "Castellano":
+        include '../Locates/Strings_Castellano.php';
+        break;
+    case "English":
+        include '../Locates/Strings_English.php';
+        break;
+    case "Galego":
+        include '../Locates/Strings_Galego.php';
+        break;
+    default:
+        include '../Locates/Strings_Castellano.php';
+}
+
+
+
 class Subtarea_add
 {
 
@@ -19,7 +36,7 @@ class Subtarea_add
     public function showView()
     {
         $miembros = $this->getArrayDatos();
-        //**********************************************--------FALTA EL CAMPO TAREA PADRE--------***************************
+        //*************************************************************************
         //*************************************************************************************************************
         ?>
         <head>
