@@ -129,7 +129,7 @@ Switch ($_REQUEST['accion']) {
 
             case $strings['Ver']: //Consulta en detalle de una notifiacion
                 if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-                    new Proyecto_Show('','','');
+                    new Notificacion_Show('','','');
                 } else {
                     $notificacion = get_data_form();
                     $notificacionMapper->marcarLeido($notificacion);
