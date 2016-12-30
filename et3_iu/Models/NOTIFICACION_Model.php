@@ -20,7 +20,7 @@ class Notificacion{
 		$this->fechaLectura = $fechaLectura;
 		$this->contenido = $contenido;
 	}
-
+	
 	//Getters
 	public function getId(){
 		return $this->id;
