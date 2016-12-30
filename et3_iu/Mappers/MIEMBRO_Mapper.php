@@ -14,7 +14,7 @@
         private $mysqli;
 
         public function __construct() {
-            $this->mysqli = $this -> ConectarBD();
+            $this -> ConectarBD();
         }
 
         //Extraer esta función
