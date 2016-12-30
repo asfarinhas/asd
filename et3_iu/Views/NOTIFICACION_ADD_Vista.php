@@ -23,7 +23,7 @@ class Notificacion_Add
                 <?php
                 include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
                 ?>
-            </h2>
+          </h2> 
             </p>
             <p>
             <h1>
