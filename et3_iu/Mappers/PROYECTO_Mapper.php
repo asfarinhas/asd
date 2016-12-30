@@ -96,7 +96,7 @@ class ProyectoMapper {
     /*Busca y lista todos los miembros de un proyecto*/
     public function listarMiembrosProyecto($id_proyecto)
     {
-
+         $this ->conectarBD();
         $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto";
 
         if (!($resultado = $this->mysqli->query($sql))) {

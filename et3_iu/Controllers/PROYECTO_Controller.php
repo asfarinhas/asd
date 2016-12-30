@@ -206,8 +206,8 @@ switch ($_REQUEST['accion']) {
 
 
     case  $strings['Gestionar Miembros']:
-            $info = $proyectoMapper->listarMiembrosProyecto();
-            var_dump($info);
+            $miembros = $proyectoMapper->listarMiembrosProyecto($_REQUEST['ID_PROYECTO']);
+            var_dump($miembros);
             $proyecto = $proyectoMapper->RellenaDatos($info['EMP_USER']);
             $miembro = $proyectoMapper->RellenaDatosMiembro($info['EMP_USER']);
             if (!tienePermisos('ProyectoMiembro_Default')) {
