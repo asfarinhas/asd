@@ -5,28 +5,58 @@
  * Date: 28/12/2016
  * Time: 20:00
  */
-
+include '../Functions/LibraryFunctions.php';
 include '../Models/TAREA_Model.php';
-include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/TAREA_Mapper.php';
-include '../Views/TAREA_EDIT_View.php';
+include '../Views/MENSAJE_Vista.php';
+//include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
-include '../Views/TAREA_SHOW_View.php';
-include '../Views/TAREA_VIEW_View.php';
-include '../Views/TAREA_DELETE_View.php';
-include '../Views/SUBTAREA_EDIT_View.php';
-include '../Views/SUBTAREA_ADD_View.php';
-include '../Views/SUBTAREA_SHOW_View.php';
-include '../Views/SUBTAREA_VIEW_View.php';
-include '../Views/SUBTAREA_DELETE_View.php';
+//include '../Views/TAREA_SHOW_View.php';
+//include '../Views/TAREA_VIEW_View.php';
+//include '../Views/TAREA_DELETE_View.php';
+//include '../Views/SUBTAREA_EDIT_View.php';
+//include '../Views/SUBTAREA_ADD_View.php';
+//include '../Views/SUBTAREA_SHOW_View.php';
+//include '../Views/SUBTAREA_VIEW_View.php';
+//include '../Views/SUBTAREA_DELETE_View.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
-
+include '../Mappers/PROYECTO_Mapper.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
 }
+include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 
 function add_tarea(){
+    $miembro_mapper = new MiembroMapper();
+    $proyecto_mapper = new ProyectoMapper();
+    $tarea_mapper = new TAREA_Mapper();
+    $proyecto = $proyecto_mapper->buscarId($_REQUEST['proyecto_id']);
+    $proyecto = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
+    if(isset($_REQUEST["nombre"])){
+
+
+        $nombre = $_REQUEST["nombre"];
+        $fecha_I_P = $_REQUEST["fecha_I_P"];
+        $fecha_E_P = $_REQUEST["fecha_E_P"];
+        $horas_P = $_REQUEST["horas_P"];
+        $miembro = $miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]);
+
+        if(isset($_REQUEST["descripcion"]))
+            $descripcion = $_REQUEST["descripcion"];
+        else
+            $descripcion = null;
+        if(isset($_REQUEST["comentarios"]))
+            $comentarios = $_REQUEST["comentarios"];
+        else
+            $comentarios = null;
+        $tarea = new Tarea(null,$nombre,$descripcion,null,$fecha_I_P,$fecha_E_P,null,null,$horas_P,null,$miembro,"activo",$comentarios,$proyecto);
+        $mensaje = $tarea_mapper->insertarTarea($tarea);
+        new Mensaje($mensaje,"./TAREA_Controller.php");
+    }else{
+        $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
+        new TAREA_ADD_Vista($miembros);
+    }
     //Recoger variables de la vista
     //Comprobaciones de datos, longitud, ...
     //Insertar datos en la tabla tarea en la BBDD
@@ -155,7 +185,6 @@ if (!isset($_REQUEST['accion'])){
 }else{
     $accion = $_REQUEST['accion'];
 }
-
 
 switch ($accion) { //los nombres del case llamadle como querais, como tengais puesto en el formulario en la vista. Esto es solo orientativo
 

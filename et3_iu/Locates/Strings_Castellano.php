@@ -234,9 +234,18 @@ $strings = array(
 				'CorreosEnviados' => 'CorreosEnviados',
 				'EliminarCorreo' => 'Eliminar Correo',
 				'ID_CORREO' => 'Id Correo',
-				'CorreosEnviados' => 'Correos enviados'
-
-
+				'CorreosEnviados' => 'Correos enviados',
+    // SIN TRADUCIR
+    "Insertar Tarea" => "Insertar Tarea",
+    "Nombre" => "Nombre",
+    "fecha_I_P" => "Fecha inicial planificada",
+    "fecha_E_P" => "Fecha de entrega planificada",
+    "horas_P" => "Horas planificadas",
+    "asignado" => "Tarea asginada a",
+    "descripcion" => "Descripcion",
+    "Creado con éxito"=>"Creado con éxito",
+    "comentarios" => "Comentarios"
+	// FIN SIN TRADUCIR
 
 
 )

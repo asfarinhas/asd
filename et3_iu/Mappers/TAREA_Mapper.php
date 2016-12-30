@@ -104,7 +104,6 @@ class TAREA_Mapper{
         function listarTareasPendientesMiembro(Miembro $idMiembro)
         {
             $this->conectarBD();
-
             $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getDNI() . "' AND  ESTADO < 100 ORDER BY FECHAIP";
 
             if (!($resultado = $this->mysqli->query($sql))) {
@@ -141,20 +140,12 @@ class TAREA_Mapper{
         function insertarTarea(Tarea $tarea)
         {
             $this->conectarBD();
-
-            $sql = "SELECT * FORM TAREA WHERE NOMBRE = '" . $tarea->getNombre() . "' ";
-            $resultado = $this->mysqli->query($sql);
-            if ($resultado->num_rows != 0) {
-                return "Nombre de tarea ya existe. ";
+            $sql = "INSERT INTO TAREA (NOMBRE,FECHAIP,FECHAIR,FECHAEP,FECHAER,HORASP,HORASR,ID_MIEMBRO,ID_PROYECTO, DESCRIPCION,ESTADO,COMENTARIO) 
+                VALUES ('{$tarea->getNombre()}','{$tarea->getFechaInicioPlan()}','{$tarea->getFechaInicioReal()}','{$tarea->getFechaEntregaPlan()}','{$tarea->getFechaEntregaReal()}','{$tarea->getHorasPlan()}','{$tarea->getHorasReal()}','{$tarea->getMiembro()->getUsuario()}','{$tarea->getProyecto()->getIDPROYECTO()}','{$tarea->getDescripcion()}','{$tarea->getEstadoTarea()}','{$tarea->getComentario()}');";
+            if ($this->mysqli->query($sql) === TRUE) {
+                return "Creado con éxito";
             } else {
-                $sql = "INSERT INTO TAREA (PADRE,ID_TAREA,NOMBRE,FECHAIP,FECHAIR,FECHAEP,FECHAER,HORASP,HORASR,ID_MIEMBRO,
-                    DESCRIPCION,ESTADO,COMENTARIO) VALUES ('" . $tarea->getTareaPadre() . "','" . $tarea->getIdTarea() . "','" . $tarea->getNombre() . "','" . $tarea->getFechaInicioPlan() . "','" . $tarea->getFechaInicioReal() . "','" . $tarea->getFechaEntregaPlan() . "','" . $tarea->getFechaEntregaReal() . "','" . $tarea->getHorasPlan() . "','" . $tarea->getHorasReal() . "','" . $tarea->getMiembro() . "','" . $tarea->getDescripcion() . "','" . $tarea->getEstadoTarea() . "','" . $tarea->getComentario() . "');";
-
-                if ($this->mysqli->query($sql) === TRUE) {
-                    return "Creado con éxito. ";
-                } else {
-                    return "Error en la creación. ";
-                }
+                return "Error en la creación ";
             }
         }
 
