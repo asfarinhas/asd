@@ -100,7 +100,7 @@ function Consultar()
     $this->ConectarBD();
     $sql = "select EMP_USER, EMP_PASSWORD, EMP_NOMBRE, EMP_APELLIDO, EMP_EMAIL,  EMP_TIPO from EMPLEADOS 
 			where  ((EMP_NOMBRE ="."'$this->EMP_NOMBRE'".") AND (EMP_APELLIDO="."'$this->EMP_APELLIDO'".")) OR (EMP_USER='{$this->EMP_USER}')";
-	echo $sql;
+	//echo $sql;
 	if (!($resultado = $this->mysqli->query($sql))){
 	return 'Error en la consulta sobre la base de datos';
 	}
@@ -189,7 +189,7 @@ function Modificar()
     	$this->EMP_TIPO=1;
 	}
 	$sql = "UPDATE EMPLEADOS SET EMP_PASSWORD = '".md5($this->EMP_PASSWORD)."',EMP_EMAIL= '".$this->EMP_EMAIL."',EMP_NOMBRE= '".$this->EMP_NOMBRE."',EMP_APELLIDO = '".$this->EMP_APELLIDO."',EMP_ESTADO= '".$this->EMP_ESTADO."' WHERE EMP_USER = '{$this->EMP_USER}'";
-	echo $sql;
+	//echo $sql;
 		if (!($resultado = $this->mysqli->query($sql))){
 		return "Se ha producido un error en la modificación del empleado"; // sustituir por un try
 	}
