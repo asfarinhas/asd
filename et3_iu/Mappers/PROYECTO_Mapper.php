@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../Models/PROYECTO_Model.php");
 require_once(__DIR__ . "/../Models/MIEMBRO_Model.php");
 
 
+
 /**
  * Class PostMapper
  *
@@ -18,7 +19,6 @@ class ProyectoMapper {
    * @var PDO
    */
   private $mysqli;
-
 
   public function conectarBD(){
 
@@ -73,8 +73,7 @@ class ProyectoMapper {
         $sql = "select * from PROYECTO WHERE BORRADO ='1' ORDER BY ID_PROYECTO;";
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
-        }
-        else{
+        } else{
 
             $toret=array();
             $i=0;
@@ -97,23 +96,44 @@ class ProyectoMapper {
     public function listarMiembrosProyecto($id_proyecto)
     {
          $this ->conectarBD();
-        $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto";
+        $sql = "SELECT EMP_USER FROM PROYECTO_MIEMBRO where ID_PROYECTO = '". $id_proyecto . "';";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return false;
         } else {
             $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
 
+            //sacamos la info de cada miembro
             $miembros_proyecto = array();
 
-            foreach ($miembros as $row){
-                $miembro = new Miembro_Model($row["NOMBRE"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
-                array_push($miembros_proyecto, $miembro);
+            //$miembroMapper = new MiembroMapper();
+
+            foreach($miembros as $row){
+               // $infoMiembro = $miembroMapper->buscarMiembroPorUsuario($row['EMP_USER']);
+                $infoMiembro = $this->buscarMiembroPorUsuario($row);
+                array_push($miembros_proyecto, $infoMiembro);
             }
 
             return $miembros_proyecto;
 
         }
+    }
+
+
+        public function buscarMiembroPorUsuario($user) {
+
+        $this->conectarBD();
+
+        $sql = "SELECT * FROM EMPLEADOS where EMP_USER LIKE '%$user%' ";
+        $resultado = $this -> mysqli -> query($sql);
+
+        if($resultado == false || $resultado -> num_rows == 0) return false;
+
+        $obj = $resultado->fetch_object();
+
+        $miembro = new Miembro_Model( $obj -> EMP_NOMBRE, $obj -> EMP_APELLIDO,$obj -> EMP_USER, $obj -> EMP_PASSWORD, $obj -> EMP_EMAIL);
+
+        return $miembro;
     }
 
 
