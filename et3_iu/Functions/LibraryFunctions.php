@@ -1481,7 +1481,7 @@ function añadirFuncionalidades($NOM) {
                     break;
 
                 case "GESTION CORREOS":
-                       ?><a style="font-size:20px;" href='../Controllers/NOTIFICACION_Controller.php'><?php echo $strings['Gestión de Correos'] ?></a><br><br> <?php
+                       ?><a style="font-size:20px;" href='../Controllers/CORREO_Controller.php'><?php echo $strings['Gestión de Correos'] ?></a><br><br> <?php
                       break;
                 default:
                     $link = str_replace(" ", "_", ConsultarNOMFuncionalidad($fila['FUNCIONALIDAD_ID'])) . "_Controller.php";

@@ -232,8 +232,9 @@ $strings = array(
 				'error asunto'=> 'Error de asunto',
 				'Gestión de Correos' => 'Gestión de Correos',
 				'CorreosEnviados' => 'CorreosEnviados',
-				'EliminarCorreo' => 'Eliminar Correo'
-
+				'EliminarCorreo' => 'Eliminar Correo',
+				'ID_CORREO' => 'Id Correo',
+				'CorreosEnviados' => 'Correos enviados'
 
 
 

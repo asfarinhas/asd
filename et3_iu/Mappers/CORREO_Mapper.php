@@ -2,7 +2,7 @@
 // file: model/PostMapper.php
 require_once(__DIR__ . "/../Models/CORREO_Model.php");
 
-class NotificacionMapper {
+class CorreoMapper {
 
   private $mysqli;
   public function conectarBD(){

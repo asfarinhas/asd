@@ -19,7 +19,7 @@ for ($z=0;$z<count($pags);$z++){
     include $pags[$z];
 }
 
-$correoMapper=new correoMapper();
+$correoMapper=new CorreoMapper();
 function get_data_form(){
 //Recoge la información del formulario
 
@@ -61,7 +61,7 @@ function get_data_form(){
 
 
     $accion = $_REQUEST['accion'];
-    $correo= new Correo ($ID_CORREO,$ASUNTO,$EMISOR,$RECEPTOR,$FECHAENVIO,$CONTENIDO);
+    $correo= new Correo ($ID_CORREO,$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
     return $correo;
 }
 if (!isset($_REQUEST['accion'])){
@@ -78,7 +78,7 @@ Switch ($_REQUEST['accion']) {
             }
         } else {
             $correo= get_data_form();
-            $respuesta = $notificacionMapper->insertar($correo);
+            $respuesta = $correoMapper->insertar($correo);
             new Mensaje($respuesta, 'CORREO_Controller.php');
 
 
@@ -140,12 +140,12 @@ Switch ($_REQUEST['accion']) {
         default:
         //La vista por defecto lista los correos que se han enviado
         if (!isset($_REQUEST['ID_CORREO'])) {
-            $correo = new Correo('', '','','','');
+            $correo = new Correo('', '','','','','');
 
         } else {
             $correo = get_data_form();
         }
-        $datos = $correoMapper->buscarEnviados();
+        $datos = $correoMapper->listarEnviadas();
         if (!tienePermisos('Correo_Default')) {
             new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
         } else {

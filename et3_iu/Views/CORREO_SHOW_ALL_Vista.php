@@ -32,8 +32,8 @@ class Correo_Default{
                                 </ul>
 
 
-                                <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarRecibidas']?>'><?php echo $strings['Enviar correo']?></a>
-                                <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['EliminarCorreo']?></a>
+                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['ConsultarRecibidas']?>'><?php echo $strings['Enviar correo']?></a>
+                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['EliminarCorreo']?></a>
 
 
 
@@ -51,7 +51,7 @@ class Correo_Default{
                             // PARA QUE??
                             if($this->datos != NULL){
 
-                                foreach($this->datos as $notificacion){
+                                foreach($this->datos as $correo){
                                   echo "<tr> <td> " . $notificacion['ID_CORREO']."</td>";
                                   echo "<td> " . $notificacion['RECEPTOR']."</td>";
                                   echo "<td> " . $notificacion['FECHAENVIO']."</td>";
@@ -61,10 +61,10 @@ class Correo_Default{
 
 
                             <td>
-                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $notificacion['ID_NOTIFICACION'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                                <a href='CORREO_Controller.php?ID_NOTIFICACION=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                             </td>
                             <td>
-                                <a href='NOTIFICACION_Controller.php?ID_NOTIFICACION=<?php echo $notificacion['ID_NOTIFICACION'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                <a href='CORREO_Controller.php?ID_NOTIFICACION=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>
 
                             </tr>
