@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `CORREO` (
   `RECEPTOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `ASUNTO` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `CONTENIDO` varchar(400) COLLATE latin1_spanish_ci NOT NULL,
-  `FECHAENVIO` date NOT NULL,
-  `FECHAENTREGA` date NOT NULL
+  `FECHAENVIO` date NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -130,7 +130,11 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 500),
 ('ADMIN', 501),
 ('ADMIN', 503),
-('ADMIN', 504);
+('ADMIN', 504),
+('ADMIN', 600),
+('ADMIN', 601);
+
+
 
 -- --------------------------------------------------------
 
@@ -169,7 +173,9 @@ INSERT INTO `FUNCIONALIDAD` (`FUNCIONALIDAD_ID`, `FUNCIONALIDAD_NOM`) VALUES
 (3, 'GESTION FUNCIONALIDADES'),
 (4, 'GESTION PAGINAS'),
 (400, 'GESTION PROYECTOS'),
-(500, 'GESTION NOTIFICACIONES');
+(500, 'GESTION NOTIFICACIONES'),
+(600, 'GESTION CORREOS');
+
 
 -- --------------------------------------------------------
 
@@ -218,7 +224,9 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (500, 500),
 (500, 501),
 (500, 503),
-(500, 504);
+(500, 504),
+(600, 600),
+(600, 601);
 
 -- --------------------------------------------------------
 
@@ -284,7 +292,12 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (500, '../Views/NOTIFICACION_ADD_Vista.php', 'NOTIFICACION ADD'),
 (501, '../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
 (503, '../Views/NOTIFICACION_SHOW_ALL_Vista.php', 'NOTIFICACION SHOW ALL'),
-(504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW');
+(504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW'),
+(600, '../Views/CORREO_ADD_Vista.php', 'CORREO ADD'),
+(601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL');
+
+
+
 
 -- --------------------------------------------------------
 
@@ -375,7 +388,9 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 (1, 400),
 (2, 400),
 (1, 500),
-(2, 500);
+(2, 500),
+(1, 600),
+(2, 600);
 
 -- --------------------------------------------------------
 
