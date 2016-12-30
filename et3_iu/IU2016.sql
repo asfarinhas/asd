@@ -327,18 +327,17 @@ INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHA
 
 CREATE TABLE IF NOT EXISTS `PROYECTO_MIEMBRO` (
   `ID_PROYECTO` int(3) NOT NULL,
-  `EMP_USER` varchar(25) NOT NULL,
-  `BORRADO` tinyint(1) NOT NULL DEFAULT '0'
+  `EMP_USER` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `PROYECTO_MIEMBRO`
 --
 
-INSERT INTO `PROYECTO_MIEMBRO` (`ID_PROYECTO`, `EMP_USER`,`BORRADO`) VALUES
- (1,'monit', 0),
- (1,'ADMIN', 0),
- (2,'secret',0 );
+INSERT INTO `PROYECTO_MIEMBRO` (`ID_PROYECTO`, `EMP_USER`) VALUES
+ (1,'monit'),
+ (1,'ADMIN'),
+ (2,'secret');
 --
 -- Estructura de tabla para la tabla `ROL`
 --
