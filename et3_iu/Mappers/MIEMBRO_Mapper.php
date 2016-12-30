@@ -100,17 +100,15 @@
          * @return false si se produce algún error o no se encuentra; o se devuelve el Miembro, en caso contrario
          */
         public function buscarMiembroPorUsuario($user) {
-
-            $sql = "SELECT * FROM empleados where empleados_user LIKE '%$user%' ";
+            $this->ConectarBD();
+            $sql = "SELECT * FROM EMPLEADOS where EMP_USER = '{$user}' ";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> numrows == 0) return false;
+            if($resultado == false || $resultado->num_rows == 0) return false;
 
-            $obj = $resultado->fetch_object();
+            $miembro = $resultado->fetch_array(MYSQLI_ASSOC);
 
-            $miembro = new Miembro($obj -> empleados_user, $obj -> empleados_password, $obj -> empleados_nombre, $obj -> empleados_apellido, $obj -> empleado_dni,
-                $obj -> empleados_fech_nac, $obj -> empleados_email, $obj -> empleados_telefono, $obj -> empleados_cuenta, $obj -> empleados_direccion,
-                $obj -> empleados_comentarios, $obj -> empleados_tipo, $obj -> empleados_estado, $obj -> empleados_foto, $obj -> empleados_nomina);
+            $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
 
             return $miembro;
         }
@@ -235,18 +233,14 @@
         /*Busca y lista todos los miembros de un proyecto*/
         public function listarMiembrosProyecto($id_proyecto)
         {
-
-            $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto AND BORRADO ='0'";
-
+            $this->ConectarBD();
+            $sql = "SELECT * FROM PROYECTO_MIEMBRO P,EMPLEADOS E where E.EMP_USER = P.EMP_USER AND ID_PROYECTO = {$id_proyecto} AND BORRADO ='0'";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return false;
             } else {
-                $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
-
                 $miembros_proyecto = array();
-
-                foreach ($miembros as $row){
-                    $miembro = new Miembro_Model($row["NOMBRE"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                while($miembro = $resultado->fetch_array(MYSQLI_ASSOC)){
+                    $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
                     array_push($miembros_proyecto, $miembro);
                 }
 

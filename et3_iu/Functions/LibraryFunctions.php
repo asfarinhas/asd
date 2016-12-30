@@ -1155,7 +1155,6 @@ function createForm($listFields, $fieldsDef, $strings, $values, $required, $noed
 }
 
 function IsAuthenticated() {
-
     session_start();
     if (!isset($_SESSION['login'])) {
 
