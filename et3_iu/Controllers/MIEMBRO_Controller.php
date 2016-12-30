@@ -34,7 +34,7 @@ function edit_miembro(){  //claudia
             if($username != $usuario){
                 //comprobar que no existe el usuario en la bd
                 $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
-                if($aux != NULL){ //existe
+                if($aux != false){ //existe
                     echo "Username existente, introduzca otro";
                 }else{ //no existe
                     $miembroMapper->updateMiembro($miembro, $username);
@@ -83,6 +83,22 @@ if (!isset($_REQUEST['accion'])){
 
 
 switch ($accion) { //los nombres del case llamadle como querais, como tengais puesto en el formulario en la vista. Esto es solo orientativo
+
+    case "add_menu":
+        break;
+
+    case "edit_menu":
+        $miembroMapper = new MiembroMapper();
+        $datosmiembro = $miembroMapper->buscarMiembroPorUsuario($_SESSION['login']);
+        $vista_modificar = new MiembroEditView($datosmiembro);
+        $vista_modificar->showView();
+        break;
+
+    case "showcurrent_menu":
+        break;
+
+    case "show_tareas_miembro_menu":
+        break;
 
     case "add": //insertar usuario nuevo a traves de registro
         add_miembro();
