@@ -13,12 +13,12 @@ class Tarea{
     private $horas_plan;
     private $horas_real;
     private $miembro; //tipo miembro/usuario
-    //private $entregable;
+    private $id_proyecto;
     private $estado_tarea;
     private $comentario;
 
     public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, Tarea $tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
-                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, Miembro_Model $miembro=NULL, /*array $entregable=NULL,*/ $estado_tarea=NULL, $comentario=NULL){
+                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, Miembro_Model $miembro=NULL, $estado_tarea=NULL, $comentario=NULL, $id_proyecto=NULL){
 
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
@@ -31,9 +31,9 @@ class Tarea{
         $this->horas_plan = $horas_plan;
         $this->horas_real = $horas_real;
         $this->miembro = $miembro;
-       // $this->entregable = $entregable;
         $this->estado_tarea = $estado_tarea;
         $this->comentario = $comentario;
+        $this->id_proyecto = $id_proyecto;
     }
 
     public function getIdTarea(){
@@ -197,6 +197,17 @@ class Tarea{
     public function setComentario($comentario)
     {
         $this->comentario = $comentario;
+    }
+
+    public function getIdProyecto()
+    {
+        return $this->id_proyecto;
+    }
+
+
+    public function setIdProyecto($id_proyecto)
+    {
+        $this->id_proyecto = $id_proyecto;
     }
 
 
