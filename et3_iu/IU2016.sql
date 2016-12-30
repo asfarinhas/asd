@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS `EMPLEADOS` (
   `EMP_NOMBRE` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
   `EMP_APELLIDO` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `EMP_EMAIL` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_TELEFONO` int(15) DEFAULT NULL,
   `EMP_TIPO` int(10) DEFAULT NULL,
   `EMP_ESTADO` enum('Activo','Inactivo') COLLATE latin1_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;

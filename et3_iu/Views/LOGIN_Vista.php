@@ -29,6 +29,8 @@ $lista = array('EMP_USER', 'EMP_PASSWORD','IDIOMA');
 					<option value="Galego">Galego</option>
 					<option value="English">English</option></select></p>
 			<p><input type="submit" name = 'accion' value='Login'></p>
+            <p><input type="submit" name = 'accion' value='Registro'></p>
+            <p><input type="submit" name = 'accion' value='Instalar BD'></p>
 		</form>
 	</div>
 
