@@ -236,7 +236,7 @@
         public function listarMiembrosProyecto($id_proyecto)
         {
 
-            $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto ";
+            $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto AND BORRADO ='0'";
 
             if (!($resultado = $this->mysqli->query($sql))) {
                 return false;
