@@ -224,8 +224,17 @@ $strings = array(
 				'error borradoN' => 'Error borrado notificacion',
 				'Recibidas' => 'Notificaciones Recibidas',
 				'Enviadas' => 'Notificaciones Enviadas',
-				'buscar notificacion' => 'Buscar notificación'
+				'buscar notificacion' => 'Buscar notificación',
 
+
+				'Enviar correo' => 'Enviar Correo',
+				'Asunto'=> 'Asunto',
+				'error asunto'=> 'Error de asunto',
+				'Gestión de Correos' => 'Gestión de Correos',
+				'CorreosEnviados' => 'CorreosEnviados',
+				'EliminarCorreo' => 'Eliminar Correo',
+				'ID_CORREO' => 'Id Correo',
+				'CorreosEnviados' => 'Correos enviados'
 
 
 

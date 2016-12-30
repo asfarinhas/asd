@@ -1,18 +1,9 @@
 <?php
-// file: model/PostMapper.php
+
 require_once(__DIR__ . "/../Models/NOTIFICACION_Model.php");
-/**
- * Class PostMapper
- *
- * Database interface for Post entities
- *
- * @author drdominguez
- */
+
 class NotificacionMapper {
-  /**
-   * Reference to the PDO connection
-   * @var PDO
-   */
+
   private $mysqli;
   public function conectarBD(){
       $this->mysqli = new mysqli("localhost","iu2016","iu2016","IU2016");
@@ -20,14 +11,7 @@ class NotificacionMapper {
           echo "Fallo al conectar MySQL: " . $this->mysqli->connect_error();
       }
   }
-  /**
-   * Retrieves all posts
-   *
-   * Note: Comments are not added to the Post instances
-   *
-   * @throws PDOException if a database error occurs
-   * @return mixed Array of Post instances (without comments)
-   */
+
     //Listar todas las notificaciones enviadas
     function listarEnviadas()
     {
@@ -44,6 +28,19 @@ class NotificacionMapper {
       }
     }
 
+    function listarMiembros()
+    {
+        $this->ConectarBD();
+        $sql = "select * from EMPLEADOS";
+        if($resultado = $this->mysqli->query($sql)){
+          $aux=$resultado->num_rows;
+          while($aux>0){
+            $notificacion[$resultado->num_rows - $aux] = $resultado->fetch_array();
+            $aux = $aux -1;
+          }
+          return $notificacion;
+        }
+    }
     //Listar todas las notificaciones recibidas
     function listarRecibidas()
     {
@@ -98,15 +95,7 @@ class NotificacionMapper {
         }
     }
 
-  /**
-   * Loads a Post from the database given its id
-   *
-   * Note: Comments are not added to the Post
-   *
-   * @throws PDOException if a database error occurs
-   * @return Post The Post instances (without comments). NULL
-   * if the Post is not found
-   */
+
   //Buscar por id
   public function buscarId($Id){
       $this ->conectarBD();

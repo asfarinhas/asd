@@ -1,12 +1,11 @@
 <?php
 
-class Notificacion_Add
+class Correo_Add
 {
-    //VISTA PARA INSERTAR PAGINAS
-    private $miembros ;
-    function __construct($array)
+    //VISTA PARA INSERTAR UN NUEVO CORREO
+
+    function __construct()
     {
-        $this->miembros = $array;
         $this->render();
     }
 
@@ -23,16 +22,16 @@ class Notificacion_Add
                 <?php
                 include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
                 ?>
-          </h2> 
+            </h2>
             </p>
             <p>
             <h1>
 			<span class="form-title">
-			<?php echo $strings['Insertar Notificacion'] ?><br>
+			<?php echo $strings['Enviar correo'] ?><br>
             </h1>
             <h3>
 
-                <form action='NOTIFICACION_Controller.php' method='post'>
+                <form action='CORREO_Controller.php' method='post'>
                     <ul class="form-style-1">
                         <!-- Campo Receptor -->
                         <div class="form-group">
@@ -40,14 +39,18 @@ class Notificacion_Add
                                 <label for="Receptor" class="control-label"><?php echo $strings['RECEPTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                              <select name= "RECEPTOR">
-                                  <?php
+                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error receptor']; ?>" >
+                            </div>
+                        </div>
 
-                                      foreach($this->miembros as $m){
-                                        echo '<option value="'.$m["EMP_USER"].'">'.$m["EMP_USER"].'</option>';
-                                      }
-                                  ?>
-                                </select>
+                        <!-- Campo Asunto -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="Receptor" class="control-label"><?php echo $strings['Asunto']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error asunto']; ?>" >
+                            </div>
                         </div>
                         <!-- Campo Descripcion -->
                         <div class="form-group">
@@ -71,7 +74,7 @@ class Notificacion_Add
 
 
                 <?php
-                echo '<a class="form-link" href=\'NOTIFICACION_Controller.php\'>' . $strings['Volver'] . " </a>";
+                echo '<a class="form-link" href=\'CORREO_Controller.php\'>' . $strings['Volver'] . " </a>";
                 ?>
             </h3>
             </p>

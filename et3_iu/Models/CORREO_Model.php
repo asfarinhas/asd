@@ -1,27 +1,22 @@
 <?php
-class Notificacion{
+class Correo{
 
-	//Métodos
-	private $id;
-	private $emisor;
-	private $receptor;
-	private $contenido;
-	private $fechaEnvio;
-	private $fechaLectura;
+      private $id;
+      private $emisor;
+      private $receptor;
+      private $asunto;
+      private $contenido;
+      private $fechaEnvio;
 
-
-
-	//Constructor
-	public function __construct($id , $emisor, $receptor, $contenido, $fechaEnvio, $fechaLectura=NULL){
-		$this->id = $id;
+      public function __construct($id, $emisor, $receptor, $asunto, $contenido, $fechaEnvio){
+            $this->id = $id;
 		$this->emisor = $emisor;
 		$this->receptor = $receptor;
-		$this->fechaEnvio = $fechaEnvio;
-		$this->fechaLectura = $fechaLectura;
+            $this->asunto = $asunto;
 		$this->contenido = $contenido;
-	}
-	
-	//Getters
+		$this->fechaEnvio = $fechaEnvio;
+      }
+      //Getters
 	public function getId(){
 		return $this->id;
 	}
@@ -34,8 +29,8 @@ class Notificacion{
 	public function getFechaEnv(){
 		return $this->fechaEnvio;
 	}
-	public function getFechaLec(){
-		return $this->fechaLectura;
+	public function getAsunto(){
+		return $this->asunto;
 	}
 	public function getContenido(){
 		return $this->contenido;
@@ -54,13 +49,12 @@ class Notificacion{
 	private function _setFechaEnv($fechaEnvio){
 		$this->fechaEnvio = $fechaEnvio;
 	}
-	private function _setFechaLec($fechaLectura){
-		$this->fechaLectura = $fechaLectura;
+	private function _setAsunto($asunto){
+		$this->asunto = $asunto;
 	}
 	private function _setContenido($contenido){
 		$this->contenido = $contenido;
 	}
-
 
 
 }

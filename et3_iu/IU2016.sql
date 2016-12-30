@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `CORREO` (
   `RECEPTOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `ASUNTO` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `CONTENIDO` varchar(400) COLLATE latin1_spanish_ci NOT NULL,
-  `FECHAENVIO` date NOT NULL,
-  `FECHAENTREGA` date NOT NULL
+  `FECHAENVIO` date NOT NULL
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
@@ -51,27 +51,19 @@ CREATE TABLE IF NOT EXISTS `EMPLEADOS` (
   `EMP_PASSWORD` varchar(128) COLLATE latin1_spanish_ci NOT NULL,
   `EMP_NOMBRE` varchar(25) COLLATE latin1_spanish_ci DEFAULT NULL,
   `EMP_APELLIDO` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_DNI` varchar(10) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_FECH_NAC` date DEFAULT NULL,
   `EMP_EMAIL` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_TELEFONO` int(15) DEFAULT NULL,
-  `EMP_CUENTA` varchar(60) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_DIRECCION` varchar(80) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_COMENTARIOS` varchar(1000) COLLATE latin1_spanish_ci DEFAULT NULL,
   `EMP_TIPO` int(10) DEFAULT NULL,
-  `EMP_ESTADO` enum('Activo','Inactivo') COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_FOTO` varchar(500) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `EMP_NOMINA` varchar(500) COLLATE latin1_spanish_ci DEFAULT NULL
+  `EMP_ESTADO` enum('Activo','Inactivo') COLLATE latin1_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `EMPLEADOS`
 --
 
-INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_DNI`, `EMP_FECH_NAC`, `EMP_EMAIL`, `EMP_TELEFONO`, `EMP_CUENTA`, `EMP_DIRECCION`, `EMP_COMENTARIOS`, `EMP_TIPO`, `EMP_ESTADO`, `EMP_FOTO`, `EMP_NOMINA`) VALUES
-('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Juan Manuel', 'Fernandez Novoa', '65938568Y', NULL, NULL, NULL, NULL, NULL, NULL, 1, 'Activo', NULL, NULL),
-('monit', 'd9cfd4af77e33817de2160e0c1c7607c', 'Pepe', 'Perez', '70561875Z', '1957-10-31', 'pepe.perez@gmail.com', 666666666, NULL, NULL, NULL, 3, 'Activo', NULL, NULL),
-('secret', '5ebe2294ecd0e0f08eab7690d2a6ee69', 'Luis', 'Gomez', '44841787K', '1957-10-31', 'luis.gomez@gmail.com', 666656666, NULL, NULL, NULL, 2, 'Activo', NULL, NULL);
+INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`,  `EMP_TIPO`, `EMP_ESTADO`) VALUES
+('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Juan Manuel', 'Fernandez Novoa', null, 1, 'Activo'),
+('monit', 'd9cfd4af77e33817de2160e0c1c7607c', 'Pepe', 'Perez',   'pepe.perez@gmail.com', 3, 'Activo'),
+('secret', '5ebe2294ecd0e0f08eab7690d2a6ee69', 'Luis', 'Gomez',  'luis.gomez@gmail.com',  2, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -130,7 +122,11 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 500),
 ('ADMIN', 501),
 ('ADMIN', 503),
-('ADMIN', 504);
+('ADMIN', 504),
+('ADMIN', 600),
+('ADMIN', 601);
+
+
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,9 @@ INSERT INTO `FUNCIONALIDAD` (`FUNCIONALIDAD_ID`, `FUNCIONALIDAD_NOM`) VALUES
 (3, 'GESTION FUNCIONALIDADES'),
 (4, 'GESTION PAGINAS'),
 (400, 'GESTION PROYECTOS'),
-(500, 'GESTION NOTIFICACIONES');
+(500, 'GESTION NOTIFICACIONES'),
+(600, 'GESTION CORREOS');
+
 
 -- --------------------------------------------------------
 
@@ -218,7 +216,9 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (500, 500),
 (500, 501),
 (500, 503),
-(500, 504);
+(500, 504),
+(600, 600),
+(600, 601);
 
 -- --------------------------------------------------------
 
@@ -284,7 +284,12 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (500, '../Views/NOTIFICACION_ADD_Vista.php', 'NOTIFICACION ADD'),
 (501, '../Views/NOTIFICACION_DELETE_Vista.php', 'NOTIFICACION DELETE'),
 (503, '../Views/NOTIFICACION_SHOW_ALL_Vista.php', 'NOTIFICACION SHOW ALL'),
-(504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW');
+(504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW'),
+(600, '../Views/CORREO_ADD_Vista.php', 'CORREO ADD'),
+(601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL');
+
+
+
 
 -- --------------------------------------------------------
 
@@ -322,18 +327,17 @@ INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHA
 
 CREATE TABLE IF NOT EXISTS `PROYECTO_MIEMBRO` (
   `ID_PROYECTO` int(3) NOT NULL,
-  `EMP_USER` varchar(25) NOT NULL,
-  `BORRADO` tinyint(1) NOT NULL DEFAULT '0'
+  `EMP_USER` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `PROYECTO_MIEMBRO`
 --
 
-INSERT INTO `PROYECTO_MIEMBRO` (`ID_PROYECTO`, `EMP_USER`,`BORRADO`) VALUES
- (1,'monit', 0),
- (1,'ADMIN', 0),
- (2,'secret',0 );
+INSERT INTO `PROYECTO_MIEMBRO` (`ID_PROYECTO`, `EMP_USER`) VALUES
+ (1,'monit'),
+ (1,'ADMIN'),
+ (2,'secret');
 --
 -- Estructura de tabla para la tabla `ROL`
 --
@@ -375,7 +379,9 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 (1, 400),
 (2, 400),
 (1, 500),
-(2, 500);
+(2, 500),
+(1, 600),
+(2, 600);
 
 -- --------------------------------------------------------
 
@@ -385,7 +391,7 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 
 CREATE TABLE IF NOT EXISTS `TAREA` (
   `PADRE` int(11) NOT NULL,
-`ID_TAREA` int(11) NOT NULL,
+  `ID_TAREA` int(11) NOT NULL,
   `NOMBRE` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
   `FECHAIP` date NOT NULL,
   `FECHAIR` date NOT NULL,
@@ -394,6 +400,7 @@ CREATE TABLE IF NOT EXISTS `TAREA` (
   `HORASP` int(11) NOT NULL,
   `HORASR` int(11) NOT NULL,
   `ID_MIEMBRO` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  `ID_PROYECTO` int(11) NOT NULL,
   `DESCRIPCION` varchar(200) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` int(11) NOT NULL,
   `COMENTARIO` varchar(100) COLLATE latin1_spanish_ci NOT NULL
@@ -563,7 +570,8 @@ ADD CONSTRAINT `ROL_FUNCIONALIDAD_ibfk_2` FOREIGN KEY (`FUNCIONALIDAD_ID`) REFER
 -- Filtros para la tabla `TAREA`
 --
 ALTER TABLE `TAREA`
-ADD CONSTRAINT `foreing key` FOREIGN KEY (`ID_MIEMBRO`) REFERENCES `EMPLEADOS` (`EMP_USER`);
+ADD CONSTRAINT `proyecto foreing key` FOREIGN KEY (`ID_PROYECTO`) REFERENCES `PROYECTO` (`ID_PROYECTO`),
+ADD CONSTRAINT `emplado foreing key` FOREIGN KEY (`ID_MIEMBRO`) REFERENCES `EMPLEADOS` (`EMP_USER`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

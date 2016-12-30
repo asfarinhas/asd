@@ -93,25 +93,28 @@ class ProyectoMapper {
     }
 
 
-
-    //Listar todas las paginas
-    function listarMiembrosProyecto()
+    /*Busca y lista todos los miembros de un proyecto*/
+    public function listarMiembrosProyecto($id_proyecto)
     {
-        $this->ConectarBD();
-        $sql = "select * from PROYECTO_MIEMBRO WHERE BORRADO='0';";
-        if (!($resultado = $this->mysqli->query($sql))){
-            return 'Error en la consulta sobre la base de datos';
-        }
-        else{
+         $this ->conectarBD();
+        $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto";
 
-            if ($resultado->num_rows > 0){
-                $row=$resultado->fetch_array();
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return false;
+        } else {
+            $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
+
+            $miembros_proyecto = array();
+
+            foreach ($miembros as $row){
+                $miembro = new Miembro_Model($row["NOMBRE"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                array_push($miembros_proyecto, $miembro);
             }
-            return $row;
+
+            return $miembros_proyecto;
 
         }
     }
-
 
 
 
