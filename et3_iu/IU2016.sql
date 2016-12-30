@@ -31,13 +31,12 @@ GRANT ALL PRIVILEGES ON `IU2016`.* TO 'iu2016'@'localhost' IDENTIFIED BY 'iu2016
 --
 
 CREATE TABLE IF NOT EXISTS `CORREO` (
-`ID_CORREO` int(11) NOT NULL,
+  `ID_CORREO` int(11) NOT NULL,
   `EMISOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `RECEPTOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `ASUNTO` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `CONTENIDO` varchar(400) COLLATE latin1_spanish_ci NOT NULL,
-  `FECHAENVIO` date NOT NULL,
-  `FECHAENTREGA` date NOT NULL
+  `FECHAENVIO` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
