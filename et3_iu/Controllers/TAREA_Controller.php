@@ -62,18 +62,17 @@ function delete_tarea(){
 
 function add_subtarea(){
     //Recoger variables de la vista
-    //Comprobaciones de datos, longitud, ...
-
-    //Mostrar mensaje de confirmación
-    //Volver al menú de subtareas
+    //Comprobaciones de datos
 
     $tareaMapper = new TAREA_Mapper();
     $miembroMapper = new MiembroMapper();
-    $proyectoMapper = new ProyectoMapper();
+    //$proyectoMapper = new ProyectoMapper();
 
     //parametros del formulario
-    if( isset($_REQUEST['tarea_padre']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan']) && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['fecha_inicio_real'])
-        && isset($_REQUEST['fecha_entrega_real']) && isset($_REQUEST['horas_plan']) && isset($_REQUEST['horas_real']) && isset($_REQUEST['miembro']) && isset($_REQUEST['estado_tarea']) && isset($_REQUEST['comentario'])){
+    if( isset($_REQUEST['tarea_padre']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
+        && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['fecha_inicio_real']) && isset($_REQUEST['fecha_entrega_real'])
+        && isset($_REQUEST['horas_plan']) && isset($_REQUEST['horas_real']) && isset($_REQUEST['miembro']) && isset($_REQUEST['estado_tarea'])
+        && isset($_REQUEST['comentario']) && isset($_REQUEST['id_proyecto'])){
 
         $tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
         $nombre = $_REQUEST['nombre'];
@@ -87,36 +86,40 @@ function add_subtarea(){
         $miembro =  $_REQUEST['miembro']; //user de miembro
         $estado_tarea = $_REQUEST['estado_tarea'];
         $comentario =  $_REQUEST['comentario'];
+        $id_proyceto = $_REQUEST['id_proyecto']; // id del proyecto, obtenido por get
 
 
         $padreId = $tareaMapper->buscarTareaId($tarea_padre);
         $miembroModel = $miembroMapper->buscarMiembroPorUsuario($miembro);
 
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
-                                $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario);
+                                $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $id_proyceto);
 
         //Insertar datos en la tabla tarea en la BBDD
         $result = $tareaMapper->insertarTarea($subtarea);
 
-        /*if($result != "Creado con éxito. "){
+        //Mostrar mensaje de confirmación
+        //Volver al menú de subtareas
+
+        if($result != "Creado con éxito. "){
             echo $result;
 
-            $miembros_proyecto = $proyectoMapper->listarMiembrosProyecto();
-            $vista_addsubtarea = new Subtarea_add()
+            // llamar al metodo de la vista SUBTAREA_SHOWALL
 
-        }*/
-
-
-
+        }else{
+            echo $result;
+            $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($id_proyceto);
+            $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
+            $vista_addsubtarea->showView();
+        }
 
     }else{
-        //muestra la vista
-        /*$datosmiembro = $miembroMapper->buscarMiembroPorUsuario($username);
-        $vista_modificar = new MiembroEditView($datosmiembro);
-        $vista_modificar->showView();*/
+        $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($id_proyceto);
+        $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
+        $vista_addsubtarea->showView();
 
     }//fin parametros
-}
+}//fin funcion
 
 function edit_subtarea(){
     //Recoger las nuevas variables

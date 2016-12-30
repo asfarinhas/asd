@@ -231,6 +231,29 @@
 
              return $miembros;
          }*/
+
+        /*Busca y lista todos los miembros de un proyecto*/
+        public function listarMiembrosProyecto($id_proyecto)
+        {
+
+            $sql = "SELECT * FROM PROYECTO_MIEMBRO where ID_PROYECTO = $id_proyecto AND BORRADO ='0'";
+
+            if (!($resultado = $this->mysqli->query($sql))) {
+                return false;
+            } else {
+                $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
+
+                $miembros_proyecto = array();
+
+                foreach ($miembros as $row){
+                    $miembro = new Miembro_Model($row["NOMBRE"], $row["APELLIDOS"], $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+                    array_push($miembros_proyecto, $miembro);
+                }
+
+                return $miembros_proyecto;
+
+            }
+        }
     }
 
 ?>

@@ -50,6 +50,10 @@ class Subtarea_add
              <input type="number" hidden name="tarea_padre" value="<?=$_GET['idpadre']?>" >
          </div>
 
+         <div> <!-- ID de proyecto-->
+             <input type="number" hidden name="id_proyecto" value="<?=$_GET['idproyecto']?>" >
+         </div>
+
          <div>
              <?//= $strings['nombre']?> <br/>
              <input type="text" name="nombre" placeholder="<?//= $strings['nombre']?>"  id="nombre" required ><br/>
