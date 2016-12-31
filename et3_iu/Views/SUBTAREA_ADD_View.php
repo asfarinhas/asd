@@ -83,25 +83,25 @@ class Subtarea_add
                 <input type="date" name="fecha_entrega_plan" placeholder="dd/mm/aaaa"  id="fecha_entrega_plan" required ><br/>
             </div>
 
-             <div>
-                 <?= $strings['fecha_I_R']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
-                 <input type="date" name="fecha_inicio_real" placeholder="dd/mm/aaaa"  id="fecha_inicio_real"><br/>
-             </div>
+            <!-- <div>
+                 <?//= $strings['fecha_I_R']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
+                 <!--<input type="date" name="fecha_inicio_real" placeholder="dd/mm/aaaa"  id="fecha_inicio_real"><br/>
+             </div>-->
 
-             <div>
-                 <?=$strings['fecha_E_R']?><br/>
+            <!-- <div>
+                 <?//=$strings['fecha_E_R']?><br/>
                  <input type="date" name="fecha_entrega_real" placeholder="dd/mm/aaaa"  id="fecha_entrega_real"><br/>
-             </div>
+             </div>-->
 
              <div>
                  <?=$strings['horas_P']?><br/>
                  <input type="number" name="horas_plan" placeholder="8"  id="horas_plan" required ><br/>
              </div>
 
-            <div>
-                <?=$strings['horas_R']?><br/>
+            <!--<div>
+                <?//=$strings['horas_R']?><br/>
                 <input type="number" name="horas_real" placeholder="8"  id="horas_real"><br/>
-            </div>
+            </div>-->
 
             <div>
                 <?=$strings['asignado']?>
@@ -113,14 +113,14 @@ class Subtarea_add
                 </select>
             </div>
 
-            <div>
-                <?=$strings['estado']?>
+            <!--<div>
+                <?//=$strings['estado']?>
 
                 <select name="estado_tarea">
-                   <option value="pendiente"><?=$strings['pendiente']?></option>
-                   <option value="finalizado"><?=$strings['finalizado']?></option>
+                   <option value="pendiente"><?//=$strings['pendiente']?></option>
+                   <option value="finalizado"><?//=$strings['finalizado']?></option>
                 </select>
-            </div>
+            </div>-->
 
             <div>
                 <?=$strings['comentarios']?><br/>
@@ -132,8 +132,10 @@ class Subtarea_add
               <a href="" ><?//=$strings['AddEntregables']?></a><br/>
             </div>
 
-             <input type="submit" name="accion" value="add"><?= $strings['Insertar'] ?>
+             <input type="hidden"  name="accion" value="add_subtarea">
+             <input type='submit' onclick="DoSubmit()" value="<?=$strings['Insertar'] ?>"><br/><br/>
             </form>
+            <a class="form-link" href='../Controllers/TAREA_Controller.php'><?=$strings['Volver']?> </a>
         </div>
         <?php
     }

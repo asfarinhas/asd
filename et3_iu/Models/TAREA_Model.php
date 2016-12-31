@@ -166,16 +166,6 @@ class Tarea{
         $this->miembro = $miembro;
     }
 
-   /* public function getEntregable()
-    {
-        return $this->entregable;
-    }
-
-    public function setEntregable(array $entregable)
-    {
-        $this->entregable = $entregable;
-    }*/
-
 
     public function getEstadoTarea()
     {
