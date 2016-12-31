@@ -121,7 +121,7 @@ function add_subtarea(){
 
     $tareaMapper = new TAREA_Mapper();
     $miembroMapper = new MiembroMapper();
-    //$proyectoMapper = new ProyectoMapper();
+    $proyectoMapper = new ProyectoMapper();
 
     //parametros del formulario
     if( isset($_REQUEST['tarea_padre']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
@@ -141,14 +141,16 @@ function add_subtarea(){
         $miembro =  $_REQUEST['miembro']; //user de miembro
         $estado_tarea = $_REQUEST['estado_tarea'];
         $comentario =  $_REQUEST['comentario'];
-        $id_proyceto = $_REQUEST['id_proyecto']; // id del proyecto, obtenido por get
+        $id_proyecto = $_REQUEST['id_proyecto']; // id del proyecto, obtenido por get
 
 
         $padreId = $tareaMapper->buscarTareaId($tarea_padre);
         $miembroModel = $miembroMapper->buscarMiembroPorUsuario($miembro);
+        $proyecto = $proyectoMapper->buscarId($id_proyecto);
+        $proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
 
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
-                                $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $id_proyceto);
+            $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyectoModel);
 
         //Insertar datos en la tabla tarea en la BBDD
         $result = $tareaMapper->insertarTarea($subtarea);
@@ -156,23 +158,12 @@ function add_subtarea(){
         //Mostrar mensaje de confirmación
         //Volver al menú de subtareas
 
-        if($result != "Creado con éxito. "){
-            echo $result;
-
-            // llamar al metodo de la vista SUBTAREA_SHOWALL
-
-        }else{
-            echo $result;
-            $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($id_proyceto);
-            $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
-            $vista_addsubtarea->showView();
-        }
+        new Mensaje($result,"./TAREA_Controller.php");
 
     }else{
-        $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($id_proyceto);
+        $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
         $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
         $vista_addsubtarea->showView();
-
     }//fin parametros
 }//fin funcion
 
