@@ -55,6 +55,10 @@ $strings = array();
     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
         <div> <!-- ID de la tarea padre-->
+            <input type="number" hidden name="id_tarea" value="<?=$datos-->getIdTadrea()?>" >
+        </div>
+
+        <div> <!-- ID de la tarea padre-->
             <input type="number" hidden name="tarea_padre" value="<?=$datos->getTareaPadre()->getIdTadrea()?>" >
         </div>
 

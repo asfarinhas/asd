@@ -1,5 +1,5 @@
 <?php
-$string_idioma = $_SESSION['IDIOMA'];
+//$string_idioma = $_SESSION['IDIOMA'];
 //include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 /*switch ($string_idioma){
     case "Castellano":
@@ -42,7 +42,7 @@ class Subtarea_add
         ?>
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
-            <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+
         </head>
         <div>
             <p>
@@ -56,16 +56,16 @@ class Subtarea_add
             <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
              <div> <!-- ID de la tarea padre-->
-                 <input type="number" hidden name="tarea_padre" value="<?=$_GET['idpadre']?>" >
+                 <input type="number" hidden name="tarea_padre" value="<?=$_GET['tarea_padre']?>" >
              </div>
 
              <div> <!-- ID de proyecto-->
-                 <input type="number" hidden name="id_proyecto" value="<?=$_GET['idproyecto']?>" >
+                 <input type="number" hidden name="id_proyecto" value="<?=$_GET['id_proyecto']?>" >
              </div>
 
              <div>
-                 <?= $strings['nombre']?> <br/>
-                 <input type="text" name="nombre" placeholder="<?= $strings['nombre']?>"  id="nombre" required ><br/>
+                 <?= $strings['Nombre']?> <br/>
+                 <input type="text" name="nombre" placeholder="<?= $strings['Nombre']?>"  id="nombre" required ><br/>
              </div>
 
             <div>
@@ -84,55 +84,55 @@ class Subtarea_add
             </div>
 
              <div>
-                 <?= $strings['Fechainicioreal']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
+                 <?= $strings['fecha_I_R']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
                  <input type="date" name="fecha_inicio_real" placeholder="dd/mm/aaaa"  id="fecha_inicio_real"><br/>
              </div>
 
              <div>
-                 <?=$strings['Fechaentregareal']?><br/>
+                 <?=$strings['fecha_E_R']?><br/>
                  <input type="date" name="fecha_entrega_real" placeholder="dd/mm/aaaa"  id="fecha_entrega_real"><br/>
              </div>
 
              <div>
-                 <?=$strings['Horasplan']?><br/>
+                 <?=$strings['horas_P']?><br/>
                  <input type="number" name="horas_plan" placeholder="8"  id="horas_plan" required ><br/>
              </div>
 
             <div>
-                <?=$strings['Horasreal']?><br/>
+                <?=$strings['horas_R']?><br/>
                 <input type="number" name="horas_real" placeholder="8"  id="horas_real"><br/>
             </div>
 
             <div>
-                <?=$strings['Miembro']?>
+                <?=$strings['asignado']?>
 
                 <select name="miembro">
                     <?php foreach ($miembros as $miembro): ?>
-                        <option value="<?= $miembro["USUARIO"] ?>"><?= $miembro["NOMBRE"] ?></option>
+                        <option value="<?= $miembro->getUsuario() ?>"><?= $miembro->getUsuario() ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
             <div>
-                <?=$strings['Estado']?>
+                <?=$strings['estado']?>
 
                 <select name="estado_tarea">
-                   <option value="Pendiente"><?=$strings['Pendiente']?></option>
-                   <option value="Finalizado"><?=$strings['Finalizado']?></option>
+                   <option value="pendiente"><?=$strings['pendiente']?></option>
+                   <option value="finalizado"><?=$strings['finalizado']?></option>
                 </select>
             </div>
 
             <div>
-                <?//=$strings['comentario']?><br/>
+                <?=$strings['comentarios']?><br/>
                 <textarea type="textarea" name="comentario" rows="4" cols="50"></textarea>
             </div>
 
             <div>
              <!-- AÑADIR ENLACE A LA VISTA QUE CREA LOS ENTREGABLES -->
-              <a href="" ><?=$strings['AddEntregables']?></a><br/>
+              <a href="" ><?//=$strings['AddEntregables']?></a><br/>
             </div>
 
-             <input type="submit" name="accion" value="add"><?= $strings['Add'] ?>
+             <input type="submit" name="accion" value="add"><?= $strings['Insertar'] ?>
             </form>
         </div>
         <?php
