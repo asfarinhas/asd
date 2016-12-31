@@ -201,17 +201,17 @@ function edit_subtarea()
 
         }else{
             $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
-            $tarea = $tareaMapper->buscarTareaId($_REQUEST["tarea_id"]);
+            $tarea = $tareaMapper->buscarTareaId($_REQUEST["id_tarea"]);
             $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros);
             $vista_subtarea_edit->showView();
         }
 
 }
 
-    $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
-    $tarea = $tareaMapper->buscarTareaId($_REQUEST["tarea_id"]);
+   /* $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
+    $tarea = $tareaMapper->buscarTareaId($_REQUEST["id_tarea"]);
     $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros);
-    $vista_subtarea_edit->showView();
+    $vista_subtarea_edit->showView();*/
 }
 
 function show_subtarea(){
