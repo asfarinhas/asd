@@ -207,7 +207,7 @@ class Tarea{
 
     public function setProyecto(Proyecto $proyecto)
     {
-        $this->proyecto = proyecto;
+        $this->proyecto = $proyecto;
     }
 
 
