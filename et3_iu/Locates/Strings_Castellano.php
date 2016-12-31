@@ -237,14 +237,23 @@ $strings = array(
 				'CorreosEnviados' => 'Correos enviados',
     // SIN TRADUCIR
     "Insertar Tarea" => "Insertar Tarea",
+    "Modificar Tarea" => "Modificar Tarea",
     "Nombre" => "Nombre",
     "fecha_I_P" => "Fecha inicial planificada",
+    "fecha_I_R" => "Fecha inicial real",
     "fecha_E_P" => "Fecha de entrega planificada",
+    "fecha_E_R" => "Fecha de entrega real",
     "horas_P" => "Horas planificadas",
+    "horas_R" => "Horas Realizadas",
     "asignado" => "Tarea asginada a",
     "descripcion" => "Descripcion",
+	"pendiente"=>"pendiente",
+	"finalizado" =>"finalizado",
+	"estado" => "Estado de la tarea",
     "Creado con éxito"=>"Creado con éxito",
-    "comentarios" => "Comentarios"
+    "comentarios" => "Comentarios",
+	"Error en la modificación" => "Error en la modificación",
+	"Modificada con éxito con éxito" =>"Modificada con éxito con éxito"
 	// FIN SIN TRADUCIR
 
 

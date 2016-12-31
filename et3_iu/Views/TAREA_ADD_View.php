@@ -8,7 +8,7 @@
  class TAREA_ADD_Vista{
 
 
-     public function __construct( Array $miembros){
+     public function __construct( array $miembros){
 
          $this->miembros = $miembros;
          $this->render();

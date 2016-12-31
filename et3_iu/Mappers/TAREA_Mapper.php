@@ -165,15 +165,14 @@ class TAREA_Mapper{
                     FECHAER = '" . $tarea->getFechaEntregaReal() . "',
                     HORASP = '" . $tarea->getHorasPlan() . "', 
                     HORASR = '" . $tarea->getHorasReal() . "',
-                    ID_MIEMBRO = '" . $tarea->getMiembro() . "', 
+                    ID_MIEMBRO = '" . $tarea->getMiembro()->getUsuario() . "', 
                     DESCRIPCION = '" . $tarea->getDescripcion() . "',
                     ESTADO = '" . $tarea->getEstadoTarea() . "', 
                     COMENTARIO = '" . $tarea->getEstadoTarea() . "';";
-
             if ($this->mysqli->query($sql) === TRUE) {
-                return "Modificada con éxito con éxito. ";
+                return "Modificada con éxito con éxito";
             } else {
-                return "Error en la modificación. ";
+                return "Error en la modificación";
             }
         }
 
@@ -199,36 +198,31 @@ class TAREA_Mapper{
          * Busca tarea por ID_TAREA
          * @param $id
          */
-        function buscarTareaId(Tarea $id)
+        function buscarTareaId($id)
         {
             $this->conectarBD();
 
-            $sql = "SELECT * FROM TAREA WHERE ID_TAREA = '" . $id->getIdTarea() . "';";
+            $sql = "SELECT * FROM TAREA WHERE ID_TAREA = '" . $id . "';";
 
             $resultado = $this->mysqli->query($sql);
 
             if ($resultado->num_rows != 0) {
                 $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
 
-                $tareas_model = array();
+                $miembro_mapper = new MiembroMapper();
 
-                foreach ($tareas_bd as $row) {
+                if($tareas_bd["PADRE"] != 0)
+                    $tareaPadre = $this->buscarTareaId($tareas_bd["PADRE"]);
+                else
+                    $tareaPadre = null;
+                $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
-                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
-                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
-                        $row["estado_tarea"], $row["comentario"]);
+                $tarea = new Tarea($tareas_bd["ID_TAREA"], $tareas_bd["NOMBRE"], $tareas_bd["DESCRIPCION"],
+                    $tareaPadre, $tareas_bd["FECHAIP"], $tareas_bd["FECHAEP"], $tareas_bd["FECHAIR"],
+                    $tareas_bd["FECHAER"], $tareas_bd["HORASP"], $tareas_bd["HORASR"], $miembro,
+                    $tareas_bd["ESTADO"], $tareas_bd["COMENTARIO"]);
 
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
-                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
-
-
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
-                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
-                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
-                        $row["estado_tarea"], $row["comentario"]));
-                }
-                return $tareas_model;
+                return $tarea;
             } else {
                 return "No hay resultados";
             }

@@ -234,7 +234,7 @@
         public function listarMiembrosProyecto($id_proyecto)
         {
             $this->ConectarBD();
-            $sql = "SELECT * FROM PROYECTO_MIEMBRO P,EMPLEADOS E where E.EMP_USER = P.EMP_USER AND ID_PROYECTO = {$id_proyecto} AND BORRADO ='0'";
+            $sql = "SELECT * FROM PROYECTO_MIEMBRO P,EMPLEADOS E where E.EMP_USER = P.EMP_USER AND ID_PROYECTO = {$id_proyecto} AND E.EMP_ESTADO ='activo'";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return false;
             } else {

@@ -9,7 +9,7 @@ include '../Functions/LibraryFunctions.php';
 include '../Models/TAREA_Model.php';
 include '../Mappers/TAREA_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
-//include '../Views/TAREA_EDIT_View.php';
+include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
 //include '../Views/TAREA_SHOW_View.php';
 //include '../Views/TAREA_VIEW_View.php';
@@ -57,19 +57,44 @@ function add_tarea(){
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         new TAREA_ADD_Vista($miembros);
     }
-    //Recoger variables de la vista
-    //Comprobaciones de datos, longitud, ...
-    //Insertar datos en la tabla tarea en la BBDD
-    //Mostrar mensaje de confirmación
-    //Volver al menú de tareas
 }
 
 function edit_tarea(){
-    //Recoger las nuevas variables
-    //Comprobaciones
-    //Actualización datos en la BBDD
-    //Mensaje de confirmación
-    //volver al menú de tareas
+    $miembro_mapper = new MiembroMapper();
+    $proyecto_mapper = new ProyectoMapper();
+    $tarea_mapper = new TAREA_Mapper();
+    $proyecto = $proyecto_mapper->buscarId($_REQUEST['proyecto_id']);
+    $proyecto = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
+    if(isset($_REQUEST["nombre"])){
+
+        $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
+
+        $tarea->setNombre($_REQUEST["nombre"]);
+        $tarea->setFechaInicioPlan($_REQUEST["fecha_I_P"]);
+        if($_REQUEST["fecha_I_R"])
+           $tarea->setFechaInicioReal($_REQUEST["fecha_I_R"]);
+
+        $tarea->setFechaEntregaPlan($_REQUEST["fecha_E_P"]);
+        if($_REQUEST["fecha_E_R"])
+            $tarea->setFechaEntregaReal($_REQUEST["fecha_E_R"]);
+        $horas_P = $_REQUEST["horas_P"];
+        if($_REQUEST["horas_R"])
+            $tarea->setHorasReal($_REQUEST["horas_R"]);
+        $tarea->setMiembro($miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]));
+        $tarea ->setEstadoTarea($_REQUEST["estado"]);
+
+        if(isset($_REQUEST["descripcion"]))
+            $tarea->setDescripcion($_REQUEST["descripcion"]);
+        if(isset($_REQUEST["comentarios"]))
+            $tarea->setComentario($_REQUEST["comentarios"]);
+
+        $mensaje = $tarea_mapper->modificarTarea($tarea);
+        new Mensaje($mensaje,"./TAREA_Controller.php");
+    }else{
+        $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
+        $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
+        new TAREA_EDIT_Vista($tarea, $miembros);
+    }
 }
 
 function show_tarea(){
