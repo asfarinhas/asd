@@ -150,7 +150,7 @@ function add_subtarea(){
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
             $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyectoModel);
 
-        var_dump($subtarea);
+
         //Insertar datos en la tabla tarea en la BBDD
         $result = $tareaMapper->insertarTarea($subtarea);
 
