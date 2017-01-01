@@ -186,7 +186,15 @@ switch ($_REQUEST['accion']) {
         break;
 
     case $strings['Insertar Miembro']:
-        
+        if(!isset($_REQUEST['ID_MIEMBRO'])){
+            $miembros =  $proyectoMapper->consultarMiembros();
+
+            if (!tienePermisos('ProyectoMiembro_Add')) {
+                new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
+            } else {
+                new ProyectoMiembro_Add($miembros, 'PROYECTO_Controller.php');
+            }
+        }
 
 
         break;

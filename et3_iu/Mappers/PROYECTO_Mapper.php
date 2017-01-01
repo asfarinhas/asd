@@ -199,6 +199,22 @@ class ProyectoMapper {
       }
   }
 
+    public function consultarMiembros() {
+        $this ->conectarBD();
+        $sql = "SELECT * FROM EMPLEADOS;";
+
+        if (!($resultado = $this->mysqli->query($sql))){
+            return 'Error en la consulta sobre la base de datos';
+        }else {
+            $miembros_proyecto = array();
+            while($obj = $resultado -> fetch_object()) {
+                $miembro = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+                array_push($miembros_proyecto, $miembro);
+            }
+            return $miembros_proyecto;
+        }
+    }
+
 
 
 //Buscar por nombre

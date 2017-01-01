@@ -196,7 +196,7 @@ $strings = array(
     'Consultar Miembro' => 'Consultar Miembro',
     'Insertar Miembro' => 'Insertar Miembro',
     'ConsultarBorrados' => 'ConsultarBorrados',
-
+    'Añadir Miembro' => 'Añadir Miembro',
 
 
 	//SUBTAREA

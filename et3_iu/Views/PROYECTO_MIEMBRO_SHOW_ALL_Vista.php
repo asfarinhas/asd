@@ -35,7 +35,7 @@ class ProyectoMiembro_Default{
 
                                 <?php echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>"; ?></li>
                                 <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Consultar Miembro']?>'><?php echo $strings['Consultar Miembro']?></a>
-                                <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Insertar Miembro']?>'><?php echo $strings['Insertar Miembro']?></a>
+                                <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Insertar Miembro'] ?>&ID_PROYECTO=<?php echo $this->proyectoId;?>'><?php echo $strings['Insertar Miembro']?></a>
                                 <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['ConsultarBorrados']?>'><?php echo $strings['ConsultarBorrados']?></a>
                             </div>
                         </nav>
