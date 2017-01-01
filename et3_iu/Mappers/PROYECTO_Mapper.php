@@ -182,20 +182,24 @@ class ProyectoMapper {
    */
   //Buscar por id
   public function buscarId($proyectoId){
-      $this ->conectarBD();
-    $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO = '" . $proyectoId . "';";
+
+      $this->conectarBD();
+      $sql = "SELECT * FROM PROYECTO WHERE ID_PROYECTO = '" . $proyectoId . "';";
 
 
       $resultado = $this->mysqli->query($sql);
 
-      if($resultado->num_rows!=0){
-          $proyecto= $resultado->fetch_array();
+      if ($resultado->num_rows != 0) {
+          $info = $resultado->fetch_array(MYSQLI_ASSOC);
+          $proyecto = new Proyecto($info["ID_PROYECTO"], $info["NOMBRE"], $info["DESCRIPCION"], $info["FECHAI"], $info["FECHAE"], $info["FECHAIP"], $info["FECHAFP"], $info["NUMEROMIEMBROS"], $info["NUMEROHORAS"], $info["BORRADO"]);
+          return $proyecto;
 
+      } else {
+          return 'elemento no encontrado';
       }
-
-      return $proyecto;
-
   }
+
+
 
 //Buscar por nombre
     public function buscarNombre($proyectoNombre){

@@ -190,6 +190,13 @@ $strings = array(
 	'Activo' => 'Activo',
 	'Inactivo' => 'Inactivo',
 	'error modificacion' => 'Error al modificar',
+	'APELLIDOS' => 'Apellidos',
+	'EMAIL' => 'Email',
+	'USUARIO' => 'Usuario',
+    'Consultar Miembro' => 'Consultar Miembro',
+    'Insertar Miembro' => 'Insertar Miembro',
+    'ConsultarBorrados' => 'ConsultarBorrados',
+
 
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',
