@@ -194,6 +194,8 @@ switch ($_REQUEST['accion']) {
             } else {
                 new ProyectoMiembro_Add($miembros, 'PROYECTO_Controller.php');
             }
+        }else{
+            
         }
 
 
