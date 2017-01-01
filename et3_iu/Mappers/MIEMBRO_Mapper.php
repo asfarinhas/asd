@@ -47,10 +47,8 @@
                 $nombre = $obj -> emp_nombre;
                 $apellido = $obj -> emp_apellido;
                 $email = $obj -> emp_email;
-                $tipo = $obj -> emp_tipo;
-                $estado = $obj -> emp_estado;
 
-                $miembro = new Miembro($nombre, $apellido, $user, $password, $email, $tipo, $estado);
+                $miembro = new Miembro($nombre, $apellido, $user, $password, $email);
 
                 array_push($miembros, $miembro);
             }
@@ -72,7 +70,7 @@
 
             $miembro = $resultado->fetch_array(MYSQLI_ASSOC);
 
-            $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"], $miembro["EMP_TIPO"], $miembro["EMP_ESTADO"]);
+            $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
 
             return $miembro;
         }
@@ -85,7 +83,7 @@
 
             $sql = "INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`, `EMP_TIPO`, `EMP_ESTADO`)
                                   VALUES ('$miembro -> getUsuario()', '$miembro -> getContraseña()', '$miembro -> getNombre()', '$miembro -> getApellidos()',
-                                          '$miembro -> getCorreo()', '$miembro -> getTipo()', '$miembro -> getEstado()')";
+                                          '$miembro -> getCorreo()')";
             $this -> mysqli ->query($sql);
             $this -> mysqli->close();
         }
@@ -98,7 +96,7 @@
         public function updateMiembro(Miembro $miembro, $user) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_USER` = '$miembro -> getUsuario()', `EMP_PASSWORD` = '$miembro -> getContraseña()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
-            `EMP_EMAIL` = '$miembro -> getCorreo()', `EMP_TIPO` = '$miembro -> getTipo()', `EMP_ESTADO` = '$miembro -> getEstado()' WHERE EMP_USER = '$user' ";
+            `EMP_EMAIL` = '$miembro -> getCorreo()' WHERE EMP_USER = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
         }
@@ -131,12 +129,12 @@
          * Elimina un miembro de la BBDD
          * @param Miembro $miembro
          */
-        public function eliminarMiembro(Miembro $miembro) {
+       /* public function eliminarMiembro(Miembro $miembro) {
             $user = $miembro -> getUsuario();
             $sql = "DELETE from miembro WHERE EMP_USER = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
-        }
+        }*/
 
 
         /**
