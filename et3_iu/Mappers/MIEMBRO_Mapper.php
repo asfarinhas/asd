@@ -37,7 +37,7 @@
             $sql = "SELECT * FROM empleados";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> numrows == 0) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $miembros = array();
             while($obj = $resultado -> fetch_object()){
