@@ -198,6 +198,7 @@ $strings = array(
     'ConsultarBorrados' => 'ConsultarBorrados',
 
 
+
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',
 	'Fechainicioplan' => 'Fecha de inicio planificada',

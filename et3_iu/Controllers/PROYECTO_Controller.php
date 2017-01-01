@@ -185,6 +185,11 @@ switch ($_REQUEST['accion']) {
         }
         break;
 
+    case $strings['Insertar Miembro']:
+        
+
+
+        break;
 
     case $strings['ConsultarBorrados']: //Consulta de proyectos borrados
 
@@ -210,8 +215,7 @@ switch ($_REQUEST['accion']) {
             if (!tienePermisos('ProyectoMiembro_Default')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
-                new ProyectoMiembro_Default($miembros, '../Views/DEFAULT_Vista.php');
-
+                new ProyectoMiembro_Default($miembros,$_REQUEST['ID_PROYECTO'], '../Views/DEFAULT_Vista.php');
             }
         break;
 
