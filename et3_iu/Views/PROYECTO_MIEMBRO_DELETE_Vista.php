@@ -65,6 +65,7 @@ class ProyectoMiembro_Borrar{
                         </div>
                     </div>
                     <input hidden type='text' name='BORRAR' value='BORRAR'>
+                    <input hidden type='text' name='ID_PROYECTO' value='<?php echo $_REQUEST['ID_PROYECTO']?>'>
 
                     <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                     <input type='submit' name='accion' value='<?php echo $strings['Eliminar Miembros']; ?>'>
