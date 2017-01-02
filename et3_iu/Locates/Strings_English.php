@@ -192,6 +192,11 @@ $strings = array(
 	//SUBTAREA
 	'Descripcion' => 'Description',
 	'Fechainicioplan' => 'Planned beginning date',
-	'Fechaentregaplan' => 'Planned ending date'
+	'Fechaentregaplan' => 'Planned ending date',
+    'ModifEntregables' => 'Edit deliverables',
+    'AddEntregables' => 'Add deliverables',
+    'InsertarSubtarea' => 'Add subtask',
+    'ModificarSubtarea' => 'Edit subtask',
+	'Nombre' => 'Name'
 )
 ?>
