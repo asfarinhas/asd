@@ -6,9 +6,10 @@
  * Time: 17:05
  */
 include '../Models/MIEMBRO_Model.php';
-//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/MIEMBRO_Mapper.php';
 include '../Views/MIEMBRO_EDIT_View.php';
+include '../LOGIN_Vista.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
@@ -81,6 +82,11 @@ function add_miembro(){
 
 function delete_miembro(){
 
+    $conectado = $_SESSION['login'];
+    $miembroMapper = new MiembroMapper();
+    $miembroMapper -> desactivarMiembro($conectado);
+
+    new Login();
 }
 
 function consultar_miembro(){
