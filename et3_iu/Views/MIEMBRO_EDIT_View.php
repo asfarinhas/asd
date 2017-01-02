@@ -23,7 +23,7 @@ class MiembroEditView{
     function showView(){
 
         $miembro = $this->getDatos();
-        $strings = array();
+        //$strings = array();
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
         ?>
