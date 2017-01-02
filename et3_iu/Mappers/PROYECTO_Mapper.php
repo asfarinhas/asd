@@ -101,7 +101,6 @@ class ProyectoMapper {
         if (!($resultado = $this->mysqli->query($sql))) {
             return false;
         } else {
-
             $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
 
             //sacamos la info de cada miembro
@@ -113,8 +112,8 @@ class ProyectoMapper {
                // $infoMiembro = $miembroMapper->buscarMiembroPorUsuario($row['EMP_USER']);
                 $infoMiembro = $this->buscarMiembroPorUsuario($row);
                 array_push($miembros_proyecto, $infoMiembro);
-
             }
+
             return $miembros_proyecto;
 
         }
@@ -254,7 +253,7 @@ public function buscarMiembro(Miembro_Model $miembro)
     }
 
 
-    public function insertarMiembroProyecto(Proyecto $proyecto,Miembro_Model $miembro) {
+    public function insertarMiembroProyecto($proyectoId, $miembroId) {
         $this->conectarBD();
 
         $sql= "SELECT * FROM PROYECTO_MIEMBRO WHERE ID_PROYECTO ='" . $proyectoId ."' AND EMP_USER = '" . $miembroId . "';";
@@ -272,42 +271,6 @@ public function buscarMiembro(Miembro_Model $miembro)
 
     }
 
-
-
-    public function borrarMiembroProyecto(Miembro_Model $miembro, Proyecto $proyecto) {
-        $this->conectarBD();
-        $sql = "DELETE FROM PROYECTO_MIEMBRO WHERE EMP_USER = '" . $miembro->getUsuario(). "' AND ID_PROYECTO='" . $proyecto->getIDPROYECTO() . "';";
-
-        if($this->mysqli->query($sql) === TRUE){
-            return "El proyecto ha sido borrado correctamente";
-        }else{
-            return "error borrado";
-        }
-
-
-    }
-
-    public function buscarMiembroProyecto(Miembro_Model $miembro, Proyecto $proyecto){
-        $this->conectarBD();
-        $sql = "SELECT EMPLEADOS.EMP_USER,EMP_NOMBRE,EMP_EMAIL,EMP_APELLIDO,EMP_PASSWORD
-                FROM EMPLEADOS,PROYECTO_MIEMBRO WHERE PROYECTO_MIEMBRO.EMP_USER LIKE '%" . $miembro->getUsuario() . "%' 
-                AND EMP_NOMBRE LIKE '%" . $miembro->getNombre() . "%' AND EMP_APELLIDO LIKE '%" . $miembro->getApellidos() .
-                "%' AND EMP_EMAIL LIKE '%" . $miembro->getCorreo() . "%' AND EMPLEADOS.EMP_USER LIKE '%" . $miembro->getUsuario() .
-                "%' AND PROYECTO_MIEMBRO.ID_PROYECTO LIKE '%" . $proyecto->getIDPROYECTO() . "%';";
-
-        if (!($resultado = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos';
-        } else {
-
-            $miembros_proyecto = array();
-            while($obj = $resultado -> fetch_object()) {
-                $miembroEncontrado = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
-                array_push($miembros_proyecto, $miembroEncontrado);
-            }
-            return $miembros_proyecto;
-        }
-
-    }
 
     public function insertar(Proyecto $proyecto) {
         $this->conectarBD();
