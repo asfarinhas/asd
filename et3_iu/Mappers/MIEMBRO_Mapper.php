@@ -93,10 +93,10 @@
          * Actualiza un miembro en la BBDD
          * @param Miembro $miembro, el miembro con los nuevos datos | $user usuario viejo
          */
-        public function updateMiembro(Miembro_Model $miembro, $user) {
+        public function updateMiembro($miembro, $user) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_USER` = '$miembro -> getUsuario()', `EMP_PASSWORD` = '$miembro -> getContraseña()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
-            `EMP_EMAIL` = '$miembro -> getCorreo()' WHERE EMP_USER = '$user' ";
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_USER` = '{$miembro -> getUsuario()}', `EMP_PASSWORD` = '{$miembro -> getContraseña()}',`EMP_NOMBRE` = '{$miembro -> getNombre()}',`EMP_APELLIDO` = '{$miembro -> getApellidos()}',
+            `EMP_EMAIL` = '{$miembro -> getCorreo()}' WHERE EMP_USER = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
         }

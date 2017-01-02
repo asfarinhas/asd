@@ -5,20 +5,21 @@
  * Date: 01/01/2017
  * Time: 18:51
  */
-
-include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
-include '../Models/MIEMBRO_Model.php';
+//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+//include '../Models/MIEMBRO_Model.php';
 
 class MIEMBRO_SHOW_Vista{
 
     private $miembro;
 
-    public function __construct(Miembro $miembro)
+    public function __construct($miembro)
     {
-        $this -> $miembro = $miembro;
+        //session_start();
+        $this -> miembro = $miembro;
     }
 
     public function render(){
+
         ?>
         <html>
         <head>
@@ -68,8 +69,8 @@ class MIEMBRO_SHOW_Vista{
                 </ul>
 
                 <a href="MIEMBRO_Controller.php?&amp;accion=edit"> <?php echo $strings['Modificar']; ?> </a>
-                <a href="MIEMBRO_Controller.php?&amp;accion=delete"> <?php echo $strings['Eliminar']; ?> </a>
-                <a href="DEFAULT_Vista.php"> <?php echo $strings['Volver']; ?> </a>
+                <a href="MIEMBRO_Controller.php?&amp;accion=borrar"> <?php echo $strings['Borrar']; ?> </a>
+                <a href="../index.php"> <?php echo $strings['Volver']; ?> </a>
                 <input type="hidden" name="accion" value="return">
 
             </form>

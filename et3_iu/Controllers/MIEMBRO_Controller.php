@@ -9,13 +9,15 @@ include '../Models/MIEMBRO_Model.php';
 //include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/MIEMBRO_Mapper.php';
 include '../Views/MIEMBRO_EDIT_View.php';
+include '../Views/MIEMBRO_SHOW_Vista.php';
+include '../Views/MIEMBRO_DELETE_Vista.php';
+include '../Views/PROYECTO_MIEMBRO_DELETE_Vista.php';
 include '../Views/LOGIN_Vista.php';
+include '../Functions/LibraryFunctions.php';
 
-/*if (!IsAuthenticated()){
+if (!IsAuthenticated()){
     header('Location:../index.php');
-}*/
-
-
+}
 
 function edit_miembro(){  //claudia
     $username = $_SESSION['login'];
@@ -43,11 +45,12 @@ function edit_miembro(){  //claudia
                     $vista_modificar->showView();
                 }else{ //no existe
                     $miembroMapper->updateMiembro($miembro, $username);
+                    consultar_miembro();
                 }
 
             }else{ //no modifico el campo username
                 $miembroMapper->updateMiembro($miembro, $username);
-
+                consultar_miembro();
             }
 
         }else{
@@ -103,12 +106,21 @@ function consultar_miembro(){
 
     $usuario = $miembroMapper->buscarMiembroPorUsuario($conectado);
 
-    $vista_show = new MIEMBRO_SHOW_Vista();
+    $vista_show = new MIEMBRO_SHOW_Vista($usuario);
     $vista_show->render();
 }
 
 function showTareasMiembro(){
 
+}
+
+function vistaBorrar(){
+    $miembroMapper = new MiembroMapper();
+    $conectado = $_SESSION['login'];
+
+    $usuario = $miembroMapper->buscarMiembroPorUsuario($conectado);
+
+    new MIEMBRO_BAJA_Vista($usuario);
 }
 
 
@@ -158,6 +170,9 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
         showTareasMiembro();
         break;
 
+    case "borrar":
+        vistaBorrar();
+        break;
     default:
         consultar_miembro();
 

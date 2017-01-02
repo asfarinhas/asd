@@ -9,8 +9,8 @@ function __construct(){
 
 function render(){
 
-include './Locates/Strings_Castellano.php';
-include './Functions/EMPLEADOShowAllDefForm.php';
+include '../Locates/Strings_Castellano.php';
+include '../Functions/EMPLEADOShowAllDefForm.php';
 
 
 $lista = array('EMP_USER', 'EMP_PASSWORD','IDIOMA');
