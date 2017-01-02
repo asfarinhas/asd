@@ -47,13 +47,13 @@ $strings = array();
 
 </head>
 <div>
-    <p>
+
     <h2>
         <?php
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
     </h2>
-    </p>
+    <h1><span class="form-title"><?=$strings['ModificarSubtarea']?></h1>
 
     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
@@ -135,7 +135,7 @@ $strings = array();
 
         <div>
             <!-- AÑADIR ENLACE A LA VISTA QUE MODIFICA LOS ENTREGABLES -->
-            <a href="" ><?//=$strings['ModifEntregables']?>Modificar entregable</a><br/>
+            <a href="" ><?=$strings['ModifEntregables']?></a><br/>
 
         </div>
 

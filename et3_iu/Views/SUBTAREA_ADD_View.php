@@ -1,20 +1,4 @@
 <?php
-//$string_idioma = $_SESSION['IDIOMA'];
-//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
-/*switch ($string_idioma){
-    case "Castellano":
-        include '../Locates/Strings_Castellano.php';
-        break;
-    case "English":
-        include '../Locates/Strings_English.php';
-        break;
-    case "Galego":
-        include '../Locates/Strings_Galego.php';
-        break;
-    default:
-        include '../Locates/Strings_Castellano.php';
-}*/
-
 
 
 class Subtarea_add
@@ -35,6 +19,7 @@ class Subtarea_add
 
     public function showView()
     {
+        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         $miembros = $this->getArrayDatos();
         $strings = array();
         //*************************************************************************
@@ -45,13 +30,9 @@ class Subtarea_add
 
         </head>
         <div>
-            <p>
-            <h2>
-                <?php
-                include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-                ?>
-            </h2>
-            </p>
+
+            <h1><span class="form-title"><?=$strings['InsertarSubtarea']?></h1>
+
 
             <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
@@ -129,7 +110,7 @@ class Subtarea_add
 
             <div>
              <!-- AÑADIR ENLACE A LA VISTA QUE CREA LOS ENTREGABLES -->
-              <a href="" ><?//=$strings['AddEntregables']?></a><br/>
+              <a href="" ><?=$strings['AddEntregables']?></a><br/>
             </div>
 
              <input type="hidden"  name="accion" value="add_subtarea">

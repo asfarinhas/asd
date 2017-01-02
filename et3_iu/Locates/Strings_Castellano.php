@@ -203,6 +203,10 @@ $strings = array(
 	'Descripcion' => 'Descripcion',
 	'Fechainicioplan' => 'Fecha de inicio planificada',
 	'Fechaentregaplan' => 'Fecha de entrega planificada',
+    'ModifEntregables' => 'Modificar entregables',
+    'AddEntregables' => 'Insertar entregables',
+	'InsertarSubtarea' => 'Insertar subtarea',
+	'ModificarSubtarea' => 'Modificar subtarea',
 	//NOTIFICACIONES
 	'Gestión de Notificaciones' => 'Gestión de Notificaciones',
 			'ID_NOTIFICACION' => 'ID Notificación',
