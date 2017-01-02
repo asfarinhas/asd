@@ -8,42 +8,53 @@
 
 class Subtarea_edit{
 
-private $array_datos;
-private $array_miembros;
+    private $array_datos;
+    private $array_miembros;
 
 
-public function __construct($array_datos, $array_miembros)
-{
-    $this->array_datos = $array_datos;
-    $this->array_miembros = $array_miembros;
+    public function __construct($array_datos, $array_miembros)
+    {
+        $this->array_datos = $array_datos;
+        $this->array_miembros = $array_miembros;
+    }
+
+    public function getArrayDatos()
+    {
+        return $this->array_datos;
+    }
+
+    public function getMiembros()
+    {
+        return $this->array_miembros;
+    }
 
 
-}
+    //CONSTRUYE LA VISTA
+    public function showView()
+    {
+    $datos = $this->getArrayDatos();    //datos de la subtarea
 
-public function getArrayDatos()
-{
-    return $this->array_datos;
-}
-
-public function getMiembros()
-{
-    return $this->array_miembros;
-}
+    $miembros = $this->getMiembros();
+    $tareapadre = $datos->getTareaPadre();
+    $proyecto = $datos->getProyecto();
+    $strings = array();
 
 
-//CONSTRUYE LA VISTA
-public function showView()
-{
-$datos = $this->getArrayDatos();    //datos de la subtarea
+    $idioma = $_SESSION['IDIOMA'];
+    switch ($idioma) {
+        case "Castellano":
+            include '../Locates/Strings_Castellano.php';
+            break;
+        case "English":
+            include '../Locates/Strings_English.php';
+            break;
+        case "Galego":
+            include '../Locates/Strings_Galego.php';
+        default:
+            include '../Locates/Strings_Castellano.php';
+    }
 
-$miembros = $this->getMiembros();
-$tareapadre = $datos->getTareaPadre();
-$proyecto = $datos->getProyecto();
-$strings = array();
-
-include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-
-?>
+    ?>
 <head>
     <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
 
@@ -132,7 +143,7 @@ include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
         <div>
             <!-- AÑADIR ENLACE A LA VISTA QUE MODIFICA LOS ENTREGABLES -->
-            <a href="" ><?=$strings['ModifEntregables']?></a><br/>
+            <a href="ENTREGABLE_Controller.php?&amp;accion=show" ><?=$strings['ModifEntregables']?></a><br/>
 
         </div>
 
