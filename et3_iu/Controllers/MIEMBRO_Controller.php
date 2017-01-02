@@ -37,6 +37,10 @@ function edit_miembro(){  //claudia
                 $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
                 if($aux != false){ //existe
                     echo "Username existente, introduzca otro";
+                    //muestra la vista
+                    $datosmiembro = $miembroMapper->buscarMiembroPorUsuario($username);
+                    $vista_modificar = new MiembroEditView($datosmiembro);
+                    $vista_modificar->showView();
                 }else{ //no existe
                     $miembroMapper->updateMiembro($miembro, $username);
                 }
@@ -72,12 +76,16 @@ function add_miembro(){
         $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
         if($aux != false){ //existe
             echo "Username existente, introduzca otro";
+            $vista_add = new MiembroAddView();
         }else{ //no existe
             $miembroMapper->insertarMiembro($miembro);
+            new Login();
         }
+    }else{
+        //muestra la vista
+        $vista_add = new MiembroAddView();
     }
-    //muestra la vista
-    $vista_add = new MiembroAddView();
+
 }
 
 function delete_miembro(){
