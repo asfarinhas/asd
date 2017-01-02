@@ -24,12 +24,12 @@ function edit_miembro(){  //claudia
     $miembroMapper = new MiembroMapper();
 
         //parametros del formulario
-        if(isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDOS']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASEÑA']) && isset($_REQUEST['CORREO'])){
-            $nombre = $_REQUEST['NOMBRE'];
-            $apellidos = $_REQUEST['APELLIDOS'];
-            $usuario = $_REQUEST['USUARIO'];
-            $contraseña = $_REQUEST['CONTRASEÑA'];
-            $correo =  $_REQUEST['CORREO'];
+        if(isset($_REQUEST['nombre']) && isset($_REQUEST['apellidos']) && isset($_REQUEST['usuario']) && isset($_REQUEST['password']) && isset($_REQUEST['correo'])){
+            $nombre = $_REQUEST['nombre'];
+            $apellidos = $_REQUEST['apellidos'];
+            $usuario = $_REQUEST['usuario'];
+            $contraseña = $_REQUEST['password'];
+            $correo =  $_REQUEST['correo'];
 
             $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
 
@@ -67,13 +67,13 @@ function add_miembro(){
     $miembroMapper = new MiembroMapper();
 
     //parametros del formulario
-    if(isset($_REQUEST['NOMBRE']) && isset($_REQUEST['APELLIDOS']) && isset($_REQUEST['USUARIO']) && isset($_REQUEST['CONTRASEÑA']) && isset($_REQUEST['CORREO'])){
+    if(isset($_REQUEST['nombre']) && isset($_REQUEST['apellidos']) && isset($_REQUEST['usuario']) && isset($_REQUEST['password']) && isset($_REQUEST['correo'])){
 
-        $nombre = $_REQUEST['NOMBRE'];
-        $apellidos = $_REQUEST['APELLIDOS'];
-        $usuario = $_REQUEST['USUARIO'];
-        $contraseña = $_REQUEST['CONTRASEÑA'];
-        $correo =  $_REQUEST['CORREO'];
+        $nombre = $_REQUEST['nombre'];
+        $apellidos = $_REQUEST['apellidos'];
+        $usuario = $_REQUEST['usuario'];
+        $contraseña = $_REQUEST['password'];
+        $correo =  $_REQUEST['correo'];
 
         $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
         $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);

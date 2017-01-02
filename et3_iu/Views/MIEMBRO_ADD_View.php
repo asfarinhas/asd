@@ -15,7 +15,7 @@ function __construct(){
 
 function showView(){
 
-    $strings = array();
+    ///$strings = array();
     include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
 
 ?>
@@ -24,7 +24,7 @@ function showView(){
 
 </head>
 <div>
-    <h1><span class="form-title"><?=$strings['ModificarMiembro']?></h1>
+    <!--<h1><span class="form-title"><?//=$strings['InsertarMiembro']?></h1>-->
 
     <form action="../Controllers/MIEMBRO_Controller.php" name="formAddMiembro" enctype="multipart/form-data" method="post" onsubmit=" ">
 

@@ -271,7 +271,8 @@ $strings = array(
 
 	//MIEMBRO
 
-	"Gestión de Perfil" => "Gestión de Perfil"
+	"Gestión de Perfil" => "Gestión de Perfil",
+	"ModificarMiembro" => "Modificar datos"
 
 )
 ?>

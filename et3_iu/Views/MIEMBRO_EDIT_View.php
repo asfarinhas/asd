@@ -25,7 +25,20 @@ class MiembroEditView{
 
         $miembro = $this->getDatos();
         //$strings = array();
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma){
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
+
 
         ?>
         <head>
@@ -40,27 +53,27 @@ class MiembroEditView{
 
                 <div>
                     <?= $strings['Nombre']?> <br/>
-                    <input type="text" name="NOMBRE" value="<?= $miembro->getNombre()?>" placeholder="<?= $strings['Nombre']?>"  id="nombre" required ><br/>
+                    <input type="text" name="nombre" value="<?= $miembro->getNombre()?>" placeholder="<?= $strings['Nombre']?>"  id="nombre" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_APELLIDO']?> <br/>
-                    <input type="text" name="APELLIDOS" value="<?= $miembro->getApellidos()?>" placeholder="<?= $strings['EMP_APELLIDO']?>"  id="apellidos" required ><br/>
+                    <input type="text" name="apellidos" value="<?= $miembro->getApellidos()?>" placeholder="<?= $strings['EMP_APELLIDO']?>"  id="apellidos" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_USER']?> <br/>
-                    <input type="text" name="USUARIO" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario" required ><br/>
+                    <input type="text" name="usuario" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_PASSWORD']?> <br/>
-                    <input type="password" name="CONTRASEÑA" value="<? $miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
+                    <input type="password" name="password" value="<? $miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_EMAIL']?> <br/>
-                    <input type="email" name="CORREO" value="<?= $miembro->getCorreo()?>" placeholder="ej: aaaa@aaaa.aa"  id="correo" required ><br/>
+                    <input type="email" name="correo" value="<?= $miembro->getCorreo()?>" placeholder="ej: aaaa@aaaa.aa"  id="correo" required ><br/>
                 </div>
 
                 <input type="hidden"  name="accion" value="edit">
