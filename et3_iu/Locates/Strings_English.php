@@ -197,6 +197,20 @@ $strings = array(
     'AddEntregables' => 'Add deliverables',
     'InsertarSubtarea' => 'Add subtask',
     'ModificarSubtarea' => 'Edit subtask',
-	'Nombre' => 'Name'
+	'Nombre' => 'Name',
+    "fecha_I_P" => "Planed start date",
+    "fecha_I_R" => "Actual start date",
+    "fecha_E_P" => "Planned delivery date",
+    "fecha_E_R" => "Actual delivery date",
+    "horas_P" => "Scheduled hours",
+    "horas_R" => "Performed hours",
+    "asignado" => "Assigned to",
+    "pendiente"=>"Pending",
+    "finalizado" =>"Finished",
+    "estado" => "Task Status",
+    "Creado con éxito"=>"Successfully created",
+    "comentarios" => "Comments",
+    "Error en la modificación" => "Modification failed",
+    "Modificada con éxito con éxito" =>"Succesfully modified"
 )
 ?>

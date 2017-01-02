@@ -265,7 +265,7 @@ $strings = array(
     "Creado con éxito"=>"Creado con éxito",
     "comentarios" => "Comentarios",
 	"Error en la modificación" => "Error en la modificación",
-	"Modificada con éxito con éxito" =>"Modificada con éxito con éxito"
+	"Modificada con éxito con éxito" =>"Modificada con éxito"
 	// FIN SIN TRADUCIR
 
 
