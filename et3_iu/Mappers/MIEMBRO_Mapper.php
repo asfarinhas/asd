@@ -82,8 +82,8 @@
         public function insertarMiembro(Miembro_Model $miembro) {
 
             $sql = "INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`, `EMP_TIPO`, `EMP_ESTADO`)
-                                  VALUES ('$miembro -> getUsuario()', '$miembro -> getContraseña()', '$miembro -> getNombre()', '$miembro -> getApellidos()',
-                                          '$miembro -> getCorreo()', '1', 'Activo')";
+                                  VALUES ('{$miembro -> getUsuario()}', '{$miembro -> getContraseña()}', '{$miembro -> getNombre()}', '{$miembro -> getApellidos()}',
+                                          '{$miembro -> getCorreo()}', '1', 'Activo')";
             $this -> mysqli ->query($sql);
             $this -> mysqli->close();
         }
