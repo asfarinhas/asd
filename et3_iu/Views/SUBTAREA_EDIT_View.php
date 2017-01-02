@@ -5,7 +5,7 @@
  * Date: 26/12/2016
  * Time: 19:55
  */
-//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+
 class Subtarea_edit{
 
 private $array_datos;
@@ -41,6 +41,8 @@ $tareapadre = $datos->getTareaPadre();
 $proyecto = $datos->getProyecto();
 $strings = array();
 
+include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
+
 ?>
 <head>
     <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
@@ -48,11 +50,6 @@ $strings = array();
 </head>
 <div>
 
-    <h2>
-        <?php
-        include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
-        ?>
-    </h2>
     <h1><span class="form-title"><?=$strings['ModificarSubtarea']?></h1>
 
     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
