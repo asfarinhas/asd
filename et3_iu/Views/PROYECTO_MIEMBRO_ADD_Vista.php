@@ -4,11 +4,13 @@ class ProyectoMiembro_Add
 {
     //VISTA PARA INSERTAR PAGINAS
     private $datos1;
+    private $buscar;
     private $volver;
 
-    function __construct($array1,$volver)
+    function __construct($array1,$buscar,$volver)
     {
         $this->datos1 = $array1;
+        $this->buscar=$buscar;
         $this->volver = $volver;
         $this->render();
     }
@@ -34,92 +36,58 @@ class ProyectoMiembro_Add
 			<?php echo $strings['Insertar Miembro'] ?><br>
             </h1>
 
-            <h3>
+               <?php  if($this->buscar!='BUSCAR'){ ?>
+                  <h3>
 
-                <form action='PROYECTO_Controller.php' method='post'>
+                  <form action='PROYECTO_Controller.php' method='post'>
                     <ul class="form-style-1">
+                        <!-- Campo Usuario -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="nombre" class="control-label"><?php echo $strings['USUARIO']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="ID_MIEMBRO"  title="<?php echo $strings['error trabajador']; ?>" >
+                            </div>
+                        </div>
                         <!-- Campo Nombre -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
+                                <label for="id" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
-                            </div>
-                        </div>
-                        <!-- Campo ID -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="id" class="control-label"><?php echo $strings['ID_PROYECTO']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control"  name="ID_PROYECTO"   title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control"  name="MIEMBRO_NOMBRE"   title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
-                        <!-- Campo Fecha Inicio -->
+                        <!-- Campo Apellido -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
+                                <label for="FECHAI" class="control-label"><?php echo $strings['APELLIDOS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="MIEMBRO_APELLIDO"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
+                                <label for="FECHAE" class="control-label"><?php echo $strings['EMAIL']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
-                            </div>
-                        </div>
-
-                        <!-- Campo Fecha Inicio Planificada -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="MIEMBRO_EMAIL"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
-                        <!-- Campo Fecha Final Planificada -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error trabajador']; ?>" >
-                            </div>
-                        </div>
-
-                        <!-- Campo Numero miembros -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
-                        </div>
-                        <!-- Campo Numero horas -->
-                        <div class="form-group">
-                            <div class="col-sm-4">
-                                <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
-                        </div>
 
                         <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
-                        <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
-                        <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
+
+                        <input type='submit' name='accion' value='<?php echo $strings['Insertar Miembro']; ?>'>
 
                 </form>
-
-            </h3>
+                  </h3>
+        <p>
+        <h2>
             <table id="btable" border = 1>
                 <tr>
                     <th>  <?=$strings['NOMBRE'] ?> </th>
@@ -137,20 +105,62 @@ class ProyectoMiembro_Add
                     ?>
 
                     <td>
-                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto['ID_PROYECTO'] . '&ID_MIEMBRO='. $miembro->getUsuario().'&accion='.$strings['Añadir Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
+                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO='. $miembro->getUsuario().'&accion='.$strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
                     </td>
                     <td>
                         <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                     </td>
 
                     </tr>
-                <?php                        }
-                ?>
+                    <?php } ?>
             </table>
-            </p>
 
-        </div>
+        </h2>
+        </p>
 
-        <?php
+             <?php }else{ ?>
+
+            <table id="btable" border = 1>
+            <tr>
+                <th>  <?=$strings['NOMBRE'] ?> </th>
+                <th>  <?=$strings['APELLIDOS'] ?> </th>
+                <th>  <?=$strings['EMAIL'] ?> </th>
+                <th>  <?=$strings['USUARIO'] ?> </th>
+
+            </tr>
+            <?php
+            foreach($this->datos1 as $miembro) {
+                echo "<tr><td> " . $miembro->getNombre() . "</td>";
+                echo "<td>" . $miembro->getApellidos() . "</td>";
+                echo "<td> " . $miembro->getCorreo() . "</td>";
+                echo "<td> " . $miembro->getUsuario() . "</td>";
+                ?>
+
+                <td>
+                    <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario() . '&accion=' . $strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
+                </td>
+                <td>
+                    <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                </td>
+
+                </tr>
+                <?php } ?>
+                </table>
+
+                </p>
+
+                </div>
+
+                <?php
+            } ?>
+                <h3>
+        <p>
+            <?php
+            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
+            ?>
+</h3>
+</p>
+<?php
     } //fin metodo render
 }
+?>

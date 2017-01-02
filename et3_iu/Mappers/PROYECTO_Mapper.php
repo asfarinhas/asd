@@ -136,7 +136,25 @@ class ProyectoMapper {
         return $miembro;
     }
 
+public function buscarMiembro(Miembro_Model $miembro)
+{
+    $this->conectarBD();
 
+    $sql = "SELECT * FROM EMPLEADOS WHERE EMP_USER LIKE '%" . $miembro->getUsuario() . "%' AND EMP_NOMBRE LIKE '%" .
+        $miembro->getNombre() . "%' AND EMP_APELLIDO LIKE '%" . $miembro->getApellidos() . "%' AND EMP_EMAIL LIKE '%" . $miembro->getCorreo() . "%';";
+
+    if (!($resultado = $this->mysqli->query($sql))) {
+        return 'Error en la consulta sobre la base de datos';
+    } else {
+        $miembros_proyecto = array();
+        while($obj = $resultado -> fetch_object()) {
+            $miembroEncontrado = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+            array_push($miembros_proyecto, $miembroEncontrado);
+        }
+        return $miembros_proyecto;
+    }
+
+}
 
     //Buscar por.... lo que sea
   public function buscar(Proyecto $proyecto) {
@@ -234,7 +252,27 @@ class ProyectoMapper {
 
     }
 
-  public function insertar(Proyecto $proyecto) {
+
+    public function insertarMiembroProyecto($proyectoId, $miembroId) {
+        $this->conectarBD();
+
+        $sql= "SELECT * FROM PROYECTO_MIEMBRO WHERE ID_PROYECTO ='" . $proyectoId ."' AND EMP_USER = '" . $miembroId . "';";
+        $resultado = $this->mysqli->query($sql);
+        if($resultado->num_rows!=0){
+            return "nombre de proyecto ya existe";
+        }else{
+            $sql = "INSERT INTO PROYECTO_MIEMBRO (ID_PROYECTO,EMP_USER) VALUES ('" . $proyectoId."','" . $miembroId ."');";
+            if($this->mysqli->query($sql) === TRUE){
+                return "creado exito";
+            }else{
+                return "error creado";
+            }
+        }
+
+    }
+
+
+    public function insertar(Proyecto $proyecto) {
         $this->conectarBD();
 
         $sql= "SELECT * FROM PROYECTO WHERE NOMBRE ='" . $proyecto->getNOMBRE()."';";

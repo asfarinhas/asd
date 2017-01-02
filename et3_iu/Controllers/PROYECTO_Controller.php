@@ -95,6 +95,44 @@ function get_data_form(){
     return $proyecto;
 }
 
+
+function get_data_form_miembro(){
+
+//Recoge la información del formulario
+    if(isset($_REQUEST['ID_MIEMBRO'])){
+        $ID_MIEMBRO=$_REQUEST['ID_MIEMBRO'];
+    }else{
+        $ID_MIEMBRO = null;
+    }
+
+    if(isset($_REQUEST['MIEMBRO_NOMBRE'])){
+        $MIEMBRO_NOMBRE=$_REQUEST['MIEMBRO_NOMBRE'];
+    }else{
+        $MIEMBRO_NOMBRE = null;
+    }
+
+    if(isset($_REQUEST['MIEMBRO_APELLIDO'])){
+        $MIEMBRO_APELLIDO=$_REQUEST['MIEMBRO_APELLIDO'];
+    }else{
+        $MIEMBRO_APELLIDO = null;
+    }
+
+    if(isset($_REQUEST['MIEMBRO_EMAIL'])){
+        $MIEMBRO_EMAIL=$_REQUEST['MIEMBRO_EMAIL'];
+    }else{
+        $MIEMBRO_EMAIL = null;
+    }
+
+    $accion = $_REQUEST['accion'];
+
+    $miembro = new Miembro_Model($MIEMBRO_NOMBRE, $MIEMBRO_APELLIDO,$ID_MIEMBRO,null,$MIEMBRO_EMAIL);
+
+    return $miembro;
+}
+
+
+
+
 if (!isset($_REQUEST['accion'])){
     $_REQUEST['accion'] = '';
 }
@@ -188,14 +226,25 @@ switch ($_REQUEST['accion']) {
     case $strings['Insertar Miembro']:
         if(!isset($_REQUEST['ID_MIEMBRO'])){
             $miembros =  $proyectoMapper->consultarMiembros();
-
             if (!tienePermisos('ProyectoMiembro_Add')) {
                 new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
             } else {
-                new ProyectoMiembro_Add($miembros, 'PROYECTO_Controller.php');
+                new ProyectoMiembro_Add($miembros,'', 'PROYECTO_Controller.php');
             }
         }else{
-            
+            if(isset($_REQUEST['BUSCAR'])){
+                $miembro = get_data_form_miembro();
+                $datos = $proyectoMapper->buscarMiembro($miembro);
+                if (!tienePermisos('ProyectoMiembro_Add')) {
+                    new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
+                } else {
+                    new ProyectoMiembro_Add($datos,$_REQUEST['BUSCAR'], 'PROYECTO_MIEMBRO_SHOW_ALL.php');
+                }
+            }else{
+                $respuesta = $proyectoMapper->insertarMiembroProyecto($_REQUEST['ID_PROYECTO'],$_REQUEST['ID_MIEMBRO']);
+
+                new Mensaje($respuesta, 'PROYECTO_Controller.php');
+            }
         }
 
 
