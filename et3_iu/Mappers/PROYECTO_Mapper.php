@@ -273,6 +273,21 @@ public function buscarMiembro(Miembro_Model $miembro)
     }
 
 
+
+    public function borrarMiembroProyecto(Miembro_Model $miembro, Proyecto $proyecto) {
+        $this->conectarBD();
+        $sql = "DELETE FROM PROYECTO_MIEMBRO WHERE EMP_USER = '" . $miembro->getUsuario(). "' AND ID_PROYECTO='" . $proyecto->getIDPROYECTO() . "';";
+
+        if($this->mysqli->query($sql) === TRUE){
+            return "El proyecto ha sido borrado correctamente";
+        }else{
+            return "error borrado";
+        }
+
+
+    }
+
+
     public function insertar(Proyecto $proyecto) {
         $this->conectarBD();
 

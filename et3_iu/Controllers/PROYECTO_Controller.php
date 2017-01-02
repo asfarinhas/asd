@@ -279,6 +279,24 @@ switch ($_REQUEST['accion']) {
         break;
 
 
+    case $strings['Eliminar Miembros']:
+
+        $proyecto = get_data_form();
+        if (!isset($_REQUEST['BORRAR'])) {
+            $miembro = get_data_form_miembro();
+            $valores = $proyectoMapper->RellenaDatosMiembro($miembro->getUsuario());
+            if (!tienePermisos('ProyectoMiembro_Borrar')) {
+                new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
+            } else {
+                new ProyectoMiembro_Borrar($valores, 'PROYECTO_Controller.php');
+            }
+        } else {
+            $miembro = get_data_form_miembro();
+            $respuesta = $proyectoMapper->borrarMiembroProyecto($miembro, $proyecto);
+            new Mensaje($respuesta, 'PROYECTO_Controller.php');
+        }
+
+        break;
 
 
     default:
