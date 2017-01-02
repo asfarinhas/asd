@@ -49,17 +49,17 @@ class MiembroEditView{
 
                 <div>
                     <?= $strings['EMP_USER']?> <br/>
-                    <input type="date" name="USUARIO" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario" required ><br/>
+                    <input type="text" name="USUARIO" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_PASSWORD']?> <br/>
-                    <input type="date" name="CONTRASEÑA" value="<?= $miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
+                    <input type="password" name="CONTRASEÑA" value="<? $miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
                 </div>
 
                 <div>
                     <?= $strings['EMP_EMAIL']?> <br/>
-                    <input type="date" name="CORREO" value="<?= $miembro->getCorreo()?>" placeholder="ej: aaaa@aaaa.aa"  id="correo" required ><br/>
+                    <input type="email" name="CORREO" value="<?= $miembro->getCorreo()?>" placeholder="ej: aaaa@aaaa.aa"  id="correo" required ><br/>
                 </div>
 
                 <input type="hidden"  name="accion" value="edit">
