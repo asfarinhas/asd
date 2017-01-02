@@ -101,6 +101,7 @@ class ProyectoMapper {
         if (!($resultado = $this->mysqli->query($sql))) {
             return false;
         } else {
+
             $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
 
             //sacamos la info de cada miembro
@@ -112,8 +113,8 @@ class ProyectoMapper {
                // $infoMiembro = $miembroMapper->buscarMiembroPorUsuario($row['EMP_USER']);
                 $infoMiembro = $this->buscarMiembroPorUsuario($row);
                 array_push($miembros_proyecto, $infoMiembro);
-            }
 
+            }
             return $miembros_proyecto;
 
         }

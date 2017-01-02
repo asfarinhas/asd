@@ -271,7 +271,6 @@ switch ($_REQUEST['accion']) {
 
     case  $strings['Gestionar Miembros']:
             $miembros = $proyectoMapper->listarMiembrosProyecto($_REQUEST['ID_PROYECTO']);
-            var_dump($miembros);
             if (!tienePermisos('ProyectoMiembro_Default')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
