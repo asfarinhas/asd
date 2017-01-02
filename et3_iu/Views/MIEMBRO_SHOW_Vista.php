@@ -7,6 +7,7 @@
  */
 
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+include '../Models/MIEMBRO_Model.php';
 
 class MIEMBRO_SHOW_Vista{
 

@@ -98,7 +98,13 @@ function delete_miembro(){
 }
 
 function consultar_miembro(){
+    $miembroMapper = new MiembroMapper();
+    $conectado = $_SESSION['login'];
 
+    $usuario = $miembroMapper->buscarMiembroPorUsuario($conectado);
+
+    $vista_show = new MIEMBRO_SHOW_Vista();
+    $vista_show->render();
 }
 
 function showTareasMiembro(){
