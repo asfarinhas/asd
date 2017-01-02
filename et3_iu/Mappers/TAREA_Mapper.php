@@ -32,7 +32,7 @@ class TAREA_Mapper{
     function listarTareasMiembro(Miembro $idMiembro){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getDNI() . "' ORDER BY FECHAIP";
+        $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' ORDER BY FECHAIP";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
@@ -60,6 +60,38 @@ class TAREA_Mapper{
             return $tareas_model;
             }
         }
+
+
+    /**
+     * @param Miembro_Model $idMiembro
+     * @return array|string; devuelve un array con las instancias de las tareas padre del miembro pasado por parámetro o un string error
+     */
+    function listarTareasPadreMiembro(Miembro_Model $idMiembro){
+        $this->conectarBD();
+
+        $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND PADRE = null ORDER BY FECHAIP";
+
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos';
+        } else {
+            $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
+
+            $tareas_model = array();
+
+            foreach ($tareas_bd as $row) {
+
+                $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
+                    $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
+
+
+                array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
+                    null, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                    $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"],
+                    $row["comentario"]));
+            }
+            return $tareas_model;
+        }
+    }
 
         /**
          *Lista las subtareas con padre X
@@ -104,7 +136,7 @@ class TAREA_Mapper{
         function listarTareasPendientesMiembro(Miembro $idMiembro)
         {
             $this->conectarBD();
-            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getDNI() . "' AND  ESTADO < 100 ORDER BY FECHAIP";
+            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND  ESTADO < 100 ORDER BY FECHAIP";
 
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos';

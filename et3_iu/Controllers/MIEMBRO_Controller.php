@@ -6,14 +6,14 @@
  * Time: 17:05
  */
 include '../Models/MIEMBRO_Model.php';
-include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+//include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/MIEMBRO_Mapper.php';
 include '../Views/MIEMBRO_EDIT_View.php';
-include '../LOGIN_Vista.php';
+include '../Views/LOGIN_Vista.php';
 
-if (!IsAuthenticated()){
+/*if (!IsAuthenticated()){
     header('Location:../index.php');
-}
+}*/
 
 
 

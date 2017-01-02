@@ -48,7 +48,7 @@
                 $apellido = $obj -> emp_apellido;
                 $email = $obj -> emp_email;
 
-                $miembro = new Miembro($nombre, $apellido, $user, $password, $email);
+                $miembro = new Miembro_Model($nombre, $apellido, $user, $password, $email);
 
                 array_push($miembros, $miembro);
             }
@@ -79,11 +79,11 @@
          * Inserta un miembro en la base de datos
          * @param Miembro $miembro
          */
-        public function insertarMiembro(Miembro $miembro) {
+        public function insertarMiembro(Miembro_Model $miembro) {
 
             $sql = "INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`, `EMP_TIPO`, `EMP_ESTADO`)
                                   VALUES ('$miembro -> getUsuario()', '$miembro -> getContraseña()', '$miembro -> getNombre()', '$miembro -> getApellidos()',
-                                          '$miembro -> getCorreo()')";
+                                          '$miembro -> getCorreo()', '1', 'Activo')";
             $this -> mysqli ->query($sql);
             $this -> mysqli->close();
         }
@@ -93,7 +93,7 @@
          * Actualiza un miembro en la BBDD
          * @param Miembro $miembro, el miembro con los nuevos datos | $user usuario viejo
          */
-        public function updateMiembro(Miembro $miembro, $user) {
+        public function updateMiembro(Miembro_Model $miembro, $user) {
 
             $sql = "UPDATE `EMPLEADOS` SET `EMP_USER` = '$miembro -> getUsuario()', `EMP_PASSWORD` = '$miembro -> getContraseña()',`EMP_NOMBRE` = '$miembro -> getNombre()',`EMP_APELLIDO` = '$miembro -> getApellidos()',
             `EMP_EMAIL` = '$miembro -> getCorreo()' WHERE EMP_USER = '$user' ";
@@ -106,9 +106,9 @@
          * Cambia el estado de un miembro a inactivo en la BBDD
          * @param Miembro $miembro
          */
-        public function desactivarMiembro(Miembro $miembro) {
+        public function desactivarMiembro($user) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Inactivo' WHERE EMP_USER = '$miembro -> getUsuario()' ";
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Inactivo' WHERE EMP_USER = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
         }
@@ -117,9 +117,9 @@
          * Cambia el estado de un miembro a activo en la BBDD
          * @param Miembro $miembro
          */
-        public function activarMiembro(Miembro $miembro) {
+        public function activarMiembro($user) {
 
-            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$miembro -> getUsuario()' ";
+            $sql = "UPDATE `EMPLEADOS` SET `EMP_ESTADO` = 'Activo' WHERE EMP_USER = '$user' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
         }
@@ -156,69 +156,6 @@
 
             return $miembro;
         }*/
-
-        /**
-         * @param $busqueda
-         * @return Instancia del miembro buscado; si se produce algún error o no existe el parámetro devuelve false
-         */
-        /* public function buscarMiembro($busqueda) {
-
-             $sql = "SELECT * FROM miembro where usuario LIKE '%busqueda%' OR nombre LIKE '%busqueda%' OR apellido1 LIKE '%busqueda%' ";
-             $resultado = $this -> mysqli -> query($sql);
-
-             if($resultado == false || $resultado -> numrows == 0) return false;
-
-             $miembros = array();
-             while($obj = $resultado -> fetch_object()){
-                 $dni = $obj -> dni;
-                 $nombre = $obj -> nombre;
-                 $apellido1 = $obj -> apellido1;
-                 $apellido2 = $obj -> apellido2;
-                 $usuario = $obj -> usuario;
-                 $contraseña = $obj -> contraseña;
-                 $correo = $obj -> correo;
-
-                 $miembro = new Miembro($dni, $nombre, $apellido1, $apellido2, $usuario, $contraseña, $correo);
-
-                 array_push($miembros, $miembro);
-             }
-
-             return $miembros;
-         }*/
-
-        /**
-         * Busca el miembro que tenga el dni pasado por parámetro
-         * @param $dni
-         * @return false si se produce algún error o no se encuentra; o se devuelve el Miembro, en caso contrario
-         */
-        /* public function buscarMiembroPorDNI($dni) {
-
-             $sql = "SELECT * FROM empleados where emp_dni LIKE '%$dni%' ";
-             $resultado = $this -> mysqli -> query($sql);
-
-             if($resultado == false || $resultado -> numrows == 0) return false;
-
-             $obj = $resultado->fetch_object();
-
-             $miembro = new Miembro($obj -> emp_user, $obj -> emp_password, $obj -> emp_nombre, $obj -> emp_apellido, $obj -> empleados_email,
-                                     $obj -> empleados_tipo, $obj -> empleados_estado);
-
-             return $miembro;
-         }*/
-
-        //$id = $obj -> empleados_id;
-        //$dni = $obj ->  empleados_dni;
-        //$fecha = $obj -> empleados_fech_nac;
-        //$telefono = $obj -> empleados_telefono;
-        //$cuenta = $obj -> empleados_cuenta;
-        //$direccion = $obj -> empleados_direccion;
-        //$comentario = $obj -> empleados_comentarios;
-        //$estado = $obj -> empleados_estado;
-        //$foto = $obj -> empleados_foto;
-        //$nomina = $obj -> empleados_nomina;
-        //$profesion = $obj -> empleados_profesion;
-        //$apellido1 = $obj -> apellido1;
-        //$apellido2 = $obj -> apellido2;
 
         /*Busca y lista todos los miembros de un proyecto*/
         public function listarMiembrosProyecto($id_proyecto)
