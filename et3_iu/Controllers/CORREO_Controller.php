@@ -4,6 +4,7 @@ include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
 include '../Mappers/CORREO_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
+include '../PHPMailer/class.phpmailer.php';
 
 
 
@@ -23,7 +24,7 @@ $correoMapper=new CorreoMapper();
 function get_data_form(){
 //Recoge la información del formulario
     $correoArray = array();
-  
+
     if(isset($_REQUEST['ASUNTO'])){
         $ASUNTO = $_REQUEST['ASUNTO'];
     }else{
