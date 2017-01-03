@@ -11,6 +11,7 @@
     $GLOBALS['db']="scotchbox";
 //VISTA PRINCIPAL
 
+    include '../Mappers/NOTIFICACION_Mapper.php';
     include '../Functions/InterfaceFunctions.php';
     include '../Functions/LibraryFunctions.php';
     if (!IsAuthenticated()){
