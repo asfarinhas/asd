@@ -106,7 +106,7 @@ class TAREA_Mapper{
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos';
             } else {
-                $resultado->fetch_array(MYSQLI_ASSOC);
+               $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
 
                 $tareas_model = array();
 
@@ -138,7 +138,7 @@ class TAREA_Mapper{
         function listarTareasPendientesMiembro($idMiembro)
         {
             $this->conectarBD();
-            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND  ESTADO = "pendiente" ORDER BY FECHAIP";
+            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND  ESTADO = 'pendiente' ORDER BY FECHAIP";
 
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos';
@@ -148,10 +148,10 @@ class TAREA_Mapper{
 
                 while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-                    $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
+                    $miembro = $miembro_mapper->buscarMiembroPorUsuario($row["ID_MIEMBRO"]);
 
-                    if($tareas_bd["PADRE"] != 0){
-                        $padre = $this->buscarTareaId($tareas_bd["PADRE"]);
+                    if($row["PADRE"] != 0){
+                        $padre = $this->buscarTareaId($row["PADRE"]);
                     }else{
                         $padre = null;
                     }
@@ -282,7 +282,7 @@ class TAREA_Mapper{
 
                 while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-                    $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
+                    $miembro = $miembro_mapper->buscarMiembroPorUsuario($row["ID_MIEMBRO"]);
 
                     //CAMBIAR TODO A MAYUSCULAS, TIENE QUE SER COMO EN LA BD
                     $aux= array($row["ID_TAREA"] => new Tarea($row["ID_TAREA"],$row["NOMBRE"], $row["DESCRIPCION"],
@@ -321,10 +321,10 @@ class TAREA_Mapper{
 
              while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-                $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
+                $miembro = $miembro_mapper->buscarMiembroPorUsuario($row["ID_MIEMBRO"]);
 
-                if($tareas_bd["PADRE"] != 0){
-                    $padre = $this->buscarTareaId($tareas_bd["PADRE"]);
+                if($row["PADRE"] != 0){
+                    $padre = $this->buscarTareaId($row["PADRE"]);
                 }else{
                     $padre = null;
                 }
