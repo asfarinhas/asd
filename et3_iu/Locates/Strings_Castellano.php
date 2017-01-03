@@ -237,6 +237,7 @@ $strings = array(
 				'Recibidas' => 'Notificaciones Recibidas',
 				'Enviadas' => 'Notificaciones Enviadas',
 				'buscar notificacion' => 'Buscar notificación',
+				'Notificacionespendientes' => 'Notificaciones Pendientes:',
 
 
 				'Enviar correo' => 'Enviar Correo',
@@ -249,6 +250,7 @@ $strings = array(
 				'CorreosEnviados' => 'Correos enviados',
 				'enviado con exito' => 'Correo enviado con exito',
 				'Ver correo' =>  'Ver correo',
+
     // SIN TRADUCIR
     "Insertar Tarea" => "Insertar Tarea",
     "Modificar Tarea" => "Modificar Tarea",
