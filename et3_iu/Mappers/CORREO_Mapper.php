@@ -26,7 +26,16 @@ class CorreoMapper {
       return $correo;
     }
   }
-
+  public function buscarId($Id){
+      $this ->conectarBD();
+      $sql = "SELECT * FROM CORREO WHERE ID_CORREO = '" . $Id . "'  ORDER BY FECHAENVIO;";
+  
+      $resultado = $this->mysqli->query($sql);
+      if($resultado ->num_rows!=0){
+          $correo= $resultado->fetch_array();
+      }
+      return $correo;
+  }
   function buscarCorreos($empleados){
         $correos = array();
         $this->conectarBD();
@@ -57,7 +66,7 @@ function insertar(Correo $correo){
       mail($correo->getReceptor(),$correo->getAsunto(),$correo->getContenido());
       $this->ConectarBD();
       $sql = "INSERT INTO CORREO (ID_CORREO,EMISOR,RECEPTOR,ASUNTO,CONTENIDO,FECHAENVIO) VALUES('".$correo->getId()."','".$correo->getEmisor()."','".$correo->getReceptor()."','".$correo->getAsunto()."','".$correo->getContenido()."','".$correo->getFechaEnv()."');";
-    
+
       if($resultado = $this->mysqli->query($sql)){
             return 'enviado con exito';
       }

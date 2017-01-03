@@ -84,57 +84,19 @@ Switch ($_REQUEST['accion']) {
 
         }
         break;
-    case $strings['Borrar']: //Borrado de notificacion
-        if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-            $notificacion = get_data_form();
-            $valores = $notificacionMapper->RellenaDatos($notificacion->getId());
-            if (!tienePermisos('Notificacion_Borrar')) {
-                new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
-            } else {
-                new Notificacion_Borrar($valores, 'NOTIFICACION_Controller.php');
-            }
-        } else {
-
-
-            $notificacion = get_data_form();
-            $respuesta = $notificacionMapper->borrar($notificacion);
-            new Mensaje($respuesta, 'NOTIFICACION_Controller.php');
-        }
-        break;
-
-
-        case $strings['ConsultarEnviadas']: //Consulta de notificaciones enviadas
-            if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-                $notificacion = new Notificacion('', '','','','','');
-            } else {
-                $notificacion= get_data_form();
-            }
-            $datos = $notificacionMapper->listarEnviadas();
-            if (!tienePermisos('Notificacion_Default')) {
-                new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
-            } else {
-                new Notificacion_Enviada($datos, 'NOTIFICACION_Controller.php');
-
-            }
-            break;
-
-            case $strings['Ver']: //Consulta en detalle de un correo
-                if (!isset($_REQUEST['ID_NOTIFICACION'])) {
-                    new Correo_Show('','','');
-                } else {
-                    $notificacion = get_data_form();
-                    $notificacionMapper->marcarLeido($notificacion);
-                    $datos = $notificacionMapper->buscarId($_REQUEST['ID_NOTIFICACION']);
-                    if (!tienePermisos('Notificacion_Show')) {
-                        new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');
-                    } else {
-                        new Notificacion_Show('buscar',$datos, 'NOTIFICACION_Controller.php');
-
-                    }
-                }
-                break;
-
-
+      case $strings['Ver']: //Consulta en detalle de un correo
+          if (!isset($_REQUEST['ID_CORREO'])) {
+              new Correo_Show('','','');
+          } else {
+              $correo = get_data_form();
+              $datos = $correoMapper->buscarId($_REQUEST['ID_CORREO']);
+              if (!tienePermisos('Correo_Show')) {
+                  new Mensaje('No tienes los permisos necesarios', 'CORREO_Controller.php');
+              } else {
+                  new cORREO_Show('buscar',$datos, 'CORREO_Controller.php');
+              }
+          }
+          break;
 
 
         default:
