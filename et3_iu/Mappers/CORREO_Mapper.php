@@ -72,38 +72,32 @@ class CorreoMapper {
 }
 
 function insertar(Correo $correo){
-      //instancio un objeto de la clase PHPMailer
-      $mail = new PHPMailer(); // defaults to using php "mail()"
-
-      //defino el cuerpo del mensaje en una variable $body
-      //se trae el contenido de un archivo de texto
-      $body = $correo->getContenido();
-      //Esta línea la he tenido que comentar
-      //porque si la pongo me deja el $body vacío
-      // $body = preg_replace('/[]/i','',$body);
-
-      //defino el email y nombre del remitente del mensaje
-      $mail­>SetFrom(buscarCorreo($correo->getEmisor()), $correo->getEmisor());
-
-      //defino la dirección de email de "reply", a la que responder los mensajes
-      //Obs: es bueno dejar la misma dirección que el From, para no caer en spam
-      $mail­>AddReplyTo(buscarCorreo($correo->getEmisor()), $correo->getEmisor());
-      //Defino la dirección de correo a la que se envía el mensaje
-      $address = buscarCorreo($correo->getReceptor());
-      //la añado a la clase, indicando el nombre de la persona destinatario
-      $mail­>AddAddress($address, $correo->getReceptor());
-
-      //Añado un asunto al mensaje
-      $mail­>Subject = $correo->getAsunto();
-
-      //Puedo definir un cuerpo alternativo del mensaje, que contenga solo texto
-      //$mail­>AltBody = "Cuerpo alternativo del mensaje";
-
-      //inserto el texto del mensaje en formato HTML
-      $mail­>MsgHTML($body);
-
-      //asigno un archivo adjunto al mensaje
-      //$mail­>AddAttachment("ruta/archivo_adjunto.gif");
+      //Crear una instancia de PHPMailer
+                $mail = new PHPMailer();
+                //Definir que vamos a usar SMTP
+                $mail->IsSMTP();
+                //Esto es para activar el modo depuración en producción
+                $mail->SMTPDebug  = 0;
+                //Ahora definimos gmail como servidor que aloja nuestro SMTP
+                $mail->Host       = 'smtp.gmail.com';
+                //El puerto será el 587 ya que usamos encriptación TLS
+                $mail->Port       = 587;
+                //Definmos la seguridad como TLS
+                $mail->SMTPSecure = 'tls';
+                //Tenemos que usar gmail autenticados, así que esto a TRUE
+                $mail->SMTPAuth   = true;
+                //Definimos la cuenta que vamos a usar. Dirección completa de la misma
+                $mail->Username   = "moovettIU@gmail.com";
+                //Introducimos nuestra contraseña de gmail
+                $mail->Password   = "interfaz";
+                //Definimos el remitente (dirección y nombre)
+                $mail->SetFrom('moovettIU@gmail.com', 'MOOVETT');
+                //Definimos el tema del email
+                $mail->Subject = $correo->getAsunto();
+                //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
+                $mail->MsgHTML(utf8_decode($correo->getContenido()));
+                //Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+                $mail->AltBody = 'This is a plain-text message body';
 
       //envío el mensaje, comprobando si se envió correctamente
       if(!$mail­>Send()) {
