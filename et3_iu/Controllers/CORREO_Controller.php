@@ -22,7 +22,7 @@ for ($z=0;$z<count($pags);$z++){
 $correoMapper=new CorreoMapper();
 function get_data_form(){
 //Recoge la información del formulario
-
+    $correoArray = array();
     if(isset($_REQUEST['ID_CORREO'])){
         $ID_CORREO = $_REQUEST['ID_CORREO'];
     }else{
@@ -35,15 +35,7 @@ function get_data_form(){
           $ASUNTO=NULL;
     }
 
-    $EMISOR=$_SESSION['login']->getCorreo();
-
-
-
-    if(isset($_REQUEST['RECEPTOR'])){
-        $RECEPTOR = $_REQUEST['RECEPTOR'];
-    }else{
-          $RECEPTOR=NULL;
-    }
+    $EMISOR=$_SESSION['login'];
 
     if(isset($_REQUEST['FECHAENVIO'])){
         $FECHAENVIO=$_REQUEST['FECHAENVIO'];
@@ -58,11 +50,16 @@ function get_data_form(){
     }
 
 
+    foreach($_REQUEST['correos'] as $selected){
+      $RECEPTOR = $selected;
 
+
+      $correo= new Correo ($ID_CORREO,$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
+      array_push($correoArray,$correo);
+    }
 
     $accion = $_REQUEST['accion'];
-    $correo= new Correo ($ID_CORREO,$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
-    return $correo;
+    return $correoArray;
 }
 if (!isset($_REQUEST['accion'])){
     $_REQUEST['accion'] = '';
@@ -70,16 +67,19 @@ if (!isset($_REQUEST['accion'])){
 
 Switch ($_REQUEST['accion']) {
     case $strings['Insertar']: //Enviar un correo
-        if (!isset($_REQUEST['RECEPTOR'])) {
+        if (!isset($_REQUEST['correos'])) {
             if (!tienePermisos('Correo_add')) {
                 new Mensaje('No tienes los permisos necesarios', 'CORREO_Controller.php');
             } else {
-                new Correo_Add();
+                $miembros = $correoMapper->listarMiembros();
+                new Correo_Add($miembros);
             }
         } else {
             $correo= get_data_form();
-            $respuesta = $correoMapper->insertar($correo);
-            new Mensaje($respuesta, 'CORREO_Controller.php');
+            foreach($correo as $input){
+              $correoMapper->insertar($input);
+            }
+            new Mensaje('enviado con exito', 'CORREO_Controller.php');
 
 
         }

@@ -3,9 +3,10 @@
 class Correo_Add
 {
     //VISTA PARA INSERTAR UN NUEVO CORREO
-
-    function __construct()
+      private $miembros ;
+    function __construct($array)
     {
+        $this->miembros = $array;
         $this->render();
     }
 
@@ -40,13 +41,10 @@ class Correo_Add
                             </div>
                             <?php
                             foreach($this->miembros as $m){
-                            echo '<input type="checkbox" name="formDoor[]" />"'.$m["EMP_USER"].'"<br />';
+                            echo '<input type="checkbox" name="correos[]" value="'.$m["EMP_USER"].'" />"'.$m["EMP_USER"].'"<br />';
                           }
 
                             ?>
-
-
-
 
                         </div>
 
@@ -56,7 +54,7 @@ class Correo_Add
                                 <label for="Receptor" class="control-label"><?php echo $strings['Asunto']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error asunto']; ?>" >
+                                <input type="text" class="form-control" name="ASUNTO"  title="<?php echo $strings['error asunto']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Descripcion -->

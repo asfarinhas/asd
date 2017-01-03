@@ -53,12 +53,13 @@ class CorreoMapper {
      }
 }
 
-function insertar(Correo correo){
+function insertar(Correo $correo){
       mail($correo->getReceptor(),$correo->getAsunto(),$correo->getContenido());
       $this->ConectarBD();
       $sql = "INSERT INTO CORREO (ID_CORREO,EMISOR,RECEPTOR,ASUNTO,CONTENIDO,FECHAENVIO) VALUES('".$correo->getId()."','".$correo->getEmisor()."','".$correo->getReceptor()."','".$correo->getAsunto()."','".$correo->getContenido()."','".$correo->getFechaEnv()."');";
+    
       if($resultado = $this->mysqli->query($sql)){
-            return "enviado con exito";
+            return 'enviado con exito';
       }
 
 }

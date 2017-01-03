@@ -33,7 +33,7 @@ class Correo_Default{
 
 
                                 <a href='./CORREO_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Enviar correo']?></a>
-                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['EliminarCorreo']?>'><?php echo $strings['EliminarCorreo']?></a>
+                                
 
 
 
