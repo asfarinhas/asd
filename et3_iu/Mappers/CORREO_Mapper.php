@@ -27,4 +27,39 @@ class CorreoMapper {
     }
   }
 
-  }
+  function buscarCorreos($empleados){
+        $correos = array();
+        $this->conectarBD();
+        foreach($empleados as $m){
+             $sql = "select EMP_EMAIL from EMPLEADOS where EMP_USER = '".$m."'";
+             if($resultado = $this->mysqli->query($sql)){
+                   $correos = $resultado->fetch_array();
+             }
+       }
+       return $correos;
+ }
+
+ function listarMiembros()
+{
+     $this->ConectarBD();
+     $sql = "select * from EMPLEADOS";
+     if($resultado = $this->mysqli->query($sql)){
+       $aux=$resultado->num_rows;
+       while($aux>0){
+         $notificacion[$resultado->num_rows - $aux] = $resultado->fetch_array();
+         $aux = $aux -1;
+       }
+       return $notificacion;
+     }
+}
+
+function insertar(Correo correo){
+      mail($correo->getReceptor(),$correo->getAsunto(),$correo->getContenido());
+      $this->ConectarBD();
+      $sql = "INSERT INTO CORREO (ID_CORREO,EMISOR,RECEPTOR,ASUNTO,CONTENIDO,FECHAENVIO) VALUES('".$correo->getId()."','".$correo->getEmisor()."','".$correo->getReceptor()."','".$correo->getAsunto()."','".$correo->getContenido()."','".$correo->getFechaEnv()."');";
+      if($resultado = $this->mysqli->query($sql)){
+            return "enviado con exito";
+      }
+
+}
+}
