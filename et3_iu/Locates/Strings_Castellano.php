@@ -248,6 +248,7 @@ $strings = array(
 				'ID_CORREO' => 'Id Correo',
 				'CorreosEnviados' => 'Correos enviados',
 				'enviado con exito' => 'Correo enviado con exito',
+				'Ver correo' =>  'Ver correo',
     // SIN TRADUCIR
     "Insertar Tarea" => "Insertar Tarea",
     "Modificar Tarea" => "Modificar Tarea",

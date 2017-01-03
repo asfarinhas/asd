@@ -31,7 +31,7 @@ GRANT ALL PRIVILEGES ON `IU2016`.* TO 'iu2016'@'localhost' IDENTIFIED BY 'iu2016
 --
 
 CREATE TABLE IF NOT EXISTS `CORREO` (
-`ID_CORREO` int(11) NOT NULL,
+`ID_CORREO` varchar(40) NOT NULL,
   `EMISOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `RECEPTOR` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `ASUNTO` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
@@ -128,7 +128,8 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 503),
 ('ADMIN', 504),
 ('ADMIN', 600),
-('ADMIN', 601);
+('ADMIN', 601),
+('ADMIN', 602);
 
 
 
@@ -222,7 +223,9 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (500, 503),
 (500, 504),
 (600, 600),
-(600, 601);
+(600, 601),
+(600, 602);
+
 
 -- --------------------------------------------------------
 
@@ -292,7 +295,8 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (503, '../Views/NOTIFICACION_SHOW_ALL_Vista.php', 'NOTIFICACION SHOW ALL'),
 (504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW'),
 (600, '../Views/CORREO_ADD_Vista.php', 'CORREO ADD'),
-(601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL');
+(601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL'),
+(602, '../Views/CORREO_SHOW_Vista.php', 'CORREO SHOW ');
 
 
 
@@ -495,8 +499,7 @@ ALTER TABLE `TAREA`
 --
 -- AUTO_INCREMENT de la tabla `CORREO`
 --
-ALTER TABLE `CORREO`
-MODIFY `ID_CORREO` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `ENTREGABLE`
 --

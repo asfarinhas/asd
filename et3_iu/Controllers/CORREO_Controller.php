@@ -23,12 +23,7 @@ $correoMapper=new CorreoMapper();
 function get_data_form(){
 //Recoge la información del formulario
     $correoArray = array();
-    if(isset($_REQUEST['ID_CORREO'])){
-        $ID_CORREO = $_REQUEST['ID_CORREO'];
-    }else{
-          $ID_CORREO=str_shuffle("abcdefghijklmnop0123456789".uniqid());
-    }
-
+  
     if(isset($_REQUEST['ASUNTO'])){
         $ASUNTO = $_REQUEST['ASUNTO'];
     }else{
@@ -54,7 +49,7 @@ function get_data_form(){
       $RECEPTOR = $selected;
 
 
-      $correo= new Correo ($ID_CORREO,$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
+      $correo= new Correo (str_shuffle("abcdefghijklmnop0123456789".uniqid()),$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
       array_push($correoArray,$correo);
     }
 
