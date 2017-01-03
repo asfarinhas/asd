@@ -72,6 +72,7 @@ class CorreoMapper {
 }
 
 function insertar(Correo $correo){
+
       //Crear una instancia de PHPMailer
                 $mail = new PHPMailer();
                 //Definir que vamos a usar SMTP
@@ -87,23 +88,24 @@ function insertar(Correo $correo){
                 //Tenemos que usar gmail autenticados, así que esto a TRUE
                 $mail->SMTPAuth   = true;
                 //Definimos la cuenta que vamos a usar. Dirección completa de la misma
-                $mail->Username   = "moovettIU@gmail.com";
+                $mail->Username   = "iaquintas@esei.uvigo.es";
                 //Introducimos nuestra contraseña de gmail
-                $mail->Password   = "interfaz";
+                $mail->Password   = "";
                 //Definimos el remitente (dirección y nombre)
-                $mail->SetFrom('moovettIU@gmail.com', 'MOOVETT');
+                $mail->SetFrom('iaquintas@esei.uvigo.es', 'iaquintas@esei.uvigo.es');
                 //Definimos el tema del email
                 $mail->Subject = $correo->getAsunto();
                 //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
                 $mail->MsgHTML(utf8_decode($correo->getContenido()));
                 //Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
                 $mail->AltBody = 'This is a plain-text message body';
+                $mail->addAddress($this->buscarCorreo($correo->getReceptor())[0]);
 
       //envío el mensaje, comprobando si se envió correctamente
-      if(!$mail­>Send()) {
-      echo "Error al enviar el mensaje: " . $mail­>ErrorInfo;
+      if($mail->Send()) {
+      echo "Mensaje Enviado!!";
       } else {
-      echo "Mensaje enviado!!";
+        echo "Error al enviar el mensaje: " . $mail->ErrorInfo;
       }
 
       $this->ConectarBD();

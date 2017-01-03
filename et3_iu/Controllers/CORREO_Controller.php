@@ -4,7 +4,6 @@ include '../Locates/Strings_Castellano.php';
 include '../Functions/LibraryFunctions.php';
 include '../Mappers/CORREO_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
-include '../PHPMailer/class.phpmailer.php';
 
 
 
