@@ -33,7 +33,7 @@ class Correo_Default{
 
 
                                 <a href='./CORREO_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Enviar correo']?></a>
-                                
+
 
 
 
@@ -52,19 +52,17 @@ class Correo_Default{
                             if($this->datos != NULL){
 
                                 foreach($this->datos as $correo){
-                                  echo "<tr> <td> " . $notificacion['ID_CORREO']."</td>";
-                                  echo "<td> " . $notificacion['RECEPTOR']."</td>";
-                                  echo "<td> " . $notificacion['FECHAENVIO']."</td>";
+                                  echo "<tr> <td> " . $correo['ID_CORREO']."</td>";
+                                  echo "<td> " . $correo['RECEPTOR']."</td>";
+                                  echo "<td> " . $correo['FECHAENVIO']."</td>";
 
         ?>
 
 
 
+                            
                             <td>
-                                <a href='CORREO_Controller.php?ID_NOTIFICACION=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='CORREO_Controller.php?ID_NOTIFICACION=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                <a href='CORREO_Controller.php?ID_CORREO=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>
 
                             </tr>
