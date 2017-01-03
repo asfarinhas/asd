@@ -29,6 +29,8 @@ class TAREA_Mapper{
      * @param $idMiembro
      * Devuelve el array con toda la información de las tareas asignadas a un miembro
      */
+    
+    //PROBAR PRIMERO ANTES DE CAMBIAR
     function listarTareasMiembro($idMiembro){
         $this->conectarBD();
 
@@ -104,7 +106,7 @@ class TAREA_Mapper{
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos';
             } else {
-                $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
+                $resultado->fetch_array(MYSQLI_ASSOC);
 
                 $tareas_model = array();
 
@@ -136,30 +138,31 @@ class TAREA_Mapper{
         function listarTareasPendientesMiembro($idMiembro)
         {
             $this->conectarBD();
-            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND  ESTADO < 100 ORDER BY FECHAIP";
+            $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro->getUsuario() . "' AND  ESTADO = "pendiente" ORDER BY FECHAIP";
 
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos';
             } else {
-                $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
+                 $tareas_model = array();
+                 $miembro_mapper = new MiembroMapper();
 
-                $tareas_model = array();
+                while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-                foreach ($tareas_bd as $row) {
+                    $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
 
-                    $tareaPadre = new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"], $row["tarea_padre"],
-                        $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
-                        $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $row["miembro"],
-                        $row["estado_tarea"], $row["comentario"]);
-
-                    $miembro = new Miembro($row["DNI"], $row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
-                        $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
-
-
-                    array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
-                        $tareaPadre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                    if($tareas_bd["PADRE"] != 0){
+                        $padre = $this->buscarTareaId($tareas_bd["PADRE"]);
+                    }else{
+                        $padre = null;
+                    }
+                
+                    //CAMBIAR TODO A MAYUSCULAS
+                    $aux= array($row["id_tarea"] => new Tarea($row["id_tarea"],$row["nombre"], $row["descripcion"],
+                        $padre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
                         $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
                         $row["estado_tarea"], $row["comentario"]));
+
+                    array_merge($tareas_model, $aux);
                 }
                 return $tareas_model;
             }
@@ -273,18 +276,17 @@ class TAREA_Mapper{
             $resultado = $this->mysqli->query($sql);
 
             if ($resultado->num_rows != 0) {
-                $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
-
+                
                 $tareas_model = array();
                 $miembro_mapper = new MiembroMapper();
 
-                foreach ($tareas_bd as $row) {
+                while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
                     $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
 
-
-                    $aux= array($row["id_tarea"] => new Tarea($row["id_tarea"],$row["nombre"], $row["descripcion"],
-                        new Tarea($row["PADRE"]), $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
+                    //CAMBIAR TODO A MAYUSCULAS, TIENE QUE SER COMO EN LA BD
+                    $aux= array($row["ID_TAREA"] => new Tarea($row["ID_TAREA"],$row["NOMBRE"], $row["DESCRIPCION"],
+                        new Tarea($row["PADRE"]), $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["FECHA"],
                         $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
                         $row["estado_tarea"], $row["comentario"]));
 
@@ -313,12 +315,11 @@ class TAREA_Mapper{
         $resultado = $this->mysqli->query($sql);
 
         if ($resultado->num_rows != 0) {
-            $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
-
+            
             $tareas_model = array();
             $miembro_mapper = new MiembroMapper();
 
-            foreach ($tareas_bd as $row) {
+             while ($row = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
                 $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
 
@@ -327,9 +328,8 @@ class TAREA_Mapper{
                 }else{
                     $padre = null;
                 }
-
-
-
+                
+                //CAMBIAR TODO A MAYUSCULAS
                 $aux= array($row["id_tarea"] => new Tarea($row["id_tarea"],$row["nombre"], $row["descripcion"],
                     $padre, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
                     $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro,
