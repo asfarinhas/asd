@@ -129,20 +129,7 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 504),
 ('ADMIN', 600),
 ('ADMIN', 601),
-('ADMIN', 602),
-('ADMIN', 700),
-('ADMIN', 701),
-('ADMIN', 702),
-('ADMIN', 703),
-('ADMIN', 704),
-('ADMIN', 710),
-('ADMIN', 711),
-('ADMIN', 712),
-('ADMIN', 720),
-('ADMIN', 721),
-('ADMIN', 730),
-('ADMIN', 731);
-
+('ADMIN', 602);
 -- --------------------------------------------------------
 
 --
@@ -237,19 +224,7 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (500, 504),
 (600, 600),
 (600, 601),
-(600, 602),
-(700, 700),
-(700, 701),
-(700, 702),
-(700, 703),
-(700, 704),
-(701, 710),
-(701, 711),
-(701, 712),
-(701, 720),
-(701, 721),
-(702, 730),
-(702, 731);
+(600, 602);
 
 
 -- --------------------------------------------------------
@@ -321,19 +296,7 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW'),
 (600, '../Views/CORREO_ADD_Vista.php', 'CORREO ADD'),
 (601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL'),
-(602, '../Views/CORREO_SHOW_Vista.php', 'CORREO SHOW '),
-(700, '../Views/MIEMBRO_ADD_Vista.php', 'MIEMBRO ADD'),
-(701, '../Views/MIEMBRO_SHOW_Vista.php', 'MIEMBRO SHOW'),
-(702, '../Views/MIEMBRO_DELETE_Vista.php', 'MIEMBRO DELETE'),
-(703, '../Views/MIEMBRO_EDIT_Vista.php', 'MIEMBRO EDIT'),
-(704, '../Views/MIEMBRO_TAREAS_SHOW_Vista.php', 'MIEMBRO TAREAS SHOW'),
-(710, '../Views/TAREA_ADD_Vista.php', 'TAREA ADD'),
-(711, '../Views/TAREA_EDIT_Vista.php', 'TAREA EDIT'),
-(712, '../Views/TAREA_SHOWALL_Vista.php', 'TAREA SHOW ALL'),
-(720, '../Views/SUBTAREA_ADD_Vista.php', 'SUBTAREA ADD'),
-(721, '../Views/SUBTAREA_EDIT_Vista.php', 'SUBTAREA EDIT'),
-(730, '../Views/ENTREGABLE_ADD_Vista.php', 'ENTREGABLE ADD'),
-(731, '../Views/ENTREGABLE_EDIT_Vista.php', 'ENTREGABLE EDIT');
+(602, '../Views/CORREO_SHOW_Vista.php', 'CORREO SHOW ');
 
 -- --------------------------------------------------------
 
@@ -425,10 +388,7 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 (1, 500),
 (2, 500),
 (1, 600),
-(2, 600),
-(1, 700),
-(1, 701),
-(1, 702);
+(2, 600);
 
 -- --------------------------------------------------------
 
