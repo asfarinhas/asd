@@ -61,6 +61,44 @@ function get_data_form(){
     $accion = $_REQUEST['accion'];
     return $correoArray;
 }
+function gen_data_form(){
+//Recoge la información del formulario
+if(isset($_REQUEST['ID_CORREO'])){
+   $ID_CORREO = $_REQUEST['ID_CORREO'];
+}else{
+     $ID_CORREO=str_shuffle("abcdefghijklmnop0123456789".uniqid());
+}
+
+if(isset($_REQUEST['ASUNTO'])){
+   $ASUNTO = $_REQUEST['ASUNTO'];
+}else{
+     $ASUNTO=NULL;
+}
+
+$EMISOR=$_SESSION['login'];
+
+if(isset($_REQUEST['FECHAENVIO'])){
+   $FECHAENVIO=$_REQUEST['FECHAENVIO'];
+}else{
+   $FECHAENVIO= date('Y-m-d H:i:s');
+}
+
+if(isset($_REQUEST['CONTENIDO'])){
+   $CONTENIDO=$_REQUEST['CONTENIDO'];
+}else{
+   $CONTENIDO = null;
+}
+if(isset($_REQUEST['RECEPTOR'])){
+   $RECEPTOR=$_REQUEST['RECEPTOR'];
+}else{
+   $RECEPTOR = null;
+}
+
+
+$accion = $_REQUEST['accion'];
+$correo= new Correo ($ID_CORREO,$EMISOR,$RECEPTOR,$ASUNTO,$CONTENIDO,$FECHAENVIO);
+return $correo;
+}
 if (!isset($_REQUEST['accion'])){
     $_REQUEST['accion'] = '';
 }
@@ -88,7 +126,7 @@ Switch ($_REQUEST['accion']) {
           if (!isset($_REQUEST['ID_CORREO'])) {
               new Correo_Show('','','');
           } else {
-              $correo = get_data_form();
+              $correo = gen_data_form();
               $datos = $correoMapper->buscarId($_REQUEST['ID_CORREO']);
               if (!tienePermisos('Correo_Show')) {
                   new Mensaje('No tienes los permisos necesarios', 'CORREO_Controller.php');
