@@ -34,7 +34,7 @@
 
             <ul>
               <?php $noti=new NotificacionMapper(); ?>
-                <li><a href="../Controllers/NOTIFICACION_Controller.php"><?php echo 'Notificaciones Pendientes:'.count($noti->listarRecibidas()); ?></a></li>
+                <li><a href="../Controllers/NOTIFICACION_Controller.php"><?php echo 'Notificaciones Pendientes:'.count($noti->buscarNoLeidas()); ?></a></li>
                 <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                 <li> <?php echo $strings['Usuario'].": ". $_SESSION['login']; ?> </li>
 
