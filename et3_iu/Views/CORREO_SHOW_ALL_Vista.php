@@ -32,8 +32,8 @@ class Correo_Default{
                                 </ul>
 
 
-                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['ConsultarRecibidas']?>'><?php echo $strings['Enviar correo']?></a>
-                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['EliminarCorreo']?></a>
+                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Enviar correo']?></a>
+                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['EliminarCorreo']?>'><?php echo $strings['EliminarCorreo']?></a>
 
 
 

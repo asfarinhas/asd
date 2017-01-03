@@ -38,9 +38,16 @@ class Correo_Add
                             <div class="col-sm-4">
                                 <label for="Receptor" class="control-label"><?php echo $strings['RECEPTOR']; ?>:</label>
                             </div>
-                            <div class="col-sm-4">
-                                <input type="text" class="form-control" name="RECEPTOR"  title="<?php echo $strings['error receptor']; ?>" >
-                            </div>
+                            <?php
+                            foreach($this->miembros as $m){
+                            echo '<input type="checkbox" name="formDoor[]" />"'.$m["EMP_USER"].'"<br />';
+                          }
+
+                            ?>
+
+
+
+
                         </div>
 
                         <!-- Campo Asunto -->
