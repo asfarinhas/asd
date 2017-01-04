@@ -222,7 +222,7 @@ switch ($_REQUEST['accion']) {
             }
         }
         break;
-
+//Insertar un mimebro a un proyecto
     case $strings['Insertar Miembro']:
         if(!isset($_REQUEST['ID_MIEMBRO'])){
             $miembros =  $proyectoMapper->consultarMiembros();
@@ -274,12 +274,12 @@ switch ($_REQUEST['accion']) {
             if (!tienePermisos('ProyectoMiembro_Default')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/DEFAULT_Vista.php');
             } else {
-                new ProyectoMiembro_Default($miembros,$_REQUEST['ID_PROYECTO'], '../Views/DEFAULT_Vista.php');
+                new ProyectoMiembro_Default($miembros,$_REQUEST['ID_PROYECTO'], 'PROYECTO_Controller.php');
             }
         break;
 
 
-
+//Eliminar miembros de un proyecto
     case $strings['Eliminar Miembros']:
 
 
@@ -303,7 +303,7 @@ switch ($_REQUEST['accion']) {
 
 
 
-    case $strings['Consultar Miembro']: //Consulta de proyecto
+    case $strings['Consultar Miembro']: //Consulta de miembros del proyecto
         if (!isset($_REQUEST['BUSCAR'])) {
             new ProyectoMiembro_Show('PROYECTO_Controller.php');
         } else {
