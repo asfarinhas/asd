@@ -5,12 +5,16 @@
  * Date: 26/12/2016
  * Time: 17:05
  */
-include '../Models/MIEMBRO_Model.php';
+include '../Mappers/TAREA_Mapper.php';
+//include '../Models/TAREA_Model.php';
+//include '../Models/MIEMBRO_Model.php';
+include '../Locates/Strings_Castellano.php';
 //include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 include '../Mappers/MIEMBRO_Mapper.php';
 include '../Views/MIEMBRO_EDIT_View.php';
 include '../Views/MIEMBRO_SHOW_Vista.php';
 include '../Views/MIEMBRO_DELETE_Vista.php';
+include '../Views/MIEMBRO_TAREAS_SHOW_Vista.php';
 include '../Views/PROYECTO_MIEMBRO_DELETE_Vista.php';
 include '../Views/LOGIN_Vista.php';
 include '../Functions/LibraryFunctions.php';
@@ -96,8 +100,8 @@ function delete_miembro(){
     $conectado = $_SESSION['login'];
     $miembroMapper = new MiembroMapper();
     $miembroMapper -> desactivarMiembro($conectado);
-
-    new Login();
+    //session_destroy();
+    header('Location:../Functions/Desconectar.php');
 }
 
 function consultar_miembro(){
@@ -114,15 +118,32 @@ function showTareasMiembro(){
 
 }
 
-function vistaBorrar(){
+function borrar_miembro(){
     $miembroMapper = new MiembroMapper();
     $conectado = $_SESSION['login'];
 
     $usuario = $miembroMapper->buscarMiembroPorUsuario($conectado);
 
-    new MIEMBRO_BAJA_Vista($usuario);
+    new MIEMBRO_DELETE_Vista($usuario);
 }
 
+function verTareas(){
+    $tareaMapper = new Tarea_Mapper();
+    $tareas = $tareaMapper ->listarTareasPadre();
+    $vistaTareas = new MIEMBRO_TAREAS_SHOW_Vista($tareas);
+    $vistaTareas -> mostrarTareasPadre();
+}
+
+function verSubtareas(){
+    $idtarea = $_REQUEST['ID_TAREA'];
+    $conectado = $_SESSION['login'];
+    $tareaMapper = new Tarea_Mapper();
+
+    $subtareas = $tareaMapper -> listarSubtareasPadreMiembro($idtarea, $conectado);
+    $vistaTareas = new MIEMBRO_TAREAS_SHOW_Vista($subtareas);
+    $vistaTareas -> mostrarTareasPadre();
+
+}
 
 
 if (!isset($_REQUEST['accion'])){
@@ -162,7 +183,7 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
         edit_miembro();
         break;
 
-    case "delete":
+    case $strings['Borrar']:
         delete_miembro(); //eliminar perfil
         break;
 
@@ -170,8 +191,15 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
         showTareasMiembro();
         break;
 
-    case "borrar":
-        vistaBorrar();
+    case "confirmDelete":
+        borrar_miembro();
+        break;
+
+    case "verTareas":
+        verTareas();
+        break;
+    case "verSubtareas":
+        verSubtareas();
         break;
     default:
         consultar_miembro();

@@ -6,15 +6,16 @@
  * Time: 18:51
  */
 
-    include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+    //include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
 
-    class MIEMBRO_BAJA_Vista{
+    class MIEMBRO_DELETE_Vista{
 
     private $miembro;
 
-    public function __construct(Miembro $miembro)
+    public function __construct(Miembro_Model $miembro)
     {
-        $this -> $miembro = $miembro;
+        $this -> miembro = $miembro;
+        $this -> render();
     }
 
     public function render(){
@@ -26,13 +27,12 @@
              <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
         </head>
         <body>
-
             <p>
-                <h1>
-                    <span class="form-title">
-                        <?php /* echo $strings['Ver Usuario']; */?> <br>
+                <h1><span class="form-title">
+                    ELIMINAR PERFIL
                  </h1>
-             </p>
+            </p>
+
                 <h2>
 
                     <form action="MIEMBRO_Controller.php" method="post">
@@ -71,12 +71,13 @@
                             </div>
                         </div>
 
+                        <input type="hidden" name="accion" value="borrar">
+                        <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
+                        <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
                     </ul>
 
 
-                        <input type="hidden" name="accion" value="delete">
-                        <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
-                        <a href="#"> <?php echo $strings['Volver']; ?> </a>
+
                     </form>
 
                 </h2>
