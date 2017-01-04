@@ -74,39 +74,45 @@ class CorreoMapper {
 function insertar(Correo $correo){
 
       //Crear una instancia de PHPMailer
-                $mail = new PHPMailer();
-                //Definir que vamos a usar SMTP
-                $mail->IsSMTP();
-                //Esto es para activar el modo depuración en producción
-                $mail->SMTPDebug  = 0;
-                //Ahora definimos gmail como servidor que aloja nuestro SMTP
-                $mail->Host       = 'smtp.gmail.com';
-                //El puerto será el 587 ya que usamos encriptación TLS
-                $mail->Port       = 587;
-                //Definmos la seguridad como TLS
-                $mail->SMTPSecure = 'tls';
-                //Tenemos que usar gmail autenticados, así que esto a TRUE
-                $mail->SMTPAuth   = true;
-                //Definimos la cuenta que vamos a usar. Dirección completa de la misma
-                $mail->Username   = "iaquintas@esei.uvigo.es";
-                //Introducimos nuestra contraseña de gmail
-                $mail->Password   = "";
-                //Definimos el remitente (dirección y nombre)
-                $mail->SetFrom('iaquintas@esei.uvigo.es', 'iaquintas@esei.uvigo.es');
-                //Definimos el tema del email
-                $mail->Subject = $correo->getAsunto();
-                //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
-                $mail->MsgHTML(utf8_decode($correo->getContenido()));
-                //Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
-                $mail->AltBody = 'This is a plain-text message body';
-                $mail->addAddress($this->buscarCorreo($correo->getReceptor())[0]);
+      $mail = new PHPMailer();
+      //Definir que vamos a usar SMTP
+      $mail->IsSMTP();
+      //Esto es para activar el modo depuración en producción
+      $mail->SMTPDebug  = 0;
+       //Ahora definimos gmail como servidor que aloja nuestro SMTP
+      $mail->Host       = 'smtp.gmail.com';
+      //El puerto será el 587 ya que usamos encriptación TLS
+       $mail->Port       = 587;
+      //Definmos la seguridad como TLS
+       $mail->SMTPSecure = 'tls';
+       //Tenemos que usar gmail autenticados, así que esto a TRUE
+      $mail->SMTPAuth   = true;
+       //Definimos la cuenta que vamos a usar. Dirección completa de la misma
+       $mail->Username   = "moovettIU@gmail.com";
+      //Introducimos nuestra contraseña de gmail
+      $mail->Password   = "interfaz";
+      //Definimos el remitente (dirección y nombre)
+      $mail->SetFrom('moovettIU@gmail.com', 'MOOVETT');
+      //Definimos el tema del email
+      $mail->Subject = $correo->getAsunto();
+      //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
+      $mail->MsgHTML(utf8_decode($correo->getContenido()));
+      //Y por si nos bloquean el contenido HTML (algunos correos lo hacen por seguridad) una versión alternativa en texto plano (también será válida para lectores de pantalla)
+      $mail->AltBody = 'This is a plain-text message body';
 
-      //envío el mensaje, comprobando si se envió correctamente
-      if($mail->Send()) {
-      echo "Mensaje Enviado!!";
-      } else {
-        echo "Error al enviar el mensaje: " . $mail->ErrorInfo;
+
+       //indico destinatario
+       $mail->addAddress($this->buscarCorreo($correo->getReceptor())[0]);
+
+
+      //Enviamos el correo
+      if(!$mail->Send()) {
+
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
       }
+
+
 
       $this->ConectarBD();
       $sql = "INSERT INTO CORREO (ID_CORREO,EMISOR,RECEPTOR,ASUNTO,CONTENIDO,FECHAENVIO) VALUES('".$correo->getId()."','".$correo->getEmisor()."','".$correo->getReceptor()."','".$correo->getAsunto()."','".$correo->getContenido()."','".$correo->getFechaEnv()."');";
