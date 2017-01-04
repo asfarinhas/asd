@@ -52,7 +52,7 @@ function soloTexto(campo){
     swal(
     {
         title : "Error!",
-        text : "Nombre inválido: ",
+        text : campo.name + " inválido: ",
         type : "error",
         confirmButtonText : "Ok"
     }
@@ -115,7 +115,7 @@ function validarUsuario(usuario)
     var respuesta = true;
     var cadena = /^[a-zA-Z0-9\_\-\.]{3,15}/;
 
-    if (cadena.test(usuario.value) == false || usuario.value.length > 15)
+    if (cadena.test(usuario.value) == false || usuario.value.length > 15 || usuario.value.length < 3)
     {
         swal(
             {
@@ -133,10 +133,13 @@ function validarUsuario(usuario)
 
 
 //Devuelve la desviación de las fechas de inicio y entrega
-function desviacionFechas(fechaReal, fechaPlan){
+function desviacionFechas(){
 
-    var aFecha1 = f1.split('/');
-    var aFecha2 = f2.split('/');
+    var fechaReal = document.getElementById("").value;
+    var fechaPlan = document.getElementById("").value;
+
+    var aFecha1 = fechaReal.split('/');
+    var aFecha2 = fechaPlan.split('/');
     var fFecha1 = Date.UTC(aFecha1[0],aFecha1[1]-1,aFecha1[2]);
     var fFecha2 = Date.UTC(aFecha2[0],aFecha2[1]-1,aFecha2[2]);
     var dif = fFecha2 - fFecha1;
@@ -145,7 +148,34 @@ function desviacionFechas(fechaReal, fechaPlan){
 }
 
 
-function desviacionHoras(horasR, horasP){
+function desviacionHoras(){
 
+    inicio = document.getElementById("HORASP").value;
+    fin = document.getElementById("HORASR").value;
+
+    inicioMinutos = parseInt(inicio.substr(3,2));
+    inicioHoras = parseInt(inicio.substr(0,2));
+
+    finMinutos = parseInt(fin.substr(3,2));
+    finHoras = parseInt(fin.substr(0,2));
+
+    transcurridoMinutos = finMinutos - inicioMinutos;
+    transcurridoHoras = finHoras - inicioHoras;
+
+    if (transcurridoMinutos < 0) {
+        transcurridoHoras--;
+        transcurridoMinutos = 60 + transcurridoMinutos;
+    }
+
+    horas = transcurridoHoras.toString();
+    minutos = transcurridoMinutos.toString();
+
+    if (horas.length < 2) {
+        horas = "0"+horas;
+    }
+
+    if (horas.length < 2) {
+        horas = "0"+horas;
+    }
 
 }
