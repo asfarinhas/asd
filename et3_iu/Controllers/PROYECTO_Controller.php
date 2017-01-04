@@ -268,7 +268,7 @@ switch ($_REQUEST['accion']) {
         }
         break;
 
-
+    //Listar mimembros de un proyecto
     case  $strings['Gestionar Miembros']:
             $miembros = $proyectoMapper->listarMiembrosProyecto($_REQUEST['ID_PROYECTO']);
             if (!tienePermisos('ProyectoMiembro_Default')) {

@@ -92,21 +92,23 @@ class ProyectoMapper {
     public function listarMiembrosProyecto($id_proyecto)
     {
          $this ->conectarBD();
-        $sql = "SELECT EMP_USER FROM PROYECTO_MIEMBRO where ID_PROYECTO = '". $id_proyecto . "';";
+        $sql = "SELECT EMP_USER FROM PROYECTO_MIEMBRO where ID_PROYECTO = ". $id_proyecto . ";";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return false;
         } else {
-            $miembros = $resultado->fetch_array(MYSQLI_ASSOC);
+
+            $miembros_proyecto = array();
+
+            while($miembros = $resultado->fetch_array(MYSQLI_ASSOC)){
 
             //sacamos la info de cada miembro
-            $miembros_proyecto = array();
+
 
             //$miembroMapper = new MiembroMapper();
 
-            foreach($miembros as $row){
                // $infoMiembro = $miembroMapper->buscarMiembroPorUsuario($row['EMP_USER']);
-                $infoMiembro = $this->buscarMiembroPorUsuario($row);
+                $infoMiembro = $this->buscarMiembroPorUsuario($miembros['EMP_USER']);
                 array_push($miembros_proyecto, $infoMiembro);
             }
 
