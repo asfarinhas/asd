@@ -3,6 +3,9 @@
 require_once (__DIR__ . "/../Models/PROYECTO_Model.php");
 require_once (__DIR__ . "/../Models/MIEMBRO_Model.php");
 require_once(__DIR__ . "/../Models/TAREA_Model.php");
+require_once(__DIR__ . "/../Mappers/PROYECTO_Mapper.php");
+
+
 /**
  * Created by PhpStorm.
  * User: RaquelMarcos
@@ -65,31 +68,38 @@ class TAREA_Mapper{
 
 
     /**
+     * Usado en la vista miembro_tareas_show_Vista
      * @param Miembro_Model $idMiembro
      * @return array|string; devuelve un array con las instancias de las tareas padre del miembro pasado por parámetro o un string error
      */
     function listarTareasPadreMiembro($idMiembro){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '" . $idMiembro . "' AND PADRE = null ORDER BY FECHAIP";
+        $sql = "SELECT * FROM TAREA WHERE ID_MIEMBRO = '$idMiembro' AND PADRE IS NULL ";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
         } else {
-            $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
 
             $tareas_model = array();
+            $miembro_mapper = new MiembroMapper();
+            $proyecto_mapper = new ProyectoMapper();
+            while($row = $resultado->fetch_array(MYSQLI_ASSOC) ) {
 
-            foreach ($tareas_bd as $row) {
+                //miembro de la tarea
+                $miembro = $miembro_mapper->buscarMiembroPorUsuario($row["ID_MIEMBRO"]);
+                //Devuelve un fetch_array
+                $proy = $proyecto_mapper->RellenaDatos($row['ID_PROYECTO']);
+                //Se crea el miembro director
+                $director = $miembro_mapper->buscarMiembroPorUsuario($proy['DIRECTOR']);
+                //Se crea el proyecto
+                $proyecto = new Proyecto($proy['ID_PROYECTO'], $proy['NOMBRE'], $proy['DESCRIPCION'], $proy['FECHAI'], $proy['FECHAIP'],
+                                        $proy['FECHAE'], $proy['FECHAFP'], $proy['NUMEROMIEMBROS'], $proy['NUMEROHORAS'], $director, $proy['BORRADO']);
 
-                $miembro = new Miembro_Model($row["NOMBRE"], $row["APELLIDOS"], $row["APELLIDOS"],
-                    $row["USUARIO"], $row["CONTRASEÑA"], $row["CORREO"]);
-
-
-                array_push($tareas_model, new Tarea($row["id_tarea"], $row["nombre"], $row["descripcion"],
-                    null, $row["fecha_inicio_plan"], $row["fecha_entrega_plan"], $row["fecha_inicio_real"],
-                    $row["fecha_entrega_real"], $row["horas_plan"], $row["horas_real"], $miembro, $row["estado_tarea"],
-                    $row["comentario"]));
+                array_push($tareas_model, new Tarea($row["ID_TAREA"], $row["NOMBRE"], $row["DESCRIPCION"],
+                    null, $row["FECHAIP"], $row["FECHAEP"], $row["FECHAIR"],
+                    $row["FECHAER"], $row["HORASP"], $row["HORASR"], $miembro, $row["ESTADO"],
+                    $row["COMENTARIO"], $proyecto));
             }
             return $tareas_model;
         }
