@@ -326,8 +326,8 @@ CREATE TABLE IF NOT EXISTS `PROYECTO` (
 --
 
 INSERT INTO `PROYECTO` (`ID_PROYECTO`, `NOMBRE`, `DESCRIPCION`, `FECHAI`, `FECHAIP`, `FECHAE`, `FECHAFP`, `NUMEROMIEMBROS`, `NUMEROHORAS`, `DIRECTOR`, `BORRADO`) VALUES
-(1, 'Prueba', 'proyecto de prueba', '2016-11-20', '2016-11-26', '2016-12-20', '2016-11-29', 5, 7, 0, 0),
-(2, 'Prueba2', 'proyecto de prueba222', '2016-10-20', '2016-09-13', '2017-12-20', '2017-12-29', 6, 6, 0, 0);
+(1, 'Prueba', 'proyecto de prueba', '2016-11-20', '2016-11-26', '2016-12-20', '2016-11-29', 5, 7, 'monit', 0),
+(2, 'Prueba2', 'proyecto de prueba222', '2016-10-20', '2016-09-13', '2017-12-20', '2017-12-29', 6, 6, 'monit', 0);
 
 
 -- --------------------------------------------------------
