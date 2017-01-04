@@ -71,7 +71,7 @@ class Correo_Add
 
 
 
-                        <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Insertar'] ?>
+                        <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Enviar'] ?>
                         <ul>
 
 

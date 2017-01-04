@@ -99,7 +99,7 @@ if (!isset($_REQUEST['accion'])){
 }
 
 Switch ($_REQUEST['accion']) {
-    case $strings['Insertar']: //Enviar un correo
+    case $strings['Enviar']: //Enviar un correo
         if (!isset($_REQUEST['correos'])) {
             if (!tienePermisos('Correo_add')) {
                 new Mensaje('No tienes los permisos necesarios', 'CORREO_Controller.php');

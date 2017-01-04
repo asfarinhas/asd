@@ -219,7 +219,7 @@ $strings = array(
 			'Ver' => 'Ver',
 			'Buscar' => 'Buscar',
 			'Consultar notificacion' => 'Consultar notificacion',
-		    'Insertar Notificacion' => 'Insertar Notificacion',
+		    'Insertar Notificacion' => 'Enviar Notificacion',
 				'Crear Notificacion' => 'Crear Notificacion',
 			'Borrar Notificacion' => 'Borrar Notificacion',
 		    'La notificacion ha sido borrada correctamente'=>'La notificacion ha sido borrada correctamente',
@@ -238,6 +238,7 @@ $strings = array(
 				'Enviadas' => 'Notificaciones Enviadas',
 				'buscar notificacion' => 'Buscar notificación',
 				'Notificacionespendientes' => 'Notificaciones Pendientes:',
+				'Enviar' => 'Enviar',
 
 
 				'Enviar correo' => 'Enviar Correo',

@@ -59,7 +59,7 @@ if (!isset($_REQUEST['accion'])){
 }
 
 Switch ($_REQUEST['accion']) {
-    case $strings['Insertar']: //Crear una nueva notificacion
+    case $strings['Enviar']: //Crear una nueva notificacion
         if (!isset($_REQUEST['RECEPTOR'])) {
             if (!tienePermisos('Notificacion_add')) {
                 new Mensaje('No tienes los permisos necesarios', 'NOTIFICACION_Controller.php');

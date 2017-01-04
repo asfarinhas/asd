@@ -32,7 +32,7 @@ class Correo_Default{
                                 </ul>
 
 
-                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Enviar correo']?></a>
+                                <a href='./CORREO_Controller.php?accion=<?php echo $strings['Enviar']?>'><?php echo $strings['Enviar correo']?></a>
 
 
 
@@ -60,7 +60,7 @@ class Correo_Default{
 
 
 
-                            
+
                             <td>
                                 <a href='CORREO_Controller.php?ID_CORREO=<?php echo $correo['ID_CORREO'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                             </td>

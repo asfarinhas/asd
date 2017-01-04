@@ -23,7 +23,7 @@ class Notificacion_Add
                 <?php
                 include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
                 ?>
-          </h2> 
+          </h2>
             </p>
             <p>
             <h1>
@@ -63,7 +63,7 @@ class Notificacion_Add
 
 
 
-                        <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Insertar'] ?>
+                        <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Enviar'] ?>
                         <ul>
 
 
