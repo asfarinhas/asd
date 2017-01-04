@@ -88,11 +88,11 @@ function insertar(Correo $correo){
        //Tenemos que usar gmail autenticados, así que esto a TRUE
       $mail->SMTPAuth   = true;
        //Definimos la cuenta que vamos a usar. Dirección completa de la misma
-       $mail->Username   = "moovettIU@gmail.com";
+       $mail->Username   = "gestiondeproyectosiu@gmail.com";
       //Introducimos nuestra contraseña de gmail
-      $mail->Password   = "interfaz";
+      $mail->Password   = "proyectosiu";
       //Definimos el remitente (dirección y nombre)
-      $mail->SetFrom('moovettIU@gmail.com', 'MOOVETT');
+      $mail->SetFrom('gestiondeproyectosiu@gmail.com', 'Proyectos');
       //Definimos el tema del email
       $mail->Subject = $correo->getAsunto();
       //Para enviar un correo formateado en HTML lo cargamos con la siguiente función. Si no, puedes meterle directamente una cadena de texto.
