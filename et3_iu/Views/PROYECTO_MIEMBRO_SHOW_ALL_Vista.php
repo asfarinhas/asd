@@ -56,7 +56,7 @@ class ProyectoMiembro_Default{
                                 ?>
 
                                 <td>
-                                    <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyectoId . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                                    <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario(). '&accion='.$strings['Eliminar Miembros']; ?>'><?php echo $strings['Borrar'] ?></a>
                                 </td>
                                 <td>
                                     <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
@@ -67,8 +67,8 @@ class ProyectoMiembro_Default{
                             ?>
                         </table>
 
-                </div>
-                <h3>
+                    </div>
+                    <h3>
         <p>
             <?php
             echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
