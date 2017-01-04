@@ -179,3 +179,69 @@ function desviacionHoras(){
     }
 
 }
+
+
+function validarFecha(fecha)
+{
+    var respuesta = true;
+    //aaaa/mm/ddd
+    var fecha1 = /(([1|2][0-9][0-9][0-9])(\/|-)(0[0-9]|1[12])(\/|-)(0[1-9]|[12][0-9]|3[01])){0,1}/;
+
+    if (fecha1.test(fecha.value) == false)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + fecha.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+    return respuesta;
+}
+
+//Ya sean horas o sólo números
+function evitarNumerosNegativos(campo){
+    var respuesta = true;
+
+    var exp = / (^-\d*|-*\d*:-\d*)/;
+
+    if(exp.test(campo.value) == true){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + campo.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    return respuesta;
+
+}
+
+function evitarHorasCero (campo) {
+    var respuesta = true;
+
+    var exp = / (00+:(00)+) /;
+
+    if(exp.test(campo.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + campo.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+
+    return respuesta;
+}
