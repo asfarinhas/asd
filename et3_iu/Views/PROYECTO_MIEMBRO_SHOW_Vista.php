@@ -71,6 +71,9 @@ class ProyectoMiembro_Show
                     <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
 
+                    <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
+
+
                     <input type='submit' name='accion' value='<?php echo $strings['Consultar Miembro']; ?>'>
 
             </form>

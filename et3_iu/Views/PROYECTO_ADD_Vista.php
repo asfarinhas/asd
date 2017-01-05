@@ -1,5 +1,6 @@
 <?php
 
+
 class Proyecto_Add
 {
     //VISTA PARA INSERTAR PAGINAS
@@ -57,7 +58,7 @@ class Proyecto_Add
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAI"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input class="tcal"  placeholder="<?php $strings['FECHAI'];?>" type="date" name="PROYECTO_FECHAI"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->

@@ -197,6 +197,15 @@ class Proyecto_Show{
                             <div class="col-sm-4">
                                 <input type="text" readonly value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
+                        <!-- Campo Descripción -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                 <textarea name="PROYECTO_DESCRIPCION" readonly rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
+                        </div>
+
 
 
 

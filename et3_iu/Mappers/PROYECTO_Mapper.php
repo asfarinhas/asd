@@ -71,16 +71,12 @@ class ProyectoMapper {
             return 'Error en la consulta sobre la base de datos';
         } else{
 
-            $toret=array();
-            $i=0;
-            while ($fila= $resultado->fetch_array()) {
+            $toret = array();
+            while ($obj = $resultado->fetch_object()) {
+                $miembro = $this->buscarMiembroPorUsuario($obj->DIRECTOR);
 
-                //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
-                $fila[9] = new Miembro_Model(2);//Insertamos un objeto en la posicion 10
-                $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
-                $toret[$i]=$fila;
-
-                $i++;
+                $proyectoEncontrado = new Proyecto($obj->ID_PROYECTO, $obj->NOMBRE, $obj->DESCRIPCION, $obj->FECHAI, $obj->FECHAIP, $obj->FECHAE,$obj->FECHAFP,$obj->NUMEROMIEMBROS,  $obj->NUMEROHORAS, $miembro,$obj->BORRADO);
+                array_push($toret, $proyectoEncontrado);
             }
             return $toret;
 

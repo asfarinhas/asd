@@ -82,6 +82,9 @@ class ProyectoMiembro_Add
                         <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
 
+                        <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
+
+
                         <input type='submit' name='accion' value='<?php echo $strings['Insertar Miembro']; ?>'>
 
                 </form>
@@ -137,6 +140,7 @@ class ProyectoMiembro_Add
                 ?>
 
                 <td>
+
                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario() . '&accion=' . $strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
                 </td>
                 <td>
@@ -149,15 +153,17 @@ class ProyectoMiembro_Add
 
                 </p>
 
+        <form>
+            <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
+
+        </form>
+
                 </div>
 
                 <?php
             } ?>
                 <h3>
         <p>
-            <?php
-            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-            ?>
 </h3>
 </p>
 <?php

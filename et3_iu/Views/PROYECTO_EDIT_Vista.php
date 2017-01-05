@@ -108,7 +108,7 @@ class Proyecto_Modificar{
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="BORRADO"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_MUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
                         <!-- Campo Borrado -->
                         <div class="form-group">
@@ -116,10 +116,24 @@ class Proyecto_Modificar{
                                 <label for="borrado" class="control-label"><?php echo $strings['BORRADO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <Select name="Borrado">
-                                    <option value="Activo"><?php echo $strings['Activo'];?></option>
-                                    <option value="Inactivo"><?php echo $strings['Inactivo'];?></option></Select>
+                                <Select name="BORRADO">
+                                    <?php if($this->datos['BORRADO'] == '0') { ?>
+                                    <option selected value="Activo"><?php echo $strings['Activo'];?></option>
+                                    <option value="Inactivo"><?php echo $strings['Inactivo'];?></option>
+                                    <?php }else{ ?>
+                                      <option  value="Activo"><?php echo $strings['Activo'];?></option>
+                                    <option selected value="Inactivo"><?php echo $strings['Inactivo'];?></option>
+                                    <?php } ?>
+                                    </Select>
                         </div>
+                            <!-- Campo Descripción -->
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <textarea name="PROYECTO_DESCRIPCION"  rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
+                            </div>
 
                             <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                         <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia()" >
