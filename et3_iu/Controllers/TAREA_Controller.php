@@ -20,7 +20,7 @@ include '../Views/SUBTAREA_ADD_View.php';
 //include '../Views/SUBTAREA_VIEW_View.php';
 //include '../Views/SUBTAREA_DELETE_View.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
-include '../Mappers/PROYECTO_Mapper.php';
+//include '../Mappers/PROYECTO_Mapper.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
