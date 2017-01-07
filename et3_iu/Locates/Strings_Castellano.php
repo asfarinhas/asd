@@ -280,7 +280,12 @@ $strings = array(
 	//MIEMBRO
 
 	"Gestión de Perfil" => "Gestión de Perfil",
-	"ModificarMiembro" => "Modificar datos"
+	"ModificarMiembro" => "Modificar datos",
 
+	//TAREAS
+    "Gestión de Tareas" => "Gestión de Tareas",
+
+	//ENTREGABLES
+    "Gestión de Entregables" => "Gestión de Entregables"
 )
 ?>

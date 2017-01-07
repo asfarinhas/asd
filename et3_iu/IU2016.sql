@@ -226,8 +226,26 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (500, 504),
 (600, 600),
 (600, 601),
-(600, 602);
-
+(600, 602),
+(701, 700),
+(701, 701),
+(701, 702),
+(701, 703),
+(701, 704),
+(701, 710),
+(701, 711),
+(701, 712),
+(701, 713),
+(701, 714),
+(700, 800),
+(700, 801),
+(700, 802),
+(700, 803),
+(702, 850),
+(702, 851),
+(702, 852),
+(702, 853),
+(702, 854);
 
 -- --------------------------------------------------------
 
@@ -299,7 +317,26 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (504, '../Views/NOTIFICACION_SHOW_Vista.php', 'NOTIFICACION SHOW'),
 (600, '../Views/CORREO_ADD_Vista.php', 'CORREO ADD'),
 (601, '../Views/CORREO_SHOW_ALL_Vista.php', 'CORREO SHOW ALL'),
-(602, '../Views/CORREO_SHOW_Vista.php', 'CORREO SHOW ');
+(602, '../Views/CORREO_SHOW_Vista.php', 'CORREO SHOW '),
+(700, '../Views/TAREA_ADD_View.php', 'TAREA ADD '),
+(701, '../Views/TAREA_EDIT_View.php', 'TAREA EDIT'),
+(702, '../Views/TAREA_DELETE_View.php', 'TAREA DELETE'),
+(703, '../Views/TAREA_SHOW_Vista.php', 'TAREA SHOW'),
+(704, '../Views/TAREA_SHOW_ALL_View.php', 'TAREA SHOW ALL'),
+(710, '../Views/SUBTAREA_ADD_View.php', 'SUBTAREA ADD'),
+(711, '../Views/SUBTAREA_EDIT_View.php', 'SUBTAREA EDIT'),
+(712, '../Views/SUBTAREA_DELETE_Vista.php', 'SUBTAREA DELETE'),
+(713, '../Views/SUBTAREA_SHOW_Vista.php', 'SUBTAREA SHOW'),
+(714, '../Views/SUBTAREA_SHOW_ALL_Vista.php', 'SUBTAREA SHOW ALL'),
+(800, '../Views/MIEMBRO_ADD_View.php', 'MIEMBRO ADD'),
+(801, '../Views/MIEMBRO_EDIT_View.php', 'MIEMBRO EDIT'),
+(802, '../Views/MIEMBRO_DELETE_Vista.php', 'MIEMBRO DELETE'),
+(803, '../Views/MIEMBRO_SHOW_Vista.php', 'MIEMBRO SHOW'),
+(850, '../Views/ENTREGABLE_ADD_Vista.php', 'ENTREGABLE ADD'),
+(851, '../Views/ENTREGABLE_EDIT_Vista.php', 'ENTREGABLE EDIT'),
+(852, '../Views/ENTREGABLE_DELETE_Vista.php', 'ENTREGABLE DELETE'),
+(853, '../Views/ENTREGABLE_SHOW_Vista.php', 'ENTREGABLE SHOW'),
+(854, '../Views/ENTREGABLE_SHOW_ALL_Vista.php', 'ENTREGABLE SHOW ALL');
 
 -- --------------------------------------------------------
 
@@ -391,7 +428,10 @@ INSERT INTO `ROL_FUNCIONALIDAD` (`ROL_ID`, `FUNCIONALIDAD_ID`) VALUES
 (1, 500),
 (2, 500),
 (1, 600),
-(2, 600);
+(2, 600),
+(1, 700),
+(1, 701),
+(1, 702);
 
 -- --------------------------------------------------------
 
