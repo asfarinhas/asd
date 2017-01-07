@@ -1,5 +1,5 @@
 <?php
-include '../Locates/Strings_Castellano.php';
+
 class MIEMBRO_TAREAS_SHOW_Vista{
 
     private $tareas;
@@ -27,6 +27,7 @@ class MIEMBRO_TAREAS_SHOW_Vista{
                         <a href="../Views/DEFAULT_Vista.php">Volver </a>
                     </div>
                 </nav>
+
                 <table id="btable" border = 1>
                     <tr>
                         <th>  PROYECTO </th>
