@@ -54,7 +54,7 @@ class Correo_Add
                                 <label for="Receptor" class="control-label"><?php echo $strings['Asunto']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="ASUNTO"  title="<?php echo $strings['error asunto']; ?>" required>
+                                <input type="text" class="form-control" id="ASUNTO" name="ASUNTO"  title="<?php echo $strings['error asunto']; ?>" required>
                             </div>
                         </div>
                         <!-- Campo Descripcion -->
@@ -63,7 +63,7 @@ class Correo_Add
                                 <label for="Contenido" class="control-label"><?php echo $strings['CONTENIDO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="CONTENIDO" rows="10"  required cols="40"></textarea >
+                                <textarea name="CONTENIDO" id="CONTENIDO" rows="10"  required cols="40"></textarea >
                             </div>
                         </div>
 
