@@ -77,6 +77,7 @@ function add_miembro(){
         $apellidos = $_REQUEST['apellidos'];
         $usuario = $_REQUEST['usuario'];
         $contraseña = $_REQUEST['password'];
+        $contraseña = md5($contraseña);
         $correo =  $_REQUEST['correo'];
 
         $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
@@ -145,7 +146,6 @@ function verSubtareas(){
 
 }
 
-
 if (!isset($_REQUEST['accion'])){
     $accion = '';
 }else{
@@ -201,6 +201,7 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
     case "verSubtareas":
         verSubtareas();
         break;
+
     default:
         consultar_miembro();
 
