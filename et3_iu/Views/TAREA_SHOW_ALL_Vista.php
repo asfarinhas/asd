@@ -82,6 +82,12 @@ class TareaShowAllVista{
                             <td>
                                 <a href='TAREA_Controller.php?accion=show_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Ver'] ?></a>
                             </td>
+                            <td>
+                                <a href='ENTREGABLE_Controller.php?accion=showall&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Entregables'] ?></a>
+                            </td>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=showall_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Subtareas'] ?></a>
+                            </td>
                         </tr>
                     <?php                        }
                     ?>

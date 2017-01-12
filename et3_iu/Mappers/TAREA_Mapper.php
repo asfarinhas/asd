@@ -335,7 +335,7 @@ class TAREA_Mapper{
 
                 $miembro_mapper = new MiembroMapper();
 
-                if($tareas_bd["PADRE"] != 0)
+                if($tareas_bd["PADRE"] != null)
                     $tareaPadre = $this->buscarTareaId($tareas_bd["PADRE"]);
                 else
                     $tareaPadre = null;
