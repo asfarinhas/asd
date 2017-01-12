@@ -33,7 +33,7 @@ class Notificacion_Enviada{
 
 
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarRecibidas']?>'><?php echo $strings['ConsultarRecibidas']?></a>
-                                <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
+                                <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['Enviar']?>'><?php echo $strings['Enviar']?></a>
                                 <a href='./NOTIFICACION_Controller.php?accion=<?php echo $strings['ConsultarEnviadas']?>'><?php echo $strings['ConsultarEnviadas']?></a>
                             </div>
                         </nav>
