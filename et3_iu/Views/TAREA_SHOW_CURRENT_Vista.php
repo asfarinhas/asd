@@ -1,6 +1,6 @@
 <?php
 
-class TAREA_SHOW_Vista{
+class TAREA_SHOW_CURRENT_Vista{
 
     private $tarea;
 
@@ -16,7 +16,19 @@ class TAREA_SHOW_Vista{
         <html>
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
-            <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
+            <?php $idioma = $_SESSION['IDIOMA'];
+            switch ($idioma){
+                case "Castellano":
+                    include '../Locates/Strings_Castellano.php';
+                    break;
+                case "English":
+                    include '../Locates/Strings_English.php';
+                    break;
+                case "Galego":
+                    include '../Locates/Strings_Galego.php';
+                default:
+                    include '../Locates/Strings_Castellano.php';
+            } ?>
         </head>
         <body>
         <p>
@@ -34,7 +46,7 @@ class TAREA_SHOW_Vista{
                     <!-- Campo Nombre -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['NOMBRE']; ?>: </label>
+                            <label for="nombre" class="control-label"> <?php echo $strings['Nombre']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this-> tarea -> getNombre(); ?>" name="nombre" >
                         </div>
                     </div>
@@ -42,7 +54,7 @@ class TAREA_SHOW_Vista{
                     <!-- Campo Tarea Padre -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="apellidos" class="control-label"> <?php echo $strings['TAREA PADRE']; ?>: </label>
+                            <label for="tareaPadre" class="control-label"> <?php echo $strings['Tarea padre']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> tarea -> getTareaPadre() -> getNombre() ;?>" name="apellidos" >
                         </div>
                     </div>
@@ -137,10 +149,6 @@ class TAREA_SHOW_Vista{
                     </div>
 
 
-
-
-                    <input type="hidden" name="accion" value="borrar">
-                    <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
                     <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
                 </ul>
 
@@ -153,7 +161,6 @@ class TAREA_SHOW_Vista{
         </html>
         <?php
     }
-    /*echo $idiom['DeleteAlumno'] . ": " . $consulta["DNI"] . "?"; */
 }
 
 

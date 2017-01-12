@@ -244,6 +244,7 @@ $strings = array(
 
 	//TAREAS
 	"Eliminar Tarea" => "Delete Task",
+	"Tarea padre" => "Main task"
 
 )
 ?>

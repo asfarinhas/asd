@@ -11,7 +11,7 @@ include '../Mappers/TAREA_Mapper.php';
 include '../Views/MENSAJE_Vista.php';
 include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
-//include '../Views/TAREA_SHOW_View.php';
+include '../Views/TAREA_SHOW_CURRENT_Vista.php';
 include '../Views/TAREA_SHOW_ALL_Vista.php';
 //include '../Views/TAREA_DELETE_View.php';
 include '../Views/SUBTAREA_EDIT_View.php';
@@ -98,8 +98,12 @@ function edit_tarea(){
 }
 
 function show_tarea(){
-    //Recoger de la BBDD los datos de la tarea con ese id
-    //Mostrar una vista con todos los datos //Incluir las subtarea o un enlace al showall de subtareas y un + para añadir  subtareas?
+    $tarea_mapper = new TAREA_Mapper();
+    if(isset($_REQUEST['ID_TAREA'])){
+        $tarea = $tarea_mapper->buscarTareaId($_REQUEST['ID_TAREA']);
+        $vista = new TAREA_SHOW_CURRENT_Vista($tarea);
+    }
+
 }
 
 function showall_tarea(){

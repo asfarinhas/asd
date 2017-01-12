@@ -200,7 +200,8 @@ $strings = array(
 	'Registro' => "Rexistro",
 
 	//TAREA
-	"Eliminar Tarea" => "Borrar tarea"
+	"Eliminar Tarea" => "Borrar tarea",
+	"Tarea padre" => "Tarea padre"
 
 )
 ?>
