@@ -194,7 +194,13 @@ $strings = array(
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',
 	'Fechainicioplan' => 'Data de comenzo programada',
-	'Fechaentregaplan' => ''
+	'Fechaentregaplan' => '',
+
+	//MIEMBRO
+	'Registro' => "Rexistro",
+
+	//TAREA
+	"Eliminar Tarea" => "Borrar tarea"
 
 )
 ?>

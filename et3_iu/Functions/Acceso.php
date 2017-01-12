@@ -6,6 +6,7 @@
 
 		if ($_REQUEST['accion'] == 'Registro'){
 
+            //header("Location: ../../../ET3_Grupo4/et3_iu/Controllers/MIEMBRO_Controller.php");
             $registro = new MiembroAddVista();
             $registro -> showView();
             die();

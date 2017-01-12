@@ -68,7 +68,7 @@ class MiembroEditView{
 
                 <div>
                     <?= $strings['EMP_PASSWORD']?> <br/>
-                    <input type="password" name="password" value="<? $miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
+                    <input type="password" name="password" value="<?=$miembro->getContraseña()?>" placeholder="<?= $strings['EMP_PASSWORD']?>"  id="password" required ><br/>
                 </div>
 
                 <div>

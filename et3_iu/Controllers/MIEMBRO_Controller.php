@@ -84,14 +84,14 @@ function add_miembro(){
         $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
         if($aux != false){ //existe
             echo "Username existente, introduzca otro";
-            $vista_add = new MiembroAddView();
+            $vista_add = new MiembroAddVista();
         }else{ //no existe
             $miembroMapper->insertarMiembro($miembro);
             new Login();
         }
     }else{
         //muestra la vista
-        $vista_add = new MiembroAddView();
+        $vista_add  = new MiembroAddVista();
     }
 
 }

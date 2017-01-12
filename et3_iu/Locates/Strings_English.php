@@ -211,6 +211,13 @@ $strings = array(
     "Creado con éxito"=>"Successfully created",
     "comentarios" => "Comments",
     "Error en la modificación" => "Modification failed",
-    "Modificada con éxito con éxito" =>"Succesfully modified"
+    "Modificada con éxito con éxito" =>"Succesfully modified",
+
+	//MIEMBRO
+	"Registro" => "Registrer",
+
+	//TAREAS
+	"Eliminar Tarea" => "Delete Task",
+
 )
 ?>

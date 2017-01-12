@@ -289,9 +289,12 @@ $strings = array(
 
 	"Gestión de Perfil" => "Gestión de Perfil",
 	"ModificarMiembro" => "Modificar datos",
+	"Registro" => "Registro",
 
 	//TAREAS
     "Gestión de Tareas" => "Gestión de Tareas",
+    "Eliminar Tarea" => "Eliminar Tarea",
+	"Cerrar Sesión" => "Cerrar Sesión",
 
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables"

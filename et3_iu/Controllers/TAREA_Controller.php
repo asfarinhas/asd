@@ -12,7 +12,7 @@ include '../Views/MENSAJE_Vista.php';
 include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
 //include '../Views/TAREA_SHOW_View.php';
-//include '../Views/TAREA_VIEW_View.php';
+include '../Views/TAREA_SHOW_ALL_Vista.php';
 //include '../Views/TAREA_DELETE_View.php';
 include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
@@ -104,13 +104,29 @@ function show_tarea(){
 
 function showall_tarea(){
     //Acceder a la base de datos y consultar todas las tareas con padre == null
-    //Mostrar un listado con algunos de los datos de las tareas (id, fecha inicio, fecha fin, estado, por ejemplo) y los botones consultar
-    //modificar, eliminar
+
+    $tarea_mapper = new TAREA_Mapper();
+    $tareas = $tarea_mapper->listarTareasPadre();
+
+    $vista = new TareaShowAllVista($tareas);
+    $vista->showAll();
+
 }
 
 function delete_tarea(){
-    //Comprobacion de la eliminacion en javascript, una vez confirmada se viene aqui
+    //Comprobacion de la eliminacion en javascript, una vez confirmada se viene aqui ???¿¿¿???
     //Eliminar de la base de datos la tarea
+
+    $miembro_mapper = new MiembroMapper();
+    $tarea_mapper = new TAREA_Mapper();
+    if(isset($_REQUEST["tarea_id"])){
+        $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
+        if($_REQUEST["delete_tarea"]){
+
+        }
+
+    }
+
     //Mensaje de confirmación.
     //Volver al menu de tareas
 }

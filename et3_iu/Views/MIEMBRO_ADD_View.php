@@ -9,8 +9,8 @@
 
 class MiembroAddVista{
 
-    function __construct($datos){
-        $this->datos = $datos;
+    function __construct(){
+        $this->showView();
     }
 
 
@@ -37,9 +37,9 @@ class MiembroAddVista{
 
         </head>
         <div>
-            <h1><span class="form-title"><?=$strings['Registrar Miembro']?></h1>
+            <h1><span class="form-title"><?=$strings['Registro']?></h1>
 
-            <form action="../Controllers/MIEMBRO_Controller.php" name="formAddMiembro" enctype="multipart/form-data" method="post" onsubmit=" ">
+            <form action="MIEMBRO_Controller.php" name="formAddMiembro" enctype="multipart/form-data" method="post" onsubmit=" ">
 
 
                 <div>
@@ -68,7 +68,7 @@ class MiembroAddVista{
                 </div>
 
                 <input type="hidden"  name="accion" value="add">
-                <input type='submit' onclick="DoSubmit()" value="<?=$strings['Modificar'] ?>"><br/><br/>
+                <input type='submit' onclick="DoSubmit()" value="<?=$strings['Registro'] ?>"><br/><br/>
             </form>
             <a class="form-link" href='../Controllers/MIEMBRO_Controller.php'><?=$strings['Volver']?> </a>
         </div>

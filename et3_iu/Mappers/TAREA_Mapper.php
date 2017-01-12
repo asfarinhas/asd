@@ -308,11 +308,11 @@ class TAREA_Mapper{
         {
             $this->conectarBD();
 
-            $sql = "SELECT * FROM TAREA WHERE NOMBRE = '" . $idTarea . "';";
+            $sql = "SELECT * FROM TAREA WHERE ID_TAREA = '" . $idTarea . "';";
             if (!($resultado = $this->mysqli->query($sql))) {
                 return 'Error en la consulta sobre la base de datos. ';
             } else {
-                $sql = "DELETE FROM TAREA WHERE NOMBRE = '" . $idTarea . "';";
+                $sql = "DELETE FROM TAREA WHERE ID_TAREA = '" . $idTarea . "';";
                 return "Tarea borrada con éxito. ";
             }
         }
