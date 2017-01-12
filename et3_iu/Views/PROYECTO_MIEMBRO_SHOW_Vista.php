@@ -4,8 +4,10 @@ class ProyectoMiembro_Show
 {
 //VISTA PARA MOSTRAR CONSULTA DE PROYECTO
 
-    function __construct($volver)
+    function __construct($buscar, $miembro, $volver)
     {
+        $this->buscar = $buscar;
+        $this->miembro = $miembro;
         $this->volver = $volver;
         $this->render();
     }
@@ -18,10 +20,11 @@ class ProyectoMiembro_Show
         <p>
         <h1><span class="form-title">
 
+ <?php  if($this->buscar!='buscar'){
 
 
-                        <?php echo $strings['Consultar miembro proyecto']; ?><br>
-
+                         echo $strings['Consultar miembro proyecto']; ?><br>
+            <title><?php echo $strings['Consultar miembro proyecto'];?></title>
         </h1>
         </p>
         <h2>
@@ -80,9 +83,67 @@ class ProyectoMiembro_Show
 
         </h2>
 
+        <?php }else{
+
+
+
+  echo $strings['Ver proyecto']; ?><br>
+
+     <title><?php echo $strings['Ver proyecto'];?></title>
+                 </h1>
+             </p>
+                <h2>
+
+                </p>
+                     <br><br>
+                   <form action="PROYECTO_Controller.php" method="post">
+                <br><br>
+                <ul class="form-style-1">
+
+                    <!-- Campo Nombre -->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="nombre" class="control-label"> <?php echo $strings['NOMBRE']; ?>: </label>
+                            <input type="text" readonly value="<?php echo $this-> miembro -> getNombre(); ?>" name="nombre" >
+                        </div>
+                    </div>
+
+                    <!-- Campo Apellidos -->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="apellidos" class="control-label"> <?php echo $strings['APELLIDOS']; ?>: </label>
+                            <input type="text" readonly value="<?php echo $this -> miembro -> getApellidos() ;?>" name="apellidos" >
+                        </div>
+                    </div>
+
+                    <!-- Campo Usuario -->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="usuario"> <?php echo $strings['USUARIO']; ?>: </label>
+                            <input type="text" readonly value="<?php echo $this -> miembro -> getUsuario() ;?>" name="usuario" >
+                        </div>
+                    </div>
+
+                    <!-- Campo Email -->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="usuario"> <?php echo $strings['EMAIL']; ?>: </label>
+                            <input type="text" readonly value="<?php echo $this -> miembro -> getCorreo() ;?>" name="correo" >
+                        </div>
+                    </div>
+                                    <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
+
+
+                </ul>
+
+            </form>
+
+                </h2>
+
+
 
         <?php
-
+}
 
     }
 }

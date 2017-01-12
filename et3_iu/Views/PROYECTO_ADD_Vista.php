@@ -29,6 +29,8 @@ class Proyecto_Add
             <h1>
 			<span class="form-title">
 			<?php echo $strings['Insertar Proyecto'] ?><br>
+                                                                                        <title><?php echo $strings['Insertar Proyecto'];?></title>
+
             </h1>
             <h3>
 

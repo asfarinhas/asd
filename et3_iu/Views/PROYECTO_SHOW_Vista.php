@@ -20,6 +20,7 @@ class Proyecto_Show{
               <?php  if($this->buscar!='buscar'){
 
 			         echo $strings['Consultar proyecto']; ?><br>
+			         <title><?php echo $strings['Consultar proyecto'];?></title>
 
                  </h1>
              </p>
@@ -115,7 +116,7 @@ class Proyecto_Show{
                 <?php }else{
 
   echo $strings['Ver proyecto']; ?><br>
-
+ <title><?php echo $strings['Ver proyecto'];?></title>
                  </h1>
              </p>
                 <h2>

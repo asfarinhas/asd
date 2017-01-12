@@ -32,7 +32,7 @@ class ProyectoMiembro_Default{
                                     <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
 
                                 </ul>
-
+                                <title><?php echo $strings['Gestionar Miembros Proyecto'];?></title>
                                 <?php echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>"; ?></li>
                                 <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Consultar Miembro']?>'><?php echo $strings['Consultar Miembro']?></a>
                                 <a href='./PROYECTO_Controller.php?accion=<?php echo $strings['Insertar Miembro'] ?>&ID_PROYECTO=<?php echo $this->proyectoId;?>'><?php echo $strings['Insertar Miembro']?></a>
@@ -59,7 +59,7 @@ class ProyectoMiembro_Default{
                                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario(). '&accion='.$strings['Eliminar Miembros']; ?>'><?php echo $strings['Borrar'] ?></a>
                                 </td>
                                 <td>
-                                    <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                    <a href='PROYECTO_Controller.php?ID_MIEMBRO=<?php echo $miembro->getUsuario() . '&accion='.$strings['Ver Miembro']; ?>'><?php echo $strings['Ver'] ?></a>
                                 </td>
 
                                 </tr>

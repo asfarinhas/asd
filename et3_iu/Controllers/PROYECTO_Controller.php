@@ -292,7 +292,7 @@ switch ($_REQUEST['accion']) {
 
     case $strings['Consultar Miembro']: //Consulta de miembros del proyecto
         if (!isset($_REQUEST['BUSCAR'])) {
-            new ProyectoMiembro_Show('PROYECTO_Controller.php');
+            new ProyectoMiembro_Show('','','PROYECTO_Controller.php');
         } else {
             $proyecto = get_data_form();
             $miembro = get_data_form_miembro();
@@ -305,6 +305,21 @@ switch ($_REQUEST['accion']) {
             }
         }
         break;
+
+         case $strings['Ver Miembro']: //Consulta de proyecto
+             if (!isset($_REQUEST['ID_MIEMBRO'])) {
+                 new ProyectoMiembro_Show('','','');
+             } else {
+
+                 $miembro = $proyectoMapper->buscarMiembroPorUsuario($_REQUEST['ID_MIEMBRO']);
+                 if (!tienePermisos('ProyectoMiembro_Show')) {
+                     new Mensaje('No tienes los permisos necesarios', 'PROYECTO_Controller.php');
+                 } else {
+
+                     new ProyectoMiembro_Show('buscar',$miembro, 'PROYECTO_Controller.php');
+                 }
+             }
+             break;
 
     default:
         //La vista por defecto lista todas los proyectos

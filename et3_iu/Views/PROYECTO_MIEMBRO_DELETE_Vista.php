@@ -18,6 +18,7 @@ class ProyectoMiembro_Borrar{
         <p>
         <h1><span class="form-title">
 			        <?php echo $strings['Borrar Miembro']; ?><br>
+                                        <title><?php echo $strings['Borrar Miembro Proyecto'];?></title>
 
         </h1>
         </p>

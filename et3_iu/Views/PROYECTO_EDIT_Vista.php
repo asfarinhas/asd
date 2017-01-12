@@ -32,6 +32,8 @@ class Proyecto_Modificar{
             <h1>
 			<span class="form-title">
 			<?php echo $strings['Modificar Proyecto'] ?><br>
+                                                                        <title><?php echo $strings['Editar Proyecto'];?></title>
+
             </h1>
             <h3>
 

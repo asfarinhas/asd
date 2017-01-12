@@ -34,7 +34,9 @@ class ProyectoMiembro_Add
             <h1>
 			<span class="form-title">
 			<?php echo $strings['Insertar Miembro'] ?><br>
-            </h1>
+                                                        <title><?php echo $strings['Insertar Miembro Proyecto'];?></title>
+
+    </h1>
 
                <?php  if($this->buscar!='BUSCAR'){ ?>
                   <h3>
@@ -111,7 +113,7 @@ class ProyectoMiembro_Add
                         <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO='. $miembro->getUsuario().'&accion='.$strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
                     </td>
                     <td>
-                        <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                        <a href='PROYECTO_Controller.php?ID_MIEMBRO=<?php echo $miembro->getUsuario() . '&accion='.$strings['Ver Miembro']; ?>'><?php echo $strings['Ver'] ?></a>
                     </td>
 
                     </tr>
@@ -144,7 +146,7 @@ class ProyectoMiembro_Add
                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario() . '&accion=' . $strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
                 </td>
                 <td>
-                    <a href='MIEMBRO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto['NOMBRE'] . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                    <a href='PROYECTO_Controller.php?ID_MIEMBRO=<?php echo $miembro->getUsuario() . '&accion='.$strings['Ver Miembro']; ?>'><?php echo $strings['Ver'] ?></a>
                 </td>
 
                 </tr>
