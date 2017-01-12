@@ -1,10 +1,13 @@
 <?php
 	include '../Models/EMPLEADO_Model.php';
+	include '../Views/MIEMBRO_ADD_View.php';
 	if (isset($_REQUEST['accion'])){
 
 
 		if ($_REQUEST['accion'] == 'Registro'){
-            header("Location: ./../../RegistroProvisional.php");
+
+            $registro = new MiembroAddVista();
+            $registro -> showView();
             die();
         }
 
