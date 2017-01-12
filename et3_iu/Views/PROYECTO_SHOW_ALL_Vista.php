@@ -68,6 +68,9 @@ class Proyecto_Default{
                                 <td>
                                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion='.$strings['Gestionar Miembros']; ?>'><?php echo $strings['Gestionar Miembros'] ?></a>
                                 </td>
+                                <td>
+                                    <a href='TAREA_Controller.php?proyecto_id=<?php echo $proyecto->getIDPROYECTO() . '&accion=';?>showall_tarea'><?php echo $strings['Tareas'] ?></a>
+                                </td>
                             </tr>
     <?php                        }
                             ?>

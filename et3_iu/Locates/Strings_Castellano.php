@@ -206,6 +206,7 @@ $strings = array(
     'Borrar Miembro Proyecto' => 'Borrar Miembro Proyecto',
     'Insertar Miembro Proyecto' => 'Insertar Miembro Proyecto',
     'Editar Proyecto' => 'Editar Proyecto',
+    'Tareas'=>'Tareas',
 
 
 
