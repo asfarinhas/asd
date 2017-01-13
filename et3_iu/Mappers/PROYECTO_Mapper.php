@@ -160,23 +160,19 @@ public function buscarMiembro(Miembro $miembro)
               FECHAE LIKE '%" . $proyecto->getFECHAE() . "%'AND 
               FECHAFP LIKE '%" . $proyecto->getFECHAFP() . "%'AND 
              NUMEROHORAS LIKE '%" . $proyecto->getNUMEROHORAS() . "%'AND 
-              DIRECTOR LIKE '%" . $proyecto->getDIRECTOR() . "%';";
+              DIRECTOR LIKE '%" . $proyecto->getDIRECTOR()->getUsuario() . "%';";
 
       if (!($resultado = $this->mysqli->query($sql))){
           return 'Error en la consulta sobre la base de datos';
       }
       else{
 
-          $toret=array();
-          $i=0;
-          while ($fila= $resultado->fetch_array()) {
+          $toret = array();
+          while ($obj = $resultado->fetch_object()) {
+              $miembro = $this->buscarMiembroPorUsuario($obj->DIRECTOR);
 
-              //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
-              $fila[9] = new Miembro(2);//Insertamos un objeto en la posicion 10
-              $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
-              $toret[$i]=$fila;
-
-              $i++;
+              $proyectoEncontrado = new Proyecto($obj->ID_PROYECTO, $obj->NOMBRE, $obj->DESCRIPCION, $obj->FECHAI, $obj->FECHAIP, $obj->FECHAE,$obj->FECHAFP,$obj->NUMEROMIEMBROS,  $obj->NUMEROHORAS, $miembro,$obj->BORRADO);
+              array_push($toret, $proyectoEncontrado);
           }
           return $toret;
 
@@ -310,7 +306,7 @@ public function buscarMiembro(Miembro $miembro)
             if($resultado->num_rows!=0){
                 return "nombre de proyecto ya existe";
             }else{
-                $sql = "INSERT INTO PROYECTO (ID_PROYECTO,NOMBRE,DESCRIPCION,FECHAI,FECHAIP,FECHAE,FECHAFP,NUMEROMIEMBROS,NUMEROHORAS,DIRECTOR) VALUES ('" . $proyecto->getIDPROYECTO()."','" . $proyecto->getNOMBRE() ."','" . $proyecto->getDESCRIPCION() . "','" . $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP() . "','" . $proyecto->getFECHAE() . "','" . $proyecto->getFECHAFP() . "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS()."','". $proyecto->getDIRECTOR()."');";
+                $sql = "INSERT INTO PROYECTO (ID_PROYECTO,NOMBRE,DESCRIPCION,FECHAI,FECHAIP,FECHAE,FECHAFP,NUMEROMIEMBROS,NUMEROHORAS,DIRECTOR) VALUES ('" . $proyecto->getIDPROYECTO()."','" . $proyecto->getNOMBRE() ."','" . $proyecto->getDESCRIPCION() . "','" . $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP() . "','" . $proyecto->getFECHAE() . "','" . $proyecto->getFECHAFP() . "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS()."','". $proyecto->getDIRECTOR()->getUsuario()."');";
                 if($this->mysqli->query($sql) === TRUE){
                     return "creado exito";
                 }else{
@@ -370,7 +366,7 @@ public function buscarMiembro(Miembro $miembro)
             $aux=1;
         }
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', DIRECTOR= '" . $proyecto->getDIRECTOR() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
+        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
 
 
     if($this->mysqli->query($sql) === TRUE){
