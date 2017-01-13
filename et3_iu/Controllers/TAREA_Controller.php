@@ -196,12 +196,12 @@ function edit_subtarea()
     $tareaMapper = new TAREA_Mapper();
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
-    if(isset($_REQUEST['id_proyecto']) && isset($_REQUEST["id_tarea"])){
+    if( isset($_REQUEST["proyecto_id"]) && isset($_REQUEST["ID_TAREA"])){
         //$proyecto = $proyectoMapper->buscarId($_REQUEST['proyecto_id']);
         //$proyectoModel = new Proyecto($proyecto[0], $proyecto[1], $proyecto[2], $proyecto[3], $proyecto[4], $proyecto[5], $proyecto[6], $proyecto[7], $proyecto[8], null, $proyecto[10]);
 
 
-            $tarea = $tareaMapper->buscarTareaId($_REQUEST["id_tarea"]);
+            $tarea = $tareaMapper->buscarTareaId($_REQUEST["ID_TAREA"]);
 
             if(isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
             && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['fecha_inicio_real']) && isset($_REQUEST['fecha_entrega_real'])
@@ -225,8 +225,8 @@ function edit_subtarea()
 
 
         }else{
-            $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
-            $tarea = $tareaMapper->buscarTareaId($_REQUEST["id_tarea"]);
+            $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
+            $tarea = $tareaMapper->buscarTareaId($_REQUEST["ID_TAREA"]);
             $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros);
             $vista_subtarea_edit->showView();
         }

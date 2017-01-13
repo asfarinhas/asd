@@ -66,7 +66,7 @@ class Subtarea_edit{
     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
         <div> <!-- ID de la tarea padre-->
-            <input type="number" hidden name="id_tarea" value="<?=$_REQUEST['id_tarea']?>" >
+            <input type="number" hidden name="ID_TAREA" value="<?=$_REQUEST['ID_TAREA']?>" >
         </div>
 
         <div> <!-- ID de la tarea padre-->
@@ -74,7 +74,7 @@ class Subtarea_edit{
         </div>
 
         <div> <!-- ID de proyecto-->
-            <input type="number" hidden name="id_proyecto" value="<?=$_REQUEST['id_proyecto']?>" >
+            <input type="number" hidden name="proyecto_id" value="<?=$_REQUEST['proyecto_id']?>" >
         </div>
 
         <div>
@@ -141,11 +141,6 @@ class Subtarea_edit{
             <textarea type="textarea" name="comentario" value="<?= $datos->getComentario()?>" rows="4" cols="50"></textarea>
         </div>
 
-        <div>
-            <!-- AÑADIR ENLACE A LA VISTA QUE MODIFICA LOS ENTREGABLES -->
-            <a href="ENTREGABLE_Controller.php?&amp;accion=show" ><?=$strings['ModifEntregables']?></a><br/>
-
-        </div>
 
         <input type="hidden"  name="accion" value="edit_subtarea">
         <input type='submit' onclick="DoSubmit()" value="<?=$strings['Modificar'] ?>"><br/><br/>

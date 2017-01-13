@@ -223,7 +223,7 @@ class Proyecto_Show{
                                 <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR" value="<?php echo $this->datos['DIRECTOR'];?>" title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text" class="form-control" readonly name="PROYECTO_DIRECTOR" value="<?php echo $this->datos['DIRECTOR'];?>" title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
 
 

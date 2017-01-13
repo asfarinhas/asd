@@ -46,33 +46,35 @@ class Proyecto_Default{
                                 <th>  <?=$strings['NUMEROHORAS'] ?> </th>
                             </tr>
                             <?php
-                            foreach($this->datos as $proyecto){
-                                echo "<tr><td> " . $proyecto->getNOMBRE()."</td>";
-                                echo "<td>" . $proyecto->getDIRECTOR()->getUSUARIO() ."</td>";
-                                echo "<td> " . $proyecto->getFECHAI()."</td>";
-                                echo "<td> " . $proyecto->getFECHAE()."</td>";
-                                echo "<td> " . $proyecto->getNUMEROHORAS()."</td>";
+                            foreach($this->datos as $proyecto) {
+                                if (strcmp($proyecto->getDIRECTOR()->getUSUARIO(), $_SESSION['login']) == 0 || strcmp('ADMIN', $_SESSION['login']) == 0) {
+                                    echo "<tr><td> " . $proyecto->getNOMBRE() . "</td>";
+                                    echo "<td>" . $proyecto->getDIRECTOR()->getUSUARIO() . "</td>";
+                                    echo "<td> " . $proyecto->getFECHAI() . "</td>";
+                                    echo "<td> " . $proyecto->getFECHAE() . "</td>";
+                                    echo "<td> " . $proyecto->getNUMEROHORAS() . "</td>";
 
-        ?>
+                                    ?>
 
 
-                            <td>
-                                <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto->getNOMBRE() . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
-                            </td>
-                                <td>
-                                    <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion='.$strings['Gestionar Miembros']; ?>'><?php echo $strings['Gestionar Miembros'] ?></a>
-                                </td>
-                                <td>
-                                    <a href='TAREA_Controller.php?proyecto_id=<?php echo $proyecto->getIDPROYECTO() . '&accion=';?>showall_tarea'><?php echo $strings['Tareas'] ?></a>
-                                </td>
-                            </tr>
-    <?php                        }
+                                    <td>
+                                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
+                                    </td>
+                                    <td>
+                                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
+                                    </td>
+                                    <td>
+                                        <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto->getNOMBRE() . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
+                                    </td>
+                                    <td>
+                                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion=' . $strings['Gestionar Miembros']; ?>'><?php echo $strings['Gestionar Miembros'] ?></a>
+                                    </td>
+                                    <td>
+                                        <a href='TAREA_Controller.php?proyecto_id=<?php echo $proyecto->getIDPROYECTO() . '&accion='; ?>showall_tarea'><?php echo $strings['Tareas'] ?></a>
+                                    </td>
+                                    </tr>
+                                <?php }
+                            }
                             ?>
                         </table>
 
