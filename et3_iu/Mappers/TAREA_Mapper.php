@@ -186,13 +186,12 @@ class TAREA_Mapper{
         function listarSubtareasPadre($padre){
             $this->conectarBD();
 
-            $sql = "SELECT * FROM TAREA,MIEMBRO WHERE TAREA.PADRE = '" . $padre . "' ORDER BY FECHAIP";
-
-            if (!($resultado = $this->mysqli->query($sql))) {
+            $sql = "SELECT * FROM TAREA WHERE PADRE = '{$padre}' ORDER BY FECHAIP";
+            $resultado = $this->mysqli->query($sql);
+            if (!$resultado) {
                 return 'Error en la consulta sobre la base de datos';
             } else {
                //$tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
-
                 $tareas_model = array();
                 $miembro_mapper = new MiembroMapper();
                 $proyecto_mapper = new ProyectoMapper();
@@ -389,6 +388,40 @@ class TAREA_Mapper{
 
         } else {
             return "No hay resultados";
+        }
+    }
+
+
+    function listarTareasPadreProyecto($idProyecto){
+        $this->conectarBD();
+
+        $sql = "SELECT * FROM TAREA WHERE PADRE IS NULL AND ID_PROYECTO = '{$idProyecto}' ";
+
+        if (!($resultado = $this->mysqli->query($sql))) {
+            return 'Error en la consulta sobre la base de datos';
+        } else {
+
+            $tareas_model = array();
+            $miembro_mapper = new MiembroMapper();
+            $proyecto_mapper = new ProyectoMapper();
+            while($row = $resultado->fetch_array(MYSQLI_ASSOC) ) {
+
+                //miembro de la tarea
+                $miembro = $miembro_mapper->buscarMiembroPorUsuario($row["ID_MIEMBRO"]);
+                //Devuelve un fetch_array
+                $proy = $proyecto_mapper->RellenaDatos($row['ID_PROYECTO']);
+                //Se crea el miembro director
+                $director = $miembro_mapper->buscarMiembroPorUsuario($proy['DIRECTOR']);
+                //Se crea el proyecto
+                $proyecto = new Proyecto($proy['ID_PROYECTO'], $proy['NOMBRE'], $proy['DESCRIPCION'], $proy['FECHAI'], $proy['FECHAIP'],
+                    $proy['FECHAE'], $proy['FECHAFP'], $proy['NUMEROMIEMBROS'], $proy['NUMEROHORAS'], $director, $proy['BORRADO']);
+
+                array_push($tareas_model, new Tarea($row["ID_TAREA"], $row["NOMBRE"], $row["DESCRIPCION"],
+                    null, $row["FECHAIP"], $row["FECHAEP"], $row["FECHAIR"],
+                    $row["FECHAER"], $row["HORASP"], $row["HORASR"], $miembro, $row["ESTADO"],
+                    $row["COMENTARIO"], $proyecto));
+            }
+            return $tareas_model;
         }
     }
 

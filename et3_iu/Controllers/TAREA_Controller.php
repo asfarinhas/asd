@@ -16,7 +16,7 @@ include '../Views/TAREA_SHOW_ALL_Vista.php';
 //include '../Views/TAREA_DELETE_View.php';
 include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
-//include '../Views/SUBTAREA_SHOW_View.php';
+include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
 //include '../Views/SUBTAREA_VIEW_View.php';
 //include '../Views/SUBTAREA_DELETE_View.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
@@ -110,7 +110,7 @@ function showall_tarea(){
     //Acceder a la base de datos y consultar todas las tareas con padre == null
 
     $tarea_mapper = new TAREA_Mapper();
-    $tareas = $tarea_mapper->listarTareasPadre();
+    $tareas = $tarea_mapper->listarTareasPadreProyecto($_REQUEST['proyecto_id']);
 
     $vista = new TareaShowAllVista($tareas);
     $vista->showAll();
@@ -240,9 +240,12 @@ function show_subtarea(){
 }
 
 function showall_subtarea(){
-    //Acceder a la base de datos y consultar todas las tareas con padre == id_tarea del padre
-    //Mostrar un listado con algunos de los datos de las subtareas (id, fecha inicio, fecha fin, estado, por ejemplo) y los botones consultar
-    //modificar, eliminar
+
+    $tarea_mapper = new TAREA_Mapper();
+    $tareas = $tarea_mapper->listarSubtareasPadre($_REQUEST['ID_TAREA']);
+
+    $vista = new SUBTAREA_SHOW_ALL_Vista($tareas);
+    $vista->mostrarSubtareas();
 }
 
 function delete_subtarea(){

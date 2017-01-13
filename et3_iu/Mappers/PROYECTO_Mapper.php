@@ -203,7 +203,7 @@ public function buscarMiembro(Miembro $miembro)
 
       if ($resultado->num_rows != 0) {
           $info = $resultado->fetch_array(MYSQLI_ASSOC);
-          $proyecto = new Proyecto($info["ID_PROYECTO"], $info["NOMBRE"], $info["DESCRIPCION"], $info["FECHAI"], $info["FECHAE"], $info["FECHAIP"], $info["FECHAFP"], $info["NUMEROMIEMBROS"], $info["NUMEROHORAS"], $info["BORRADO"]);
+          $proyecto = new Proyecto($info["ID_PROYECTO"], $info["NOMBRE"], $info["DESCRIPCION"], $info["FECHAI"], $info["FECHAE"], $info["FECHAIP"], $info["FECHAFP"], $info["NUMEROMIEMBROS"], $info["NUMEROHORAS"] , $info["BORRADO"]);
           return $proyecto;
 
       } else {
