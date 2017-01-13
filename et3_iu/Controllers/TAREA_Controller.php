@@ -17,7 +17,7 @@ include '../Views/TAREA_SHOW_ALL_Vista.php';
 include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
 include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
-//include '../Views/SUBTAREA_VIEW_View.php';
+include '../Views/SUBTAREA_SHOW_CURRENT_Vista.php';
 //include '../Views/SUBTAREA_DELETE_View.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
 //include '../Mappers/PROYECTO_Mapper.php';
@@ -51,10 +51,10 @@ function add_tarea(){
             $comentarios = null;
         $tarea = new Tarea(null,$nombre,$descripcion,null,$fecha_I_P,$fecha_E_P,null,null,$horas_P,null,$miembro,"pendiente",$comentarios,$proyecto);
         $mensaje = $tarea_mapper->insertarTarea($tarea);
-        new Mensaje($mensaje,"./TAREA_Controller.php");
+        new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
-        new TAREA_ADD_Vista($miembros);
+        new TAREA_ADD_Vista($miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }
 }
 
@@ -67,31 +67,35 @@ function edit_tarea(){
 
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
 
+        if(isset($_REQUEST["nombre"]))
         $tarea->setNombre($_REQUEST["nombre"]);
-        $tarea->setFechaInicioPlan($_REQUEST["fecha_I_P"]);
-        if($_REQUEST["fecha_I_R"])
+        if(isset($_REQUEST["fecha_I_P"]))
+            $tarea->setFechaInicioPlan($_REQUEST["fecha_I_P"]);
+        if(isset($_REQUEST["fecha_I_R"]))
            $tarea->setFechaInicioReal($_REQUEST["fecha_I_R"]);
-
+        if(isset($_REQUEST["fecha_E_P"]))
         $tarea->setFechaEntregaPlan($_REQUEST["fecha_E_P"]);
-        if($_REQUEST["fecha_E_R"])
+        if(isset($_REQUEST["fecha_E_R"]))
             $tarea->setFechaEntregaReal($_REQUEST["fecha_E_R"]);
-        $horas_P = $_REQUEST["horas_P"];
-        if($_REQUEST["horas_R"])
+        if(isset($_REQUEST["horas_P"]))
+            $horas_P = $_REQUEST["horas_P"];
+        if(isset($_REQUEST["horas_R"]))
             $tarea->setHorasReal($_REQUEST["horas_R"]);
-        $tarea->setMiembro($miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]));
+        if(isset($_REQUEST["miembro"]))
+            $tarea->setMiembro($miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]));
+        if(isset($_REQUEST["estado"]))
         $tarea ->setEstadoTarea($_REQUEST["estado"]);
-
         if(isset($_REQUEST["descripcion"]))
             $tarea->setDescripcion($_REQUEST["descripcion"]);
         if(isset($_REQUEST["comentarios"]))
             $tarea->setComentario($_REQUEST["comentarios"]);
 
         $mensaje = $tarea_mapper->modificarTarea($tarea);
-        new Mensaje($mensaje,"./TAREA_Controller.php");
+        new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
-        new TAREA_EDIT_Vista($tarea, $miembros);
+        new TAREA_EDIT_Vista($tarea, $miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }
 }
 
@@ -140,12 +144,14 @@ function add_subtarea(){
     $tareaMapper = new TAREA_Mapper();
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
+    $tarea_padre = $_REQUEST['tarea_padre'];
 
     //parametros del formulario
-    if( isset($_REQUEST['tarea_padre']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
+    if( isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
         && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['horas_plan']) && isset($_REQUEST['miembro']) && isset($_REQUEST['comentario']) && isset($_REQUEST['id_proyecto'])){
 
-        $tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
+        //$tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
+        //var_dump($tarea_padre);
         $nombre = $_REQUEST['nombre'];
         $descripcion = $_REQUEST['descripcion'];
         $fecha_inicio_plan = $_REQUEST['fecha_inicio_plan'];
@@ -163,14 +169,14 @@ function add_subtarea(){
         $padreId = $tareaMapper->buscarTareaId($tarea_padre);
         $miembroModel = $miembroMapper->buscarMiembroPorUsuario($miembro);
         $proyecto = $proyectoMapper->buscarId($id_proyecto);
-        $proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
+        //$proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
 
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
-            $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyectoModel);
+            $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyecto);
 
 
         //Insertar datos en la tabla tarea en la BBDD
-        $result = $tareaMapper->insertarTarea($subtarea);
+        $result = $tareaMapper->insertarSubTarea($subtarea);
 
         //Mostrar mensaje de confirmación
         //Volver al menú de subtareas
@@ -179,6 +185,7 @@ function add_subtarea(){
 
     }else{
         $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
+
         $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
         $vista_addsubtarea->showView();
     }//fin parametros
@@ -233,6 +240,14 @@ function edit_subtarea()
 }
 
 function show_subtarea(){
+
+   $tareaID = $_REQUEST['ID_TAREA'];
+   $proyectoID = $_REQUEST['proyecto_id'];
+
+   $tareaMapper = new TAREA_Mapper();
+   $subtarea = $tareaMapper -> buscarTareaId($tareaID);
+
+   $vistaSubtarea = new SUBTAREA_SHOW_CURRENT_Vista($subtarea);
     //Recoger de la BBDD los datos de las subtarea con padre el id de la tarea padre
     //Mostrar una vista con todos esos datos
 }

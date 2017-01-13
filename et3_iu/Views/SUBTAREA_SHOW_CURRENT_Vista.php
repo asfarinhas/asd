@@ -6,7 +6,7 @@
  * Time: 20:57
  */
 
-class SUBTAREA_SHOW_Vista{
+class SUBTAREA_SHOW_CURRENT_Vista{
 
     private $subtarea;
 

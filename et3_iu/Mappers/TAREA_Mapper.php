@@ -280,18 +280,20 @@ class TAREA_Mapper{
         {
             $this->conectarBD();
 
-            $sql = "UPDATE TAREA SET PADRE = '" . $tarea->getTareaPadre() . "', ID_TAREA = '" . $tarea->getIdTarea() . "', 
-                    NOMBRE = '" . $tarea->getNombre() . "', 
-                    FECHAIP = '" . $tarea->getFechaEntregaPlan() . "', 
-                    FECHAIR = '" . $tarea->getFechaInicioReal() . "', 
-                    FECHAEP = '" . $tarea->getFechaEntregaPlan() . "', 
-                    FECHAER = '" . $tarea->getFechaEntregaReal() . "',
-                    HORASP = '" . $tarea->getHorasPlan() . "', 
-                    HORASR = '" . $tarea->getHorasReal() . "',
-                    ID_MIEMBRO = '" . $tarea->getMiembro()->getUsuario() . "', 
-                    DESCRIPCION = '" . $tarea->getDescripcion() . "',
-                    ESTADO = '" . $tarea->getEstadoTarea() . "', 
-                    COMENTARIO = '" . $tarea->getEstadoTarea() . "';";
+            $sql = "UPDATE TAREA SET 
+                    NOMBRE ='{$tarea->getNombre()}', 
+                    FECHAIP ='{$tarea->getFechaEntregaPlan()}', 
+                    FECHAIR ='{$tarea->getFechaInicioReal()}', 
+                    FECHAEP ='{$tarea->getFechaEntregaPlan()}', 
+                    FECHAER ='{$tarea->getFechaEntregaReal()}',
+                    HORASP ='{$tarea->getHorasPlan()}', 
+                    HORASR ='{$tarea->getHorasReal() }',
+                    ID_MIEMBRO ='{$tarea->getMiembro()->getUsuario()}', 
+                    DESCRIPCION ='{$tarea->getDescripcion()}',
+                    ESTADO ='{$tarea->getEstadoTarea()}', 
+                    COMENTARIO ='{$tarea->getEstadoTarea()}'
+                    WHERE
+                    ID_TAREA ='{$tarea->getIdTarea()}' ;";
             if ($this->mysqli->query($sql) === TRUE) {
                 return "Modificada con éxito con éxito";
             } else {
@@ -505,6 +507,18 @@ class TAREA_Mapper{
             return $tareas_model;
         } else {
             return "No hay resultados";
+        }
+    }
+
+    function insertarSubTarea(Tarea $tarea)
+    {
+        $this->conectarBD();
+        $sql = "INSERT INTO TAREA (PADRE,NOMBRE,FECHAIP,FECHAIR,FECHAEP,FECHAER,HORASP,HORASR,ID_MIEMBRO,ID_PROYECTO, DESCRIPCION,ESTADO,COMENTARIO) 
+                VALUES ('{$tarea->getTareaPadre()->getIdTarea()}','{$tarea->getNombre()}','{$tarea->getFechaInicioPlan()}','{$tarea->getFechaInicioReal()}','{$tarea->getFechaEntregaPlan()}','{$tarea->getFechaEntregaReal()}','{$tarea->getHorasPlan()}','{$tarea->getHorasReal()}','{$tarea->getMiembro()->getUsuario()}','{$tarea->getProyecto()->getIDPROYECTO()}','{$tarea->getDescripcion()}','{$tarea->getEstadoTarea()}','{$tarea->getComentario()}');";
+        if ($this->mysqli->query($sql) === TRUE) {
+            return "Creado con éxito";
+        } else {
+            return "Error en la creación ";
         }
     }
 }

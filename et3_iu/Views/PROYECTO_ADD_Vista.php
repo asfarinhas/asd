@@ -110,6 +110,14 @@ class Proyecto_Add
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error nombre proyecto']; ?>" >
                             </div>
+                        </div><!-- Campo Director -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR"  readonly value="<?php echo $_SESSION['login'];?>" title="<?php echo $strings['error nombre proyecto']; ?>" >
+                            </div>
                         </div>
 
 

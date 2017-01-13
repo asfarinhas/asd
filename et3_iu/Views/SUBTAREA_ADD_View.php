@@ -21,6 +21,7 @@ class Subtarea_add
     {
 
         $miembros = $this->getArrayDatos();
+
         $strings = array();
         $idioma = $_SESSION['IDIOMA'];
         switch ($idioma) {
@@ -50,11 +51,11 @@ class Subtarea_add
                     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
                         <div> <!-- ID de la tarea padre-->
-                            <input type="number" hidden name="tarea_padre" value="<?= $_REQUEST['tarea_padre'] ?>">
+                            <input type="number" hidden name="tarea_padre" value="<?=$_REQUEST['tarea_padre']?>">
                         </div>
 
                         <div> <!-- ID de proyecto-->
-                            <input type="number" hidden name="id_proyecto" value="<?= $_REQUEST['proyecto_id'] ?>">
+                            <input type="number" hidden name="id_proyecto" value="<?=$_REQUEST['proyecto_id'] ?>">
                         </div>
 
                         <div>

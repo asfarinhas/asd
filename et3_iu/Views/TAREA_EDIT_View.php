@@ -8,9 +8,10 @@
 class TAREA_EDIT_Vista{
 
 
-    public function __construct(Tarea $tarea,Array $miembros){
+    public function __construct(Tarea $tarea,Array $miembros,$volver){
         $this->tarea = $tarea;
         $this->miembros = $miembros;
+        $this->volver = $volver;
         $this->render();
 
     }
@@ -28,12 +29,12 @@ class TAREA_EDIT_Vista{
                 <form  id="form" name="form" action='TAREA_Controller.php' method='post' >
                     <ul class="form-style-1">
                         <li><?=$strings['Nombre']?>:    <input type="text" name="nombre" required pattern="[A-z 0-9]*" value="<?=$this->tarea->getNombre()?>" ></li>
-                        <li><?=$strings['fecha_I_P']?>: <input type="date" name="fecha_I_P" required min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaInicioPlan()?>" ></li>
-                        <li><?=$strings['fecha_I_R']?>: <input type="date" name="fecha_I_R"          min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaInicioReal()?>" ></li>
-                        <li><?=$strings['fecha_E_P']?>: <input type="date" name="fecha_E_P" required min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaEntregaPlan()?>" ></li>
-                        <li><?=$strings['fecha_E_R']?>: <input type="date" name="fecha_E_R"          min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaEntregaReal()?>" ></li>
-                        <li><?=$strings['horas_P']?>:   <input type="number" name="horas_P" required min="0" value="<?=$this->tarea->getHorasPlan()?>"></li>
-                        <li><?=$strings['horas_R']?>:   <input type="number" name="horas_R"          min="0" value="<?=$this->tarea->getHorasReal()?>"></li>
+                        <li><?=$strings['fecha_I_P']?>: <input type="date" name="fecha_I_P" min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaInicioPlan()?>" ></li>
+                        <li><?=$strings['fecha_I_R']?>: <input type="date" name="fecha_I_R" min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaInicioReal()?>" ></li>
+                        <li><?=$strings['fecha_E_P']?>: <input type="date" name="fecha_E_P" min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaEntregaPlan()?>" ></li>
+                        <li><?=$strings['fecha_E_R']?>: <input type="date" name="fecha_E_R" min="<?=date('Y-m-d')?>" value="<?=$this->tarea->getFechaEntregaReal()?>" ></li>
+                        <li><?=$strings['horas_P']?>:   <input type="number" name="horas_P" min="0" value="<?=$this->tarea->getHorasPlan()?>"></li>
+                        <li><?=$strings['horas_R']?>:   <input type="number" name="horas_R" min="0" value="<?=$this->tarea->getHorasReal()?>"></li>
                         <li><?=$strings['asignado']?>:  <select name="miembro">
                                 <?php foreach ($this->miembros as $miembro){
                                     if($miembro == $this->tarea->getMiembro()->getUsuario())
@@ -59,7 +60,7 @@ class TAREA_EDIT_Vista{
                         <input type='submit' onclick="DoSubmit()" value=<?=$strings['Modificar'] ?>>
                     </ul>
                 </form>
-                <a class="form-link" href='TAREA_Controller.php'><?=$strings['Volver']?> </a>
+                <a class="form-link" href='<?=$this->volver?>'><?=$strings['Volver']?> </a>
             </h3>
             </p>
         </div>

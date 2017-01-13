@@ -57,6 +57,14 @@ class Proyecto_Modificar{
                                 <input type="text" readonly class="form-control"  name="ID_PROYECTO"  value="<?php echo $this->datos['ID_PROYECTO'];?>" title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
+                        <!-- Campo Descripción -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <textarea name="PROYECTO_DESCRIPCION"  rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
+                        </div>
                         <!-- Campo Fecha Inicio -->
                         <div class="form-group">
                             <div class="col-sm-4">
@@ -112,6 +120,15 @@ class Proyecto_Modificar{
                             <div class="col-sm-4">
                                 <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_MUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
+
+                        <!-- Campo Director -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text"  value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="PROYECTO_DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                        </div>
                         <!-- Campo Borrado -->
                         <div class="form-group">
                             <div class="col-sm-4">
@@ -128,14 +145,7 @@ class Proyecto_Modificar{
                                     <?php } ?>
                                     </Select>
                         </div>
-                            <!-- Campo Descripción -->
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
-                                </div>
-                                <div class="col-sm-4">
-                                    <textarea name="PROYECTO_DESCRIPCION"  rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
-                            </div>
+
 
                             <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                         <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia()" >
