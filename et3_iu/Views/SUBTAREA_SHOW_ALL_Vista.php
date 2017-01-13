@@ -8,13 +8,14 @@
 
 class SUBTAREA_SHOW_ALL_Vista{
 
-    private $subtareas;
+    //private $subtareas;
 
     function __construct($subtareas){
         $this->subtareas = $subtareas;
+        $this->mostrarSubtareas($subtareas);
     }
 
-    function mostrarSubtareas(){
+    function mostrarSubtareas($subtareas){
         ?>
 
 
@@ -36,7 +37,7 @@ class SUBTAREA_SHOW_ALL_Vista{
                 <table id="btable" border = 1>
                     <thead>
                         <th>  PROYECTO </th>
-                        <th>  TAREA </th>
+                        <th>  SUBTAREA </th>
                         <th>  FECHA INICIO PLANIFICADA </th>
                         <th>  FECHA INICIO REAL </th>
                         <th>  ESTADO </th>
@@ -47,22 +48,27 @@ class SUBTAREA_SHOW_ALL_Vista{
                         //Vista con mensaje de vacio
                     }else {
 
-                        foreach ($this->subtareas as $tarea) {
+                        foreach ($subtareas as $tarea) {
                             echo "<tr><td> " . $tarea->getProyecto()->getNOMBRE() . "</td>";
                             echo "<td>" . $tarea->getNombre() . "</td>";
                             echo "<td> " . $tarea->getFechaInicioPlan() . "</td>";
                             echo "<td> " . $tarea->getFechaInicioReal() . "</td>";
                             echo "<td> " . $tarea->getEstadoTarea() . "</td>";
+                            ?>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=edit_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Modificar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=delete_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=show_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Ver'] ?></a>
+                            </td>
+                            <td>
+                                <a href='ENTREGABLE_Controller.php?accion=showall&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Entregables'] ?></a>
+                            </td>
 
-                            //Si es una tarea Padre se muestra boton a subtarea sino no
-                            if($tarea -> getTareaPadre() == null) {
-                                ?>
-                                <td>
-                                    <a href="../Controllers/MIEMBRO_Controller.php?ID_TAREA=<?php echo $tarea->getIdTarea(); ?>&accion=verSubtareas">VerSubtareas</a>
-                                </td>
-                                </tr>
-                                <?php
-                            }
+                            <?php
                         }
                     }
                     ?>
@@ -70,13 +76,9 @@ class SUBTAREA_SHOW_ALL_Vista{
             </div>
 
         </div>
-        <!--
-                            <div id="data">
-        <p class="alert alert-warning">No existen tareas.</p>
-        </div>
-        -->
+
         <?php
-    } //fin metodo mostrarTareasPadre
+    } //fin metodo mostrarSubtareas
 }
 
 ?>
