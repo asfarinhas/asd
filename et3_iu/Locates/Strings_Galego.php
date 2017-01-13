@@ -191,7 +191,7 @@ $strings = array(
 	'Borrar proyecto' => 'Borrar proxecto',
 	'El proyecto ha sido borrado correctamente'=>'O proyecto foi borrado correctamente',
 
-	'Gestión de Notificaciones' => 'Xestión de Notificaciones',
+	'Gestión de Notificaciones' => 'Xestión de Notificacions',
 			'ID_NOTIFICACION' => 'ID Notificación',
 			'EMISOR' => 'Emisor',
 			'RECEPTOR' => 'Receptor',
