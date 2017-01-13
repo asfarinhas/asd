@@ -8,8 +8,8 @@
  class TAREA_ADD_Vista{
 
 
-     public function __construct( array $miembros){
-
+     public function __construct( array $miembros, $volver){
+         $this->volver = $volver;
          $this->miembros = $miembros;
          $this->render();
 
@@ -43,7 +43,7 @@
                                 <input type='submit' onclick="DoSubmit()" value=<?=$strings['Insertar'] ?>>
                             </ul>
                         </form>
-                        <a class="form-link" href='TAREA_Controller.php'><?=$strings['Volver']?> </a>
+                        <a class="form-link" href='<?=$this->volver?>'><?=$strings['Volver']?> </a>
                     </h3>
                 </p>
             </div>

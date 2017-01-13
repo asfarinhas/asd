@@ -104,6 +104,15 @@ class Proyecto_Show{
                                 <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
 
+                        <!-- Campo Director -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                        </div>
+
                             <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
                                 <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
@@ -142,6 +151,14 @@ class Proyecto_Show{
                             <div class="col-sm-4">
                                 <input type="text" class="form-control" readonly name="ID_PROYECTO"  value="<?php echo $this->datos['ID_PROYECTO'];?>" title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
+                        </div>
+                         <!-- Campo Descripción -->
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
+                            </div>
+                            <div class="col-sm-4">
+                                 <textarea name="PROYECTO_DESCRIPCION" readonly rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
                         </div>
                         <!-- Campo Fecha Inicio -->
                         <div class="form-group">
@@ -198,16 +215,16 @@ class Proyecto_Show{
                             <div class="col-sm-4">
                                 <input type="text" readonly value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
-                        <!-- Campo Descripción -->
+
+
+                    <!-- Campo Director -->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
+                                <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                 <textarea name="PROYECTO_DESCRIPCION" readonly rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
+                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR" value="<?php echo $this->datos['DIRECTOR'];?>" title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
-
-
 
 
 

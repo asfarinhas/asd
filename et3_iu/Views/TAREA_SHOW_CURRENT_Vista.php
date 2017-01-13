@@ -21,10 +21,8 @@ class TAREA_SHOW_CURRENT_Vista{
     public function render(){
         //$strings = array();
         $tarea= $this->getTarea();
-        var_dump($tarea);
         $proyecto = $tarea->getProyecto();
-        var_dump($proyecto);
-        $auxMiembro = $tarea->getMiembro();
+        //$auxMiembro = $tarea->getMiembro();
         ?>
         <html>
         <head>

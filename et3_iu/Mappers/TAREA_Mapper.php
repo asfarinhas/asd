@@ -280,18 +280,20 @@ class TAREA_Mapper{
         {
             $this->conectarBD();
 
-            $sql = "UPDATE TAREA SET PADRE = '" . $tarea->getTareaPadre() . "', ID_TAREA = '" . $tarea->getIdTarea() . "', 
-                    NOMBRE = '" . $tarea->getNombre() . "', 
-                    FECHAIP = '" . $tarea->getFechaEntregaPlan() . "', 
-                    FECHAIR = '" . $tarea->getFechaInicioReal() . "', 
-                    FECHAEP = '" . $tarea->getFechaEntregaPlan() . "', 
-                    FECHAER = '" . $tarea->getFechaEntregaReal() . "',
-                    HORASP = '" . $tarea->getHorasPlan() . "', 
-                    HORASR = '" . $tarea->getHorasReal() . "',
-                    ID_MIEMBRO = '" . $tarea->getMiembro()->getUsuario() . "', 
-                    DESCRIPCION = '" . $tarea->getDescripcion() . "',
-                    ESTADO = '" . $tarea->getEstadoTarea() . "', 
-                    COMENTARIO = '" . $tarea->getEstadoTarea() . "';";
+            $sql = "UPDATE TAREA SET 
+                    NOMBRE ='{$tarea->getNombre()}', 
+                    FECHAIP ='{$tarea->getFechaEntregaPlan()}', 
+                    FECHAIR ='{$tarea->getFechaInicioReal()}', 
+                    FECHAEP ='{$tarea->getFechaEntregaPlan()}', 
+                    FECHAER ='{$tarea->getFechaEntregaReal()}',
+                    HORASP ='{$tarea->getHorasPlan()}', 
+                    HORASR ='{$tarea->getHorasReal() }',
+                    ID_MIEMBRO ='{$tarea->getMiembro()->getUsuario()}', 
+                    DESCRIPCION ='{$tarea->getDescripcion()}',
+                    ESTADO ='{$tarea->getEstadoTarea()}', 
+                    COMENTARIO ='{$tarea->getEstadoTarea()}'
+                    WHERE
+                    ID_TAREA ='{$tarea->getIdTarea()}' ;";
             if ($this->mysqli->query($sql) === TRUE) {
                 return "Modificada con éxito con éxito";
             } else {

@@ -112,7 +112,14 @@ class Proyecto_Borrar{
                             <input type="text" readonly value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                     </div>
 
-
+                    <!-- Campo Director -->
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                    </div>
                     <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
                     <input type='submit' name='accion' value='<?php echo $strings['Borrar']; ?>'>
 
