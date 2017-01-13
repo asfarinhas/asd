@@ -77,7 +77,7 @@ function add_miembro(){
         $apellidos = $_REQUEST['apellidos'];
         $usuario = $_REQUEST['usuario'];
         $contraseña = $_REQUEST['password'];
-        $contraseña = md5($contraseña);
+        //$contraseña = md5($contraseña);
         $correo =  $_REQUEST['correo'];
 
         $miembro = new Miembro($nombre, $apellidos, $usuario, $contraseña, $correo);

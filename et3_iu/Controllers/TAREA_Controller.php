@@ -17,7 +17,7 @@ include '../Views/TAREA_SHOW_ALL_Vista.php';
 include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
 include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
-//include '../Views/SUBTAREA_VIEW_View.php';
+include '../Views/SUBTAREA_SHOW_CURRENT_Vista.php';
 //include '../Views/SUBTAREA_DELETE_View.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
 //include '../Mappers/PROYECTO_Mapper.php';
@@ -233,6 +233,14 @@ function edit_subtarea()
 }
 
 function show_subtarea(){
+
+   $tareaID = $_REQUEST['ID_TAREA'];
+   $proyectoID = $_REQUEST['proyecto_id'];
+
+   $tareaMapper = new TAREA_Mapper();
+   $subtarea = $tareaMapper -> buscarTareaId($tareaID);
+
+   $vistaSubtarea = new SUBTAREA_SHOW_CURRENT_Vista($subtarea);
     //Recoger de la BBDD los datos de las subtarea con padre el id de la tarea padre
     //Mostrar una vista con todos esos datos
 }
