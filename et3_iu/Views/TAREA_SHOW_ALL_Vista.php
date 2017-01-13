@@ -74,7 +74,7 @@ class TareaShowAllVista{
                             <td> <?=$tarea->getFechaEntregaPlan()?> </td>
                             <td> <?=$tarea->getHorasPlan()?> </td>
                             <td>
-                                <a href='TAREA_Controller.php?accion=edit_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
+                                <a href='TAREA_Controller.php?accion=edit_tarea&amp;tarea_id=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
                             </td>
                             <td>
                                 <a href='TAREA_Controller.php?accion=delete_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>
