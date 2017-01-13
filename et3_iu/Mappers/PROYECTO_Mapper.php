@@ -203,7 +203,8 @@ public function buscarMiembro(Miembro $miembro)
 
       if ($resultado->num_rows != 0) {
           $info = $resultado->fetch_array(MYSQLI_ASSOC);
-          $proyecto = new Proyecto($info["ID_PROYECTO"], $info["NOMBRE"], $info["DESCRIPCION"], $info["FECHAI"], $info["FECHAE"], $info["FECHAIP"], $info["FECHAFP"], $info["NUMEROMIEMBROS"], $info["NUMEROHORAS"] , $info['DIRECTOR'], $info["BORRADO"]);
+          $miembro = $this->buscarMiembroPorUsuario($info['DIRECTOR']);
+          $proyecto = new Proyecto($info["ID_PROYECTO"], $info["NOMBRE"], $info["DESCRIPCION"], $info["FECHAI"], $info["FECHAE"], $info["FECHAIP"], $info["FECHAFP"], $info["NUMEROMIEMBROS"], $info["NUMEROHORAS"] , $miembro, $info["BORRADO"]);
           return $proyecto;
 
       } else {
