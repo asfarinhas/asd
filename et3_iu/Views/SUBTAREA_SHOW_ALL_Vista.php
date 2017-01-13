@@ -8,14 +8,24 @@
 
 class SUBTAREA_SHOW_ALL_Vista{
 
-    //private $subtareas;
+    private $subtareas;
 
     function __construct($subtareas){
         $this->subtareas = $subtareas;
-        $this->mostrarSubtareas($subtareas);
     }
 
-    function mostrarSubtareas($subtareas){
+    /**
+     * @return mixed
+     */
+    public function getSubtareas()
+    {
+        return $this->subtareas;
+    }
+
+
+    function mostrarSubtareas(){
+
+        $subtareas = $this -> getSubtareas();
         ?>
 
 
@@ -32,6 +42,7 @@ class SUBTAREA_SHOW_ALL_Vista{
                             <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
                         </ul>
                         <a href="../Views/DEFAULT_Vista.php">Volver </a>
+                        <a href='./TAREA_Controller.php?accion=add_subtarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>&amp;tarea_padre=<?=$_REQUEST['ID_TAREA']?>'> <?php echo $strings['Insertar']?></a>
                     </div>
                 </nav>
                 <table id="btable" border = 1>
@@ -78,7 +89,10 @@ class SUBTAREA_SHOW_ALL_Vista{
         </div>
 
         <?php
-    } //fin metodo mostrarSubtareas
+    }
+
+
+    //fin metodo mostrarSubtareas
 }
 
 ?>

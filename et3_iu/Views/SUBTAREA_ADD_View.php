@@ -50,11 +50,11 @@ class Subtarea_add
                     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
 
                         <div> <!-- ID de la tarea padre-->
-                            <input type="number" hidden name="tarea_padre" value="<?= $_GET['tarea_padre'] ?>">
+                            <input type="number" hidden name="tarea_padre" value="<?= $_REQUEST['tarea_padre'] ?>">
                         </div>
 
                         <div> <!-- ID de proyecto-->
-                            <input type="number" hidden name="id_proyecto" value="<?= $_GET['id_proyecto'] ?>">
+                            <input type="number" hidden name="id_proyecto" value="<?= $_REQUEST['proyecto_id'] ?>">
                         </div>
 
                         <div>
@@ -98,11 +98,6 @@ class Subtarea_add
                         <div>
                             <?= $strings['comentarios'] ?><br/>
                             <textarea type="textarea" name="comentario" rows="4" cols="50"></textarea>
-                        </div>
-
-                        <div>
-                            <!-- AÑADIR ENLACE A LA VISTA QUE CREA LOS ENTREGABLES -->
-                            <!--<a href="ENTREGABLE_Controller.php?&amp;accion=add"><?//= $strings['AddEntregables'] ?></a><br/>-->
                         </div>
 
                         <input type="hidden" name="accion" value="add_subtarea">

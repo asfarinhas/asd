@@ -52,7 +52,7 @@ class TareaShowAllVista{
 
                         </ul>
                         <title><?php echo $strings['Mostrar Tareas'];?></title>
-                        <a class="form-link" href='../index.php'><?=$strings['Volver']?> </a>
+                        <a href='../index.php'><?=$strings['Volver']?> </a>
                         <a href='./TAREA_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a> <!--consultar por busqueda-->
                         <a href='./TAREA_Controller.php?accion=add_tarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Insertar']?></a>
                     </div>
@@ -74,7 +74,7 @@ class TareaShowAllVista{
                             <td> <?=$tarea->getFechaEntregaPlan()?> </td>
                             <td> <?=$tarea->getHorasPlan()?> </td>
                             <td>
-                                <a href='TAREA_Controller.php?accion=edit_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Modificar'] ?></a>
+                                <a href='TAREA_Controller.php?accion=edit_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
                             </td>
                             <td>
                                 <a href='TAREA_Controller.php?accion=delete_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>

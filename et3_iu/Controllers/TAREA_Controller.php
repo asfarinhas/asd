@@ -178,7 +178,7 @@ function add_subtarea(){
         new Mensaje($result,"./TAREA_Controller.php");
 
     }else{
-        $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['id_proyecto']);
+        $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
         $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
         $vista_addsubtarea->showView();
     }//fin parametros
@@ -190,7 +190,7 @@ function edit_subtarea()
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
     if(isset($_REQUEST['id_proyecto']) && isset($_REQUEST["id_tarea"])){
-        //$proyecto = $proyectoMapper->buscarId($_REQUEST['id_proyecto']);
+        //$proyecto = $proyectoMapper->buscarId($_REQUEST['proyecto_id']);
         //$proyectoModel = new Proyecto($proyecto[0], $proyecto[1], $proyecto[2], $proyecto[3], $proyecto[4], $proyecto[5], $proyecto[6], $proyecto[7], $proyecto[8], null, $proyecto[10]);
 
 
