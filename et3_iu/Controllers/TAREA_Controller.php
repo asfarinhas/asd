@@ -54,7 +54,7 @@ function add_tarea(){
         new Mensaje($mensaje,"./TAREA_Controller.php");
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
-        new TAREA_ADD_Vista($miembros);
+        new TAREA_ADD_Vista($miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }
 }
 
@@ -67,20 +67,24 @@ function edit_tarea(){
 
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
 
+        if(isset($_REQUEST["nombre"]))
         $tarea->setNombre($_REQUEST["nombre"]);
-        $tarea->setFechaInicioPlan($_REQUEST["fecha_I_P"]);
-        if($_REQUEST["fecha_I_R"])
+        if(isset($_REQUEST["fecha_I_P"]))
+            $tarea->setFechaInicioPlan($_REQUEST["fecha_I_P"]);
+        if(isset($_REQUEST["fecha_I_R"]))
            $tarea->setFechaInicioReal($_REQUEST["fecha_I_R"]);
-
+        if(isset($_REQUEST["fecha_E_P"]))
         $tarea->setFechaEntregaPlan($_REQUEST["fecha_E_P"]);
-        if($_REQUEST["fecha_E_R"])
+        if(isset($_REQUEST["fecha_E_R"]))
             $tarea->setFechaEntregaReal($_REQUEST["fecha_E_R"]);
-        $horas_P = $_REQUEST["horas_P"];
-        if($_REQUEST["horas_R"])
+        if(isset($_REQUEST["horas_P"]))
+            $horas_P = $_REQUEST["horas_P"];
+        if(isset($_REQUEST["horas_R"]))
             $tarea->setHorasReal($_REQUEST["horas_R"]);
-        $tarea->setMiembro($miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]));
+        if(isset($_REQUEST["miembro"]))
+            $tarea->setMiembro($miembro_mapper->buscarMiembroPorUsuario($_REQUEST["miembro"]));
+        if(isset($_REQUEST["estado"]))
         $tarea ->setEstadoTarea($_REQUEST["estado"]);
-
         if(isset($_REQUEST["descripcion"]))
             $tarea->setDescripcion($_REQUEST["descripcion"]);
         if(isset($_REQUEST["comentarios"]))
@@ -91,7 +95,7 @@ function edit_tarea(){
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
-        new TAREA_EDIT_Vista($tarea, $miembros);
+        new TAREA_EDIT_Vista($tarea, $miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }
 }
 
