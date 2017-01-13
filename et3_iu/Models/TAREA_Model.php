@@ -18,7 +18,7 @@ class Tarea{
     private $comentario;
 
     public function __construct($id_tarea = NULL, $nombre=NULL, $descripcion=NULL, Tarea $tarea_padre=NULL, $fecha_inicio_plan=NULL, $fecha_entrega_plan=NULL, $fecha_inicio_real=NULL,
-                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, Miembro_Model $miembro=NULL, $estado_tarea=NULL, $comentario=NULL, Proyecto $proyecto=NULL){
+                                $fecha_entrega_real=NULL, $horas_plan=NULL, $horas_real=NULL, Miembro $miembro=NULL, $estado_tarea=NULL, $comentario=NULL, Proyecto $proyecto=NULL){
 
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
@@ -161,7 +161,7 @@ class Tarea{
     }
 
 
-    public function setMiembro( Miembro_Model $miembro)
+    public function setMiembro(Miembro $miembro)
     {
         $this->miembro = $miembro;
     }

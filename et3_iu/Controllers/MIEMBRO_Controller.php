@@ -35,7 +35,7 @@ function edit_miembro(){  //claudia
             $contraseña = $_REQUEST['password'];
             $correo =  $_REQUEST['correo'];
 
-            $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
+            $miembro = new Miembro($nombre, $apellidos, $usuario, $contraseña, $correo);
 
             //si ha modificado el campo username
             if($username != $usuario){
@@ -80,7 +80,7 @@ function add_miembro(){
         $contraseña = md5($contraseña);
         $correo =  $_REQUEST['correo'];
 
-        $miembro = new Miembro_Model($nombre, $apellidos, $usuario, $contraseña, $correo);
+        $miembro = new Miembro($nombre, $apellidos, $usuario, $contraseña, $correo);
         $aux = $miembroMapper->buscarMiembroPorUsuario($usuario);
         if($aux != false){ //existe
             echo "Username existente, introduzca otro";

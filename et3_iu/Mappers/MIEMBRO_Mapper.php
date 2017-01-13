@@ -48,7 +48,7 @@
                 $apellido = $obj -> emp_apellido;
                 $email = $obj -> emp_email;
 
-                $miembro = new Miembro_Model($nombre, $apellido, $user, $password, $email);
+                $miembro = new Miembro($nombre, $apellido, $user, $password, $email);
 
                 array_push($miembros, $miembro);
             }
@@ -70,7 +70,7 @@
 
             $miembro = $resultado->fetch_array(MYSQLI_ASSOC);
 
-            $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
+            $miembro = new Miembro($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
 
             return $miembro;
         }
@@ -79,7 +79,7 @@
          * Inserta un miembro en la base de datos
          * @param Miembro $miembro
          */
-        public function insertarMiembro(Miembro_Model $miembro) {
+        public function insertarMiembro(Miembro $miembro) {
 
             $sql = "INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`, `EMP_TIPO`, `EMP_ESTADO`)
                                   VALUES ('{$miembro -> getUsuario()}', '{$miembro -> getContraseña()}', '{$miembro -> getNombre()}', '{$miembro -> getApellidos()}',
@@ -167,7 +167,7 @@
             } else {
                 $miembros_proyecto = array();
                 while($miembro = $resultado->fetch_array(MYSQLI_ASSOC)){
-                    $miembro = new Miembro_Model($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
+                    $miembro = new Miembro($miembro["EMP_NOMBRE"], $miembro["EMP_APELLIDO"], $miembro["EMP_USER"], $miembro["EMP_PASSWORD"], $miembro["EMP_EMAIL"]);
                     array_push($miembros_proyecto, $miembro);
                 }
 

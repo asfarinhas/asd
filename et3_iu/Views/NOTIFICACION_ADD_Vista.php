@@ -55,7 +55,7 @@ class Notificacion_Add
                                 <label for="Contenido" class="control-label"><?php echo $strings['CONTENIDO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="CONTENIDO" rows="10" cols="40" required></textarea > 
+                                <textarea name="CONTENIDO" id="CONTENIDO" rows="10" cols="40" required></textarea > 
                             </div>
                         </div>
 

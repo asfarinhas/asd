@@ -125,12 +125,12 @@ class ProyectoMapper {
 
         $obj = $resultado->fetch_object();
 
-        $miembro = new Miembro_Model( $obj -> EMP_NOMBRE, $obj -> EMP_APELLIDO,$obj -> EMP_USER, $obj -> EMP_PASSWORD, $obj -> EMP_EMAIL);
+        $miembro = new Miembro( $obj -> EMP_NOMBRE, $obj -> EMP_APELLIDO,$obj -> EMP_USER, $obj -> EMP_PASSWORD, $obj -> EMP_EMAIL);
 
         return $miembro;
     }
 
-public function buscarMiembro(Miembro_Model $miembro)
+public function buscarMiembro(Miembro $miembro)
 {
     $this->conectarBD();
 
@@ -142,7 +142,7 @@ public function buscarMiembro(Miembro_Model $miembro)
     } else {
         $miembros_proyecto = array();
         while($obj = $resultado -> fetch_object()) {
-            $miembroEncontrado = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+            $miembroEncontrado = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
             array_push($miembros_proyecto, $miembroEncontrado);
         }
         return $miembros_proyecto;
@@ -172,7 +172,7 @@ public function buscarMiembro(Miembro_Model $miembro)
           while ($fila= $resultado->fetch_array()) {
 
               //$fila[9] =   new Miembro_Model(miembromapper->findById(  $fila[9]));
-              $fila[9] = new Miembro_Model(2);//Insertamos un objeto en la posicion 10
+              $fila[9] = new Miembro(2);//Insertamos un objeto en la posicion 10
               $fila[9]->setNombre("nombre".$i);//Le asignamos un nombre porque esta vacío
               $toret[$i]=$fila;
 
@@ -220,7 +220,7 @@ public function buscarMiembro(Miembro_Model $miembro)
         }else {
             $miembros_proyecto = array();
             while($obj = $resultado -> fetch_object()) {
-                $miembro = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+                $miembro = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
                 array_push($miembros_proyecto, $miembro);
             }
             return $miembros_proyecto;
@@ -266,7 +266,7 @@ public function buscarMiembro(Miembro_Model $miembro)
     }
 
 
-    public function borrarMiembroProyecto(Miembro_Model $miembro, Proyecto $proyecto) {
+    public function borrarMiembroProyecto(Miembro $miembro, Proyecto $proyecto) {
         $this->conectarBD();
         $sql = "DELETE FROM PROYECTO_MIEMBRO WHERE EMP_USER = '" . $miembro->getUsuario(). "' AND ID_PROYECTO='" . $proyecto->getIDPROYECTO() . "';";
 
@@ -279,7 +279,7 @@ public function buscarMiembro(Miembro_Model $miembro)
 
     }
 
-    public function buscarMiembroProyecto(Miembro_Model $miembro, Proyecto $proyecto){
+    public function buscarMiembroProyecto(Miembro $miembro, Proyecto $proyecto){
         $this->conectarBD();
         $sql = "SELECT EMPLEADOS.EMP_USER,EMP_NOMBRE,EMP_EMAIL,EMP_APELLIDO,EMP_PASSWORD
                 FROM EMPLEADOS,PROYECTO_MIEMBRO WHERE PROYECTO_MIEMBRO.EMP_USER LIKE '%" . $miembro->getUsuario() . "%' 
@@ -293,7 +293,7 @@ public function buscarMiembro(Miembro_Model $miembro)
 
             $miembros_proyecto = array();
             while($obj = $resultado -> fetch_object()) {
-                $miembroEncontrado = new Miembro_Model($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+                $miembroEncontrado = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
                 array_push($miembros_proyecto, $miembroEncontrado);
             }
             return $miembros_proyecto;
