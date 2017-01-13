@@ -335,17 +335,19 @@ class TAREA_Mapper{
                 $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
 
                 $miembro_mapper = new MiembroMapper();
+                $proyecto_mapper = new ProyectoMapper();
 
                 if($tareas_bd["PADRE"] != null)
                     $tareaPadre = $this->buscarTareaId($tareas_bd["PADRE"]);
                 else
                     $tareaPadre = null;
                 $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
+                $proyecto = $proyecto_mapper->buscarId($tareas_bd["ID_PROYECTO"]);
 
                 $tarea = new Tarea($tareas_bd["ID_TAREA"], $tareas_bd["NOMBRE"], $tareas_bd["DESCRIPCION"],
                     $tareaPadre, $tareas_bd["FECHAIP"], $tareas_bd["FECHAEP"], $tareas_bd["FECHAIR"],
                     $tareas_bd["FECHAER"], $tareas_bd["HORASP"], $tareas_bd["HORASR"], $miembro,
-                    $tareas_bd["ESTADO"], $tareas_bd["COMENTARIO"]);
+                    $tareas_bd["ESTADO"], $tareas_bd["COMENTARIO"],$proyecto);
 
                 return $tarea;
             } else {

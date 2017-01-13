@@ -145,13 +145,13 @@ function add_subtarea(){
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
     $tarea_padre = $_REQUEST['tarea_padre'];
-
+    $id_proyecto = $_REQUEST['proyecto_id']; // id del proyecto, obtenido por get
+    $proyecto = $proyectoMapper->buscarId($id_proyecto);
     //parametros del formulario
     if( isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
-        && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['horas_plan']) && isset($_REQUEST['miembro']) && isset($_REQUEST['comentario']) && isset($_REQUEST['id_proyecto'])){
+        && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['horas_plan']) && isset($_REQUEST['miembro']) && isset($_REQUEST['comentario'])){
 
-        //$tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
-        //var_dump($tarea_padre);
+
         $nombre = $_REQUEST['nombre'];
         $descripcion = $_REQUEST['descripcion'];
         $fecha_inicio_plan = $_REQUEST['fecha_inicio_plan'];
@@ -163,12 +163,12 @@ function add_subtarea(){
         $miembro =  $_REQUEST['miembro']; //user de miembro
         $estado_tarea = "pendiente";
         $comentario =  $_REQUEST['comentario'];
-        $id_proyecto = $_REQUEST['id_proyecto']; // id del proyecto, obtenido por get
+
 
 
         $padreId = $tareaMapper->buscarTareaId($tarea_padre);
         $miembroModel = $miembroMapper->buscarMiembroPorUsuario($miembro);
-        $proyecto = $proyectoMapper->buscarId($id_proyecto);
+
         //$proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
 
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
@@ -181,12 +181,12 @@ function add_subtarea(){
         //Mostrar mensaje de confirmación
         //Volver al menú de subtareas
 
-        new Mensaje($result,"./TAREA_Controller.php");
+        new Mensaje($result,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
 
     }else{
         $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
 
-        $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
+        $vista_addsubtarea = new Subtarea_add($miembros_proyecto, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
         $vista_addsubtarea->showView();
     }//fin parametros
 }//fin funcion
@@ -197,7 +197,7 @@ function edit_subtarea()
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
     if( isset($_REQUEST["proyecto_id"]) && isset($_REQUEST["ID_TAREA"])){
-        //$proyecto = $proyectoMapper->buscarId($_REQUEST['proyecto_id']);
+        $proyecto = $proyectoMapper->buscarId($_REQUEST['proyecto_id']);
         //$proyectoModel = new Proyecto($proyecto[0], $proyecto[1], $proyecto[2], $proyecto[3], $proyecto[4], $proyecto[5], $proyecto[6], $proyecto[7], $proyecto[8], null, $proyecto[10]);
 
 
@@ -221,13 +221,14 @@ function edit_subtarea()
                 $tarea->setComentario($_REQUEST["comentario"]);
 
                 $mensaje = $tareaMapper->modificarTarea($tarea);
-                new Mensaje($mensaje, "./TAREA_Controller.php");
+                new Mensaje($mensaje, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
 
 
         }else{
             $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
             $tarea = $tareaMapper->buscarTareaId($_REQUEST["ID_TAREA"]);
-            $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros);
+
+            $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
             $vista_subtarea_edit->showView();
         }
 

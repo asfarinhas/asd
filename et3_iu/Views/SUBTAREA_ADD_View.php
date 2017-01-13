@@ -6,9 +6,10 @@ class Subtarea_add
 
     private $array_datos;
 
-    public function __construct($array_datos)
+    public function __construct($array_datos, $volver)
     {
         $this->array_datos = $array_datos;
+        $this->volver = $volver;
 
     }
 
@@ -49,13 +50,13 @@ class Subtarea_add
 
 
                     <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
-
+                        <ul class="form-style-1">
                         <div> <!-- ID de la tarea padre-->
                             <input type="number" hidden name="tarea_padre" value="<?=$_REQUEST['tarea_padre']?>">
                         </div>
 
                         <div> <!-- ID de proyecto-->
-                            <input type="number" hidden name="id_proyecto" value="<?=$_REQUEST['proyecto_id'] ?>">
+                            <input type="number" hidden name="proyecto_id" value="<?=$_REQUEST['proyecto_id'] ?>">
                         </div>
 
                         <div>
@@ -103,8 +104,9 @@ class Subtarea_add
 
                         <input type="hidden" name="accion" value="add_subtarea">
                         <input type='submit' onclick="DoSubmit()" value="<?= $strings['Insertar'] ?>"><br/><br/>
+                        </ul>
                     </form>
-                    <a class="form-link" href='../Controllers/TAREA_Controller.php'><?= $strings['Volver'] ?> </a>
+                    <a class="form-link" href='<?=$this->volver?>'><?= $strings['Volver'] ?> </a>
                 </div>
                 <?php
         }
