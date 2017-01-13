@@ -163,10 +163,10 @@ function add_subtarea(){
         $padreId = $tareaMapper->buscarTareaId($tarea_padre);
         $miembroModel = $miembroMapper->buscarMiembroPorUsuario($miembro);
         $proyecto = $proyectoMapper->buscarId($id_proyecto);
-        $proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
+        //$proyectoModel = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
 
         $subtarea = new Tarea(/*idTarea*/ NULL, $nombre, $descripcion, $padreId, $fecha_inicio_plan, $fecha_entrega_plan, $fecha_inicio_real,
-            $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyectoModel);
+            $fecha_entrega_real, $horas_plan, $horas_real,  $miembroModel, $estado_tarea, $comentario, $proyecto);
 
 
         //Insertar datos en la tabla tarea en la BBDD

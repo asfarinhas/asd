@@ -21,6 +21,7 @@ class Subtarea_add
     {
 
         $miembros = $this->getArrayDatos();
+
         $strings = array();
         $idioma = $_SESSION['IDIOMA'];
         switch ($idioma) {
