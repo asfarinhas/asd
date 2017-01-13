@@ -67,7 +67,7 @@ class SUBTAREA_SHOW_ALL_Vista{
                             echo "<td> " . $tarea->getEstadoTarea() . "</td>";
                             ?>
                             <td>
-                                <a href='TAREA_Controller.php?accion=edit_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Modificar'] ?></a>
+                                <a href='TAREA_Controller.php?accion=edit_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
                             </td>
                             <td>
                                 <a href='TAREA_Controller.php?accion=delete_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>
