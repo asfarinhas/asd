@@ -59,7 +59,7 @@ class MiembroEditView{
         <div>
             <h1><span class="form-title"><?=$strings['ModificarMiembro']?></h1>
 
-            <form action="../Controllers/MIEMBRO_Controller.php" name="formEditMiembro" enctype="multipart/form-data" method="post" onsubmit="validarFormEditMiembro()">
+            <form action="../Controllers/MIEMBRO_Controller.php" name="formEditMiembro" enctype="multipart/form-data" method="post" onsubmit=" return validarFormEditMiembro()">
 
                 <ul class="form-style-1">
                 <div>

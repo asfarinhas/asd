@@ -25,6 +25,13 @@
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
              <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
+            <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
+            <link href="../Styles/sweetalert.css" rel="stylesheet">
+            <script src="../js/sweetalert.min.js"></script>
+            <script src="../js/validaciones.js"></script>
+            <script src="../js/md5.js"></script>
+            <link href="../Styles/tcal.css" rel="stylesheet">
+            <script src="../js/tcal.js"></script>
         </head>
         <body>
             <p>
@@ -35,7 +42,7 @@
 
                 <h2>
 
-                    <form action="MIEMBRO_Controller.php" method="post">
+                    <form action="MIEMBRO_Controller.php" method="post" id="formDelete">
                      <br><br>
                     <ul class="form-style-1">
 
@@ -71,8 +78,11 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="accion" value="borrar">
-                        <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
+                        <!-- necesario para el switch del controlador -->
+                        <input type="hidden" name="accion" value='<?php echo $strings['Borrar']; ?>'>
+
+                        <!-- type button value solo para mostrar en pantalla, no se pasa por request -->
+                        <input type='button' id="deleteButton" name='accion' onClick="return confirmarBorrado();" value='<?php echo $strings['Borrar']; ?>' >
                         <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
                     </ul>
 
