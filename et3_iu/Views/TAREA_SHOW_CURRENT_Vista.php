@@ -21,8 +21,9 @@ class TAREA_SHOW_CURRENT_Vista{
     public function render(){
         //$strings = array();
         $tarea= $this->getTarea();
+        var_dump($tarea);
         $proyecto = $tarea->getProyecto();
-
+        var_dump($proyecto);
         $auxMiembro = $tarea->getMiembro();
         ?>
         <html>
@@ -150,6 +151,10 @@ class TAREA_SHOW_CURRENT_Vista{
                             <label for="comentario" class="control-label"> <?php echo $strings['comentarios']; ?>: </label>
                             <input type="text" readonly value="<?php echo $tarea -> getComentario(); ?>" name="comentario" >
                         </div>
+                    </div>
+
+                    <div> <!-- ID de proyecto-->
+                        <input type="number" hidden name="id_proyecto" value="<?= $_GET['id_proyecto'] ?>">
                     </div>
 
 

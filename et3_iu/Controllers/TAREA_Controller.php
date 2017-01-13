@@ -100,7 +100,7 @@ function edit_tarea(){
 function show_tarea(){
     $tarea_mapper = new TAREA_Mapper();
     if(isset($_REQUEST['ID_TAREA'])){
-        $tarea = $tarea_mapper->buscarTareaId($_REQUEST['ID_TAREA']);
+        $tarea = $tarea_mapper->buscarTareaIdParaProyecto($_REQUEST['ID_TAREA'], $_REQUEST['proyecto_id']);
         $vista = new TAREA_SHOW_CURRENT_Vista($tarea);
     }
 

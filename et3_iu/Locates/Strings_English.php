@@ -237,14 +237,18 @@ $strings = array(
     "Creado con éxito"=>"Successfully created",
     "comentarios" => "Comments",
     "Error en la modificación" => "Modification failed",
-    "Modificada con éxito con éxito" =>"Succesfully modified",
+    "Modificada con éxito" =>"Succesfully modified",
+	"Subtareas" => "Subtareas",
 
 	//MIEMBRO
 	"Registro" => "Registrer",
 
 	//TAREAS
 	"Eliminar Tarea" => "Delete Task",
-	"Tarea padre" => "Main task"
+	"Tarea padre" => "Main task",
+
+	//ENTREGABLES
+	"Entregables" => "Deliverables"
 
 )
 ?>

@@ -298,6 +298,10 @@ $strings = array(
 	"Tarea padre" => "Tarea padre",
 
 	//ENTREGABLES
-    "Gestión de Entregables" => "Gestión de Entregables"
+    "Gestión de Entregables" => "Gestión de Entregables",
+	"Entregables" => "Entregables",
+
+	//SUBTAREAS
+    "Subtareas" => "Subtareas"
 )
 ?>

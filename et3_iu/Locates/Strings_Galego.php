@@ -187,21 +187,44 @@ $strings = array(
 	'BORRADO' =>'Borrado',
 	'Buscar' => 'Atopar',
 	'Consultar proyecto' => 'Consultar proxecto',
-	'Insertar Proyecto' => 'Inserir Proxecto',
+	'Insertar Proyecto' => 'Engadir Proxecto',
 	'Borrar proyecto' => 'Borrar proxecto',
-	'El proyecto ha sido borrado correctamente'=>'O proyecto foi borrado correctamente',
+	'El proyecto ha sido borrado correctamente'=>'O proxecto foi borrado correctamente',
 
 	//SUBTAREA
 	'Descripcion' => 'Descripcion',
 	'Fechainicioplan' => 'Data de comenzo programada',
-	'Fechaentregaplan' => '',
+	'Fechaentregaplan' => 'Data de entrega programada',
+    'ModifEntregables' => 'Modificar entregable',
+    'AddEntregables' => 'Engadir entregable',
+    'InsertarSubtarea' => 'Engadir subtarea',
+    'ModificarSubtarea' => 'Editar subtarea',
+    'Nombre' => 'Nome',
+    "fecha_I_P" => "Data inicio planificado",
+    "fecha_I_R" => "Data de inicio real",
+    "fecha_E_P" => "Data entrega planificada",
+    "fecha_E_R" => "Data entrega real",
+    "horas_P" => "Horas planificadas",
+    "horas_R" => "Horas reales",
+    "asignado" => "Asignado",
+    "pendiente"=>"Pendente",
+    "finalizado" =>"Rematado",
+    "estado" => "Estado",
+    "Creado con éxito"=>"Creado con éxito",
+    "comentarios" => "Comentarios",
+    "Error en la modificación" => "Error na modificación",
+    "Modificada con éxito" =>"Modificación con éxito",
+	"Subtareas" => "Subtareas",
 
 	//MIEMBRO
 	'Registro' => "Rexistro",
 
 	//TAREA
 	"Eliminar Tarea" => "Borrar tarea",
-	"Tarea padre" => "Tarea padre"
+	"Tarea padre" => "Tarea padre",
+
+	//ENTREGABLES
+	"Entregables" => "Entregables"
 
 )
 ?>

@@ -54,7 +54,7 @@ class TareaShowAllVista{
                         <title><?php echo $strings['Mostrar Tareas'];?></title>
                         <a class="form-link" href='../index.php'><?=$strings['Volver']?> </a>
                         <a href='./TAREA_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a> <!--consultar por busqueda-->
-                        <a href='./TAREA_Controller.php?accion=add_tarea&amp;proyecto_id='><?php echo $strings['Insertar']?></a>
+                        <a href='./TAREA_Controller.php?accion=add_tarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Insertar']?></a>
                     </div>
                 </nav>
                 <table id="btable" border = 1>
@@ -80,7 +80,7 @@ class TareaShowAllVista{
                                 <a href='TAREA_Controller.php?accion=delete_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>
                             </td>
                             <td>
-                                <a href='TAREA_Controller.php?accion=show_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Ver'] ?></a>
+                                <a href='TAREA_Controller.php?accion=show_tarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Ver'] ?></a>
                             </td>
                             <td>
                                 <a href='ENTREGABLE_Controller.php?accion=showall&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Entregables'] ?></a>
