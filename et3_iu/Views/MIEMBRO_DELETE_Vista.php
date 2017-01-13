@@ -42,7 +42,7 @@
 
                 <h2>
 
-                    <form action="MIEMBRO_Controller.php" method="post" onsubmit="">
+                    <form action="MIEMBRO_Controller.php" method="post" id="formDelete">
                      <br><br>
                     <ul class="form-style-1">
 
@@ -78,8 +78,11 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="accion" value="borrar">
-                        <input type='submit' name='accion' onClick="return confirmarBorrado()" value='<?php echo $strings['Borrar']; ?>' >
+                        <!-- necesario para el switch del controlador -->
+                        <input type="hidden" name="accion" value='<?php echo $strings['Borrar']; ?>'>
+
+                        <!-- type button value solo para mostrar en pantalla, no se pasa por request -->
+                        <input type='button' id="deleteButton" name='accion' onClick="return confirmarBorrado();" value='<?php echo $strings['Borrar']; ?>' >
                         <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
                     </ul>
 

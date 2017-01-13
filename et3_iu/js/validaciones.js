@@ -335,15 +335,20 @@ function confirmarBorrado(){
         },
         function(isConfirm){
             if (isConfirm) {
-                swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                return true
+                swal({
+                    title: 'Shortlisted!',
+                    text: 'Candidates are successfully shortlisted!',
+                    type: 'success'
+                }, function() {
+                    document.getElementById("formDelete").submit();
+                });
             } else {
                 swal("Cancelled", "Your imaginary file is safe :)", "error");
-                return false;
             }
         });
 
 }
+
 
 function validarFormEditMiembro(){
     var respuesta = true;
