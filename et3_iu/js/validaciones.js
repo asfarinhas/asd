@@ -46,7 +46,7 @@ function evitarProhibidos(campo){
 
 function soloTexto(campo){
     var respuesta = true;
-    var expresion = /[0-9]/;
+    var expresion = /[0-9·$&#^*]+/;
 
     if(expresion.test(campo.value)){
     swal(
@@ -113,7 +113,7 @@ function encriptarPassword(){
 function validarUsuario(usuario)
 {
     var respuesta = true;
-    var cadena = /^[a-zA-Z0-9\_\-\.]{3,15}/;
+    var cadena = /^[a-zA-Z0-9\_\-\.]{3,25}/;
 
     if (cadena.test(usuario.value) == false || usuario.value.length > 15 || usuario.value.length < 3)
     {
@@ -131,6 +131,81 @@ function validarUsuario(usuario)
     return respuesta;
 }
 
+function validarNombre(usuario)
+{
+    var respuesta = true;
+    var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,20}/;
+
+    if (cadena.test(usuario.value) == false || usuario.value.length > 20 || usuario.value.length < 1)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + usuario.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+    return respuesta;
+}
+
+function validarApellidos(usuario)
+{
+    var respuesta = true;
+    var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,40}/;
+
+    if (cadena.test(usuario.value) == false || usuario.value.length > 40 || usuario.value.length < 1)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + usuario.name + " válido: \n (letras, números, '-', '_', '.')",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+    return respuesta;
+}
+
+function validarEmail(mail){
+    var respuesta = true;
+    var correo = /^(([^<>()[\]\\.,;:\s@”]+(\.[^<>()[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (correo.test(mail.value) == false || mail.value.length > 40)
+    {
+        if(correo.test(mail.value) == false){
+            swal(
+                {
+                    title : "Error!",
+                    text : "Introduza mail válido: ",
+                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }else{
+            swal(
+                {
+                    title : "Error!",
+                    text : "Email demasiado largo: ",
+                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }
+    }
+    return respuesta;
+
+}
 
 //Devuelve la desviación de las fechas de inicio y entrega
 function desviacionFechas(){
@@ -243,5 +318,197 @@ function evitarHorasCero (campo) {
         respuesta = false;
     }
 
+    return respuesta;
+}
+
+function validarFormEditMiembro(){
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('nombre')) //nombre
+        && validarNombre(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('nombre'))
+        && validarCampo(document.getElementById('apellidos'))//apellidos
+        && validarApellidos(document.getElementById('apellidos'))
+        && evitarProhibidos(document.getElementById('apellidos'))
+        && validarCampo(document.getElementById('usuario')) //usuario
+        && validarUsuario(document.getElementById('usuario'))
+        && evitarProhibidos(document.getElementById('usuario'))
+        && validarCampo(document.getElementById('password')) //contraseña
+        && validarPassword(document.getElementById('password'))
+        && validarCampo(document.getElementById('correo')) //email
+        && validarEmail(document.getElementById('correo'))
+        && evitarProhibidos(document.getElementById('correo')) ){
+
+        //Dentro del if
+        swal(
+            {
+                title : "Modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+    }else{
+            if(validarCampo(document.getElementById('nombre')) == false){
+                swal(
+                    {
+                        title : "Error!",
+                        text : "Nombre vacío: ",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                repuesta = false;
+            }else{
+                if(validarNombre(document.getElementById('nombre')) == false){
+                    swal(
+                        {
+                            title : "Error!",
+                            text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & * \n Y debe tener una logitud entre 3 y 20",
+                            type : "error",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+
+                    respuesta = false;
+                }else{
+                    if(evitarProhibidos(document.getElementById('nombre'))){
+                        swal(
+                            {
+                                title : "Error!",
+                                text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                type : "error",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+
+                        respuesta = false;
+                    }else{
+                        if(validarCampo(document.getElementById('apellidos')) == false){
+                            swal(
+                                {
+                                    title : "Error!",
+                                    text : "Apellidos vacío: ",
+                                    type : "error",
+                                    confirmButtonText : "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }else{
+                            if(validarApellidos(document.getElementById('apellidos')) == false){
+                                swal(
+                                    {
+                                        title : "Error!",
+                                        text : "El campo Apellidos no puede contener los caracteres: \n · # $ ^ & * \n Y debe tener una logitud entre 1 y 40",
+                                        type : "error",
+                                        confirmButtonText : "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(evitarProhibidos(document.getElementById('apellidos')) == false){
+                                    swal(
+                                        {
+                                            title : "Error!",
+                                            text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                            type : "error",
+                                            confirmButtonText : "Ok"
+                                        }
+                                    );
+
+                                    respuesta = false;
+                                }else{
+                                    if(validarCampo(document.getElementById('usuario')) == false){
+                                        swal(
+                                            {
+                                                title : "Error!",
+                                                text : "Usuario vacío: ",
+                                                type : "error",
+                                                confirmButtonText : "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    }else{
+                                        if(validarUsuario(document.getElementById('usuario')) == false){
+                                            swal(
+                                                {
+                                                    title : "Error!",
+                                                    text : "Usuario inválido: ",
+                                                    type : "error",
+                                                    confirmButtonText : "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        }else{
+                                            if(evitarProhibidos(document.getElementById('usuario')) == false){
+                                                swal(
+                                                    {
+                                                        title : "Error!",
+                                                        text : "El campo Usuario no puede contener los caracteres: \n · # $ ^ & *",
+                                                        type : "error",
+                                                        confirmButtonText : "Ok"
+                                                    }
+                                                );
+                                                respuesta = false;
+                                            }else{
+                                                if(validarCampo(document.getElementById('password')) == false){
+                                                    swal(
+                                                        {
+                                                            title : "Error!",
+                                                            text : "Password vacío: ",
+                                                            // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+                                                            type : "error",
+                                                            confirmButtonText : "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                }else{
+                                                    if(validarCampo(document.getElementById('correo')) == false){
+                                                        swal(
+                                                            {
+                                                                title : "Error!",
+                                                                text : "Correo vacío: ",
+                                                                type : "error",
+                                                                confirmButtonText : "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    }else{
+                                                        if(validarEmail(document.getElementById('correo')) == false){
+                                                            swal(
+                                                                {
+                                                                    title : "Error!",
+                                                                    text : "Correo inválido: ",
+                                                                    type : "error",
+                                                                    confirmButtonText : "Ok"
+                                                                }
+                                                            );
+                                                            respuesta = false;
+                                                        }else{
+                                                            if(evitarProhibidos(document.getElementById('correo')) == false){
+                                                                swal(
+                                                                    {
+                                                                        title : "Error!",
+                                                                        text : "El campo Correo no puede contener los caracteres: \n · # $ ^ & *",
+                                                                        type : "error",
+                                                                        confirmButtonText : "Ok"
+                                                                    }
+                                                                );
+
+                                                                respuesta = false;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
     return respuesta;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: RaquelMarcos
@@ -15,6 +16,14 @@ class MiembroAddVista{
 
 
     function showView(){
+        ?>
+
+        <script src="../js/sweetalert.min.js"></script>
+        <script src="../js/validar_campos.js"></script>
+        <script src="../js/md5.js"></script>
+        <link href="../Styles/tcal.css" rel="stylesheet">
+        <script src="../js/tcal.js"></script>
+        <?php
 
         $idioma = $_SESSION['IDIOMA'];
         switch ($idioma){
