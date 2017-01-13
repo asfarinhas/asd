@@ -6,7 +6,7 @@
  * Time: 20:57
  */
 
-class SUBTAREA_SHOW_Vista{
+class SUBTAREA_SHOW_CURRENT_Vista{
 
     private $subtarea;
 
@@ -17,7 +17,7 @@ class SUBTAREA_SHOW_Vista{
     }
 
     public function render(){
-        $strings = array();
+
         ?>
         <html>
         <head>
@@ -48,7 +48,7 @@ class SUBTAREA_SHOW_Vista{
                     <!-- Campo Tarea Padre -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="apellidos" class="control-label"> <?php echo $strings['TAREA PADRE']; ?>: </label>
+                            <label for="tarea_padre" class="control-label"> <?php echo $strings['TAREA PADRE']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getTareaPadre() -> getNombre() ;?>" name="apellidos" >
                         </div>
                     </div>
