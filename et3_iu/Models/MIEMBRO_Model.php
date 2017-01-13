@@ -1,6 +1,6 @@
 <?php
 
-class Miembro_Model{
+class Miembro{
 
     private $NOMBRE;
     private $APELLIDOS;

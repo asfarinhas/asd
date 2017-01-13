@@ -69,7 +69,7 @@ class TAREA_Mapper{
 
     /**
      * Usado en la vista miembro_tareas_show_Vista
-     * @param Miembro_Model $idMiembro
+     * @param Miembro $idMiembro
      * @return array|string; devuelve un array con las instancias de las tareas padre del miembro pasado por parámetro o un string error
      */
     function listarTareasPadre(){

@@ -125,7 +125,7 @@ function get_data_form_miembro(){
 
     $accion = $_REQUEST['accion'];
 
-    $miembro = new Miembro_Model($MIEMBRO_NOMBRE, $MIEMBRO_APELLIDO,$ID_MIEMBRO,null,$MIEMBRO_EMAIL);
+    $miembro = new Miembro($MIEMBRO_NOMBRE, $MIEMBRO_APELLIDO,$ID_MIEMBRO,null,$MIEMBRO_EMAIL);
 
     return $miembro;
 }

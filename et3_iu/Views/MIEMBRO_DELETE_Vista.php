@@ -12,7 +12,7 @@
 
     private $miembro;
 
-    public function __construct(Miembro_Model $miembro)
+    public function __construct(Miembro $miembro)
     {
         $this -> miembro = $miembro;
         $this -> render();
