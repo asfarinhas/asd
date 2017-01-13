@@ -104,8 +104,8 @@ function validarPassword(password){
 
 function encriptarPassword(){
 
-    var prueba = document.getElementById('pass').value;
-    document.getElementById('pass').value = hex_md5(prueba);
+    var prueba = document.getElementById('password').value;
+    document.getElementById('password').value = hex_md5(prueba);
 
 }
 
@@ -321,6 +321,30 @@ function evitarHorasCero (campo) {
     return respuesta;
 }
 
+function confirmarBorrado(){
+    swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+        function(isConfirm){
+            if (isConfirm) {
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                return true
+            } else {
+                swal("Cancelled", "Your imaginary file is safe :)", "error");
+                return false;
+            }
+        });
+
+}
+
 function validarFormEditMiembro(){
     var respuesta = true;
 
@@ -335,7 +359,6 @@ function validarFormEditMiembro(){
         && validarUsuario(document.getElementById('usuario'))
         && evitarProhibidos(document.getElementById('usuario'))
         && validarCampo(document.getElementById('password')) //contraseña
-        && validarPassword(document.getElementById('password'))
         && validarCampo(document.getElementById('correo')) //email
         && validarEmail(document.getElementById('correo'))
         && evitarProhibidos(document.getElementById('correo')) ){
@@ -348,6 +371,7 @@ function validarFormEditMiembro(){
                 confirmButtonText : "Ok"
             }
         );
+        respuesta = true;
     }else{
             if(validarCampo(document.getElementById('nombre')) == false){
                 swal(
@@ -376,7 +400,7 @@ function validarFormEditMiembro(){
                         swal(
                             {
                                 title : "Error!",
-                                text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & * ",
                                 type : "error",
                                 confirmButtonText : "Ok"
                             }
@@ -410,7 +434,7 @@ function validarFormEditMiembro(){
                                     swal(
                                         {
                                             title : "Error!",
-                                            text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                            text : "El campo Nombre no puede contener los caracteres: \n · # $ ^ & * ",
                                             type : "error",
                                             confirmButtonText : "Ok"
                                         }
@@ -444,7 +468,7 @@ function validarFormEditMiembro(){
                                                 swal(
                                                     {
                                                         title : "Error!",
-                                                        text : "El campo Usuario no puede contener los caracteres: \n · # $ ^ & *",
+                                                        text : "El campo Usuario no puede contener los caracteres: \n · # $ ^ & * ",
                                                         type : "error",
                                                         confirmButtonText : "Ok"
                                                     }
@@ -456,7 +480,6 @@ function validarFormEditMiembro(){
                                                         {
                                                             title : "Error!",
                                                             text : "Password vacío: ",
-                                                            // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
                                                             type : "error",
                                                             confirmButtonText : "Ok"
                                                         }
@@ -489,7 +512,7 @@ function validarFormEditMiembro(){
                                                                 swal(
                                                                     {
                                                                         title : "Error!",
-                                                                        text : "El campo Correo no puede contener los caracteres: \n · # $ ^ & *",
+                                                                        text : "El campo Correo no puede contener los caracteres: \n · # $ ^ & * ",
                                                                         type : "error",
                                                                         confirmButtonText : "Ok"
                                                                     }
