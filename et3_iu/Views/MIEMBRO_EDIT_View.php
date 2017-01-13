@@ -61,7 +61,7 @@ class MiembroEditView{
 
             <form action="../Controllers/MIEMBRO_Controller.php" name="formEditMiembro" enctype="multipart/form-data" method="post" onsubmit="validarFormEditMiembro()">
 
-
+                <ul class="form-style-1">
                 <div>
                     <?= $strings['Nombre']?> <br/>
                     <input type="text" name="nombre" value="<?= $miembro->getNombre()?>" placeholder="<?= $strings['Nombre']?>"  id="nombre"  onblur="validarCampo(document.formEditMiembro.nombre);validarNombre(document.formEditMiembro.nombre);evitarProhibidos(document.formEditMiembro.nombre)"><br/>
@@ -89,6 +89,7 @@ class MiembroEditView{
 
                 <input type="hidden"  name="accion" value="edit">
                 <input type='submit' name="submit" value="<?=$strings['Modificar'] ?>"><br/><br/>
+                </ul>
             </form>
             <a class="form-link" href='../Controllers/MIEMBRO_Controller.php'><?=$strings['Volver']?> </a>
         </div>
