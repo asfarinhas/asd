@@ -50,8 +50,8 @@ class MiembroEditView{
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
             <link href="../Styles/sweetalert.css" rel="stylesheet">
             <script src="../js/sweetalert.min.js"></script>
-            <script src="../js/validaciones.js"></script>
             <script src="../js/md5.js"></script>
+            <script src="../js/validaciones.js"></script>
             <link href="../Styles/tcal.css" rel="stylesheet">
             <script src="../js/tcal.js"></script>
 
