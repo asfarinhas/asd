@@ -210,13 +210,14 @@ public function buscarMiembro(Miembro $miembro)
 
     public function consultarMiembros() {
         $this ->conectarBD();
-        $sql = "SELECT * FROM EMPLEADOS;";
+        $sql = "SELECT * FROM EMPLEADOS WHERE ;";
 
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
         }else {
             $miembros_proyecto = array();
             while($obj = $resultado -> fetch_object()) {
+
                 $miembro = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
                 array_push($miembros_proyecto, $miembro);
             }

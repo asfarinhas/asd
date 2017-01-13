@@ -103,6 +103,7 @@ class ProyectoMiembro_Add
                 </tr>
                 <?php
                 foreach($this->datos1 as $miembro){
+                    if($miembro->getUsuario() != $_SESSION['login'])
                     echo "<tr><td> " . $miembro->getNombre() ."</td>";
                     echo "<td>" . $miembro->getApellidos() ."</td>";
                     echo "<td> " . $miembro->getCorreo() ."</td>";
