@@ -144,12 +144,14 @@ function add_subtarea(){
     $tareaMapper = new TAREA_Mapper();
     $miembroMapper = new MiembroMapper();
     $proyectoMapper = new ProyectoMapper();
+    $tarea_padre = $_REQUEST['tarea_padre'];
 
     //parametros del formulario
-    if( isset($_REQUEST['tarea_padre']) && isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
+    if( isset($_REQUEST['nombre']) && isset($_REQUEST['descripcion']) && isset($_REQUEST['fecha_inicio_plan'])
         && isset($_REQUEST['fecha_entrega_plan']) && isset($_REQUEST['horas_plan']) && isset($_REQUEST['miembro']) && isset($_REQUEST['comentario']) && isset($_REQUEST['id_proyecto'])){
 
-        $tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
+        //$tarea_padre = $_REQUEST['tarea_padre'];  //id de tarea padre, obtenido por get
+        //var_dump($tarea_padre);
         $nombre = $_REQUEST['nombre'];
         $descripcion = $_REQUEST['descripcion'];
         $fecha_inicio_plan = $_REQUEST['fecha_inicio_plan'];
@@ -174,7 +176,7 @@ function add_subtarea(){
 
 
         //Insertar datos en la tabla tarea en la BBDD
-        $result = $tareaMapper->insertarTarea($subtarea);
+        $result = $tareaMapper->insertarSubTarea($subtarea);
 
         //Mostrar mensaje de confirmación
         //Volver al menú de subtareas
@@ -183,6 +185,7 @@ function add_subtarea(){
 
     }else{
         $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
+
         $vista_addsubtarea = new Subtarea_add($miembros_proyecto);
         $vista_addsubtarea->showView();
     }//fin parametros
