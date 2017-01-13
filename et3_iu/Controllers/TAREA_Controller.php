@@ -51,7 +51,7 @@ function add_tarea(){
             $comentarios = null;
         $tarea = new Tarea(null,$nombre,$descripcion,null,$fecha_I_P,$fecha_E_P,null,null,$horas_P,null,$miembro,"pendiente",$comentarios,$proyecto);
         $mensaje = $tarea_mapper->insertarTarea($tarea);
-        new Mensaje($mensaje,"./TAREA_Controller.php");
+        new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         new TAREA_ADD_Vista($miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
@@ -91,7 +91,7 @@ function edit_tarea(){
             $tarea->setComentario($_REQUEST["comentarios"]);
 
         $mensaje = $tarea_mapper->modificarTarea($tarea);
-        new Mensaje($mensaje,"./TAREA_Controller.php");
+        new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);

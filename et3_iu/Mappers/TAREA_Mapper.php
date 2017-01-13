@@ -294,7 +294,6 @@ class TAREA_Mapper{
                     COMENTARIO ='{$tarea->getEstadoTarea()}'
                     WHERE
                     ID_TAREA ='{$tarea->getIdTarea()}' ;";
-            echo $sql;
             if ($this->mysqli->query($sql) === TRUE) {
                 return "Modificada con éxito con éxito";
             } else {
