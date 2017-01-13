@@ -28,9 +28,9 @@
                         <form  id="form" name="form" action='TAREA_Controller.php' method='post' >
                             <ul class="form-style-1">
                                 <li><?=$strings['Nombre']?>:    <input type="text" name="nombre" required pattern="[A-z 0-9]*" ></li>
-                                <li><?=$strings['fecha_I_P']?>: <input type="date" name="fecha_I_P" required min="<?=date('Y-m-d')?>" ></li>
-                                <li><?=$strings['fecha_E_P']?>: <input type="date" name="fecha_E_P" required min="<?=date('Y-m-d')?>" ></li>
-                                <li><?=$strings['horas_P']?>:   <input type="number" name="horas_P" required min="0"></li>
+                                <li><?=$strings['fecha_I_P']?>: <input type="date" name="fecha_I_P" min="<?=date('Y-m-d')?>" ></li>
+                                <li><?=$strings['fecha_E_P']?>: <input type="date" name="fecha_E_P" min="<?=date('Y-m-d')?>" ></li>
+                                <li><?=$strings['horas_P']?>:   <input type="number" name="horas_P" min="0"></li>
                                 <li><?=$strings['asignado']?>:  <select name="miembro">
                                         <?php foreach ($this->miembros as $miembro){
                                             echo "<option value='{$miembro->getUsuario()}'>{$miembro->getUsuario()}</option>";

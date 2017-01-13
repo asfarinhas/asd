@@ -38,15 +38,17 @@
             if($resultado == false || $resultado -> numrows == 0) return false;
 
             $toret = array();
+            $miembro_mapper = new MiembroMapper();
+            $tarea_mapper = new TAREA_Mapper();
             while($obj = $resultado -> fetch_object()){
 
                 $id_entregable = $obj -> id_entregable;
                 $nombre = $obj -> nombre;
                 $estado = $obj -> estado;
                 $url = $obj -> url;
-                $id_miembro = $obj -> id_miembro;
+                $id_miembro = $miembro_mapper-> buscarMiembroPorUsuario($obj -> id_miembro);
                 $fechasubida = $obj -> fechasubida;
-                $id_tarea = $obj -> id_tarea;
+                $id_tarea = $tarea_mapper->buscarTareaId($obj -> id_tarea);
 
                 $aux = new Entregable($id_entregable, $nombre, $estado, $url, $id_miembro, $fechasubida, $id_tarea);
 
@@ -69,10 +71,12 @@
 
             if($resultado == false || $resultado -> numrows == 0) return false;
 
-            $obj = $resultado->fetch_object();
+            $miembro_mapper = new MiembroMapper();
+            $tarea_mapper = new TAREA_Mapper();
 
-            $toret = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $obj -> id_miembro,
-                                        $obj -> fechasubida, $obj -> id_tarea);
+            $obj = $resultado->fetch_object();
+            $toret = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $miembro_mapper-> buscarMiembroPorUsuario($obj -> id_miembro),
+                                        $obj -> fechasubida, $tarea_mapper->buscarTareaId($obj -> id_tarea));
 
             return $toret;
         }
@@ -89,11 +93,14 @@
 
             if($resultado == false || $resultado -> numrows == 0) return false;
 
+            $miembro_mapper = new MiembroMapper();
+            $tarea_mapper = new TAREA_Mapper();
             $toret = array();
+
             while($obj = $resultado->fetch_object()){
 
-                $aux = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $obj -> id_miembro,
-                    $obj -> fechasubida, $obj -> id_tarea);
+                $aux = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $miembro_mapper-> buscarMiembroPorUsuario($obj -> id_miembro),
+                    $obj -> fechasubida, $tarea_mapper->buscarTareaId($obj -> id_tarea));
 
                 array_push($toret, $aux);
             }
@@ -113,11 +120,14 @@
 
             if($resultado == false || $resultado -> numrows == 0) return false;
 
+            $miembro_mapper = new MiembroMapper();
+            $tarea_mapper = new TAREA_Mapper();
             $toret = array();
+
             while($obj = $resultado->fetch_object()){
 
-                $aux = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $obj -> id_miembro,
-                    $obj -> fechasubida, $obj -> id_tarea);
+                $aux = new Entregable($obj -> id_entregable, $obj -> nombre, $obj -> estado, $obj -> url, $miembro_mapper-> buscarMiembroPorUsuario($obj -> id_miembro),
+                    $obj -> fechasubida, $tarea_mapper->buscarTareaId($obj -> id_tarea));
 
                 array_push($toret, $aux);
             }
@@ -132,9 +142,9 @@
         public function insertarEntregable(Entregable $entregable) {
 
             $sql = "INSERT INTO `EMPLEADOS` (`NOMBRE`, `ESTADO`, `URL`, `ID_MIEMBRO`, `FECHASUBIDA`, `ID_TAREA`)
-                                               VALUES ('$entregable -> getNombre()', '$entregable -> getEstado()',
-                                                       '$entregable -> getUrl()', '$entregable -> getIDMiembro()', 
-                                                       '$entregable -> getFechaSubida()', '$entregable -> getIDTarea()')";
+                                               VALUES ('{$entregable -> getNombre()}', '{$entregable -> getEstado()}',
+                                                       '{$entregable -> getURL()}', '{$entregable -> getMiembro()->getUsuario()}(', 
+                                                       '{$entregable -> getFechaSubida()}', '{$entregable -> getTarea()->getIdTarea()}')";
             $this -> mysqli ->query($sql);
             $this -> mysqli->close();
         }
@@ -146,9 +156,9 @@
          */
         public function updateEntregable(Entregable $entregable) {
 
-            $sql = "UPDATE `ENTREGABLE` SET `ID_ENTREGABLE` = '$entregable -> getID()', `NOMBRE` = '$entregable -> getNombre()', `ESTADO` = '$entregable -> getEstado()', 
-                                          `URL` = '$entregable -> getUrl()', `ID_MIEMBRO` = '$entregable -> getIDMiembro()', `FECHASUBIDA` = '$entregable -> getFechaSubida()', 
-                                          `ID_TAREA` = '$entregable -> getIDTarea()' WHERE ID_ENTREGABLE = '$entregable -> getID()' ";
+            $sql = "UPDATE `ENTREGABLE` SET `ID_ENTREGABLE` = '{$entregable -> getID()}', `NOMBRE` = '{$entregable -> getNombre()}', `ESTADO` = '{$entregable -> getEstado()}', 
+                                          `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$entregable -> getFechaSubida()}', 
+                                          `ID_TAREA` = '{$entregable -> getTarea()->getIdTarea()}' WHERE ID_ENTREGABLE = '{$entregable -> getID()}' ";
 
             $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
@@ -160,7 +170,7 @@
          */
         public function eliminarEntregable(Entregable $entregable) {
             $id = $entregable -> getID();
-            $sql = "DELETE FROM entregable WHERE id_entregable = '$id' ";
+            $sql = "DELETE FROM entregable WHERE id_entregable = '{$entregable->getID()}' ";
             $this -> mysqli -> query($sql);
             $this -> mysqli->close();
         }

@@ -32,7 +32,6 @@ function add_tarea(){
     $proyecto_mapper = new ProyectoMapper();
     $tarea_mapper = new TAREA_Mapper();
     $proyecto = $proyecto_mapper->buscarId($_REQUEST['proyecto_id']);
-    $proyecto = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
     if(isset($_REQUEST["nombre"])){
 
 
@@ -64,7 +63,6 @@ function edit_tarea(){
     $proyecto_mapper = new ProyectoMapper();
     $tarea_mapper = new TAREA_Mapper();
     $proyecto = $proyecto_mapper->buscarId($_REQUEST['proyecto_id']);
-    $proyecto = new Proyecto($proyecto[0],$proyecto[1],$proyecto[2],$proyecto[3],$proyecto[4],$proyecto[5],$proyecto[6],$proyecto[7],$proyecto[8],null,$proyecto[10]);
     if(isset($_REQUEST["nombre"])){
 
         $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
