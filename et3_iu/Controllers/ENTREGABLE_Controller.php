@@ -20,7 +20,7 @@
     
         //Viene de clicar en añadir tarea; hay que crear la vista en cuestión
         case "add_entregable_menu":
-            echo "<h1>VISTA ENTREGABLE ADD</h1>";
+            new ENTREGABLE_ADD_Vista();
             break;
     
         //Viene de clicar en editar tarea; hay que crear la vista en cuestión
@@ -42,6 +42,17 @@
     
     
         case "add_entregable": //insertar usuario nuevo a traves de registro
+            $idTarea = $_REQUEST['ID_TAREA'];
+            if (isset($_REQUEST['nombre']) && isset($_REQUEST['estado'])){
+                $nombre = $_REQUEST['nombre'];
+                $estado = $_REQUEST['estado'];
+                $tarea = $t_mapper ->buscarTareaId($idTarea);
+                $miembro = $tarea ->getMiembro() ->getUsuario();
+
+            }else{
+                showall_entregable();
+            }
+
             break;
     
         case "show_entregable": // consultar datos de la tarea

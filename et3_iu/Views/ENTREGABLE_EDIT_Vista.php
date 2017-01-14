@@ -14,51 +14,33 @@
                 </head>
                 <body>
 
-                <form action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post" onsubmit=" ">
+                <form enctype="multipart/form-data" action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post" >
 
                     <div>
-                        <label>Nombre: </label>
-                        <input type="text" name="nombre" placeholder="Nombre" value="<?php echo $entregable['nombre']; ?>"  id="nombre" required maxlength="15"><br/>
+                        <label><?php echo $strings['Nombre']; ?>:</label>
+                        <input type="text" name="nombre" value="<?php echo $entregable['nombre']; ?>"  id="nombre" required maxlength="15"><br/>
                     </div>
 
                     <div>
-                        <label>Estado: </label>
+                        <label><?php echo $strings['Estado'];?>:</label>
                         <select required name="estado">
-                            <option value=""> ---- Seleccione estado ----- </option>
+                            <option value=""> ---- <?php echo $strings['Estado']; ?> ----- </option>
                             <option <?php if($entregable['estado'] == 0){ echo "selected"; } ?> value="0">Válido</option>
                             <option <?php if($entregable['estado'] == 1){ echo "selected"; } ?> value="1">Erróneo</option>
                             <option <?php if($entregable['estado'] == 2){ echo "selected"; } ?> value="2">Pendiente</option>
-                            <option <?php if($entregable['estado'] == 3){ echo "selected"; } ?> value="3">Entregado</option>
+                            <option <?php if($entregable['estado'] == 3){ echo "selected"; } ?> selected value="3">Entregado</option>
                         </select>
                     </div>
 
                     <div>
-                        <label>Url: </label> <br/>
+                        <label><?php echo $strings['Archivo'];?>:</label>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                        <input name="archivo" required type="file" id="archivo" accept=".doc, .pdf, .docx"/>
                     </div>
 
-                    <div>
-                        <label>ID_MIEMBRO: </label> <br/>
-                        <select name="miembro">
-                            <?php foreach ($miembros as $miembro): ?>
-                                <option <?php if($entregable['id_miembro'] == $miembro['id'] ){ echo selected; } ?> value="<?= $miembro["USUARIO"] ?>"><?= $miembro["NOMBRE"] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
 
-                    <div>
-                        <label>FECHASUBIDA: </label><br/>
-                    </div>
 
-                    <div>
-                        <label>ID_TAREA: </label><br/>
-                            <select name="tarea">
-                                <?php foreach ($tareas as $tarea): ?>
-                                    <option <?php if($entregable['id_tarea'] == tarea['id']){ echo selected; } ?>value="<?= $tarea["USUARIO"] ?>"><?= $tarea["NOMBRE"] ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                    </div>
-
-                    <input type="submit" name="accion" value="Añadir"><?//= $strings['Add'] ?>
+                    <input type="submit" name="accion" value="<?php echo $strings['Modificar'] ?>">
 
 
 
