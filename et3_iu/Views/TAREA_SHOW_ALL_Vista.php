@@ -52,8 +52,7 @@ class TareaShowAllVista{
 
                         </ul>
                         <title><?php echo $strings['Mostrar Tareas'];?></title>
-                        <a href='../index.php'><?=$strings['Volver']?> </a>
-                        <a href='./TAREA_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a> <!--consultar por busqueda-->
+                        <a href="../Controllers/PROYECTO_Controller.php?"><?=$strings['Volver']?> </a>
                         <a href='./TAREA_Controller.php?accion=add_tarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Insertar']?></a>
                     </div>
                 </nav>
@@ -91,6 +90,7 @@ class TareaShowAllVista{
                         </tr>
                     <?php                        }
                     ?>
+
                 </table>
 
             </div>

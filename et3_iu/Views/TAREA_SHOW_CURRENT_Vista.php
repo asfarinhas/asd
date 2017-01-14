@@ -156,7 +156,9 @@ class TAREA_SHOW_CURRENT_Vista{
                     </div>
 
 
-                    <a href="../Controllers/TAREA_Controller.php?accion=showall_tarea"> <?php echo $strings['Volver']; ?> </a>
+                    <a href="../Controllers/TAREA_Controller.php?accion=showall_tarea&ID_TAREA=<?php echo $this->aux->getIdTarea();?>&proyecto_id=<?php echo $this->aux->getProyecto()->getIDPROYECTO();?>" >
+                        <input type="button" value="<?php echo $strings['Volver']; ?>" />
+                    </a>
                 </ul>
 
 
