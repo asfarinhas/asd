@@ -80,26 +80,9 @@
         </div>
 
         <div>
-            <label>ID_MIEMBRO: </label> <br/>
-            <select name="miembro">
-                <?php foreach ($miembros as $miembro): ?>
-                    <option value="<?= $miembro["USUARIO"] ?>"><?= $miembro["NOMBRE"] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
-        <div>
             <label>FECHASUBIDA: </label><br/>
         </div>
 
-        <div>
-            <label>ID_TAREA: </label><br/>
-            <select name="tarea">
-                <?php foreach ($tareas as $tarea): ?>
-                    <option value="<?= $tarea["USUARIO"] ?>"><?= $tarea["NOMBRE"] ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
 
         <input type="submit" name="accion" value="Añadir"><?//= $strings['Add'] ?>
 
