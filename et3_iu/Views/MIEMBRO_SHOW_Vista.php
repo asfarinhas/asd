@@ -70,7 +70,7 @@ class MIEMBRO_SHOW_Vista{
 
                 <a href="MIEMBRO_Controller.php?&amp;accion=edit"> <?php echo $strings['Modificar']; ?> </a>
                 <a href="MIEMBRO_Controller.php?&amp;accion=confirmDelete"> <?php echo $strings['Borrar']; ?> </a>
-                <a href="MIEMBRO_Controller.php?&amp;accion=verTareas"> verTareas </a>
+                <a href="MIEMBRO_Controller.php?&amp;accion=verTareas"> <?php echo $strings['Tareas']; ?> </a>
                 <a href="../index.php"> <?php echo $strings['Volver']; ?> </a>
                 <input type="hidden" name="accion" value="return">
 

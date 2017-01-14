@@ -26,6 +26,19 @@ class SUBTAREA_SHOW_ALL_Vista{
     function mostrarSubtareas(){
 
         $subtareas = $this -> getSubtareas();
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma){
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
         ?>
 
 
@@ -41,17 +54,17 @@ class SUBTAREA_SHOW_ALL_Vista{
                             <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                             <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
                         </ul>
-                        <a href="../Views/DEFAULT_Vista.php">Volver </a>
+                        <a href="../Views/DEFAULT_Vista.php"><?=$strings['Volver']?> </a>
                         <a href='./TAREA_Controller.php?accion=add_subtarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>&amp;tarea_padre=<?=$_REQUEST['ID_TAREA']?>'> <?php echo $strings['Insertar']?></a>
                     </div>
                 </nav>
                 <table id="btable" border = 1>
                     <thead>
-                        <th>  PROYECTO </th>
-                        <th>  SUBTAREA </th>
-                        <th>  FECHA INICIO PLANIFICADA </th>
-                        <th>  FECHA INICIO REAL </th>
-                        <th>  ESTADO </th>
+                        <th>  <?=$strings['NOMBRE'] ?> </th>
+                        <th>  <?=$strings['asignado'] ?> </th>
+                        <th>  <?=$strings['fecha_I_P'] ?> </th>
+                        <th>  <?=$strings['fecha_E_P'] ?> </th>
+                        <th>  <?=$strings['horas_P'] ?> </th>
                     </thead>
 
                     <?php
@@ -60,11 +73,11 @@ class SUBTAREA_SHOW_ALL_Vista{
                     }else {
 
                         foreach ($subtareas as $tarea) {
-                            echo "<tr><td> " . $tarea->getProyecto()->getNOMBRE() . "</td>";
-                            echo "<td>" . $tarea->getNombre() . "</td>";
+                            echo "<tr><td> " . $tarea->getNombre() . "</td>";
+                            echo "<td>" . $tarea->getMiembro()->getNombre() . "</td>";
                             echo "<td> " . $tarea->getFechaInicioPlan() . "</td>";
-                            echo "<td> " . $tarea->getFechaInicioReal() . "</td>";
-                            echo "<td> " . $tarea->getEstadoTarea() . "</td>";
+                            echo "<td> " . $tarea->getFechaEntregaPlan() . "</td>";
+                            echo "<td> " . $tarea->getHorasPlan() . "</td>";
                             ?>
                             <td>
                                 <a href='TAREA_Controller.php?accion=edit_subtarea&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
