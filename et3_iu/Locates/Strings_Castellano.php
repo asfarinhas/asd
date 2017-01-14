@@ -300,6 +300,7 @@ $strings = array(
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables",
 	"Entregables" => "Entregables",
+	"Estado" => "Estado",
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas"

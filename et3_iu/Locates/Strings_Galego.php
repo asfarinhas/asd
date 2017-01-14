@@ -270,7 +270,8 @@ $strings = array(
 	"descripcion" => "Descrición",
 
 	//ENTREGABLES
-	"Entregables" => "Entregables"
+	"Entregables" => "Entregables",
+    "Estado" => "Estado",
 
 )
 ?>
