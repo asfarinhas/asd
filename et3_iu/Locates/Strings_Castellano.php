@@ -282,6 +282,10 @@ $strings = array(
     "comentarios" => "Comentarios",
 	"Error en la modificación" => "Error en la modificación",
 	"Modificada con éxito con éxito" =>"Modificada con éxito",
+	"Entregable_id" => "Clave de Entregable",
+	"url" => "URL",
+	"Realizado Por" =>"Realizado Por",
+	"Fecha" => "Fecha",
 	// FIN SIN TRADUCIR
 
 

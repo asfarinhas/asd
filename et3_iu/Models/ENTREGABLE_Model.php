@@ -143,7 +143,7 @@ class Entregable
     /**
      * @return mixed
      */
-    public function getFechaSubida()
+    public function getFecha()
     {
         return $this->FECHASUBIDA;
     }
@@ -151,7 +151,7 @@ class Entregable
     /**
      * @param mixed $FECHASUBIDA
      */
-    public function setFechaSubida($FECHASUBIDA)
+    public function setFecha($FECHASUBIDA)
     {
         $this->FECHASUBIDA = $FECHASUBIDA;
     }
