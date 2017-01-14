@@ -60,9 +60,11 @@ class Proyecto_Default{
                                     <td>
                                         <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion=' . $strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
                                     </td>
+                                    <?php if($proyecto->getBORRADO() != 1){ ?>
                                     <td>
                                         <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $proyecto->getIDPROYECTO() . '&accion=' . $strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
                                     </td>
+                                        <?php } ?>
                                     <td>
                                         <a href='PROYECTO_Controller.php?PROYECTO_NOMBRE=<?php echo $proyecto->getNOMBRE() . '&accion=' . $strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
                                     </td>
@@ -77,13 +79,14 @@ class Proyecto_Default{
                             }
                             ?>
                         </table>
-
+                        <?php
+                        echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
+                        ?>
                     </div>
+
                     <h3>
         <p>
-            <?php
-            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-            ?>
+
             </h3>
         </p>
 

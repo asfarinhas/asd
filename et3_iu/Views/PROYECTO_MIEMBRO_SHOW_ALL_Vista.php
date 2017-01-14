@@ -53,7 +53,8 @@ class ProyectoMiembro_Default{
                                 echo "<td>" . $miembro->getApellidos() ."</td>";
                                 echo "<td> " . $miembro->getCorreo() ."</td>";
                                 echo "<td> " . $miembro->getUsuario() ."</td>";
-                                ?>
+
+                                if(strcmp($miembro->getUsuario(), $_SESSION['login']) != 0){?>
 
                                 <td>
                                     <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario(). '&accion='.$strings['Eliminar Miembros']; ?>'><?php echo $strings['Borrar'] ?></a>
@@ -63,7 +64,7 @@ class ProyectoMiembro_Default{
                                 </td>
 
                                 </tr>
-                            <?php                        }
+                            <?php         }               }
                             ?>
                         </table>
 

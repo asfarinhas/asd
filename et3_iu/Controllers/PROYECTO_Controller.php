@@ -237,7 +237,7 @@ switch ($_REQUEST['accion']) {
     //Insertar un mimebro a un proyecto
     case $strings['Insertar Miembro']:
         if(!isset($_REQUEST['ID_MIEMBRO'])){
-            $miembros =  $proyectoMapper->consultarMiembros();
+            $miembros =  $proyectoMapper->consultarMiembros($_REQUEST['ID_PROYECTO']);
             if (!tienePermisos('ProyectoMiembro_Add')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/PROYECTO_SHOW_ALL_Vista.php');
             } else {
@@ -255,7 +255,7 @@ switch ($_REQUEST['accion']) {
             }else{
                 $respuesta = $proyectoMapper->insertarMiembroProyecto($_REQUEST['ID_PROYECTO'],$_REQUEST['ID_MIEMBRO']);
 
-                new Mensaje($respuesta, '../Views/PROYECTO_SHOW_ALL_Vista.php');
+                new Mensaje($respuesta, 'PROYECTO_Controller.php');
             }
         }
         break;
