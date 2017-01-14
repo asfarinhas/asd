@@ -296,6 +296,7 @@ $strings = array(
 	//ENTREGABLES
 	"Entregables" => "Deliverables",
     "Estado" => "Status",
+	"Archivo" => "File",
 
 
 

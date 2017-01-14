@@ -272,6 +272,7 @@ $strings = array(
 	//ENTREGABLES
 	"Entregables" => "Entregables",
     "Estado" => "Estado",
+	"Archivo" = "Arquivo",
 
 )
 ?>

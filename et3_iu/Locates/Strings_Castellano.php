@@ -301,6 +301,7 @@ $strings = array(
     "Gestión de Entregables" => "Gestión de Entregables",
 	"Entregables" => "Entregables",
 	"Estado" => "Estado",
+	"Archivo" => "Arquivo",
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas"
