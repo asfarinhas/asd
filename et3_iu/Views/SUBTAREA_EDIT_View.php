@@ -39,7 +39,7 @@ class Subtarea_edit{
     $tareapadre = $datos->getTareaPadre();
     $proyecto = $datos->getProyecto();
     $strings = array();
-
+    //var_dump($datos->getMiembro());
 
     $idioma = $_SESSION['IDIOMA'];
     switch ($idioma) {
@@ -122,9 +122,17 @@ class Subtarea_edit{
             <?=$strings['asignado']?>
 
             <select name="miembro"> <!-- Muestra listado de miembros del proyecto, guarda el nombre usuario-->
-                <?php foreach ($miembros as $miembro): ?>
-                    <option <?php if($miembro->getUsuario()==$datos->getMiembro()){echo "selected";}?> value="<?= $miembro->getUsuario() ?>"><?= $miembro->getUsuario() ?></option>
-                <?php endforeach; ?>
+                <?php foreach ($miembros as $miembro) {
+                    if ($miembro->getUsuario() == $datos->getMiembro()->getUsuario()) {
+                        ?>
+                        <option value="<?=$miembro->getUsuario();?>" selected><?= $miembro->getUsuario() ?></option>
+                    <?php } else {
+                        ?>
+                        <option value="<?=$miembro->getUsuario();?>"><?= $miembro->getUsuario() ?></option>
+                    <?php
+                    }
+
+                } ?>
             </select>
         </div>
 
@@ -133,7 +141,7 @@ class Subtarea_edit{
 
             <select name="estado_tarea">
                 <option <?php if($datos->getEstadoTarea()=="pendiente"){echo "selected";}?> value="pendiente"><?=$strings['pendiente']?></option>
-                <option <?php if($datos->getEstadoTarea()=="pinalizado"){echo "selected";}?> value="finalizado"><?=$strings['finalizado']?></option>
+                <option <?php if($datos->getEstadoTarea()=="finalizado"){echo"selected";}?> value="finalizado"><?=$strings['finalizado']?></option>
             </select>
         </div>
 
