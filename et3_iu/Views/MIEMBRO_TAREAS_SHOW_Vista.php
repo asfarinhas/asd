@@ -38,7 +38,17 @@ class MIEMBRO_TAREAS_SHOW_Vista{
                             <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                             <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
                         </ul>
-                        <a href="../Views/DEFAULT_Vista.php"><?=$strings['Volver']?> </a>
+                        <?php
+                            if($this->tareas[0] -> getTareaPadre() == null){
+                                ?>
+                                     <a href="../Views/DEFAULT_Vista.php"><?=$strings['Volver']?> </a>
+                                <?php
+                            }else{
+                                ?>
+                                    <a href="../Controllers/MIEMBRO_Controller.php?accion=verTareas"><?=$strings['Volver']?> </a>
+                                <?php
+                                }
+                                ?>
                     </div>
                 </nav>
 
