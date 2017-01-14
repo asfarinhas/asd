@@ -277,7 +277,7 @@ switch ($_REQUEST['accion']) {
             $miembro = get_data_form_miembro();
             $proyecto = get_data_form();
             $respuesta = $proyectoMapper->borrarMiembroProyecto($miembro, $proyecto);
-            new Mensaje($respuesta, '../Views/PROYECTO_MIEMBRO_SHOW_ALL_Vista.php');
+            new Mensaje($respuesta, 'PROYECTO_Controller.php');
         }
         break;
 

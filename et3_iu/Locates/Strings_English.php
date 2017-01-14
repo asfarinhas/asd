@@ -214,6 +214,9 @@ $strings = array(
     'Insertar Miembro Proyecto' => 'Add Project Member',
     'Editar Proyecto' => 'Edit Project',
     'Tareas'=>'Tasks',
+    'miembro añadido' => 'Member successfully added',
+    'error miembro' => 'Error when adding member',
+    'proyecto ya existe' => 'Project already exists',
 
     //Notificaciones y correos
     'Gestión de Notificaciones' => 'Notification management',

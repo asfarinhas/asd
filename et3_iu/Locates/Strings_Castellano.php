@@ -207,6 +207,9 @@ $strings = array(
     'Insertar Miembro Proyecto' => 'Insertar Miembro Proyecto',
     'Editar Proyecto' => 'Editar Proyecto',
     'Tareas'=>'Tareas',
+    'miembro añadido' => 'Miembro añadido correctamente',
+	'error miembro' => 'Error al añadir miembro',
+	'proyecto ya existe' => 'Proyecto existente',
 
 
 

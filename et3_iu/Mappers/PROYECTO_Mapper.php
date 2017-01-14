@@ -255,9 +255,9 @@ public function buscarMiembro(Miembro $miembro)
         }else{
             $sql = "INSERT INTO PROYECTO_MIEMBRO (ID_PROYECTO,EMP_USER) VALUES ('" . $proyectoId."','" . $miembroId ."');";
             if($this->mysqli->query($sql) === TRUE){
-                return "creado exito";
+                return "miembro añadido";
             }else{
-                return "error creado";
+                return "error miembro";
             }
         }
 
@@ -328,8 +328,6 @@ public function buscarMiembro(Miembro $miembro)
         }
         else{
             $result = $resultado->fetch_array();
-
-
             return $result;
         }
     }
@@ -367,15 +365,22 @@ public function buscarMiembro(Miembro $miembro)
             $aux=1;
         }
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
+        $sql1 = "SELECT * FROM PROYECTO WHERE NOMBRE = '" . $proyecto->getNOMBRE() . "' AND ID_PROYECTO <> '". $proyecto->getIDPROYECTO() ."';";
+
+        $resultado1 = $this->mysqli->query($sql1);
+
+        if ($resultado1->num_rows == 0) {
+            $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
 
 
-    if($this->mysqli->query($sql) === TRUE){
-        return "modificacion exitosa";
-    }else{
-        return "error modificacion";
-    }
-
+            if ($this->mysqli->query($sql) === TRUE) {
+                return "modificacion exitosa";
+            } else {
+                return "error modificacion";
+            }
+        }else{
+            return "proyecto ya existe";
+        }
   }
 
   /**

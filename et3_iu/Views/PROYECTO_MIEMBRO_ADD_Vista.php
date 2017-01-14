@@ -118,7 +118,7 @@ class ProyectoMiembro_Add
                         </td>
 
                         </tr>
-                    <?php 
+                    <?php
                 }?>
             </table>
 
