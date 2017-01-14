@@ -142,9 +142,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                         </div>
                     </div>
 
-
-                    <input type="hidden" name="accion" value="borrar">
-                    <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
+                    <input type="hidden" name="accion" value="delete_subtarea">
                     <a href="../Controllers/TAREA_Controller.php?accion=showall_subtarea&ID_TAREA=<?php echo $this->subtarea->getTareaPadre() ->getIdTarea();?>&proyecto_id=<?php echo $this->subtarea->getProyecto()->getIDPROYECTO();?>" >
                         <input type="button" value="<?php echo $strings['Volver']; ?>" />
                     </a>
@@ -159,8 +157,5 @@ class SUBTAREA_SHOW_CURRENT_Vista{
         </html>
         <?php
     }
-    /*echo $idiom['DeleteAlumno'] . ": " . $consulta["DNI"] . "?"; */
 }
-
-
 ?>
