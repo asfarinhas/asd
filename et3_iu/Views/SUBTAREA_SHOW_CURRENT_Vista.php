@@ -48,7 +48,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo Tarea Padre -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="tarea_padre" class="control-label"> <?php echo $strings['TAREA PADRE']; ?>: </label>
+                            <label for="tarea_padre" class="control-label"> <?php echo $strings['Tarea padre']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getTareaPadre() -> getNombre() ;?>" name="apellidos" >
                         </div>
                     </div>
@@ -56,7 +56,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo FECHAIP -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['FECHAIP']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['fecha_I_P']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getFechaInicioPlan() ;?>" name="usuario" >
                         </div>
                     </div>
@@ -64,7 +64,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo FECHAIR -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['FECHAIR']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['fecha_I_R']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getFechaInicioReal() ;?>" name="correo" >
                         </div>
                     </div>
@@ -73,7 +73,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo FECHAEP -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['FECHAEP']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['fecha_E_P']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getFechaEntregaPlan() ;?>" name="usuario" >
                         </div>
                     </div>
@@ -81,7 +81,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo FECHAER -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['FECHAER']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['fecha_E_R']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getFechaEntregaReal() ;?>" name="correo" >
                         </div>
                     </div>
@@ -89,7 +89,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo HORASP-->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['HORASP']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['horas_P']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getHorasPlan() ;?>" name="usuario" >
                         </div>
                     </div>
@@ -97,7 +97,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo HORASR -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="usuario"> <?php echo $strings['HORASR']; ?>: </label>
+                            <label for="usuario"> <?php echo $strings['horas_R']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this -> subtarea -> getHorasReal() ;?>" name="correo" >
                         </div>
                     </div>
@@ -105,7 +105,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo Miembro -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['MIEMBRO']; ?>: </label>
+                            <label for="nombre" class="control-label"> <?php echo $strings['asignado']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this-> subtarea -> getMiembro() -> getNombre(); ?>" name="nombre" >
                         </div>
                     </div>
@@ -113,15 +113,15 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo Proyecto -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['PROYECTO']; ?>: </label>
-                            <input type="text" readonly value="<?php echo $this-> subtarea -> getProyecto() -> getNombre(); ?>" name="nombre" >
+                            <label for="nombre" class="control-label"> <?php echo $strings['Nombre proyecto']; ?>: </label>
+                            <input type="text" readonly value="<?php echo $this-> subtarea -> getProyecto() -> getNOMBRE(); ?>" name="nombre" >
                         </div>
                     </div>
 
                     <!-- Campo Descripcion -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['DESCRIPCION']; ?>: </label>
+                            <label for="nombre" class="control-label"> <?php echo $strings['descripcion']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this-> subtarea -> getDescripcion(); ?>" name="nombre" >
                         </div>
                     </div>
@@ -129,7 +129,7 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo Estado -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['ESTADO']; ?>: </label>
+                            <label for="nombre" class="control-label"> <?php echo $strings['estado']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this-> subtarea -> getEstadoTarea(); ?>" name="nombre" >
                         </div>
                     </div>
@@ -137,17 +137,17 @@ class SUBTAREA_SHOW_CURRENT_Vista{
                     <!-- Campo Comentario -->
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <label for="nombre" class="control-label"> <?php echo $strings['COMENTARIO']; ?>: </label>
+                            <label for="nombre" class="control-label"> <?php echo $strings['comentarios']; ?>: </label>
                             <input type="text" readonly value="<?php echo $this-> subtarea -> getComentario(); ?>" name="nombre" >
                         </div>
                     </div>
 
 
-
-
                     <input type="hidden" name="accion" value="borrar">
                     <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR EL MIEMBRO?')" value='<?php echo $strings['Borrar']; ?>' >
-                    <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
+                    <a href="../Controllers/TAREA_Controller.php?accion=showall_subtarea&ID_TAREA=<?php echo $this->subtarea->getTareaPadre() ->getIdTarea();?>&proyecto_id=<?php echo $this->subtarea->getProyecto()->getIDPROYECTO();?>" >
+                        <input type="button" value="<?php echo $strings['Volver']; ?>" />
+                    </a>
                 </ul>
 
 
