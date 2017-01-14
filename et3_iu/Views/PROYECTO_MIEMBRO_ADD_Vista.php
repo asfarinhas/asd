@@ -102,23 +102,24 @@ class ProyectoMiembro_Add
 
                 </tr>
                 <?php
-                foreach($this->datos1 as $miembro){
-                    if($miembro->getUsuario() != $_SESSION['login'])
-                    echo "<tr><td> " . $miembro->getNombre() ."</td>";
-                    echo "<td>" . $miembro->getApellidos() ."</td>";
-                    echo "<td> " . $miembro->getCorreo() ."</td>";
-                    echo "<td> " . $miembro->getUsuario() ."</td>";
-                    ?>
+                foreach($this->datos1 as $miembro) {
+                    if ($miembro->getUsuario() != $_SESSION['login']) {
+                        echo "<tr><td> " . $miembro->getNombre() . "</td>";
+                        echo "<td>" . $miembro->getApellidos() . "</td>";
+                        echo "<td> " . $miembro->getCorreo() . "</td>";
+                        echo "<td> " . $miembro->getUsuario() . "</td>";
+                        ?>
 
-                    <td>
-                        <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO='. $miembro->getUsuario().'&accion='.$strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
-                    </td>
-                    <td>
-                        <a href='PROYECTO_Controller.php?ID_MIEMBRO=<?php echo $miembro->getUsuario() . '&accion='.$strings['Ver Miembro']; ?>'><?php echo $strings['Ver'] ?></a>
-                    </td>
+                        <td>
+                            <a href='PROYECTO_Controller.php?ID_PROYECTO=<?php echo $_REQUEST['ID_PROYECTO'] . '&ID_MIEMBRO=' . $miembro->getUsuario() . '&accion=' . $strings['Insertar Miembro']; ?>'><?php echo $strings['Añadir Miembro'] ?></a>
+                        </td>
+                        <td>
+                            <a href='PROYECTO_Controller.php?ID_MIEMBRO=<?php echo $miembro->getUsuario() . '&accion=' . $strings['Ver Miembro']; ?>'><?php echo $strings['Ver'] ?></a>
+                        </td>
 
-                    </tr>
-                    <?php } ?>
+                        </tr>
+                    <?php }
+                }?>
             </table>
 
         </h2>

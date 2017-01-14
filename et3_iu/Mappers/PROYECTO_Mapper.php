@@ -208,9 +208,9 @@ public function buscarMiembro(Miembro $miembro)
       }
   }
 
-    public function consultarMiembros() {
+    public function consultarMiembros($idProyecto) {
         $this ->conectarBD();
-        $sql = "SELECT * FROM EMPLEADOS WHERE ;";
+        $sql = "SELECT EMPLEADOS.EMP_USER,EMPLEADOS.EMP_PASSWORD,EMPLEADOS.EMP_NOMBRE,EMPLEADOS.EMP_APELLIDO,EMPLEADOS.EMP_EMAIL,EMPLEADOS.EMP_TIPO,EMPLEADOS.EMP_ESTADO FROM EMPLEADOS, PROYECTO_MIEMBRO WHERE EMPLEADOS.EMP_USER = PROYECTO_MIEMBRO.EMP_USER AND PROYECTO_MIEMBRO.ID_PROYECTO <> $idProyecto ;";
 
         if (!($resultado = $this->mysqli->query($sql))){
             return 'Error en la consulta sobre la base de datos';
