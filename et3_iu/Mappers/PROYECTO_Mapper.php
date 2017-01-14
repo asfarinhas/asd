@@ -299,7 +299,7 @@ public function buscarMiembro(Miembro $miembro)
 
     }
 
-    public function insertar(Proyecto $proyecto) {
+    public function insertar(Proyecto $proyecto, $miembroUser) {
         $this->conectarBD();
 
         $sql= "SELECT * FROM PROYECTO WHERE NOMBRE ='" . $proyecto->getNOMBRE()."';";
@@ -308,8 +308,18 @@ public function buscarMiembro(Miembro $miembro)
                 return "nombre de proyecto ya existe";
             }else{
                 $sql = "INSERT INTO PROYECTO (ID_PROYECTO,NOMBRE,DESCRIPCION,FECHAI,FECHAIP,FECHAE,FECHAFP,NUMEROMIEMBROS,NUMEROHORAS,DIRECTOR) VALUES ('" . $proyecto->getIDPROYECTO()."','" . $proyecto->getNOMBRE() ."','" . $proyecto->getDESCRIPCION() . "','" . $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP() . "','" . $proyecto->getFECHAE() . "','" . $proyecto->getFECHAFP() . "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS()."','". $proyecto->getDIRECTOR()->getUsuario()."');";
+
+
+                $sql1 = "SELECT ID_PROYECTO FROM PROYECTO WHERE NOMBRE = '" . $proyecto->getNOMBRE() . "';";
                 if($this->mysqli->query($sql) === TRUE){
-                    return "creado exito";
+                    $resultado = $this->mysqli->query($sql1);
+                    $proyecto3= $resultado->fetch_array();
+                    $sql2 = "INSERT INTO PROYECTO_MIEMBRO ( ID_PROYECTO,EMP_USER) VALUES ('" . $proyecto3['ID_PROYECTO'] ."' , '" . $miembroUser ."');";
+                    if($this->mysqli->query($sql2) === TRUE){
+                        return "creado exito";
+                    }else{
+                        return "error creado";
+                    }
                 }else{
                     return "error creado";
                 }

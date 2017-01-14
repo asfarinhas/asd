@@ -146,7 +146,7 @@ switch ($_REQUEST['accion']) {
         } else {
 
             $proyecto= get_data_form();
-            $respuesta = $proyectoMapper->insertar($proyecto);
+            $respuesta = $proyectoMapper->insertar($proyecto, $_SESSION['login']);
             new Mensaje($respuesta, 'PROYECTO_Controller.php');
 
         }
@@ -238,6 +238,7 @@ switch ($_REQUEST['accion']) {
     case $strings['Insertar Miembro']:
         if(!isset($_REQUEST['ID_MIEMBRO'])){
             $miembros =  $proyectoMapper->consultarMiembros($_REQUEST['ID_PROYECTO']);
+
             if (!tienePermisos('ProyectoMiembro_Add')) {
                 new Mensaje('No tienes los permisos necesarios', '../Views/PROYECTO_SHOW_ALL_Vista.php');
             } else {

@@ -219,6 +219,7 @@ $strings = array(
     'miembro añadido' => 'Membro añadido correctamente',
     'error miembro' => 'Erro o añadir membro',
     'proyecto ya existe' => 'Proxecto existente',
+    'error creado' => 'Erro ó crear proxecto',
 
 
 	'Gestión de Notificaciones' => 'Xestión de Notificacions',
