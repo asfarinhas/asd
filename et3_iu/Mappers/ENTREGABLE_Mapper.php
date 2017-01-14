@@ -33,11 +33,11 @@
          */
 
         public function consultarEntregables() {
-
+            $this->ConectarBD();
             $sql = "SELECT * FROM entregable";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> numrows == 0) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $toret = array();
             $miembro_mapper = new MiembroMapper();
@@ -82,11 +82,12 @@
          * @return false si se produce algún error o no se encuentra; o se devuelve un array con las instancias de cada Entregable
          */
         public function consultarEntregablesTarea($id_tarea) {
+            $this->ConectarBD();
+            $sql = "SELECT * FROM entregable where id_tarea = '{$id_tarea}' ";
 
-            $sql = "SELECT * FROM entregable where id_tarea = '%$id_tarea%' ";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> numrows == 0) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
@@ -109,11 +110,12 @@
          * @return false si se produce algún error o no se encuentra; o se devuelve un array con las instancias de cada Entregable
          */
         public function consultarEntregablesMiembro($id_miembro) {
-
-            $sql = "SELECT * FROM entregable where id_miembro = '%$id_miembro%' ";
+            $this->ConectarBD();
+            $sql = "SELECT * FROM entregable where ID_MIEMBRO = '{$id_miembro}' ";
+            echo $sql;
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> numrows == 0) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
@@ -153,7 +155,7 @@
          * @param Entregable $entregable, el entregable con los nuevos datos
          */
         public function updateEntregable(Entregable $entregable) {
-
+            $this->ConectarBD();
             $sql = "UPDATE `ENTREGABLE` SET `ID_ENTREGABLE` = '{$entregable -> getID()}', `NOMBRE` = '{$entregable -> getNombre()}', `ESTADO` = '{$entregable -> getEstado()}', 
                                           `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$entregable -> getFechaSubida()->format("Y-m-d H:i:s")}',
                                           `ID_TAREA` = '{$entregable -> getTarea()->getIdTarea()}' WHERE ID_ENTREGABLE = '{$entregable -> getID()}' ";
@@ -167,7 +169,7 @@
          * @param Entregable $entregable
          */
         public function eliminarEntregable(Entregable $entregable) {
-            $id = $entregable -> getID();
+            $this->ConectarBD();
             $sql = "DELETE FROM entregable WHERE id_entregable = '{$entregable->getID()}' ";
             $res = $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
