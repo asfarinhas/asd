@@ -54,7 +54,7 @@ class SUBTAREA_SHOW_ALL_Vista{
                             <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                             <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
                         </ul>
-                        <a href="../Views/DEFAULT_Vista.php"><?=$strings['Volver']?> </a>
+                        <a href="../Controllers/TAREA_Controller.php?accion=showall_tarea&proyecto_id=<?=$_REQUEST['proyecto_id']?>"><?=$strings['Volver']?> </a>
                         <a href='./TAREA_Controller.php?accion=add_subtarea&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>&amp;tarea_padre=<?=$_REQUEST['ID_TAREA']?>'> <?php echo $strings['Insertar']?></a>
                     </div>
                 </nav>
