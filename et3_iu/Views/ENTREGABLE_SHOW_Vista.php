@@ -16,9 +16,7 @@ class ENTEGABLE_SHOW_Vista
 
     }
 
-    public function render()
-    {
-        session_start();
+    public function render()    {
         include '../Locates/Strings_' . $_SESSION['IDIOMA'] . '.php';
         ?>
         <div>
@@ -34,7 +32,7 @@ class ENTEGABLE_SHOW_Vista
                             <li><?php echo $strings['Usuario'] . ": " . $_SESSION['login']; ?></li>
                         </ul>
                          <?= '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>" ?>
-                        <a href='./ENTREGABLE_Controller.php?accion=add'><?php echo $strings['Insertar'] ?></a>
+                        <a href='./ENTREGABLE_Controller.php?accion=add_entregable_menu'><?php echo $strings['Insertar'] ?></a>
                     </div>
                 </nav>
                 <table id='btable' border=1>
@@ -55,8 +53,8 @@ class ENTEGABLE_SHOW_Vista
                             <td><?=$entregable->getURL()?></td>
                             <td><?=$entregable->getMiembro()->getUsuario()?></td>
                             <td><?=$entregable->getFecha()->format("d/m/Y")?></td>
-                            <td><a href='ENTREGABLE_Controller.php?entregable_ID=<?= $entregable->getID() ?>'><?= $strings['Modificar'] ?></a></td>
-                            <td><a href='ENTREGABLE_Controller.php?entregable_ID=<?= $entregable->getID() ?>'><?= $strings['Borrar'] ?></a></td>
+                            <td><a href='ENTREGABLE_Controller.php?accion=edit_entregable_menu&amp;entregable_ID=<?= $entregable->getID() ?>'><?= $strings['Modificar'] ?></a></td>
+                            <td><a href='ENTREGABLE_Controller.php?accion=delete_entregable_menu&amp;entregable_ID=<?= $entregable->getID() ?>'><?= $strings['Borrar'] ?></a></td>
                         </tr>
                        <?php } ?>
 

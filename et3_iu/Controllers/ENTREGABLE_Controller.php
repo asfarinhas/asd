@@ -4,7 +4,10 @@
     include "../Models/MIEMBRO_Model.php";
     include "../Mappers/ENTREGABLE_Mapper.php";
     include "../Views/ENTREGABLE_SHOW_Vista.php";
+    include "../Views/ENTREGABLE_DELETE_Vista.php";
+    include "../Views/MENSAJE_Vista.php";
 
+        session_start();
     $mapper = new ENTREGABLE_Mapper();
     $m_mapper= new MiembroMapper();
     $t_mapper = new TAREA_Mapper();
@@ -17,22 +20,24 @@
     
         //Viene de clicar en añadir tarea; hay que crear la vista en cuestión
         case "add_entregable_menu":
+            echo "<h1>VISTA ENTREGABLE ADD</h1>";
             break;
     
         //Viene de clicar en editar tarea; hay que crear la vista en cuestión
         case "edit_entregable_menu":
+            echo "<h1>VISTA ENTREGABLE EDIT</h1>";
             break;
     
         //Viene de clicar en consultar en detalle tarea; hay que crear la vista en cuestión
         case "show_entregable_menu":
-            break;
-    
-        //Viene de clicar en consultar todas las tarea; hay que crear la vista en cuestión
-        case "showall_entregable_menu":
+            echo "<h1>VISTA ENTREGABLE SHOW</h1>";
             break;
     
         //Viene de clicar en eliminar tarea; hay que crear la vista en cuestión
         case "delete_entregable_menu":
+            $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
+
+            new ENTREGABLE_DELETE_Vista($entregable,"./ENTREGABLE_Controller.php?ID_TAREA=".$entregable->getTarea()->getIDTAREA());
             break;
     
     
@@ -56,6 +61,12 @@
             break;
     
         case "delete_entregable": //eliminar tarea
+            $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
+                if($mapper->eliminarEntregable($entregable))
+                    $mensaje = "Eliminado con éxito";
+                else
+                    $mensaje = "Error en la consulta sobre la base de datos";
+            new Mensaje($mensaje,"./ENTREGABLE_Controller.php?ID_TAREA=".$entregable->getTarea()->getIDTAREA());
             break;
         default:
             $tarea = $t_mapper->buscarTareaId($_REQUEST["ID_TAREA"]);

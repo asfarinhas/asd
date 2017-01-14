@@ -226,9 +226,6 @@ $strings = array(
 			'CONTENIDO' => 'Contenido',
 			'FECHAENVIO' => 'Fecha Envio',
 			'FECHALECTURA' => 'Fecha Lectura',
-			'BORRADO' =>'Borrado',
-			'Ver' => 'Ver',
-			'Buscar' => 'Buscar',
 			'Consultar notificacion' => 'Consultar notificacion',
 		    'Insertar Notificacion' => 'Enviar Notificacion',
 				'Crear Notificacion' => 'Crear Notificacion',
@@ -259,7 +256,6 @@ $strings = array(
 				'CorreosEnviados' => 'CorreosEnviados',
 				'EliminarCorreo' => 'Eliminar Correo',
 				'ID_CORREO' => 'Id Correo',
-				'CorreosEnviados' => 'Correos enviados',
 				'enviado con exito' => 'Correo enviado con exito',
 				'Ver correo' =>  'Ver correo',
 
@@ -286,6 +282,7 @@ $strings = array(
 	"url" => "URL",
 	"Realizado Por" =>"Realizado Por",
 	"Fecha" => "Fecha",
+	"Eliminado con éxito" => "Eliminado con éxito",
 	// FIN SIN TRADUCIR
 
 
@@ -298,7 +295,6 @@ $strings = array(
 	//TAREAS
     "Gestión de Tareas" => "Gestión de Tareas",
     "Eliminar Tarea" => "Eliminar Tarea",
-	"Cerrar Sesión" => "Cerrar Sesión",
 	"Tarea padre" => "Tarea padre",
 
 	//ENTREGABLES
