@@ -258,17 +258,20 @@ $strings = array(
     "comentarios" => "Comentarios",
     "Error en la modificación" => "Error na modificación",
     "Modificada con éxito" =>"Modificación con éxito",
-	"Subtareas" => "Subtareas",
+	"Subtareas" => "Subtarefa",
 
 	//MIEMBRO
 	'Registro' => "Rexistro",
+	'Gestión de Perfil' => 'Xestión de Perfil',
 
 	//TAREA
 	"Eliminar Tarea" => "Borrar tarea",
 	"Tarea padre" => "Tarea padre",
+	"descripcion" => "Descrición",
 
 	//ENTREGABLES
-	"Entregables" => "Entregables"
+	"Entregables" => "Entregables",
+    "Estado" => "Estado",
 
 )
 ?>

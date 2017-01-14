@@ -274,7 +274,7 @@ $strings = array(
     "horas_P" => "Horas planificadas",
     "horas_R" => "Horas Realizadas",
     "asignado" => "Tarea asginada a",
-    "descripcion" => "Descripcion",
+    "descripcion" => "Descripción",
 	"pendiente"=>"pendiente",
 	"finalizado" =>"finalizado",
 	"estado" => "Estado de la tarea",
@@ -300,6 +300,7 @@ $strings = array(
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables",
 	"Entregables" => "Entregables",
+	"Estado" => "Estado",
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas"

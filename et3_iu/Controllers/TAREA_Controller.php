@@ -18,7 +18,7 @@ include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
 include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
 include '../Views/SUBTAREA_SHOW_CURRENT_Vista.php';
-//include '../Views/SUBTAREA_DELETE_View.php';
+include '../Views/SUBTAREA_DELETE_Vista.php';
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
 //include '../Mappers/PROYECTO_Mapper.php';
 
@@ -243,7 +243,6 @@ function edit_subtarea()
 function show_subtarea(){
 
    $tareaID = $_REQUEST['ID_TAREA'];
-   $proyectoID = $_REQUEST['proyecto_id'];
 
    $tareaMapper = new TAREA_Mapper();
    $subtarea = $tareaMapper -> buscarTareaId($tareaID);
@@ -263,14 +262,20 @@ function showall_subtarea(){
 }
 
 function delete_subtarea(){
-    //Comprobacion de la eliminacion en javascript, una vez confirmada se viene aqui
-    //Eliminar de la base de datos la tarea
-    //Mensaje de confirmación.
-    //Volver al menu de subtareas
+
+    $tareaMapper = new TAREA_Mapper();
+    $idSubtarea = $_REQUEST['ID_TAREA'];
+    $subtarea = $tareaMapper -> buscarTareaId($idSubtarea);
+    $vistaDelete = new SUBTAREA_DELETE_Vista($subtarea);
 }
 
+function borrar_subtarea(){
 
-
+    $id = $_REQUEST['id_subtarea'];
+    $tareaMapper = new TAREA_Mapper();
+    $tareaMapper -> borrarTarea($id);
+    showall_subtarea();
+}
 
 if (!isset($_REQUEST['accion'])){
     $accion = '';
@@ -337,8 +342,12 @@ switch ($accion) { //los nombres del case llamadle como querais, como tengais pu
         edit_subtarea();
         break;
 
-    case "delete_subtarea": //Eliminar una subtarea
+    case "delete_subtarea": //vista eliminar subtarea
         delete_subtarea();
+        break;
+
+    case "borrar_subtarea": //eliminar subtarea
+        borrar_subtarea();
         break;
 
     default:
