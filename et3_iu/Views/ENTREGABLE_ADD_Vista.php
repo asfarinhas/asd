@@ -35,12 +35,16 @@ class ENTREGABLE_ADD_Vista
         ?>
 
         <html>
+
         <head>
+            <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
         </head>
-        <body>
+
+        <div>
+            <h1><span class="form-title"><?=$strings['Registro']?></h1>
 
         <form enctype="multipart/form-data" action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post">
-
+            <ul class="form-style-1">
             <div>
                 <label> <?php echo $strings['Nombre']; ?>:</label>
                 <input type="text" name="nombre" placeholder="Nombre" id="nombre" required maxlength="15"><br/>
@@ -49,21 +53,22 @@ class ENTREGABLE_ADD_Vista
             <div>
                 <label><?php echo $strings['Estado']; ?>: </label>
                 <select readonly required name="estado">
-                    <option value=""> ---- <?php echo $strings['Estado']; ?> -----</option>
-                    <option selected value="0"><?php echo $strings['Pendiente']; ?></option>
+                    <option selected value="pendiente"><?php echo $strings['pendiente']; ?></option>
                 </select>
             </div>
 
             <input type="hidden" name="accion" value="add_entregable">
             <input type="hidden" name="ID_TAREA" value="<?php echo $_REQUEST['ID_TAREA']; ?>">
             <input type="submit" name="submit" value="<?php echo $strings['Insertar'] ?>">
+
+
             <a href="../Controllers/ENTREGABLE_Controller.php?accion=showall_entregable&ID_TAREA=<?php echo $_REQUEST['ID_TAREA'];?>" >
                 <input type="button" value="<?php echo $strings['Volver']; ?>" />
             </a>
-            ?>
+            </ul>
+        </form>
+        </div>
 
-
-        </body>
         </html>
 
 
