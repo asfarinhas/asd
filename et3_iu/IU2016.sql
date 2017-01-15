@@ -107,7 +107,11 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 21),
 ('ADMIN', 22),
 ('ADMIN', 23),
-('ADMIN', 400),
+('ADMIN', 100),
+('ADMIN', 101),
+('ADMIN', 102),
+('ADMIN', 103),
+('ADMIN', 104),
 ('secret', 400),
 ('ADMIN', 401),
 ('secret', 401),
@@ -319,6 +323,7 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (21, '../Views/ROL_SHOW_ALL_Vista.php', 'ROL SHOW ALL'),
 (22, '../Views/ROL_SHOW_FUNCIONES_Vista.php', 'ROL SHOW FUNCIONES'),
 (23, '../Views/ROL_SHOW_Vista.php', 'ROL SHOW'),
+
 (400, '../Views/PROYECTO_ADD_Vista.php', 'PROYECTO ADD'),
 (401, '../Views/PROYECTO_DELETE_Vista.php', 'PROYECTO DELETE'),
 (402, '../Views/PROYECTO_EDIT_Vista.php', 'PROYECTO EDIT'),
@@ -353,7 +358,11 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (851, '../Views/ENTREGABLE_EDIT_Vista.php', 'ENTREGABLE EDIT'),
 (852, '../Views/ENTREGABLE_DELETE_Vista.php', 'ENTREGABLE DELETE'),
 (853, '../Views/ENTREGABLE_SHOW_Vista.php', 'ENTREGABLE SHOW'),
-(854, '../Views/ENTREGABLE_SHOW_ALL_Vista.php', 'ENTREGABLE SHOW ALL');
+(100, '../Views/TICKET_ADD_Vista.php', 'TICKETS ADD'),
+(101, '../Views/TICKET_DELETE_Vista.php', 'TICKETS DELETe'),
+(102, '../Views/TICKET_EDIT_Vista.php', 'TICKETS EDIT'),
+(103, '../Views/TICKET_SHOW_Vista.php', 'TICKETS SHOW'),
+(104, '../Views/TICKET_SHOW_ALL_Vista.php', 'TICKETS SHOW ALL');
 
 -- --------------------------------------------------------
 
