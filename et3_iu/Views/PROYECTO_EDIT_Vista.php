@@ -153,7 +153,7 @@ class Proyecto_Modificar{
                         </div>
 
 
-                            <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                            <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
                         <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="valida_envia()" >
                 </form>
         </p>

@@ -131,7 +131,7 @@ class Proyecto_Add
 
 
 
-                        <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                        <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
                         <input type='submit' onclick="return valida_envia()" name='accion'  value=<?php echo $strings['Insertar'] ?>
                         <ul>
 

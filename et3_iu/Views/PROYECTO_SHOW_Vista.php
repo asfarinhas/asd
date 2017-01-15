@@ -115,7 +115,7 @@ class Proyecto_Show{
 
                             <input hidden type='text' name='BUSCAR' value='BUSCAR'>
 
-                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                               <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
                                 <input type='submit' name='accion' value='<?php echo $strings['Consultar']; ?>'>
 
                     </form>
@@ -229,7 +229,7 @@ class Proyecto_Show{
 
 
 
-                                <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                                 <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
                     </form>
 
                 </h2>

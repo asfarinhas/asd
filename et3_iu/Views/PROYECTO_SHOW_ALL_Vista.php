@@ -27,7 +27,7 @@ class Proyecto_Default{
                             <div class="menu">
                                 <ul>
                                     <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
-                                    <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
+                                    <li><a href='../Controllers/MIEMBRO_Controller.php'><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></a></li>
 
                                 </ul>
                                 <title><?php echo $strings['Gestionar Proyectos'];?></title>

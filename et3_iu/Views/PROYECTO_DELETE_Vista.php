@@ -120,7 +120,7 @@ class Proyecto_Borrar{
                         <div class="col-sm-4">
                             <input type="text" readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                     </div>
-                    <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
+                    <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
                     <input type='submit' name='accion'  onClick="return confirm('DESEA ELIMINAR EL PROYECTO?')" value='<?php echo $strings['Borrar']; ?>'>
 
             </form>
