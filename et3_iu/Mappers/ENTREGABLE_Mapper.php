@@ -154,8 +154,9 @@
          */
         public function updateEntregable(Entregable $entregable) {
             $this->ConectarBD();
+            $time = new DateTime("now");
             $sql = "UPDATE `ENTREGABLE` SET `NOMBRE` = '{$entregable -> getNombre()}', `ESTADO` = '{$entregable -> getEstado()}', 
-                                          `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$entregable -> getFechaSubida()->format("Y-m-d H:i:s")}',
+                                          `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$time}',
                                           `ID_TAREA` = '{$entregable -> getTarea()->getIdTarea()}' WHERE ID_ENTREGABLE = '{$entregable -> getID()}' ";
             $res = $this -> mysqli -> query($sql);
             $this -> mysqli-> close();

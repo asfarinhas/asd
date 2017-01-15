@@ -56,13 +56,12 @@ class ENTREGABLE_EDIT_Vista
 
             <div>
                 <label><?php echo $strings['Archivo']; ?>:</label>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
                 <input name="archivo" required type="file" id="archivo" accept=".doc, .pdf, .docx"/>
             </div>
 
             <input type="hidden" name="entregable_ID" value="<?php echo $entregable->getID();?>">
             <input type="hidden" name="accion" value="edit_entregable">
-            <input type="hidden" name="ID_TAREA" value="<?php echo $_REQUEST['ID_TAREA']; ?>">
+            <input type="hidden" name="ID_TAREA" value="<?php echo $entregable->getTarea()->getIdTarea(); ?>">
             <input type="submit" name="submit" value="<?php echo $strings['Modificar'] ?>">
 
 
