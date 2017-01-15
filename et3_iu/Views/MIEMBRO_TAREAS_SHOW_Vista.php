@@ -39,7 +39,8 @@ class MIEMBRO_TAREAS_SHOW_Vista{
                             <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
                         </ul>
                         <?php
-                            if($this->tareas[0] -> getTareaPadre() == null){
+
+                            if($this->tareas == null || $this->tareas[0] -> getTareaPadre() == null){
                                 ?>
                                      <a href="../Views/DEFAULT_Vista.php"><?=$strings['Volver']?> </a>
                                 <?php
