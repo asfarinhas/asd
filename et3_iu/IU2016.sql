@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 --
 INSERT INTO `ENTREGABLE` (`ID_ENTREGABLE`, `NOMBRE`,`ESTADO`,`URL`,`ID_MIEMBRO`,`FECHASUBIDA`,`ID_TAREA`) VALUES
   (1,'Informe requisitos','entregado','../Archivos/inf.docx','ADMIN','2017-01-03',1),
-(2,'Informe auxiliar','entregado','../Archivos/aux.docx','ADMIN','2017-01-03',1),
+(2,'Informe auxiliar','entregado','../Archivos/auxil.docx','ADMIN','2017-01-03',1),
 (3,'Informe subtarea','entregado','../Archivos/subtarea.docx','ADMIN','2017-01-03',2),
 (4,'Informe auxiliar','entregado','../Archivos/auxs.docx','ADMIN','2017-01-03',2);
 -- --------------------------------------------------------
