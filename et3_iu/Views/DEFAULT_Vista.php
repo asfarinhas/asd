@@ -37,12 +37,7 @@
                 <li><a href='../Controllers/MIEMBRO_Controller.php'><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></a></li>
                 <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
                 <li><a href="../Controllers/NOTIFICACION_Controller.php"><?php echo  $strings['Notificacionespendientes']; echo count($noti->buscarNoLeidas()); ?></a></li>
-
-
             </ul>
-
-
-
         </div>
     </nav><!-- end of top nav -->
 
@@ -51,9 +46,8 @@
 
     <section id="main"><!-- #main content and sidebar area -->
         <section id="content"><!-- #content -->
-
+            <img src="../images/fondo.jpg" height="400px">
         </section><!-- end of #content -->
-
         <aside id="sidebar"><!-- sidebar --><!--AQUI VAN A LAS GESTIONES-->
            <?php AñadirFuncionalidades($_SESSION); ?>
         </aside><!-- end of sidebar -->
