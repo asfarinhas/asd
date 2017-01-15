@@ -397,7 +397,7 @@ class TAREA_Mapper{
     function listarTareasPadreProyecto($idProyecto){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE PADRE IS NULL AND ID_PROYECTO = '{$idProyecto}' ";
+        $sql = "SELECT * FROM TAREA WHERE NOMBRE != 'Tickets' AND PADRE IS NULL AND ID_PROYECTO = '{$idProyecto}' ";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
@@ -520,5 +520,28 @@ class TAREA_Mapper{
         } else {
             return "Error en la creación ";
         }
+    }
+    function consultarTicketProyecto($proyecto_ID){
+        $this->conectarBD();
+        $sql = "SELECT * FROM TAREA WHERE  NOMBRE = 'Tickets' AND ID_PROYECTO = {$proyecto_ID}";
+        if (($resultado = $this->mysqli->query($sql)))
+            if ($resultado->num_rows != 0) {
+                $tareas_bd = $resultado->fetch_array(MYSQLI_ASSOC);
+
+                $miembro_mapper = new MiembroMapper();
+                $proyecto_mapper = new ProyectoMapper();
+
+                $tareaPadre = null;
+                $miembro = $miembro_mapper->buscarMiembroPorUsuario($tareas_bd["ID_MIEMBRO"]);
+                $proyecto = $proyecto_mapper->buscarId($tareas_bd["ID_PROYECTO"]);
+
+                $tarea = new Tarea($tareas_bd["ID_TAREA"], $tareas_bd["NOMBRE"], $tareas_bd["DESCRIPCION"],
+                    $tareaPadre, $tareas_bd["FECHAIP"], $tareas_bd["FECHAEP"], $tareas_bd["FECHAIR"],
+                    $tareas_bd["FECHAER"], $tareas_bd["HORASP"], $tareas_bd["HORASR"], $miembro,
+                    $tareas_bd["ESTADO"], $tareas_bd["COMENTARIO"],$proyecto);
+
+                return $tarea;
+            }
+        return 'Error en la consulta sobre la base de datos';
     }
 }
