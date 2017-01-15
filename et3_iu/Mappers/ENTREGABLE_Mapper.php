@@ -34,10 +34,10 @@
 
         public function consultarEntregables() {
             $this->ConectarBD();
-            $sql = "SELECT * FROM entregable";
+            $sql = "SELECT * FROM ENTREGABLE";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> num_rows == 0) return false;
+            if($resultado == false) return false;
 
             $toret = array();
             $miembro_mapper = new MiembroMapper();
@@ -61,9 +61,10 @@
          */
         public function buscarEntregablePorID($id) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM entregable where ID_ENTREGABLE = '{$id}' ";
-            if(!$resultado = $this -> mysqli -> query($sql))return false;
-            if($resultado -> num_rows == 0)return false;
+            $sql = "SELECT * FROM ENTREGABLE where ID_ENTREGABLE = '{$id}' ";
+
+            $resultado = $this -> mysqli -> query($sql);
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
 
             $miembro_mapper = new MiembroMapper();
@@ -83,11 +84,9 @@
          */
         public function consultarEntregablesTarea($id_tarea) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM entregable where id_tarea = '{$id_tarea}' ";
-
+            $sql = "SELECT * FROM ENTREGABLE where ID_TAREA = {$id_tarea} ";
             $resultado = $this -> mysqli -> query($sql);
-
-            if($resultado == false || $resultado -> num_rows == 0) return false;
+            if($resultado == false ) return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
@@ -111,11 +110,11 @@
          */
         public function consultarEntregablesMiembro($id_miembro) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM entregable where ID_MIEMBRO = '{$id_miembro}' ";
+            $sql = "SELECT * FROM ENTREGABLE where ID_MIEMBRO = '{$id_miembro}' ";
             echo $sql;
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> num_rows == 0) return false;
+            if($resultado == false) return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
@@ -170,7 +169,7 @@
          */
         public function eliminarEntregable(Entregable $entregable) {
             $this->ConectarBD();
-            $sql = "DELETE FROM entregable WHERE id_entregable = '{$entregable->getID()}' ";
+            $sql = "DELETE FROM ENTREGABLE WHERE ID_ENTREGABLE = '{$entregable->getID()}' ";
             $res = $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
             return $res;

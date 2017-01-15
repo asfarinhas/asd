@@ -195,7 +195,6 @@ $strings = array(
 	'USUARIO' => 'Usuario',
     'Consultar Miembro' => 'Consultar Miembro',
     'Insertar Miembro' => 'Insertar Miembro',
-    'ConsultarBorrados' => 'ConsultarBorrados',
     'Añadir Miembro' => 'Añadir Miembro',
     'Eliminar Miembros' => 'Eliminar Miembros',
     'Borrar Miembro' => 'Borrar miembro',
