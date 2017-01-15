@@ -16,6 +16,12 @@ class Proyecto_Add
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
             <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+            <link href="../Styles/sweetalert.css" rel="stylesheet">
+            <script src="../js/sweetalert.min.js"></script>
+            <script src="../js/validaciones.js"></script>
+            <script src="../js/md5.js"></script>
+            <link href="../Styles/tcal.css" rel="stylesheet">
+            <script src="../js/tcal.js"></script>
         </head>
         <div>
             <p>
@@ -27,12 +33,14 @@ class Proyecto_Add
             </p>
             <p>
             <h1>
+                <h3>
 			<span class="form-title">
-			<?php echo $strings['Insertar Proyecto'] ?><br>
-                                                                                        <title><?php echo $strings['Insertar Proyecto'];?></title>
+			<?php echo $strings['Insertar Proyecto'] ?>
+                <br>
+                   <title><?php echo $strings['Insertar Proyecto'];?></title>
 
             </h1>
-            <h3>
+
 
                 <form action='PROYECTO_Controller.php' method='post'>
                     <ul class="form-style-1">
@@ -42,7 +50,7 @@ class Proyecto_Add
                                 <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"   >
                             </div>
                         </div>
                         <!-- Campo Descripcion -->
@@ -60,7 +68,7 @@ class Proyecto_Add
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input class="tcal"  placeholder="<?php $strings['FECHAI'];?>" type="date" name="PROYECTO_FECHAI"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input class="tcal"  placeholder="<?php $strings['FECHAI'];?>" type="date" name="PROYECTO_FECHAI"  >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -69,7 +77,7 @@ class Proyecto_Add
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAE"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAE"   >
                             </div>
                         </div>
 
@@ -79,7 +87,7 @@ class Proyecto_Add
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAIP"   >
                             </div>
                         </div>
 
@@ -89,7 +97,7 @@ class Proyecto_Add
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAFP"   >
                             </div>
                         </div>
 
@@ -99,7 +107,7 @@ class Proyecto_Add
                                 <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS"  >
                             </div>
                         </div>
                         <!-- Campo Numero horas -->
@@ -108,7 +116,7 @@ class Proyecto_Add
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  >
                             </div>
                         </div><!-- Campo Director -->
                         <div class="form-group">
@@ -116,7 +124,7 @@ class Proyecto_Add
                                 <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR"  readonly value="<?php echo $_SESSION['login'];?>" title="<?php echo $strings['error nombre proyecto']; ?>" >
+                                <input type="text" class="form-control" name="PROYECTO_DIRECTOR"  readonly value="<?php echo $_SESSION['login'];?>"  >
                             </div>
                         </div>
 
