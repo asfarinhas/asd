@@ -317,7 +317,8 @@ $strings = array(
     "url" => "URL",
     "Realizado Por" => "Feito por",
     "Fecha" => "Data",
-	"Eliminar Entregable" => "Eliminar Entrega"
+	"Eliminar Entregable" => "Eliminar Entrega",
+	"Eliminado con éxito" => "Eliminado correctamente"
 
 )
 ?>

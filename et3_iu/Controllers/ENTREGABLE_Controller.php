@@ -141,8 +141,9 @@ for ($z=0;$z<count($pags);$z++){
                     $mensaje = "Eliminado con éxito";
                     unlink($entregable->getURL());
                 }
-                else
+                else {
                     $mensaje = "Error en la consulta sobre la base de datos";
+                }
             new Mensaje($mensaje,"./ENTREGABLE_Controller.php?ID_TAREA=".$entregable->getTarea()->getIDTAREA());
             break;
         default:

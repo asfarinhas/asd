@@ -314,7 +314,8 @@ $strings = array(
 	"url" => "URL",
 	"Realizado Por" => "Made by",
 	"Fecha" => "Date",
-	"Eliminar Entregable" => "Delete Delivery"
+	"Eliminar Entregable" => "Delete Delivery",
+	"Eliminado con éxito" => "Successfully deleted"
 
 
 
