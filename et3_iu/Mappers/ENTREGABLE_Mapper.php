@@ -60,17 +60,17 @@
          * @return false si se produce algún error o no se encuentra; o se devuelve el Entregable, en caso contrario
          */
         public function buscarEntregablePorID($id) {
-            $this->ConectarBD();
-            $sql = "SELECT * FROM entregable where ID_ENTREGABLE = '{$id}' ";
-            if(!$resultado = $this -> mysqli -> query($sql))return false;
-            if($resultado -> num_rows == 0)return false;
 
+            $sql = "SELECT * FROM ENTREGABLE where ID_ENTREGABLE = '{$id}' ";
+            $resultado = $this -> mysqli -> query($sql);
+            if($resultado == false)return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
 
             $obj = $resultado->fetch_object();
-            $toret = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL, $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
+            $toret = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL,
+                $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
                                         new DateTime( $obj -> FECHASUBIDA), $tarea_mapper->buscarTareaId($obj -> ID_TAREA));
 
             return $toret;
