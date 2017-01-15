@@ -92,7 +92,8 @@
     
         case "edit_entregable": //editar tarea
 
-            if(isset($_REQUEST['name']) && isset($_REQUEST['estado'])){
+            //echo "hello";
+            if(isset($_REQUEST['nombre']) && isset($_REQUEST['estado'])){
 
                 $nombre = $_REQUEST['nombre'];
                 $estado = $_REQUEST['estado'];
@@ -105,7 +106,7 @@
 
                 if (is_uploaded_file($_FILES['archivo']['tmp_name']))
                 {
-                    $nombreDirectorio = "../Archivos";
+                    $nombreDirectorio = "../Archivos/";
                     $nombreFichero = $_FILES['archivo']['name'];
 
                     $nombreCompleto = $nombreDirectorio . $nombreFichero;
@@ -118,18 +119,14 @@
                     move_uploaded_file($_FILES['archivo']['tmp_name'], $nombreDirectorio.$nombreFichero);
 
                 }else{
-                    new Mensaje("No se ha podido subir el fichero","./ENTREGABLE_Controller.php?accion=add_entregable&entregable_ID=".$_REQUEST['entregable_ID']);
+                    new Mensaje("No se ha podido subir el fichero","./ENTREGABLE_Controller.php?accion=edit_entregable_menu&entregable_ID=".$_REQUEST['entregable_ID']);
                 }
 
-                $entregable = new Entregable($_REQUEST['entregable_ID'],$nombre,$estado,$nombreDirectorio.$nombreFichero,$miembro,new DateTime("now"),$tarea);
+                $entregable = new Entregable($_REQUEST['entregable_ID'],$nombre,"entregado",$nombreDirectorio.$nombreFichero,$miembro,new DateTime("now"),$tarea);
                 $mapper ->updateEntregable($entregable);
                 new Mensaje("Modificado con éxito", "ENTREGABLE_Controller.php?showall_entregable&ID_TAREA=$idTarea");
             }
 
-            /*$nombreArchivo=$_FILES['archivo']['name'];
-            $ruta=$_FILES['archivo']['tmp_name'];
-            $destino="../Archivos/".$nombreArchivo;
-            copy($ruta,$destino);*/
             break;
     
         case "delete_entregable": //eliminar tarea
