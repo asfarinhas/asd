@@ -47,8 +47,8 @@ class MiembroAddVista{
         </head>
         <div>
             <h1><span class="form-title"><?=$strings['Registro']?></h1>
-
-            <form action="MIEMBRO_Controller.php" name="formAddMiembro" enctype="multipart/form-data" method="post" onsubmit=" ">
+            <ul class="form-style-1">
+            <form action="../Controllers/MIEMBRO_Controller.php" name="formAddMiembro" enctype="multipart/form-data" method="post" onsubmit=" ">
 
 
                 <div>
@@ -79,6 +79,7 @@ class MiembroAddVista{
                 <input type="hidden"  name="accion" value="add">
                 <input type='submit' onclick="DoSubmit()" value="<?=$strings['Registro'] ?>"><br/><br/>
             </form>
+            </ul>
             <a class="form-link" href='../Controllers/MIEMBRO_Controller.php'><?=$strings['Volver']?> </a>
         </div>
         <?php
