@@ -35,7 +35,7 @@ class Ticket_Modificar{
             </h1>
             <h3>
 
-                <form action='TICKET_Controller.php' method='post'>
+                <form action='TICKET_Controller.php' method='post' name="formEditTicket" onsubmit="return validarFormEditTicket()">
                     <ul class="form-style-1">
                         <!-- Campo Nombre -->
                         <div class="form-group">
@@ -43,7 +43,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NOMBRE'];?>"class="form-control" name="NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['NOMBRE'];?>"class="form-control" name="NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" id="NOMBRE" onblur="validarNombreTarea(document.formEditTicket.NOMBRE)">
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAI'];?>"class="form-control" name="FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['FECHAI'];?>"class="form-control" class="tcal"  name="FECHAI"  title="<?php echo $strings['error trabajador']; ?>" id="FECHAI" onblur="validarCampo(document.formEditTicket.FECHAI);validarFecha(document.formEditTicket.FECHAI)">
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAE'];?>"class="form-control" name="FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['FECHAE'];?>"class="form-control" class="tcal" name="FECHAE"  title="<?php echo $strings['error trabajador']; ?>" id="FECHAE" onblur="validarCampo(document.formEditTicket.FECHAE);validarFecha(document.formEditTicket.FECHAE)">
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['DESCRIPCION'];?>"class="form-control" name="DESCRIPCION"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['DESCRIPCION'];?>"class="form-control" name="DESCRIPCION"  title="<?php echo $strings['error trabajador']; ?>" id="DESCRIPCION" onblur="validarCampo(document.formEditTicket.DESCRIPCION);evitarProhibidos(document.formEditTicket.DESCRIPCION);longitud200(document.formEditTicket.DESCRIPCION)">
                             </div>
                         </div>
 
@@ -83,7 +83,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['COMENTARIO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['COMENTARIO'];?>"class="form-control" name="COMENTARIO"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['COMENTARIO'];?>"class="form-control" name="COMENTARIO"  title="<?php echo $strings['error trabajador']; ?>" id="COMENTARIO" onblur="validarCampo(document.formEditTicket.COMENTARIO);evitarProhibidos(document.formEditTicket.COMENTARIO);longitud100(document.formEditTicket.COMENTARIO)">
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@ class Ticket_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="NUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" id="NUMEROHORAS" onblur="validarNumHoras(document.formEditTicket.NUMEROHORAS)">
                             </div>
                         </div>
 

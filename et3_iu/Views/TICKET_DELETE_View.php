@@ -85,7 +85,7 @@ class Ticket_Borrar{
 
 
                     <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
-                    <input type='submit' name='accion' value='<?php echo $strings['Borrar']; ?>'>
+                    <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR LA TAREA?')" value='<?php echo $strings['Borrar']; ?>'>
 
             </form>
 
