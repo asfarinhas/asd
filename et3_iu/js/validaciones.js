@@ -2749,3 +2749,154 @@ function validarFormAddCorreo(){
     }
     return respuesta;
 }
+
+function validarFormAddMiembro(){
+    var respuesta = true;
+
+    if(
+        validarNombre(document.getElementById('nombre'))
+        && validarApellidos(document.getElementById('apellidos'))
+        && validarUsuario(document.getElementById('usuario'))
+        && validarCampo(document.getElementById('password'))
+        && validarCampo(document.getElementById('correo'))
+        && validarEmail(document.getElementById('correo'))
+    ){
+        swal(
+            {
+                title : "Miembro añadido con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarNombre(document.getElementById('nombre')) == false){
+                swal(
+                    {
+                        title : "Error!",
+                        text : "El nombre debe tener una longitud entre 1 y 20, y no puede contener los caracteres:  \n · # $ ^ & *",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarApellidos(document.getElementById('apellidos')) == false){
+                    swal(
+                        {
+                            title : "Error!",
+                            text : "El campo apellidos debe tener una longitud entre 1 y 40, y no puede contener los caracteres:  \n · # $ ^ & *",
+                            type : "error",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(validarUsuario(document.getElementById('usuario')) == false){
+                        swal(
+                            {
+                                title : "Error!",
+                                text : "El usuario debe tener una longitud entre 3 y 15, y no puede contener los caracteres:  \n · # $ ^ & *",
+                                type : "error",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }else{
+                        if(validarCampo(document.getElementById('password')) == false){
+                            swal(
+                                {
+                                    title : "Error!",
+                                    text : "Password vacío: ",
+                                    type : "error",
+                                    confirmButtonText : "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }else{
+
+                            if(validarCampo(document.getElementById('correo')) == false){
+                                swal(
+                                    {
+                                        title : "Error!",
+                                        text : "Correo vacío: ",
+                                        type : "error",
+                                        confirmButtonText : "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(validarEmail(document.getElementById('correo')) == false){
+                                    swal(
+                                        {
+                                            title : "Error!",
+                                            text : "Correo inválido: ",
+                                            type : "error",
+                                            confirmButtonText : "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+    }
+    return respuesta;
+
+}
+
+function validarLogin(){
+
+    var respuesta = true;
+
+    if ( validarCampo(document.getElementById('username'))
+        && validarCampo(document.getElementById('pass')))
+    {
+        swal(
+            {
+                title : "Login OK!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        repuesta =  true;
+    }else{
+        if(validarCampo(document.getElementById('username')) == false){
+            swal(
+                {
+                    title : "Error!",
+                    text : "Usuario vacío:  ",
+                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }else{
+            swal(
+                {
+                    title : "Error!",
+                    text : "Contraseña vacía: ",
+                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }
+        /*swal(
+         {
+         title : "OK!",
+         text : "Acceso permitido! ",
+         // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
+         type : "success",
+         confirmButtonText : "Ok"
+         }
+         );
+         respuesta = false;*/
+    }
+    return respuesta;
+}
