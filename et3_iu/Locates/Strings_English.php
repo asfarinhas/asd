@@ -297,6 +297,7 @@ $strings = array(
 	"Tarea padre" => "Main task",
 	"descripcion" => "Description",
 	"Insertar Tarea" => "Add task",
+    "Mostrar Tareas" => "Show Tasks",
 
 	//ENTREGABLES
 	"Entregables" => "Deliverables",

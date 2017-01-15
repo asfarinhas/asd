@@ -300,6 +300,7 @@ $strings = array(
     "Eliminar Tarea" => "Eliminar Tarea",
 	"Tarea padre" => "Tarea padre",
     "Insertar Tarea" => "Insertar tarea",
+	"Mostrar Tareas" => "Mostrar Tareas",
 
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables",
