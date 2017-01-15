@@ -321,6 +321,7 @@ $strings = array(
     "url" => "URL",
     "Realizado Por" => "Realizado por",
     "Fecha" => "Fecha",
-    "Eliminar Entregable" => "Eliminar Entregable"
+    "Eliminar Entregable" => "Eliminar Entregable",
+	"Desea eliminar el entregable" => "Desea eliminar el entregable"
 )
 ?>

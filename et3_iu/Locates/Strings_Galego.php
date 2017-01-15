@@ -318,7 +318,8 @@ $strings = array(
     "Realizado Por" => "Feito por",
     "Fecha" => "Data",
 	"Eliminar Entregable" => "Eliminar Entrega",
-	"Eliminado con éxito" => "Eliminado correctamente"
+	"Eliminado con éxito" => "Eliminado correctamente",
+    "Desea eliminar el entregable" => "Seguro que desexa borrar a entrega"
 
 )
 ?>
