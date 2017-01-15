@@ -60,7 +60,7 @@ class CorreoMapper {
  function listarMiembros()
 {
      $this->ConectarBD();
-     $sql = "select * from EMPLEADOS";
+     $sql = "select * from EMPLEADOS WHERE EMP_EMAIL <> 'NULL'";
      if($resultado = $this->mysqli->query($sql)){
        $aux=$resultado->num_rows;
        while($aux>0){
