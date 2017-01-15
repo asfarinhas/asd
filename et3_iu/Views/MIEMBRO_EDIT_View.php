@@ -74,7 +74,7 @@ class MiembroEditView{
 
                 <div>
                     <?= $strings['EMP_USER']?> <br/>
-                    <input type="text" name="usuario" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario"  onblur="validarCampo(document.formEditMiembro.usuario);validarUsuario(document.formEditMiembro.usuario);evitarProhibidos(document.formEditMiembro.usuario)"><br/>
+                    <input type="text" readonly name="usuario" value="<?= $miembro->getUsuario()?>" placeholder="<?= $strings['EMP_USER']?>"  id="usuario"  onblur="validarCampo(document.formEditMiembro.usuario);validarUsuario(document.formEditMiembro.usuario);evitarProhibidos(document.formEditMiembro.usuario)"><br/>
                 </div>
 
                 <div>
