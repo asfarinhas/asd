@@ -10,11 +10,6 @@
             die();
         }
 
-        if ($_REQUEST['accion'] == 'Instalar BD'){
-            header("Location: ./../../install.php");
-            die();
-        }
-
 		if ($_REQUEST['accion'] == 'Login'){
 
 			$usuario = new EMPLEADOS_Modelo($_REQUEST['EMP_USER'], $_REQUEST['EMP_PASSWORD'], '', '', '', '', '', '', '', '', '', '', '', '','');
