@@ -6,21 +6,28 @@
  * Time: 17:05
  */
 include '../Mappers/TAREA_Mapper.php';
+include '../Models/FUNCIONALIDAD_Model.php';
 //include '../Models/TAREA_Model.php';
 //include '../Models/MIEMBRO_Model.php';
-include '../Locates/Strings_Castellano.php';
+//include '../Locates/Strings_Castellano.php';
 //include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
-include '../Mappers/MIEMBRO_Mapper.php';
+include '../Mappers/MIEMBRO_Mapper.php';/*
 include '../Views/MIEMBRO_EDIT_View.php';
 include '../Views/MIEMBRO_SHOW_Vista.php';
 include '../Views/MIEMBRO_DELETE_Vista.php';
 include '../Views/MIEMBRO_TAREAS_SHOW_Vista.php';
-include '../Views/PROYECTO_MIEMBRO_DELETE_Vista.php';
+include '../Views/PROYECTO_MIEMBRO_DELETE_Vista.php';*/
 include '../Views/LOGIN_Vista.php';
-include '../Functions/LibraryFunctions.php';
+//include '../Functions/LibraryFunctions.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
+}
+include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+//Genera los includes según las páginas a las que tiene acceso
+$pags=generarIncludes();
+for ($z=0;$z<count($pags);$z++){
+    include $pags[$z];
 }
 
 function edit_miembro(){  //claudia
