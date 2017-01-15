@@ -150,12 +150,10 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 801),
 ('ADMIN', 802),
 ('ADMIN', 803),
-('ADMIN', 804),
 ('ADMIN', 850),
 ('ADMIN', 851),
 ('ADMIN', 852),
 ('ADMIN', 853),
-('ADMIN', 854),
 ('secret', 700),
 ('secret', 701),
 ('secret', 702),
@@ -170,12 +168,10 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('secret', 801),
 ('secret', 802),
 ('secret', 803),
-('secret', 804),
 ('secret', 850),
 ('secret', 851),
 ('secret', 852),
 ('secret', 853),
-('secret', 854),
 ('monit', 700),
 ('monit', 701),
 ('monit', 702),
@@ -190,12 +186,10 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('monit', 801),
 ('monit', 802),
 ('monit', 803),
-('monit', 804),
 ('monit', 850),
 ('monit', 851),
 ('monit', 852),
-('monit', 853),
-('monit', 854);
+('monit', 853);
 -- --------------------------------------------------------
 
 --
