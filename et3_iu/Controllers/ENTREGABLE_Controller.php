@@ -6,6 +6,8 @@
     include "../Views/ENTREGABLE_SHOW_Vista.php";
     include "../Views/ENTREGABLE_DELETE_Vista.php";
     include "../Views/MENSAJE_Vista.php";
+    include "../Views/ENTREGABLE_ADD_Vista.php";
+    include "../Views/ENTREGABLE_EDIT_Vista.php";
 
         session_start();
     $mapper = new ENTREGABLE_Mapper();
@@ -20,12 +22,13 @@
     
         //Viene de clicar en añadir tarea; hay que crear la vista en cuestión
         case "add_entregable_menu":
-            echo "<h1>VISTA ENTREGABLE ADD</h1>";
+            new ENTREGABLE_ADD_Vista();
             break;
     
         //Viene de clicar en editar tarea; hay que crear la vista en cuestión
         case "edit_entregable_menu":
-            echo "<h1>VISTA ENTREGABLE EDIT</h1>";
+            $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
+            new ENTREGABLE_EDIT_Vista($entregable);
             break;
     
         //Viene de clicar en consultar en detalle tarea; hay que crear la vista en cuestión
@@ -42,6 +45,24 @@
     
     
         case "add_entregable": //insertar usuario nuevo a traves de registro
+            $idTarea = $_REQUEST['ID_TAREA'];
+            if (isset($_REQUEST['nombre']) && isset($_REQUEST['estado'])){
+                $nombre = $_REQUEST['nombre'];
+                $estado = $_REQUEST['estado'];
+                $tarea = $t_mapper ->buscarTareaId($idTarea);
+                $miembro = $tarea ->getMiembro();
+                $fecha = new DateTime("now");
+                $url = "";
+
+                $entregable = new Entregable(null, $nombre, $estado, $url, $miembro, $fecha, $tarea);
+
+                $result = $mapper -> insertarEntregable($entregable);
+                new Mensaje($result,"ENTREGABLE_Controller.php?showall_entregable&ID_TAREA=$idTarea");
+
+            }else{
+                showall_entregable();
+            }
+
             break;
     
         case "show_entregable": // consultar datos de la tarea
@@ -58,6 +79,11 @@
             break;
     
         case "edit_entregable": //editar tarea
+
+            /*$nombreArchivo=$_FILES['archivo']['name'];
+            $ruta=$_FILES['archivo']['tmp_name'];
+            $destino="../Archivos/".$nombreArchivo;
+            copy($ruta,$destino);*/
             break;
     
         case "delete_entregable": //eliminar tarea

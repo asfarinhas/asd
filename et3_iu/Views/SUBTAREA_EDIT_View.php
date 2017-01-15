@@ -58,13 +58,18 @@ class Subtarea_edit{
     ?>
 <head>
     <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
-
+    <link href="../Styles/sweetalert.css" rel="stylesheet">
+    <script src="../js/sweetalert.min.js"></script>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/md5.js"></script>
+    <link href="../Styles/tcal.css" rel="stylesheet">
+    <script src="../js/tcal.js"></script>
 </head>
 <div>
 
     <h1><span class="form-title"><?=$strings['ModificarSubtarea']?></h1>
 
-    <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+    <form action="../Controllers/TAREA_Controller.php" name="formEditSubtarea" enctype="multipart/form-data" method="post" onsubmit="return validarFormEditSubTarea() ">
         <ul class="form-style-1">
         <div> <!-- ID de la tarea padre-->
             <input type="number" hidden name="ID_TAREA" value="<?=$_REQUEST['ID_TAREA']?>" >
@@ -80,42 +85,42 @@ class Subtarea_edit{
 
         <div>
             <?= $strings['Nombre']?> <br/>
-            <input type="text" name="nombre" value="<?= $datos->getNombre()?>" placeholder="<?= $strings['Nombre']?>"  id="nombre" required ><br/>
+            <input type="text" name="nombre" value="<?= $datos->getNombre()?>" placeholder="<?= $strings['Nombre']?>"  id="nombre" required onblur="validarCampo(document.formEditSubtarea.nombre);validarNombreTarea(document.formEditSubtarea.nombre);evitarProhibidos(document.formEditSubtarea.nombre)" ><br/>
         </div>
 
         <div>
             <?= $strings['Descripcion']?> <br/>
-            <input type="text" name="descripcion" value="<?= $datos->getDescripcion()?>" placeholder="<?= $strings['Descripcion']?>"  id="descripcion" required ><br/>
+            <input type="text" name="descripcion" value="<?= $datos->getDescripcion()?>" placeholder="<?= $strings['Descripcion']?>"  id="descripcion" required onblur="validarCampo(document.formEditSubtarea.descripcion);evitarProhibidos(document.formEditSubtarea.descripcion);longitud200(document.formEditSubtarea.descripcion)"><br/>
         </div>
 
         <div>
             <?= $strings['Fechainicioplan']?> <br/>
-            <input type="date" name="fecha_inicio_plan" value="<?= $datos->getFechaInicioPlan()?>" placeholder="dd/mm/aaaa"  id="fecha_inicio_plan" required ><br/>
+            <input type="date" name="fecha_inicio_plan" value="<?= $datos->getFechaInicioPlan()?>" placeholder="dd/mm/aaaa"  id="fecha_inicio_plan" required onblur="validarCampo(document.formEditSubtarea.fecha_inicio_plan);validarFecha(document.formEditSubtarea.fecha_inicio_plan)"><br/>
         </div>
 
         <div>
             <?= $strings['Fechaentregaplan']?> <br/>
-            <input type="date" name="fecha_entrega_plan" value="<?= $datos->getFechaEntregaPlan()?>" placeholder="dd/mm/aaaa"  id="fecha_entrega_plan" required ><br/>
+            <input type="date" name="fecha_entrega_plan" value="<?= $datos->getFechaEntregaPlan()?>" placeholder="dd/mm/aaaa"  id="fecha_entrega_plan" required onblur="validarCampo(document.formEditSubtarea.fecha_entrega_plan);validarFecha(document.formEditSubtarea.fecha_entrega_plan)" ><br/>
         </div>
 
         <div>
             <?= $strings['fecha_I_R']?><br/> <!-- AÑADIR A DICCIONARIOS A PARTIR DE AQUI -->
-            <input type="date" name="fecha_inicio_real" value="<?= $datos->getFechaInicioReal()?>"  placeholder="dd/mm/aaaa"  id="fecha_inicio_real"><br/>
+            <input type="date" name="fecha_inicio_real" value="<?= $datos->getFechaInicioReal()?>"  placeholder="dd/mm/aaaa"  id="fecha_inicio_real" onblur="validarCampo(document.formEditSubtarea.fecha_entrega_plan);validarFecha(document.formEditSubtarea.fecha_entrega_plan)" ><br/>
         </div>
 
         <div>
             <?=$strings['fecha_E_R']?><br/>
-            <input type="date" name="fecha_entrega_real" value="<?= $datos->getFechaEntregaReal()?>" placeholder="dd/mm/aaaa"  id="fecha_entrega_real"><br/>
+            <input type="date" name="fecha_entrega_real" value="<?= $datos->getFechaEntregaReal()?>" placeholder="dd/mm/aaaa"  id="fecha_entrega_real" onblur="validarCampo(document.formEditSubtarea.fecha_entrega_plan);validarFecha(document.formEditSubtarea.fecha_entrega_plan)" ><br/>
         </div>
 
         <div>
             <?=$strings['horas_P']?><br/>
-            <input type="number" name="horas_plan" value="<?= $datos->getHorasPlan()?>" placeholder="ej: 8"  id="horas_plan" required ><br/>
+            <input type="number" name="horas_plan" value="<?= $datos->getHorasPlan()?>" placeholder="ej: 8"  id="horas_plan" required onblur="validarCampo(document.formEditSubtarea.horas_plan);soloNumero(document.formEditSubtarea.horas_plan);validarHoras(document.formEditSubtarea.horas_plan)"><br/>
         </div>
 
         <div>
             <?=$strings['horas_R']?><br/>
-            <input type="number" name="horas_real" value="<?= $datos->getHorasReal()?>" placeholder="ej: 8"  id="horas_real"><br/>
+            <input type="number" name="horas_real" value="<?= $datos->getHorasReal()?>" placeholder="ej: 8"  id="horas_real" onblur="validarCampo(document.formEditSubtarea.horas_plan);soloNumero(document.formEditSubtarea.horas_plan);validarHoras(document.formEditSubtarea.horas_plan)"><br/>
         </div>
 
         <div>
@@ -147,12 +152,12 @@ class Subtarea_edit{
 
         <div>
             <?=$strings['comentarios']?><br/>
-            <textarea type="textarea" name="comentario" value="<?= $datos->getComentario()?>" rows="4" cols="50"></textarea>
+            <textarea type="textarea" name="comentario" value="<?= $datos->getComentario()?>" onblur="validarCampo(document.formEditSubtarea.comentario);evitarProhibidos(document.formEditSubtarea.comentario);longitud100(document.formEditSubtarea.comentario)"></textarea>
         </div>
 
 
         <input type="hidden"  name="accion" value="edit_subtarea">
-        <input type='submit' onclick="DoSubmit()" value="<?=$strings['Modificar'] ?>"><br/><br/>
+        <input type='submit' onclick="validarFormEditSubTarea()" value="<?=$strings['Modificar'] ?>"><br/><br/>
         </ul>
     </form>
     <a class="form-link" href='<?=$this->volver?>'><?=$strings['Volver']?> </a>

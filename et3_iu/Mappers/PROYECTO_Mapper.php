@@ -210,19 +210,46 @@ public function buscarMiembro(Miembro $miembro)
 
     public function consultarMiembros($idProyecto) {
         $this ->conectarBD();
-        $sql = "SELECT EMPLEADOS.EMP_USER,EMPLEADOS.EMP_PASSWORD,EMPLEADOS.EMP_NOMBRE,EMPLEADOS.EMP_APELLIDO,EMPLEADOS.EMP_EMAIL,EMPLEADOS.EMP_TIPO,EMPLEADOS.EMP_ESTADO FROM EMPLEADOS, PROYECTO_MIEMBRO WHERE EMPLEADOS.EMP_USER = PROYECTO_MIEMBRO.EMP_USER AND PROYECTO_MIEMBRO.ID_PROYECTO <> $idProyecto ;";
+        $sql = "SELECT  EMP_USER FROM PROYECTO_MIEMBRO WHERE ID_PROYECTO = $idProyecto";
 
-        if (!($resultado = $this->mysqli->query($sql))){
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
-        }else {
-            $miembros_proyecto = array();
-            while($obj = $resultado -> fetch_object()) {
+        } else {
 
-                $miembro = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
-                array_push($miembros_proyecto, $miembro);
+            $toret = array();
+            while ($obj = $resultado->fetch_object()) {
+                $miembro = $this->buscarMiembroPorUsuario($obj->EMP_USER);
+                array_push($toret, $miembro);
             }
-            return $miembros_proyecto;
+            $miembros = array();
+            $miembros = $this->listarMiembros();
+            $miembros_libres = array();
+
+            foreach ($miembros as $valor){
+                if(!in_array($valor,$toret)){
+                    array_push($miembros_libres,$valor);
+                }
+            }
+            return $miembros_libres;
         }
+
+    }
+
+    public function listarMiembros(){
+        $this ->conectarBD();
+        $sql = "SELECT * FROM EMPLEADOS;";
+
+
+        $resultado = $this->mysqli->query($sql);
+
+        $toret = array();
+        while ($obj = $resultado->fetch_object()) {
+            $proyectoEncontrado = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+            array_push($toret, $proyectoEncontrado);
+        }
+
+        return $toret;
+
     }
 
 
@@ -255,9 +282,9 @@ public function buscarMiembro(Miembro $miembro)
         }else{
             $sql = "INSERT INTO PROYECTO_MIEMBRO (ID_PROYECTO,EMP_USER) VALUES ('" . $proyectoId."','" . $miembroId ."');";
             if($this->mysqli->query($sql) === TRUE){
-                return "creado exito";
+                return "miembro añadido";
             }else{
-                return "error creado";
+                return "error miembro";
             }
         }
 
@@ -269,7 +296,7 @@ public function buscarMiembro(Miembro $miembro)
         $sql = "DELETE FROM PROYECTO_MIEMBRO WHERE EMP_USER = '" . $miembro->getUsuario(). "' AND ID_PROYECTO='" . $proyecto->getIDPROYECTO() . "';";
 
         if($this->mysqli->query($sql) === TRUE){
-            return "El proyecto ha sido borrado correctamente";
+            return "El miembro ha sido borrado correctamente";
         }else{
             return "error borrado";
         }
@@ -299,7 +326,7 @@ public function buscarMiembro(Miembro $miembro)
 
     }
 
-    public function insertar(Proyecto $proyecto) {
+    public function insertar(Proyecto $proyecto, $miembroUser) {
         $this->conectarBD();
 
         $sql= "SELECT * FROM PROYECTO WHERE NOMBRE ='" . $proyecto->getNOMBRE()."';";
@@ -308,8 +335,18 @@ public function buscarMiembro(Miembro $miembro)
                 return "nombre de proyecto ya existe";
             }else{
                 $sql = "INSERT INTO PROYECTO (ID_PROYECTO,NOMBRE,DESCRIPCION,FECHAI,FECHAIP,FECHAE,FECHAFP,NUMEROMIEMBROS,NUMEROHORAS,DIRECTOR) VALUES ('" . $proyecto->getIDPROYECTO()."','" . $proyecto->getNOMBRE() ."','" . $proyecto->getDESCRIPCION() . "','" . $proyecto->getFECHAI() . "','" . $proyecto->getFECHAIP() . "','" . $proyecto->getFECHAE() . "','" . $proyecto->getFECHAFP() . "','" . $proyecto->getNUMEROMIEMBROS(). "','" . $proyecto->getNUMEROHORAS()."','". $proyecto->getDIRECTOR()->getUsuario()."');";
+
+
+                $sql1 = "SELECT ID_PROYECTO FROM PROYECTO WHERE NOMBRE = '" . $proyecto->getNOMBRE() . "';";
                 if($this->mysqli->query($sql) === TRUE){
-                    return "creado exito";
+                    $resultado = $this->mysqli->query($sql1);
+                    $proyecto3= $resultado->fetch_array();
+                    $sql2 = "INSERT INTO PROYECTO_MIEMBRO ( ID_PROYECTO,EMP_USER) VALUES ('" . $proyecto3['ID_PROYECTO'] ."' , '" . $miembroUser ."');";
+                    if($this->mysqli->query($sql2) === TRUE){
+                        return "creado exito";
+                    }else{
+                        return "error creado";
+                    }
                 }else{
                     return "error creado";
                 }
@@ -328,8 +365,6 @@ public function buscarMiembro(Miembro $miembro)
         }
         else{
             $result = $resultado->fetch_array();
-
-
             return $result;
         }
     }
@@ -367,15 +402,22 @@ public function buscarMiembro(Miembro $miembro)
             $aux=1;
         }
         $this->conectarBD();
-        $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
+        $sql1 = "SELECT * FROM PROYECTO WHERE NOMBRE = '" . $proyecto->getNOMBRE() . "' AND ID_PROYECTO <> '". $proyecto->getIDPROYECTO() ."';";
+
+        $resultado1 = $this->mysqli->query($sql1);
+
+        if ($resultado1->num_rows == 0) {
+            $sql = "UPDATE PROYECTO SET NOMBRE= '" . $proyecto->getNOMBRE() . "', DESCRIPCION = '" . $proyecto->getDESCRIPCION() . "', FECHAI ='" . $proyecto->getFECHAI() . "', FECHAIP ='" . $proyecto->getFECHAIP() . "', FECHAE ='" . $proyecto->getFECHAE() . "', FECHAFP = '" . $proyecto->getFECHAFP() . "', NUMEROMIEMBROS='" . $proyecto->getNUMEROMIEMBROS() . "', NUMEROHORAS='" . $proyecto->getNUMEROHORAS() . "', BORRADO= '" . $aux . "' WHERE ID_PROYECTO= '" . $proyecto->getIDPROYECTO() . "';";
 
 
-    if($this->mysqli->query($sql) === TRUE){
-        return "modificacion exitosa";
-    }else{
-        return "error modificacion";
-    }
-
+            if ($this->mysqli->query($sql) === TRUE) {
+                return "modificacion exitosa";
+            } else {
+                return "error modificacion";
+            }
+        }else{
+            return "proyecto ya existe";
+        }
   }
 
   /**
@@ -387,7 +429,12 @@ public function buscarMiembro(Miembro $miembro)
    */
   public function borrar(Proyecto $proyecto) {
       $this->conectarBD();
-      $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE()."';";
+      $hayTareas =  $this->listarTareasProyecto($proyecto->getIDPROYECTO());
+      if($hayTareas==1) {
+          $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE() . "';";
+      }else{
+          $sql = "DELETE FROM PROYECTO WHERE ID_PROYECTO = '" . $proyecto->getIDPROYECTO() ."';";
+      }
       
       if($this->mysqli->query($sql) === TRUE){
           return "El proyecto ha sido borrado correctamente";
@@ -396,6 +443,21 @@ public function buscarMiembro(Miembro $miembro)
       }
       
     
+  }
+
+
+  public function listarTareasProyecto($idProyecto){
+      $this->conectarBD();
+
+      $sql = "SELECT * FROM TAREA WHERE ID_PROYECTO = '" . $idProyecto . "';";
+      $resultado = $this->mysqli->query($sql);
+
+      if ($resultado->num_rows != 0) {
+          return 1;
+      }else{
+          return 0;
+      }
+
   }
 
 }

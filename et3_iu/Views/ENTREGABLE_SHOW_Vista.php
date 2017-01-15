@@ -32,7 +32,7 @@ class ENTEGABLE_SHOW_Vista
                             <li><?php echo $strings['Usuario'] . ": " . $_SESSION['login']; ?></li>
                         </ul>
                          <?= '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>" ?>
-                        <a href='./ENTREGABLE_Controller.php?accion=add_entregable_menu'><?php echo $strings['Insertar'] ?></a>
+                        <a href='./ENTREGABLE_Controller.php?accion=add_entregable_menu&ID_TAREA=<?php echo $_REQUEST['ID_TAREA']; ?> '><?php echo $strings['Insertar'] ?></a>
                     </div>
                 </nav>
                 <table id='btable' border=1>

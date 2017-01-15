@@ -42,7 +42,12 @@ class Subtarea_add
                 ?>
                 <head>
                     <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
-
+                    <link href="../Styles/sweetalert.css" rel="stylesheet">
+                    <script src="../js/sweetalert.min.js"></script>
+                    <script src="../js/validaciones.js"></script>
+                    <script src="../js/md5.js"></script>
+                    <link href="../Styles/tcal.css" rel="stylesheet">
+                    <script src="../js/tcal.js"></script>
                 </head>
                 <div>
 
@@ -61,28 +66,28 @@ class Subtarea_add
 
                         <div>
                             <?= $strings['Nombre'] ?> <br/>
-                            <input type="text" name="nombre" placeholder="<?= $strings['Nombre'] ?>" id="nombre" required><br/>
+                            <input type="text" name="nombre" placeholder="<?= $strings['Nombre'] ?>" id="nombre" onblur="validarCampo(document.formAddSubtarea.nombre);validarNombreTarea(document.formAddSubtarea.nombre);evitarProhibidos(document.formAddSubtarea.nombre)" ><br/>
                         </div>
 
                         <div>
                             <?= $strings['Descripcion'] ?> <br/>
-                            <input type="text" name="descripcion" placeholder="<?= $strings['Descripcion'] ?>" id="descripcion" required><br/>
+                            <input type="text" name="descripcion" placeholder="<?= $strings['Descripcion'] ?>" id="descripcion" onblur="validarCampo(document.formAddSubtarea.descripcion);evitarProhibidos(document.formAddSubtarea.descripcion);longitud200(document.formAddSubtarea.descripcion)"><br/>
                         </div>
 
                         <div>
                             <?= $strings['Fechainicioplan'] ?> <br/>
-                            <input type="date" name="fecha_inicio_plan" placeholder="dd/mm/aaaa" id="fecha_inicio_plan" required><br/>
+                            <input type="date" class = "tcal" name="fecha_inicio_plan" placeholder="dd/mm/aaaa" id="fecha_inicio_plan" value="<?php echo date("Y-m-d",mktime()) ?>" onblur="validarCampo(document.formAddSubtarea.fecha_inicio_plan);validarFecha(document.formAddSubtarea.fecha_inicio_plan)" ><br/>
                         </div>
 
                         <div>
                             <?= $strings['Fechaentregaplan'] ?> <br/>
-                            <input type="date" name="fecha_entrega_plan" placeholder="dd/mm/aaaa" id="fecha_entrega_plan" required><br/>
+                            <input type="date" class = "tcal" name="fecha_entrega_plan" placeholder="dd/mm/aaaa" id="fecha_entrega_plan" value="<?php echo date("Y-m-d",mktime()) ?>" onblur="validarCampo(document.formAddSubtarea.fecha_entrega_plan);validarFecha(document.formAddSubtarea.fecha_entrega_plan)" ><br/>
                         </div>
 
 
                         <div>
                             <?= $strings['horas_P'] ?><br/>
-                            <input type="number" name="horas_plan" placeholder="8" id="horas_plan" required><br/>
+                            <input type="number" name="horas_plan" placeholder="8" id="horas_plan" onblur="validarCampo(document.formAddSubtarea.horas_plan);soloNumero(document.formAddSubtarea.horas_plan);validarHoras(document.formAddSubtarea.horas_plan)"><br/>
                         </div>
 
 
@@ -99,7 +104,7 @@ class Subtarea_add
 
                         <div>
                             <?= $strings['comentarios'] ?><br/>
-                            <textarea type="textarea" name="comentario" rows="4" cols="50"></textarea>
+                            <textarea type="textarea" name="comentario" id="comentario" onblur="validarCampo(document.formAddSubtarea.comentario);evitarProhibidos(document.formAddSubtarea.comentario);longitud100(document.formAddSubtarea.comentario)"></textarea>
                         </div>
 
                         <input type="hidden" name="accion" value="add_subtarea">

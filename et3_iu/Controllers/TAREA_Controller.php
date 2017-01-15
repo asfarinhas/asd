@@ -13,7 +13,7 @@ include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
 include '../Views/TAREA_SHOW_CURRENT_Vista.php';
 include '../Views/TAREA_SHOW_ALL_Vista.php';
-//include '../Views/TAREA_DELETE_View.php';
+include '../Views/TAREA_DELETE_View.php';
 include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
 include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
@@ -51,7 +51,9 @@ function add_tarea(){
             $comentarios = null;
         $tarea = new Tarea(null,$nombre,$descripcion,null,$fecha_I_P,$fecha_E_P,null,null,$horas_P,null,$miembro,"pendiente",$comentarios,$proyecto);
         $mensaje = $tarea_mapper->insertarTarea($tarea);
-        new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
+        $vista = new TareaShowAllVista($tarea);
+        $vista->showAll();
+        //new Mensaje($mensaje,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
     }else{
         $miembros = $miembro_mapper->listarMiembrosProyecto($proyecto->getIDPROYECTO());
         new TAREA_ADD_Vista($miembros,"TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
@@ -120,18 +122,10 @@ function showall_tarea(){
 }
 
 function delete_tarea(){
-    //Comprobacion de la eliminacion en javascript, una vez confirmada se viene aqui ???¿¿¿???
-    //Eliminar de la base de datos la tarea
-
-    $miembro_mapper = new MiembroMapper();
-    $tarea_mapper = new TAREA_Mapper();
-    if(isset($_REQUEST["tarea_id"])){
-        $tarea = $tarea_mapper->buscarTareaId($_REQUEST["tarea_id"]);
-        if($_REQUEST["delete_tarea"]){
-
-        }
-
-    }
+    $tareaMapper = new TAREA_Mapper();
+    $idtarea = $_REQUEST['ID_TAREA'];
+    $tarea = $tareaMapper -> buscarTareaId($idtarea);
+    $vistaDelete = new TAREA_DELETE_View($tarea);
 
     //Mensaje de confirmación.
     //Volver al menu de tareas

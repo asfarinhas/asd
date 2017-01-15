@@ -14,7 +14,7 @@
         private $mysqli;
 
         public function __construct() {
-            $this->mysqli = $this -> ConectarBD();
+            $this -> ConectarBD();
         }
 
         //Extraer esta función
@@ -34,10 +34,10 @@
 
         public function consultarEntregables() {
             $this->ConectarBD();
-            $sql = "SELECT * FROM ENTREGABLE";
+            $sql = "SELECT * FROM entregable";
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $toret = array();
             $miembro_mapper = new MiembroMapper();
@@ -60,18 +60,17 @@
          * @return false si se produce algún error o no se encuentra; o se devuelve el Entregable, en caso contrario
          */
         public function buscarEntregablePorID($id) {
-            $this->ConectarBD();
+
             $sql = "SELECT * FROM ENTREGABLE where ID_ENTREGABLE = '{$id}' ";
-
             $resultado = $this -> mysqli -> query($sql);
-            if($resultado == false || $resultado -> num_rows == 0) return false;
-
+            if($resultado == false)return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
 
             $obj = $resultado->fetch_object();
-            $toret = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL, $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
+            $toret = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL,
+                $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
                                         new DateTime( $obj -> FECHASUBIDA), $tarea_mapper->buscarTareaId($obj -> ID_TAREA));
 
             return $toret;
@@ -84,22 +83,24 @@
          */
         public function consultarEntregablesTarea($id_tarea) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM ENTREGABLE where ID_TAREA = {$id_tarea} ";
+            $sql = "SELECT * FROM ENTREGABLE where ID_TAREA = '{$id_tarea}' ";
+
             $resultado = $this -> mysqli -> query($sql);
-            if($resultado == false ) return false;
 
-            $miembro_mapper = new MiembroMapper();
-            $tarea_mapper = new TAREA_Mapper();
             $toret = array();
+            if($resultado != false ) {
 
-            while($obj = $resultado->fetch_object()){
+                $miembro_mapper = new MiembroMapper();
+                $tarea_mapper = new TAREA_Mapper();
 
-                $aux = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL, $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
-                    new DateTime( $obj -> FECHASUBIDA), $tarea_mapper->buscarTareaId($obj -> ID_TAREA));
+                while ($obj = $resultado->fetch_object()) {
 
-                array_push($toret, $aux);
+                    $aux = new Entregable($obj->ID_ENTREGABLE, $obj->NOMBRE, $obj->ESTADO, $obj->URL, $miembro_mapper->buscarMiembroPorUsuario($obj->ID_MIEMBRO),
+                        new DateTime($obj->FECHASUBIDA), $tarea_mapper->buscarTareaId($obj->ID_TAREA));
+
+                    array_push($toret, $aux);
+                }
             }
-
             return $toret;
         }
 
@@ -110,11 +111,11 @@
          */
         public function consultarEntregablesMiembro($id_miembro) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM ENTREGABLE where ID_MIEMBRO = '{$id_miembro}' ";
+            $sql = "SELECT * FROM entregable where ID_MIEMBRO = '{$id_miembro}' ";
             echo $sql;
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false) return false;
+            if($resultado == false || $resultado -> num_rows == 0) return false;
 
             $miembro_mapper = new MiembroMapper();
             $tarea_mapper = new TAREA_Mapper();
@@ -140,12 +141,10 @@
             $sql = "INSERT INTO `ENTREGABLE` (`NOMBRE`, `ESTADO`, `URL`, `ID_MIEMBRO`, `FECHASUBIDA`, `ID_TAREA`)
                                                VALUES ('{$entregable -> getNombre()}', '{$entregable -> getEstado()}',
                                                        '{$entregable -> getURL()}', '{$entregable -> getMiembro()->getUsuario()}', 
-                                                       '{$entregable -> getFechaSubida()->format("Y-m-d H:i:s")}', '{$entregable -> getTarea()->getIdTarea()}')";
-            echo $sql;
+                                                       '{$entregable -> getFecha()->format("Y-m-d H:i:s")}', '{$entregable -> getTarea()->getIdTarea()}')";
             $res = $this -> mysqli -> query($sql);
-            var_dump($this -> mysqli-> error);
             $this -> mysqli-> close();
-            return $res;
+            return "Creado con éxito";
         }
 
 
@@ -169,7 +168,7 @@
          */
         public function eliminarEntregable(Entregable $entregable) {
             $this->ConectarBD();
-            $sql = "DELETE FROM ENTREGABLE WHERE ID_ENTREGABLE = '{$entregable->getID()}' ";
+            $sql = "DELETE FROM entregable WHERE id_entregable = '{$entregable->getID()}' ";
             $res = $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
             return $res;

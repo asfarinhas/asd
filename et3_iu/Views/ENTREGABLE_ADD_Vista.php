@@ -12,64 +12,63 @@ class ENTREGABLE_ADD_Vista
 {
 
 
-    public function __construct($miembros, $tareas)
+    public function __construct()
     {
-
+        $this ->render();
     }
 
     public function render()
     {
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma) {
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
         ?>
 
         <html>
+
         <head>
+            <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
         </head>
-        <body>
 
-        <form action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post" onsubmit=" ">
+        <div>
+            <h1><span class="form-title"><?=$strings['Insertar Entregable']?></h1>
 
+        <form enctype="multipart/form-data" action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post">
+            <ul class="form-style-1">
             <div>
-                <label>Nombre: </label>
+                <label> <?php echo $strings['Nombre']; ?>:</label>
                 <input type="text" name="nombre" placeholder="Nombre" id="nombre" required maxlength="15"><br/>
             </div>
 
             <div>
-                <label>Estado: </label>
-                <select required name="estado">
-                    <option value=""> ---- Seleccione estado -----</option>
-                    <option value="0">Válido</option>
-                    <option value="1">Erróneo</option>
-                    <option selected value="2">Pendiente</option> <!-- Por defecto -->
-                    <option value="3">Entregado</option>
+                <label><?php echo $strings['Estado']; ?>: </label>
+                <select readonly required name="estado">
+                    <option selected value="pendiente"><?php echo $strings['pendiente']; ?></option>
                 </select>
             </div>
 
-            <div>
-                <label>ID_MIEMBRO: </label> <br/>
-                <select required name="miembro">
-                    <option value=""> ---- Seleccione miembro -----</option>
-                    <?php foreach ($miembros as $miembro): ?>
-                        <option value="<?= $miembro["USUARIO"] ?>"><?= $miembro["NOMBRE"] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-
-            <div>
-                <label>ID_TAREA: </label><br/>
-                <select required name="tarea">
-                    <option value=""> ---- Seleccione tarea -----</option>
-                    <?php foreach ($tareas as $tarea): ?>
-                        <option value="<?= $tarea["id_tarea"] ?>"><?= $tarea["nombre"] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <input type="hidden" name="accion" value="add_entregable">
+            <input type="hidden" name="ID_TAREA" value="<?php echo $_REQUEST['ID_TAREA']; ?>">
+            <input type="submit" name="submit" value="<?php echo $strings['Insertar'] ?>">
 
 
-            <input type="submit" name="accion" value="AñadirEntregable"><? //= $strings['Add']
-            ?>
+            <a href="../Controllers/ENTREGABLE_Controller.php?accion=showall_entregable&ID_TAREA=<?php echo $_REQUEST['ID_TAREA'];?>" >
+                <input type="button" value="<?php echo $strings['Volver']; ?>" />
+            </a>
+            </ul>
+        </form>
+        </div>
 
-
-        </body>
         </html>
 
 

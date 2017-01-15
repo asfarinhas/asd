@@ -32,7 +32,7 @@ function evitarProhibidos(campo){
         swal(
             {
             title : "Error!",
-            text : "El campo no puede contener los caracteres: \n · # $ ^ & *",
+            text : "El " + campo.name + " no puede contener los caracteres: \n · # $ ^ & *",
             type : "error",
             confirmButtonText : "Ok"
             }
@@ -63,6 +63,24 @@ function soloTexto(campo){
     return respuesta;
 }
 
+function soloNumero(campo){
+    var respuesta = true;
+    var expresion = /[0-9]+/;
+
+    if(expresion.test(campo.value)==false){
+        swal(
+            {
+                title : "Error!",
+                text : "En " + campo.name + " Introduzca solo numeros: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    return respuesta;
+}
 
 function validarPassword(password){
     var prohibidos = /([#$%\^&]+)/;
@@ -142,6 +160,27 @@ function validarNombre(usuario)
             {
                 title : "Error!",
                 text : "Introduza " + usuario.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+    return respuesta;
+}
+
+function validarNombreTarea(tarea)
+{
+    var respuesta = true;
+    var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}/;
+
+    if (cadena.test(tarea.value) == false || tarea.value.length > 50 || tarea.value.length < 1)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + tarea.name + " válido: \n (Longitud máxima 50 caracteres.)" ,
                 type : "error",
                 confirmButtonText : "Ok"
             }
@@ -278,6 +317,53 @@ function validarFecha(fecha)
     return respuesta;
 }
 
+//NO FUNCIONA
+function validarFechaMayorInicioReal(){
+    var respuesta = true;
+    var m1 = document.getElementById("fecha_I_P").value;
+    var m2 = document.getElementById("fecha_I_R").value;
+    var m3 = document.getElementById("fecha_inicio_plan").value;
+    var m4 = document.getElementById("fecha_inicio_real").value;
+    var f1 =m1.split("/");
+    var f2 =m2.split("/");
+    var f3 =m3.split("/");
+    var f4 =m4.split("/");
+
+    //mm-dd-yyyy
+    fecha1 = f1[2] + '/' + f1[1] + '-' + f1[0];
+    fecha2 = f2[2] + '-' + f2[1] + '-' + f2[0];
+    fecha3 = f3[2] + '/' + f3[1] + '-' + f3[0];
+    fecha4 = f4[2] + '-' + f4[1] + '-' + f4[0];
+
+    if (Date.parse(fecha1) > Date.parse(fecha2) || Date.parse(fecha1) > Date.parse(fecha2)){
+        if(Date.parse(fecha1) > Date.parse(fecha2)){
+            swal(
+                {
+                    title : "Error!",
+                    text : "Fecha de inicio real es anterior a la planificada: ",
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }
+        if(Date.parse(fecha3) > Date.parse(fecha4)){
+            swal(
+                {
+                    title : "Error!",
+                    text : "Fecha de inicio real es anterior a la planificada: ",
+                    type : "error",
+                    confirmButtonText : "Ok"
+                }
+            );
+            respuesta = false;
+        }
+    }
+
+    return respuesta;
+}
+
+
 //Ya sean horas o sólo números
 function evitarNumerosNegativos(campo){
     var respuesta = true;
@@ -321,34 +407,60 @@ function evitarHorasCero (campo) {
     return respuesta;
 }
 
-function confirmarBorrado(){
-    swal({
-            title: "Are you sure?",
-            text: "You will not be able to recover this imaginary file!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No, cancel plx!",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        },
-        function(isConfirm){
-            if (isConfirm) {
-                swal({
-                    title: 'Shortlisted!',
-                    text: 'Candidates are successfully shortlisted!',
-                    type: 'success'
-                }, function() {
-                    document.getElementById("formDelete").submit();
-                });
-            } else {
-                swal("Cancelled", "Your imaginary file is safe :)", "error");
-            }
-        });
+function validarHoras(campo){
+    var respuesta = true;
 
+    if(campo.value < 0){
+        swal(
+            {
+                title : "Error!",
+                text : "Las horas deber ser más de 1 ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    return respuesta;
 }
 
+function longitud200(campo){
+    var respuesta = true;
+    var longitud = campo.value.length;
+
+    if(longitud > 200){
+        swal(
+            {
+                title : "Error!",
+                text : campo.name + " demasiado largo ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    return respuesta;
+}
+
+function longitud100(campo){
+    var respuesta = true;
+    var longitud = campo.value.length;
+
+    if(longitud > 100){
+        swal(
+            {
+                title : "Error!",
+                text : campo.name + " demasiado largo: ",
+                //text : <?php idioma("Introduce ");?> + nombre.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    return respuesta;
+}
 
 function validarFormEditMiembro(){
     var respuesta = true;
@@ -540,3 +652,932 @@ function validarFormEditMiembro(){
     }
     return respuesta;
 }
+
+function validarFormAddTarea(){
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('nombre')) //nombre tarea
+        && validarNombreTarea(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('nombre'))
+        && validarCampo(document.getElementById('fecha_I_P')) // fecha I P
+        && validarFecha(document.getElementById('fecha_I_P'))
+        && validarCampo(document.getElementById('fecha_E_P')) // fecha E P
+        && validarFecha(document.getElementById('fecha_E_P'))
+        && validarCampo(document.getElementById('horas_P')) // horas plan
+        && soloNumero(document.getElementById('horas_P'))
+        && validarHoras(document.getElementById('horas_P'))
+        && validarCampo(document.getElementById('descripcion')) //descripcion
+        && evitarProhibidos(document.getElementById('descripcion'))
+        && longitud200(document.getElementById('descripcion'))
+        && validarCampo(document.getElementById('comentarios'))
+        && evitarProhibidos(document.getElementById('comentarios'))
+        && longitud100(document.getElementById('comentarios'))
+    ){
+        //Dentro del if
+        swal(
+            {
+                title : "Modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+
+    }else{
+            if(validarCampo(document.getElementById('nombre')) == false){
+                swal(
+                    {
+                        title : "Error!",
+                        text : "Nombre vacío: ",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarNombreTarea(document.getElementById('nombre')) == false){
+                    swal(
+                        {
+                            title : "Error!",
+                            text : "Nombre de tarea inválido: \n (Longitud máxima 50 caracteres.)" ,
+                            type : "error",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(evitarProhibidos(document.getElementById('nombre')) == false){
+                        swal(
+                            {
+                                title : "Error!",
+                                text : "El Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                type : "error",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }else{
+                        if(validarCampo(document.getElementById('fecha_I_P')) == false){
+                            swal(
+                                {
+                                    title : "Error!",
+                                    text : "Fecha Inicial Planificada vacía: ",
+                                    type : "error",
+                                    confirmButtonText : "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }else{
+                            if(validarFecha(document.getElementById('fecha_I_P')) == false){
+                                swal(
+                                    {
+                                        title : "Error!",
+                                        text : "Formato de Fecha Inicial Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                        type : "error",
+                                        confirmButtonText : "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(validarCampo(document.getElementById('fecha_E_P')) == false){
+                                    swal(
+                                        {
+                                            title : "Error!",
+                                            text : "Fecha Entrega Planificada vacía: ",
+                                            type : "error",
+                                            confirmButtonText : "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                }else{
+                                    if(validarFecha(document.getElementById('fecha_E_P')) == false){
+                                        swal(
+                                            {
+                                                title : "Error!",
+                                                text : "Formato de Fecha Entrega Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                                type : "error",
+                                                confirmButtonText : "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    }else{
+                                        if(validarCampo(document.getElementById('horas_P')) == false){
+                                            swal(
+                                                {
+                                                    title : "Error!",
+                                                    text : "Horas Planificadas vacía: ",
+                                                    type : "error",
+                                                    confirmButtonText : "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        }else{
+                                            if(soloNumero(document.getElementById('horas_P')) == false){
+                                                swal(
+                                                    {
+                                                        title : "Error!",
+                                                        text : "Formato de Horas Planificada incorrecto: \n Introduce tan sólo números",
+                                                        type : "error",
+                                                        confirmButtonText : "Ok"
+                                                    }
+                                                );
+                                                respuesta = false;
+                                            }else{
+                                                if(validarCampo(document.getElementById('descripcion')) == false){
+                                                    swal(
+                                                        {
+                                                            title : "Error!",
+                                                            text : "Descripción vacía: ",
+                                                            type : "error",
+                                                            confirmButtonText : "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                }else{
+                                                    if(evitarProhibidos(document.getElementById('descripcion')) == false){
+                                                        swal(
+                                                            {
+                                                                title : "Error!",
+                                                                text : "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                                                type : "error",
+                                                                confirmButtonText : "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    }else{
+                                                        if(longitud200(document.getElementById('descripcion')) == false){
+                                                            swal(
+                                                                {
+                                                                    title : "Error!",
+                                                                    text : "La descripción no puede pasar de 200 caracteres: ",
+                                                                    type : "error",
+                                                                    confirmButtonText : "Ok"
+                                                                }
+                                                            );
+                                                            respuesta = false;
+                                                        }else{
+                                                            if(validarCampo(document.getElementById('comentarios')) == false){
+                                                                swal(
+                                                                    {
+                                                                        title : "Error!",
+                                                                        text : "Comentario vacío: ",
+                                                                        type : "error",
+                                                                        confirmButtonText : "Ok"
+                                                                    }
+                                                                );
+                                                                respuesta = false;
+                                                            }else{
+                                                                if(evitarProhibidos(document.getElementById('comentarios')) == false){
+                                                                    swal(
+                                                                        {
+                                                                            title : "Error!",
+                                                                            text : "El comentario no puede contener los caracteres: \n · # $ ^ & *",
+                                                                            type : "error",
+                                                                            confirmButtonText : "Ok"
+                                                                        }
+                                                                    );
+                                                                    respuesta = false;
+                                                                }else{
+                                                                    if(longitud100(document.getElementById('comentarios')) == false){
+                                                                        swal(
+                                                                            {
+                                                                                title : "Error!",
+                                                                                text : "El comentario no puede pasar de 100 caracteres: ",
+                                                                                type : "error",
+                                                                                confirmButtonText : "Ok"
+                                                                            }
+                                                                        );
+                                                                        respuesta = false;
+                                                                    }else{
+                                                                        if(validarHoras(document.getElementById('horas_P')) == false){
+                                                                            swal(
+                                                                                {
+                                                                                    title : "Error!",
+                                                                                    text : "Las horas han de ser mayores que 0: ",
+                                                                                    type : "error",
+                                                                                    confirmButtonText : "Ok"
+                                                                                }
+                                                                            );
+                                                                            respuesta = false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+    return respuesta;
+}
+
+function validarFormEditTarea() {
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('nombre')) //nombre tarea
+        && validarNombreTarea(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('nombre'))
+        && validarCampo(document.getElementById('fecha_I_P')) // fecha I P
+        && validarFecha(document.getElementById('fecha_I_P'))
+        && validarCampo(document.getElementById('fecha_E_P')) // fecha E P
+        && validarFecha(document.getElementById('fecha_E_P'))
+        && validarCampo(document.getElementById('fecha_E_R')) // fecha E R
+        && validarFecha(document.getElementById('fecha_E_R'))
+        && validarCampo(document.getElementById('fecha_I_R')) // fecha I R
+        && validarFecha(document.getElementById('fecha_I_R'))
+        && validarCampo(document.getElementById('horas_P')) // horas plan
+        && soloNumero(document.getElementById('horas_P'))
+        && validarHoras(document.getElementById('horas_P'))
+        && validarCampo(document.getElementById('horas_R')) // horas real
+        && soloNumero(document.getElementById('horas_R'))
+        && validarHoras(document.getElementById('horas_R'))
+        && validarCampo(document.getElementById('descripcion')) //descripcion
+        && evitarProhibidos(document.getElementById('descripcion'))
+        && longitud200(document.getElementById('descripcion'))
+        && validarCampo(document.getElementById('comentarios'))
+        && evitarProhibidos(document.getElementById('comentarios'))
+        && longitud100(document.getElementById('comentarios'))
+    ){
+        //Dentro del if
+        swal(
+            {
+                title : "Modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else {
+        if (validarCampo(document.getElementById('nombre')) == false) {
+            swal(
+                {
+                    title: "Error!",
+                    text: "Nombre vacío: ",
+                    type: "error",
+                    confirmButtonText: "Ok"
+                }
+            );
+            respuesta = false;
+        } else {
+            if (validarNombreTarea(document.getElementById('nombre')) == false) {
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre de tarea inválido: \n (Longitud máxima 50 caracteres.)",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            } else {
+                if (evitarProhibidos(document.getElementById('nombre')) == false) {
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "El Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                } else {
+                    if (validarCampo(document.getElementById('fecha_I_P')) == false) {
+                        swal(
+                            {
+                                title: "Error!",
+                                text: "Fecha Inicial Planificada vacía: ",
+                                type: "error",
+                                confirmButtonText: "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    } else {
+                        if (validarFecha(document.getElementById('fecha_I_P')) == false) {
+                            swal(
+                                {
+                                    title: "Error!",
+                                    text: "Formato de Fecha Inicial Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                    type: "error",
+                                    confirmButtonText: "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        } else {
+                            if (validarCampo(document.getElementById('fecha_I_R')) == false) {
+                                swal(
+                                    {
+                                        title: "Error!",
+                                        text: "Fecha Inicial Real vacía: ",
+                                        type: "error",
+                                        confirmButtonText: "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            } else {
+                                if (validarFecha(document.getElementById('fecha_I_R')) == false) {
+                                    swal(
+                                        {
+                                            title: "Error!",
+                                            text: "Formato de Fecha Inicial Real incorrecto: \n aaaa/mm/dd",
+                                            type: "error",
+                                            confirmButtonText: "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                } else {
+                                    if (validarCampo(document.getElementById('horas_P')) == false) {
+                                        swal(
+                                            {
+                                                title: "Error!",
+                                                text: "Horas Planificadas vacío: ",
+                                                type: "error",
+                                                confirmButtonText: "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    } else {
+                                        if (soloNumero(document.getElementById('horas_P')) == false) {
+                                            swal(
+                                                {
+                                                    title: "Error!",
+                                                    text: "Formato de Horas Planificada incorrecto: \n Introduce tan sólo números",
+                                                    type: "error",
+                                                    confirmButtonText: "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        } else {
+                                            if (validarHoras(document.getElementById('horas_P')) == false) {
+                                                swal(
+                                                    {
+                                                        title: "Error!",
+                                                        text: "Las horas deber ser más de 1 ",
+                                                        type: "error",
+                                                        confirmButtonText: "Ok"
+                                                    }
+                                                );
+
+                                                respuesta = false;
+                                            } else {
+                                                if (validarCampo(document.getElementById('horas_R')) == false) {
+                                                    swal(
+                                                        {
+                                                            title: "Error!",
+                                                            text: "Horas Planificadas vacío: ",
+                                                            type: "error",
+                                                            confirmButtonText: "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                } else {
+                                                    if (soloNumero(document.getElementById('horas_R')) == false) {
+                                                        swal(
+                                                            {
+                                                                title: "Error!",
+                                                                text: "Formato de Horas Planificada incorrecto: \n Introduce tan sólo números",
+                                                                type: "error",
+                                                                confirmButtonText: "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    } else {
+                                                        if (validarHoras(document.getElementById('horas_R')) == false) {
+                                                            swal(
+                                                                {
+                                                                    title: "Error!",
+                                                                    text: "Las horas deber ser más de 1 ",
+                                                                    type: "error",
+                                                                    confirmButtonText: "Ok"
+                                                                }
+                                                            );
+
+                                                            respuesta = false;
+                                                        } else {
+                                                            if (validarCampo(document.getElementById('descripcion')) == false) {
+                                                                swal(
+                                                                    {
+                                                                        title: "Error!",
+                                                                        text: "Nombre vacío: ",
+                                                                        type: "error",
+                                                                        confirmButtonText: "Ok"
+                                                                    }
+                                                                );
+                                                                respuesta = false;
+                                                            } else {
+                                                                if (evitarProhibidos(document.getElementById('descripcion')) == false) {
+                                                                    swal(
+                                                                        {
+                                                                            title: "Error!",
+                                                                            text: "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                                                            type: "error",
+                                                                            confirmButtonText: "Ok"
+                                                                        }
+                                                                    );
+                                                                    respuesta = false;
+                                                                } else {
+                                                                    if (longitud200(document.getElementById('descripcion')) == false) {
+                                                                        swal(
+                                                                            {
+                                                                                title: "Error!",
+                                                                                text: "La descripción no puede pasar de 200 caracteres: ",
+                                                                                type: "error",
+                                                                                confirmButtonText: "Ok"
+                                                                            }
+                                                                        );
+                                                                        respuesta = false;
+                                                                    } else {
+                                                                        if (validarCampo(document.getElementById('comentarios')) == false) {
+                                                                            swal(
+                                                                                {
+                                                                                    title: "Error!",
+                                                                                    text: "Nombre vacío: ",
+                                                                                    type: "error",
+                                                                                    confirmButtonText: "Ok"
+                                                                                }
+                                                                            );
+                                                                            respuesta = false;
+                                                                        } else {
+                                                                            if (evitarProhibidos(document.getElementById('comentarios')) == false) {
+                                                                                swal(
+                                                                                    {
+                                                                                        title: "Error!",
+                                                                                        text: "El comentario no puede contener los caracteres: \n · # $ ^ & *",
+                                                                                        type: "error",
+                                                                                        confirmButtonText: "Ok"
+                                                                                    }
+                                                                                );
+                                                                                respuesta = false;
+                                                                            } else {
+                                                                                if (longitud100(document.getElementById('comentarios')) == false) {
+                                                                                    swal(
+                                                                                        {
+                                                                                            title: "Error!",
+                                                                                            text: "El comentario no puede pasar de 100 caracteres: ",
+                                                                                            type: "error",
+                                                                                            confirmButtonText: "Ok"
+                                                                                        }
+                                                                                    );
+                                                                                    respuesta = false;
+                                                                                } else {
+                                                                                    if (validarCampo(document.getElementById('fecha_E_P')) == false) {
+                                                                                        swal(
+                                                                                            {
+                                                                                                title: "Error!",
+                                                                                                text: "Fecha Entrega Planificada vacía: ",
+                                                                                                type: "error",
+                                                                                                confirmButtonText: "Ok"
+                                                                                            }
+                                                                                        );
+                                                                                        respuesta = false;
+                                                                                    } else {
+                                                                                        if (validarFecha(document.getElementById('fecha_E_P')) == false) {
+                                                                                            swal(
+                                                                                                {
+                                                                                                    title: "Error!",
+                                                                                                    text: "Formato de Fecha Entrega Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                                                                                    type: "error",
+                                                                                                    confirmButtonText: "Ok"
+                                                                                                }
+                                                                                            );
+                                                                                            respuesta = false;
+                                                                                        } else {
+                                                                                            if (validarCampo(document.getElementById('fecha_E_R')) == false) {
+                                                                                                swal(
+                                                                                                    {
+                                                                                                        title: "Error!",
+                                                                                                        text: "Fecha Entrega Real vacía: ",
+                                                                                                        type: "error",
+                                                                                                        confirmButtonText: "Ok"
+                                                                                                    }
+                                                                                                );
+                                                                                                respuesta = false;
+                                                                                            } else {
+                                                                                                if (validarFecha(document.getElementById('fecha_E_R')) == false) {
+                                                                                                    swal(
+                                                                                                        {
+                                                                                                            title: "Error!",
+                                                                                                            text: "Formato de Fecha Entrega Real incorrecto: \n aaaa/mm/dd",
+                                                                                                            type: "error",
+                                                                                                            confirmButtonText: "Ok"
+                                                                                                        }
+                                                                                                    );
+                                                                                                    respuesta = false;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return respuesta;
+}
+
+function validarFormEditSubTarea() {
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('nombre')) //nombre tarea
+        && validarNombreTarea(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('nombre'))
+        && validarCampo(document.getElementById('fecha_inicio_plan')) // fecha I P
+        && validarFecha(document.getElementById('fecha_inicio_plan'))
+        && validarCampo(document.getElementById('fecha_entrega_plan')) // fecha E P
+        && validarFecha(document.getElementById('fecha_entrega_plan'))
+        && validarCampo(document.getElementById('fecha_entrega_real')) // fecha E R
+        && validarFecha(document.getElementById('fecha_entrega_real'))
+        && validarCampo(document.getElementById('fecha_inicio_real')) // fecha I R
+        && validarFecha(document.getElementById('fecha_inicio_real'))
+        && validarCampo(document.getElementById('horas_plan')) // horas plan
+        && soloNumero(document.getElementById('horas_plan'))
+        && validarHoras(document.getElementById('horas_plan'))
+        && validarCampo(document.getElementById('horas_real')) // horas real
+        && soloNumero(document.getElementById('horas_real'))
+        && validarHoras(document.getElementById('horas_real'))
+        && validarCampo(document.getElementById('descripcion')) //descripcion
+        && evitarProhibidos(document.getElementById('descripcion'))
+        && longitud200(document.getElementById('descripcion'))
+        && validarCampo(document.getElementById('comentarios'))
+        && evitarProhibidos(document.getElementById('comentarios'))
+        && longitud100(document.getElementById('comentarios'))
+    ){
+        //Dentro del if
+        swal(
+            {
+                title : "Modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else {
+        if (validarCampo(document.getElementById('nombre')) == false) {
+            swal(
+                {
+                    title: "Error!",
+                    text: "Nombre vacío: ",
+                    type: "error",
+                    confirmButtonText: "Ok"
+                }
+            );
+            respuesta = false;
+        } else {
+            if (validarNombreTarea(document.getElementById('nombre')) == false) {
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre de tarea inválido: \n (Longitud máxima 50 caracteres.)",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            } else {
+                if (evitarProhibidos(document.getElementById('nombre')) == false) {
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "El Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                } else {
+                    if (validarCampo(document.getElementById('fecha_inicio_plan')) == false) {
+                        swal(
+                            {
+                                title: "Error!",
+                                text: "Fecha Inicial Planificada vacía: ",
+                                type: "error",
+                                confirmButtonText: "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    } else {
+                        if (validarFecha(document.getElementById('fecha_inicio_plan')) == false) {
+                            swal(
+                                {
+                                    title: "Error!",
+                                    text: "Formato de Fecha Inicial Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                    type: "error",
+                                    confirmButtonText: "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        } else {
+                            if (validarCampo(document.getElementById('fecha_inicio_real')) == false) {
+                                swal(
+                                    {
+                                        title: "Error!",
+                                        text: "Fecha Inicial Real vacía: ",
+                                        type: "error",
+                                        confirmButtonText: "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            } else {
+                                if (validarFecha(document.getElementById('fecha_inicio_real')) == false) {
+                                    swal(
+                                        {
+                                            title: "Error!",
+                                            text: "Formato de Fecha Inicial Real incorrecto: \n aaaa/mm/dd",
+                                            type: "error",
+                                            confirmButtonText: "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                } else {
+                                    if (validarCampo(document.getElementById('horas_plan')) == false) {
+                                        swal(
+                                            {
+                                                title: "Error!",
+                                                text: "Horas Planificadas vacío: ",
+                                                type: "error",
+                                                confirmButtonText: "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    } else {
+                                        if (soloNumero(document.getElementById('horas_plan')) == false) {
+                                            swal(
+                                                {
+                                                    title: "Error!",
+                                                    text: "Formato de Horas Planificada incorrecto: \n Introduce tan sólo números",
+                                                    type: "error",
+                                                    confirmButtonText: "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        } else {
+                                            if (validarHoras(document.getElementById('horas_plan')) == false) {
+                                                swal(
+                                                    {
+                                                        title: "Error!",
+                                                        text: "Las horas deber ser más de 1 ",
+                                                        type: "error",
+                                                        confirmButtonText: "Ok"
+                                                    }
+                                                );
+
+                                                respuesta = false;
+                                            } else {
+                                                if (validarCampo(document.getElementById('horas_real')) == false) {
+                                                    swal(
+                                                        {
+                                                            title: "Error!",
+                                                            text: "Horas Planificadas vacío: ",
+                                                            type: "error",
+                                                            confirmButtonText: "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                } else {
+                                                    if (soloNumero(document.getElementById('horas_real')) == false) {
+                                                        swal(
+                                                            {
+                                                                title: "Error!",
+                                                                text: "Formato de Horas Planificada incorrecto: \n Introduce tan sólo números",
+                                                                type: "error",
+                                                                confirmButtonText: "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    } else {
+                                                        if (validarHoras(document.getElementById('horas_real')) == false) {
+                                                            swal(
+                                                                {
+                                                                    title: "Error!",
+                                                                    text: "Las horas deber ser más de 1 ",
+                                                                    type: "error",
+                                                                    confirmButtonText: "Ok"
+                                                                }
+                                                            );
+
+                                                            respuesta = false;
+                                                        } else {
+                                                            if (validarCampo(document.getElementById('descripcion')) == false) {
+                                                                swal(
+                                                                    {
+                                                                        title: "Error!",
+                                                                        text: "Nombre vacío: ",
+                                                                        type: "error",
+                                                                        confirmButtonText: "Ok"
+                                                                    }
+                                                                );
+                                                                respuesta = false;
+                                                            } else {
+                                                                if (evitarProhibidos(document.getElementById('descripcion')) == false) {
+                                                                    swal(
+                                                                        {
+                                                                            title: "Error!",
+                                                                            text: "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                                                            type: "error",
+                                                                            confirmButtonText: "Ok"
+                                                                        }
+                                                                    );
+                                                                    respuesta = false;
+                                                                } else {
+                                                                    if (longitud200(document.getElementById('descripcion')) == false) {
+                                                                        swal(
+                                                                            {
+                                                                                title: "Error!",
+                                                                                text: "La descripción no puede pasar de 200 caracteres: ",
+                                                                                type: "error",
+                                                                                confirmButtonText: "Ok"
+                                                                            }
+                                                                        );
+                                                                        respuesta = false;
+                                                                    } else {
+                                                                        if (validarCampo(document.getElementById('comentarios')) == false) {
+                                                                            swal(
+                                                                                {
+                                                                                    title: "Error!",
+                                                                                    text: "Nombre vacío: ",
+                                                                                    type: "error",
+                                                                                    confirmButtonText: "Ok"
+                                                                                }
+                                                                            );
+                                                                            respuesta = false;
+                                                                        } else {
+                                                                            if (evitarProhibidos(document.getElementById('comentarios')) == false) {
+                                                                                swal(
+                                                                                    {
+                                                                                        title: "Error!",
+                                                                                        text: "El comentario no puede contener los caracteres: \n · # $ ^ & *",
+                                                                                        type: "error",
+                                                                                        confirmButtonText: "Ok"
+                                                                                    }
+                                                                                );
+                                                                                respuesta = false;
+                                                                            } else {
+                                                                                if (longitud100(document.getElementById('comentarios')) == false) {
+                                                                                    swal(
+                                                                                        {
+                                                                                            title: "Error!",
+                                                                                            text: "El comentario no puede pasar de 100 caracteres: ",
+                                                                                            type: "error",
+                                                                                            confirmButtonText: "Ok"
+                                                                                        }
+                                                                                    );
+                                                                                    respuesta = false;
+                                                                                } else {
+                                                                                    if (validarCampo(document.getElementById('fecha_entrega_plan')) == false) {
+                                                                                        swal(
+                                                                                            {
+                                                                                                title: "Error!",
+                                                                                                text: "Fecha Entrega Planificada vacía: ",
+                                                                                                type: "error",
+                                                                                                confirmButtonText: "Ok"
+                                                                                            }
+                                                                                        );
+                                                                                        respuesta = false;
+                                                                                    } else {
+                                                                                        if (validarFecha(document.getElementById('fecha_entrega_plan')) == false) {
+                                                                                            swal(
+                                                                                                {
+                                                                                                    title: "Error!",
+                                                                                                    text: "Formato de Fecha Entrega Planificada incorrecto: \n aaaa-mm-dd ó aaaa/mm/dd",
+                                                                                                    type: "error",
+                                                                                                    confirmButtonText: "Ok"
+                                                                                                }
+                                                                                            );
+                                                                                            respuesta = false;
+                                                                                        } else {
+                                                                                            if (validarCampo(document.getElementById('fecha_entrega_real')) == false) {
+                                                                                                swal(
+                                                                                                    {
+                                                                                                        title: "Error!",
+                                                                                                        text: "Fecha Entrega Real vacía: ",
+                                                                                                        type: "error",
+                                                                                                        confirmButtonText: "Ok"
+                                                                                                    }
+                                                                                                );
+                                                                                                respuesta = false;
+                                                                                            } else {
+                                                                                                if (validarFecha(document.getElementById('fecha_entrega_real')) == false) {
+                                                                                                    swal(
+                                                                                                        {
+                                                                                                            title: "Error!",
+                                                                                                            text: "Formato de Fecha Entrega Real incorrecto: \n aaaa/mm/dd",
+                                                                                                            type: "error",
+                                                                                                            confirmButtonText: "Ok"
+                                                                                                        }
+                                                                                                    );
+                                                                                                    respuesta = false;
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return respuesta;
+}
+
+function validarFormAddSubtarea(){
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('nombre'))
+        && validarNombreTarea(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('nombre'))
+        && validarCampo(document.getElementById('Descripcion'))
+        && evitarProhibidos(document.getElementById('Descripcion'))
+        && longitud200(document.getElementById('Descripcion'))
+        && validarCampo(document.getElementById('fecha_inicio_plan'))
+        && validarFecha(document.getElementById('fecha_inicio_plan'))
+        && validarCampo(document.getElementById('fecha_entrega_plan'))
+        && validarFecha(document.getElementById('fecha_entrega_plan'))
+        && validarCampo(document.getElementById('horas_plan'))
+        && soloNumero(document.getElementById('horas_plan'))
+        && validarHoras(document.getElementById('horas_plan'))
+        && validarCampo(document.getElementById('comentario'))
+        && evitarProhibidos(document.getElementById('comentario'))
+        &&longitud100(document.getElementById('comentario'))
+    ){
+        //Dentro del if
+        swal(
+            {
+                title : "Subtarea registrada con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarCampo(document.getElementById('nombre')) == false){
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre vacío: ",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarNombreTarea(document.getElementById('nombre')) == false){
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "Nombre de subtarea inválido: \n (Longitud máxima 50 caracteres.)",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(evitarProhibidos(document.getElementById('nombre')) == false){
+
+                    }
+                }
+            }
+    }
+}
+
+
+
