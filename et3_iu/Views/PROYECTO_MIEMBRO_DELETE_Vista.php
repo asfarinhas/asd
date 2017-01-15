@@ -71,7 +71,7 @@ class ProyectoMiembro_Borrar{
 
                     <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
 
-                    <input type='submit' name='accion' value='<?php echo $strings['Eliminar Miembros']; ?>'>
+                    <input type='submit' name='accion' onClick="return confirm('DESEA ELIMINAR LA TAREA?')" value='<?php echo $strings['Eliminar Miembros']; ?>'>
 
             </form>
 

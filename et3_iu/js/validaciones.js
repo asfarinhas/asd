@@ -65,7 +65,7 @@ function soloTexto(campo){
 
 function soloNumero(campo){
     var respuesta = true;
-    var expresion = /[0-9]+/;
+    var expresion = /^[0-9]+$/;
 
     if(expresion.test(campo.value)==false){
         swal(
@@ -114,7 +114,7 @@ function validarPassword(password){
         }
     }else{
         encriptarPassword();
-        repuesta =  true;
+        respuesta =  true;
     }
     return respuesta;
 }
@@ -132,17 +132,41 @@ function validarUsuario(usuario)
 {
     var respuesta = true;
     var cadena = /^[a-zA-Z0-9\_\-\.]{3,25}/;
+    var expresion = /[·$&#^*]+/;
 
     if (cadena.test(usuario.value) == false || usuario.value.length > 15 || usuario.value.length < 3)
     {
         swal(
             {
                 title : "Error!",
-                text : "Introduza " + usuario.name + " válido: \n (letras, números, '-', '_', '.')",
+                text : "Introduza " + usuario.name + " válido: \n (letras, números, '-', '_', '.') \n (Longitud: 3-15)",
                 type : "error",
                 confirmButtonText : "Ok"
             }
         );
+        respuesta = false;
+    }
+    if(usuario.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + usuario.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(usuario.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + usuario.name + " no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
         respuesta = false;
     }
 
@@ -153,6 +177,7 @@ function validarNombre(usuario)
 {
     var respuesta = true;
     var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,20}/;
+    var expresion = /[·$&#^*0-9]+/;
 
     if (cadena.test(usuario.value) == false || usuario.value.length > 20 || usuario.value.length < 1)
     {
@@ -164,6 +189,29 @@ function validarNombre(usuario)
                 confirmButtonText : "Ok"
             }
         );
+        respuesta = false;
+    }
+    if(usuario.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + usuario.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(usuario.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + usuario.name + " no puede contener números ni los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
         respuesta = false;
     }
 
@@ -191,23 +239,49 @@ function validarNombreTarea(tarea)
     return respuesta;
 }
 
+
 function validarApellidos(usuario)
 {
     var respuesta = true;
     var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,40}/;
+    var expresion = /[·$&#^*]+/;
+
 
     if (cadena.test(usuario.value) == false || usuario.value.length > 40 || usuario.value.length < 1)
     {
         swal(
             {
                 title : "Error!",
-                text : "Introduza " + usuario.name + " válido: \n (letras, números, '-', '_', '.')",
+                text : "Introduza " + usuario.name + " válido",
                 type : "error",
                 confirmButtonText : "Ok"
             }
         );
         respuesta = false;
+    }if(usuario.value == ""){
+    swal(
+        {
+            title : "Error!",
+            text : "Introduce " + usuario.name + ":",
+            type : "error",
+            confirmButtonText : "Ok"
+        }
+    );
+    respuesta = false;
+}
+    if(expresion.test(usuario.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + usuario.name + " no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
     }
+
 
     return respuesta;
 }
@@ -242,6 +316,19 @@ function validarEmail(mail){
             respuesta = false;
         }
     }
+    if(mail.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + mail.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+
     return respuesta;
 
 }
@@ -462,6 +549,208 @@ function longitud100(campo){
     return respuesta;
 }
 
+function validarNumHoras(campo){
+    var respuesta;
+    var expresion = /^[0-9]+$/;
+    var numero = parseInt(campo.value);
+
+    //longitud de horas
+    if(numero > 99999){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Número de horas demasiado grande: \n (máximo 99999) ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    //que no tenga solo numeros
+    if(expresion.test(campo.value) == false){
+        swal(
+            {
+                title : "Error!",
+                text : "En " + campo.name + " introduzca solo numeros: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    //que no sea 0
+    if(campo.value < 1){
+        swal(
+            {
+                title : "Error!",
+                text : "Las horas deber ser más de 1 ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    if (campo.value == ""){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + nombre.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+
+    return respuesta;
+}
+
+function validarNumMiembros(campo){
+    var respuesta;
+    var expresion = /^[0-9]+$/;
+    var numero = parseInt(campo.value);
+
+    if(numero > 999){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Número de miembros demasiado grande: \n (máximo 999) ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(campo.value) == false){
+        swal(
+            {
+                title : "Error!",
+                text : "En " + campo.name + " introduzca solo numeros: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    if(campo.value < 1){
+        swal(
+            {
+                title : "Error!",
+                text : "Mínimo un miembro: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    if (campo.value == ""){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + nombre.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+
+    return respuesta;
+}
+
+function validarId(campo){
+    var respuesta = true;
+    var expresion = /[·$&#^*]+/;
+
+    if(campo.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + nombre.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+
+    if(campo.value < 0 || campo.value > 999){
+        swal(
+            {
+                title : "Error!",
+                text : "El ID debe estar entre 0 y 999",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(campo.value) == false){
+        swal(
+            {
+                title : "Error!",
+                text : "El ID no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    return respuesta;
+}
+
+function validarDirectorProyecto(campo) {
+    var respuesta = true;
+    var expresion = /[·$&#^*]+/;
+
+    if(expresion.test(campo.value) == false){
+        swal(
+            {
+                title : "Error!",
+                text : "El ID no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(campo.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + nombre.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(campo.length < 1 || campo.length > 25){
+        swal(
+            {
+                title : "Error!",
+                text : "El ID debe estar entre 0 y 999",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    return respuesta;
+}
+
+
+
 function validarFormEditMiembro(){
     var respuesta = true;
 
@@ -499,7 +788,7 @@ function validarFormEditMiembro(){
                         confirmButtonText : "Ok"
                     }
                 );
-                repuesta = false;
+                respuesta = false;
             }else{
                 if(validarNombre(document.getElementById('nombre')) == false){
                     swal(
@@ -1630,7 +1919,7 @@ function validarFormAddSubtarea(){
                                             swal(
                                                 {
                                                     title : "Error!",
-                                                    text : "Formato de Fecha Inicial Planificada incorrecto: \n aaaa/mm/dd",
+                                                    text : "Formato de Fecha Inicial Planificada incorrecto: \n aaaa-mm-dd",
                                                     type : "error",
                                                     confirmButtonText : "Ok"
                                                 }
@@ -1652,7 +1941,7 @@ function validarFormAddSubtarea(){
                                                     swal(
                                                         {
                                                             title : "Error!",
-                                                            text : "Formato de Fecha Entrega Planificada incorrecto: \n aaaa/mm/dd",
+                                                            text : "Formato de Fecha Entrega Planificada incorrecto: \n aaaa-mm-dd",
                                                             type : "error",
                                                             confirmButtonText : "Ok"
                                                         }
@@ -1744,7 +2033,552 @@ function validarFormAddSubtarea(){
 }
 }
 
+function validarFormAddProyecto(){
+    var respuesta = true;
 
+    if(
+        validarCampo(document.getElementById('PROYECTO_NOMBRE'))
+        && validarNombreTarea(document.getElementById('PROYECTO_NOMBRE'))
+        && evitarProhibidos(document.getElementById('PROYECTO_NOMBRE'))
+        && validarCampo(document.getElementById('PROYECTO_DESCRIPCION'))
+        && evitarProhibidos(document.getElementById('PROYECTO_DESCRIPCION'))
+        && longitud200(document.getElementById('PROYECTO_DESCRIPCION'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAI'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAI'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAE'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAE'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAIP'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAIP'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAFP'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAFP'))
+        && validarCampo(document.getElementById('PROYECTO_NUMEROMIEMBROS'))
+        && validarNumMiembros(document.getElementById('PROYECTO_NUMEROMIEMBROS'))
+        && validarCampo(document.getElementById('PROYECTO_NUMEROHORAS'))
+        && validarNumHoras(document.getElementById('PROYECTO_NUMEROHORAS'))
+    ){
+        //Dentro del if
+        swal(
+            {
+                title : "Proyecto registrado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarCampo(document.getElementById('PROYECTO_NOMBRE')) == false){ // nombre proyecto
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre vacío: ",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarNombreTarea(document.getElementById('PROYECTO_NOMBRE')) == false){
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "Nombre de proyecto inválido: \n (Longitud máxima 50 caracteres.)",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(evitarProhibidos(document.getElementById('PROYECTO_NOMBRE')) == false){
+                        swal(
+                            {
+                                title: "Error!",
+                                text: "El Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                type: "error",
+                                confirmButtonText: "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }else{
+                        if(validarCampo(document.getElementById('PROYECTO_DESCRIPCION')) == false){ // descripcion proyecto
+                            swal(
+                                {
+                                    title: "Error!",
+                                    text: "Descripción vacía: ",
+                                    type: "error",
+                                    confirmButtonText: "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }else{
+                            if(evitarProhibidos(document.getElementById('PROYECTO_DESCRIPCION')) == false){
+                                swal(
+                                    {
+                                        title: "Error!",
+                                        text: "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                        type: "error",
+                                        confirmButtonText: "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(longitud200(document.getElementById('PROYECTO_DESCRIPCION')) == false){
+                                    swal(
+                                        {
+                                            title: "Error!",
+                                            text: "La descripción no puede pasar de 200 caracteres: ",
+                                            type: "error",
+                                            confirmButtonText: "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                }else{
+                                    if(validarCampo(document.getElementById('PROYECTO_FECHAI')) == false){ // inicio proyecto
+                                        swal(
+                                            {
+                                                title: "Error!",
+                                                text: "Fecha Inicio vacía: ",
+                                                type: "error",
+                                                confirmButtonText: "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    }else{
+                                        if(validarFecha(document.getElementById('PROYECTO_FECHAI')) == false){
+                                            swal(
+                                                {
+                                                    title : "Error!",
+                                                    text : "Formato de Fecha Inicio incorrecto: \n aaaa-mm-dd",
+                                                    type : "error",
+                                                    confirmButtonText : "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        }else{
+                                            if(validarCampo(document.getElementById('PROYECTO_FECHAE')) == false){ // entrega proyecto
+                                                swal(
+                                                    {
+                                                        title: "Error!",
+                                                        text: "Fecha Entrega vacía: ",
+                                                        type: "error",
+                                                        confirmButtonText: "Ok"
+                                                    }
+                                                );
+                                                respuesta = false;
+                                            }else{
+                                                if(validarFecha(document.getElementById('PROYECTO_FECHAE')) == false){
+                                                    swal(
+                                                        {
+                                                            title : "Error!",
+                                                            text : "Formato de Fecha Entrega incorrecto: \n aaaa-mm-dd",
+                                                            type : "error",
+                                                            confirmButtonText : "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                }else{
+                                                    if(validarCampo(document.getElementById('PROYECTO_FECHAIP')) == false){ // fecha inicio
+                                                        swal(
+                                                            {
+                                                                title: "Error!",
+                                                                text: "Fecha Inicio Planificada vacía: ",
+                                                                type: "error",
+                                                                confirmButtonText: "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    }else{
+                                                        if(validarFecha(document.getElementById('PROYECTO_FECHAIP')) == false){
+                                                            swal(
+                                                                {
+                                                                    title : "Error!",
+                                                                    text : "Formato de Fecha Inicio Planificada incorrecto: \n aaaa-mm-dd",
+                                                                    type : "error",
+                                                                    confirmButtonText : "Ok"
+                                                                }
+                                                            );
+                                                            respuesta = false;
+                                                        }else{
+                                                            if(validarCampo(document.getElementById('PROYECTO_FECHAFP')) == false){ // fecha planificada
+                                                                swal(
+                                                                    {
+                                                                        title: "Error!",
+                                                                        text: "Fecha Final Planificada vacía: ",
+                                                                        type: "error",
+                                                                        confirmButtonText: "Ok"
+                                                                    }
+                                                                );
+                                                                respuesta = false;
+                                                            }else{
+                                                                if(validarFecha(document.getElementById('PROYECTO_FECHAFP')) == false){
+                                                                    swal(
+                                                                        {
+                                                                            title : "Error!",
+                                                                            text : "Formato de Fecha Final Planificada incorrecto: \n aaaa-mm-dd",
+                                                                            type : "error",
+                                                                            confirmButtonText : "Ok"
+                                                                        }
+                                                                    );
+                                                                    respuesta = false;
+                                                                }else{
+                                                                    if(validarCampo(document.getElementById('PROYECTO_NUMEROMIEMBROS')) == false){ //numero miembros
+                                                                        swal(
+                                                                            {
+                                                                                title: "Error!",
+                                                                                text: "Numero miembros vacío: ",
+                                                                                type: "error",
+                                                                                confirmButtonText: "Ok"
+                                                                            }
+                                                                        );
+                                                                        respuesta = false;
+                                                                    }else{
+                                                                        if(validarNumMiembros(document.getElementById('PROYECTO_NUMEROMIEMBROS')) == false){
+                                                                            swal(
+                                                                                {
+                                                                                    title: "Error!",
+                                                                                    text: "El mínimo de miembros es 1 y máximo 999, introduzca sólo números ",
+                                                                                    type: "error",
+                                                                                    confirmButtonText: "Ok"
+                                                                                }
+                                                                            );
+                                                                            respuesta = false;
+                                                                        }else{
+                                                                            if(validarCampo(document.getElementById('PROYECTO_NUMEROHORAS')) == false){ //numero horas
+                                                                                swal(
+                                                                                    {
+                                                                                        title: "Error!",
+                                                                                        text: "Número horas vacío  ",
+                                                                                        type: "error",
+                                                                                        confirmButtonText: "Ok"
+                                                                                    }
+                                                                                );
+                                                                                respuesta = false;
+                                                                            }else{
+                                                                                if(validarNumHoras(document.getElementById('PROYECTO_NUMEROHORAS')) == false){
+                                                                                    swal(
+                                                                                        {
+                                                                                            title: "Error!",
+                                                                                            text: "El mínimo de horas es 1 y máximo 99999, introduzca sólo números ",
+                                                                                            type: "error",
+                                                                                            confirmButtonText: "Ok"
+                                                                                        }
+                                                                                    );
+                                                                                    respuesta = false;
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+    return respuesta;
 
+}
 
+function validarFormEditProyecto(){
+
+    var respuesta = true;
+
+    if(
+        validarCampo(document.getElementById('PROYECTO_NOMBRE'))
+        && validarNombreTarea(document.getElementById('PROYECTO_NOMBRE'))
+        && evitarProhibidos(document.getElementById('PROYECTO_NOMBRE'))
+        && validarCampo(document.getElementById('PROYECTO_DESCRIPCION'))
+        && evitarProhibidos(document.getElementById('PROYECTO_DESCRIPCION'))
+        && longitud200(document.getElementById('PROYECTO_DESCRIPCION'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAI'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAI'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAE'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAE'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAIP'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAIP'))
+        && validarCampo(document.getElementById('PROYECTO_FECHAFP'))
+        && validarFecha(document.getElementById('PROYECTO_FECHAFP'))
+        && validarNumMiembros(document.getElementById('PROYECTO_NUMEROMIEMBROS'))
+        && validarNumHoras(document.getElementById('PROYECTO_MUMEROHORAS'))
+    ){
+        swal(
+            {
+                title : "Proyecto modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarCampo(document.getElementById('PROYECTO_NOMBRE')) == false){
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre vacío: ",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarNombreTarea(document.getElementById('PROYECTO_NOMBRE')) == false){
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "Nombre de proyecto inválido: \n (Longitud máxima 50 caracteres.)",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(evitarProhibidos(document.getElementById('PROYECTO_NOMBRE')) == false){
+                        swal(
+                            {
+                                title: "Error!",
+                                text: "El Nombre no puede contener los caracteres: \n · # $ ^ & *",
+                                type: "error",
+                                confirmButtonText: "Ok"
+                            }
+                        );
+                        respuesta = false;
+                        }else{
+                            if(validarCampo(document.getElementById('PROYECTO_DESCRIPCION')) == false){
+                                swal(
+                                    {
+                                        title: "Error!",
+                                        text: "Descripción vacía: ",
+                                        type: "error",
+                                        confirmButtonText: "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(evitarProhibidos(document.getElementById('PROYECTO_DESCRIPCION')) == false){
+                                    swal(
+                                        {
+                                            title: "Error!",
+                                            text: "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                            type: "error",
+                                            confirmButtonText: "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                }else{
+                                    if(longitud200(document.getElementById('PROYECTO_DESCRIPCION')) == false){
+                                        swal(
+                                            {
+                                                title: "Error!",
+                                                text: "La descripción no puede pasar de 200 caracteres: ",
+                                                type: "error",
+                                                confirmButtonText: "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    }else{
+                                        if(validarCampo(document.getElementById('PROYECTO_FECHAI')) == false){
+                                            swal(
+                                                {
+                                                    title: "Error!",
+                                                    text: "Fecha Inicio vacía: ",
+                                                    type: "error",
+                                                    confirmButtonText: "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        }else{
+                                            if(validarFecha(document.getElementById('PROYECTO_FECHAI')) == false){
+                                                swal(
+                                                    {
+                                                        title : "Error!",
+                                                        text : "Formato de Fecha Inicio incorrecto: \n aaaa-mm-dd",
+                                                        type : "error",
+                                                        confirmButtonText : "Ok"
+                                                    }
+                                                );
+                                                respuesta = false;
+                                            }else{
+                                                if(validarCampo(document.getElementById('PROYECTO_FECHAE')) == false){
+                                                    swal(
+                                                        {
+                                                            title: "Error!",
+                                                            text: "Fecha Entrega vacía: ",
+                                                            type: "error",
+                                                            confirmButtonText: "Ok"
+                                                        }
+                                                    );
+                                                    respuesta = false;
+                                                }else{
+                                                    if(validarFecha(document.getElementById('PROYECTO_FECHAE')) == false){
+                                                        swal(
+                                                            {
+                                                                title : "Error!",
+                                                                text : "Formato de Fecha Entrega incorrecto: \n aaaa-mm-dd",
+                                                                type : "error",
+                                                                confirmButtonText : "Ok"
+                                                            }
+                                                        );
+                                                        respuesta = false;
+                                                    }else{
+                                                        if(validarCampo(document.getElementById('PROYECTO_FECHAIP')) == false){
+                                                            swal(
+                                                                {
+                                                                    title: "Error!",
+                                                                    text: "Fecha Inicio Planificada vacía: ",
+                                                                    type: "error",
+                                                                    confirmButtonText: "Ok"
+                                                                }
+                                                            );
+                                                            respuesta = false;
+                                                        }else{
+                                                            if(validarFecha(document.getElementById('PROYECTO_FECHAIP')) == false){
+                                                                swal(
+                                                                    {
+                                                                        title : "Error!",
+                                                                        text : "Formato de Fecha Inicio Planificada incorrecto: \n aaaa-mm-dd",
+                                                                        type : "error",
+                                                                        confirmButtonText : "Ok"
+                                                                    }
+                                                                );
+                                                                respuesta = false;
+                                                            }else{
+                                                                if(validarCampo(document.getElementById('PROYECTO_FECHAFP')) == false){
+                                                                    swal(
+                                                                        {
+                                                                            title: "Error!",
+                                                                            text: "Fecha Final Planificada vacía: ",
+                                                                            type: "error",
+                                                                            confirmButtonText: "Ok"
+                                                                        }
+                                                                    );
+                                                                    respuesta = false;
+                                                                }else{
+                                                                    if(validarFecha(document.getElementById('PROYECTO_FECHAFP')) == false){
+                                                                        swal(
+                                                                            {
+                                                                                title : "Error!",
+                                                                                text : "Formato de Fecha Final Planificada incorrecto: \n aaaa-mm-dd",
+                                                                                type : "error",
+                                                                                confirmButtonText : "Ok"
+                                                                            }
+                                                                        );
+                                                                        respuesta = false;
+                                                                    }else{
+                                                                        if(validarNumMiembros(document.getElementById('PROYECTO_NUMEROMIEMBROS')) == false){
+                                                                            swal(
+                                                                                {
+                                                                                    title : "Error!",
+                                                                                    text : "Mínimo 1 miembro, máx. 999, sólo números ",
+                                                                                    type : "error",
+                                                                                    confirmButtonText : "Ok"
+                                                                                }
+                                                                            );
+                                                                            respuesta = false;
+                                                                        }else{
+                                                                            if(validarNumHoras(document.getElementById('PROYECTO_MUMEROHORAS')) == false){
+                                                                                swal(
+                                                                                    {
+                                                                                        title : "Error!",
+                                                                                        text : "Mínimo 1 hora, máx. 99999, sólo números ",
+                                                                                        type : "error",
+                                                                                        confirmButtonText : "Ok"
+                                                                                    }
+                                                                                );
+                                                                                respuesta = false;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+    return respuesta;
+}
+
+function validarformAddMiembroProyecto(){
+    var respuesta = true;
+
+    if(
+        validarUsuario(document.getElementById('ID_MIEMBRO'))
+        && validarNombre(document.getElementById('MIEMBRO_NOMBRE'))
+        && validarApellidos(document.getElementById('MIEMBRO_APELLIDO'))
+        && validarEmail(document.getElementById('MIEMBRO_EMAIL'))
+    ){
+//Dentro del if
+        swal(
+            {
+                title : "Miembro añadido al proyecto con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarUsuario(document.getElementById('ID_MIEMBRO')) == false){
+                swal(
+                    {
+                        title : "Error!",
+                        text : "El usuario debe tener una longitud entre 3 y 15, y no puede contener los caracteres:  \n · # $ ^ & *",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarNombre(document.getElementById('MIEMBRO_NOMBRE')) == false){
+                    swal(
+                        {
+                            title : "Error!",
+                            text : "El nombre debe tener una longitud entre 1 y 20, y no puede contener los caracteres:  \n · # $ ^ & *",
+                            type : "error",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(validarApellidos(document.getElementById('MIEMBRO_APELLIDO')) == false){
+                        swal(
+                            {
+                                title : "Error!",
+                                text : "El campo apellidos debe tener una longitud entre 1 y 40, y no puede contener los caracteres:  \n · # $ ^ & *",
+                                type : "error",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }else{
+                        if(validarEmail(document.getElementById('MIEMBRO_EMAIL')) == false){
+                            swal(
+                                {
+                                    title : "Error!",
+                                    text : "El Email debe tener longitud máx. 40, y no puede estar vacío",
+                                    type : "error",
+                                    confirmButtonText : "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }
+                    }
+                }
+            }
+    }
+    return respuesta;
+}
 

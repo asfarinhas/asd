@@ -21,6 +21,12 @@ class ProyectoMiembro_Add
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
             <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+            <link href="../Styles/sweetalert.css" rel="stylesheet">
+            <script src="../js/sweetalert.min.js"></script>
+            <script src="../js/validaciones.js"></script>
+            <script src="../js/md5.js"></script>
+            <link href="../Styles/tcal.css" rel="stylesheet">
+            <script src="../js/tcal.js"></script>
         </head>
         <div>
             <p>
@@ -41,7 +47,7 @@ class ProyectoMiembro_Add
                <?php  if($this->buscar!='BUSCAR'){ ?>
                   <h3>
 
-                  <form action='PROYECTO_Controller.php' method='post'>
+                  <form action='PROYECTO_Controller.php' method='post' name="formAddMiembroProyecto" onsubmit="return validarformAddMiembroProyecto()">
                     <ul class="form-style-1">
                         <!-- Campo Usuario -->
                         <div class="form-group">
@@ -49,7 +55,7 @@ class ProyectoMiembro_Add
                                 <label for="nombre" class="control-label"><?php echo $strings['USUARIO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="ID_MIEMBRO"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="ID_MIEMBRO" id="ID_MIEMBRO" title="<?php echo $strings['error trabajador']; ?>" onblur="validarUsuario(document.formAddMiembroProyecto.ID_MIEMBRO)">
                             </div>
                         </div>
                         <!-- Campo Nombre -->
@@ -58,7 +64,7 @@ class ProyectoMiembro_Add
                                 <label for="id" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control"  name="MIEMBRO_NOMBRE"   title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control"  name="MIEMBRO_NOMBRE" id="MIEMBRO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" onblur="validarNombre(document.formAddMiembroProyecto.MIEMBRO_NOMBRE)">
                             </div>
                         </div>
                         <!-- Campo Apellido -->
@@ -67,7 +73,7 @@ class ProyectoMiembro_Add
                                 <label for="FECHAI" class="control-label"><?php echo $strings['APELLIDOS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="MIEMBRO_APELLIDO"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="MIEMBRO_APELLIDO" id="MIEMBRO_APELLIDO" title="<?php echo $strings['error trabajador']; ?>" onblur="validarApellidos(document.formAddMiembroProyecto.MIEMBRO_APELLIDO)">
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -76,7 +82,7 @@ class ProyectoMiembro_Add
                                 <label for="FECHAE" class="control-label"><?php echo $strings['EMAIL']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="MIEMBRO_EMAIL"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" class="form-control" name="MIEMBRO_EMAIL" id="MIEMBRO_EMAIL" title="<?php echo $strings['error trabajador']; ?>" onblur="validarEmail(document.formAddMiembroProyecto.MIEMBRO_EMAIL)">
                             </div>
                         </div>
 
@@ -87,7 +93,7 @@ class ProyectoMiembro_Add
                         <input type="button" value="volver atrás" name="volver atrás2" onclick="history.back()" />
 
 
-                        <input type='submit' name='accion' value='<?php echo $strings['Insertar Miembro']; ?>'>
+                        <input type='submit' name='accion' onclick="return validarformAddMiembroProyecto()" value='<?php echo $strings['Insertar Miembro']; ?>'>
 
                 </form>
                   </h3>

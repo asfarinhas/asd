@@ -218,6 +218,7 @@ $strings = array(
     'error miembro' => 'Error when adding member',
     'proyecto ya existe' => 'Project already exists',
     'error creado' => 'Error when creating project',
+	'El miembro ha sido borrado correctamente' => 'Memeber successfully deleted',
 
     //Notificaciones y correos
     'Gestión de Notificaciones' => 'Notification management',
