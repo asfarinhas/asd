@@ -3,13 +3,19 @@
     include "../Models/TAREA_Model.php";
     include "../Models/MIEMBRO_Model.php";
     include "../Mappers/ENTREGABLE_Mapper.php";
-    include "../Views/ENTREGABLE_SHOW_Vista.php";
-    include "../Views/ENTREGABLE_DELETE_Vista.php";
     include "../Views/MENSAJE_Vista.php";
-    include "../Views/ENTREGABLE_ADD_Vista.php";
-    include "../Views/ENTREGABLE_EDIT_Vista.php";
 
-        session_start();
+if (!IsAuthenticated()){
+    header('Location:../index.php');
+}
+include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+//Generamos los includes correspondientes a las páginas a las que se tiene acceso
+$pags=generarIncludes();
+for ($z=0;$z<count($pags);$z++){
+    include $pags[$z];
+}
+
+session_start();
     $mapper = new ENTREGABLE_Mapper();
     $m_mapper= new MiembroMapper();
     $t_mapper = new TAREA_Mapper();
