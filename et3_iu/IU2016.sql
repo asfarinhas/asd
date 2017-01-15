@@ -265,8 +265,7 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (702, 850),
 (702, 851),
 (702, 852),
-(702, 853),
-(702, 854);
+(702, 853);
 
 -- --------------------------------------------------------
 
@@ -343,12 +342,12 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (700, '../Views/TAREA_ADD_View.php', 'TAREA ADD '),
 (701, '../Views/TAREA_EDIT_View.php', 'TAREA EDIT'),
 (702, '../Views/TAREA_DELETE_View.php', 'TAREA DELETE'),
-(703, '../Views/TAREA_SHOW_Vista.php', 'TAREA SHOW'),
-(704, '../Views/TAREA_SHOW_ALL_View.php', 'TAREA SHOW ALL'),
+(703, '../Views/TAREA_SHOW_CURRENT_Vista.php', 'TAREA SHOW'),
+(704, '../Views/TAREA_SHOW_ALL_Vista.php', 'TAREA SHOW ALL'),
 (710, '../Views/SUBTAREA_ADD_View.php', 'SUBTAREA ADD'),
 (711, '../Views/SUBTAREA_EDIT_View.php', 'SUBTAREA EDIT'),
 (712, '../Views/SUBTAREA_DELETE_Vista.php', 'SUBTAREA DELETE'),
-(713, '../Views/SUBTAREA_SHOW_Vista.php', 'SUBTAREA SHOW'),
+(713, '../Views/SUBTAREA_SHOW_CURRENT_Vista.php', 'SUBTAREA SHOW'),
 (714, '../Views/SUBTAREA_SHOW_ALL_Vista.php', 'SUBTAREA SHOW ALL'),
 (800, '../Views/MIEMBRO_ADD_View.php', 'MIEMBRO ADD'),
 (801, '../Views/MIEMBRO_EDIT_View.php', 'MIEMBRO EDIT'),
@@ -358,11 +357,11 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (851, '../Views/ENTREGABLE_EDIT_Vista.php', 'ENTREGABLE EDIT'),
 (852, '../Views/ENTREGABLE_DELETE_Vista.php', 'ENTREGABLE DELETE'),
 (853, '../Views/ENTREGABLE_SHOW_Vista.php', 'ENTREGABLE SHOW'),
-(100, '../Views/TICKET_ADD_Vista.php', 'TICKETS ADD'),
-(101, '../Views/TICKET_DELETE_Vista.php', 'TICKETS DELETe'),
-(102, '../Views/TICKET_EDIT_Vista.php', 'TICKETS EDIT'),
-(103, '../Views/TICKET_SHOW_Vista.php', 'TICKETS SHOW'),
-(104, '../Views/TICKET_SHOW_ALL_Vista.php', 'TICKETS SHOW ALL');
+(100, '../Views/TICKET_ADD_View.php', 'TICKETS ADD'),
+(101, '../Views/TICKET_DELETE_View.php', 'TICKETS DELETe'),
+(102, '../Views/TICKET_EDIT_View.php', 'TICKETS EDIT'),
+(103, '../Views/TICKET_SHOW_View.php', 'TICKETS SHOW'),
+(104, '../Views/TICKET_SHOW_ALL_View.php', 'TICKETS SHOW ALL');
 
 -- --------------------------------------------------------
 
