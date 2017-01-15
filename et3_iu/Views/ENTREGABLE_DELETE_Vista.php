@@ -20,7 +20,7 @@ class ENTREGABLE_DELETE_Vista{
         </head>
         <div>
             <p>
-            <h1><span class="form-title"><?=$strings['Modificar Tarea']?></h1>
+            <h1><span class="form-title"><?=$strings['Eliminar Entregable']?></h1>
             <h3>
                 <form  id="form" name="form" action='ENTREGABLE_Controller.php' method='post' >
                     <ul class="form-style-1">

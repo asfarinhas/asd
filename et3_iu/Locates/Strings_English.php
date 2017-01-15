@@ -313,7 +313,8 @@ $strings = array(
     "Entregable_id" => "Delivery ID",
 	"url" => "URL",
 	"Realizado Por" => "Made by",
-	"Fecha" => "Date"
+	"Fecha" => "Date",
+	"Eliminar Entregable" => "Delete Delivery"
 
 
 

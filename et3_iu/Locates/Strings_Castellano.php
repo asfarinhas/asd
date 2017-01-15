@@ -320,6 +320,7 @@ $strings = array(
     "Entregable_id" => "ID entregable",
     "url" => "URL",
     "Realizado Por" => "Realizado por",
-    "Fecha" => "Fecha"
+    "Fecha" => "Fecha",
+    "Eliminar Entregable" => "Eliminar Entregable"
 )
 ?>
