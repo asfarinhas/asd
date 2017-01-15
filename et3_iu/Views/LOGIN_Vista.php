@@ -31,7 +31,7 @@ $lista = array('EMP_USER', 'EMP_PASSWORD','IDIOMA');
 
 		<form class="login-container" action='./Functions/Acceso.php' method='post' name="login" >
 			<p><input type="text" name='EMP_USER' placeholder="User"></p>
-			<p><input type="password"  name='EMP_PASSWORD' placeholder="Password" onblur="validarPassword(document.login.EMP_PASSWORD)"></p>
+			<p><input type="password"  name='EMP_PASSWORD' id="EMP_PASSWORD" placeholder="Password" onblur="validarPassword(document.login.EMP_PASSWORD)"></p>
 			<p><select name="IDIOMA"><option value="Castellano">Castellano</option>
 					<option value="Galego">Galego</option>
 					<option value="English">English</option></select></p>

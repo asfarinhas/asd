@@ -218,10 +218,56 @@ function validarNombre(usuario)
     return respuesta;
 }
 
+function validarNombreEntregable(usuario)
+{
+    var respuesta = true;
+    var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,20}/;
+    var expresion = /[·$&#^*]+/;
+
+    if (cadena.test(usuario.value) == false || usuario.value.length > 20 || usuario.value.length < 1)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + usuario.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(usuario.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + usuario.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(usuario.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + usuario.name + " no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+
+    return respuesta;
+}
+
 function validarNombreTarea(tarea)
 {
     var respuesta = true;
     var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,50}/;
+    var expresion = /[·$&#^*]+/;
 
     if (cadena.test(tarea.value) == false || tarea.value.length > 50 || tarea.value.length < 1)
     {
@@ -233,6 +279,29 @@ function validarNombreTarea(tarea)
                 confirmButtonText : "Ok"
             }
         );
+        respuesta = false;
+    }
+    if(tarea.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + tarea.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(tarea.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + tarea.name + " los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
         respuesta = false;
     }
 
@@ -404,6 +473,76 @@ function validarChecksReceptor()
             }
         }
     }
+    return respuesta;
+}
+
+function validarChecksRoles()
+{
+    respuesta = true;
+    formulario = document.getElementById("formAddRol");
+    for (var i = 0; i < formulario.elements.length; i++)
+    {
+        var elemento = formulario.elements[i];
+        if (elemento.type == "checkbox")
+        {
+            if (!elemento.checked)
+            {
+                swal(
+                    {
+                        title : "Error!",
+                        text : "Seleccione al menos una gestión: ",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }
+        }
+    }
+    return respuesta;
+}
+
+function validarNombreRol(usuario){
+    var respuesta = true;
+    var cadena = /^[a-zA-ZáéíóúÁÉÍÓÚ ]{1,20}/;
+    var expresion = /[·$&#^*0-9]+/;
+
+    if (cadena.test(usuario.value) == false || usuario.value.length > 80 || usuario.value.length < 1)
+    {
+        swal(
+            {
+                title : "Error!",
+                text : "Introduza " + usuario.name + " válido: ",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(usuario.value == ""){
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + usuario.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+    }
+    if(expresion.test(usuario.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + usuario.name + " no puede contener números ni los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+
     return respuesta;
 }
 
@@ -2848,55 +2987,205 @@ function validarFormAddMiembro(){
 
 }
 
-function validarLogin(){
-
+function validarFormEditTicket() {
     var respuesta = true;
 
-    if ( validarCampo(document.getElementById('username'))
-        && validarCampo(document.getElementById('pass')))
-    {
+    if(
+        validarNombreTarea(document.getElementById('NOMBRE'))
+        && validarCampo(document.getElementById('FECHAI'))
+        && validarFecha(document.getElementById('FECHAI'))
+        && validarCampo(document.getElementById('FECHAE'))
+        && validarFecha(document.getElementById('FECHAE'))
+        && validarCampo(document.getElementById('DESCRIPCION'))
+        && evitarProhibidos(document.getElementById('DESCRIPCION'))
+        && longitud200(document.getElementById('DESCRIPCION'))
+    ){
         swal(
             {
-                title : "Login OK!",
+                title : "Ticket añadido con éxito!",
                 type : "success",
                 confirmButtonText : "Ok"
             }
         );
-        repuesta =  true;
+        respuesta = true;
     }else{
-        if(validarCampo(document.getElementById('username')) == false){
-            swal(
-                {
-                    title : "Error!",
-                    text : "Usuario vacío:  ",
-                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
-                    type : "error",
-                    confirmButtonText : "Ok"
+            if(validarNombreTarea(document.getElementById('NOMBRE')) == false){
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre de ticket inválido: \n (Longitud máxima 50 caracteres.)",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarCampo(document.getElementById('FECHAI')) == false){
+                    swal(
+                        {
+                            title: "Error!",
+                            text: "Fecha Inicial  vacía: ",
+                            type: "error",
+                            confirmButtonText: "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(validarFecha(document.getElementById('FECHAI')) == false){
+                        swal(
+                            {
+                                title : "Error!",
+                                text : "Formato de Fecha Inicial incorrecto: \n aaaa-mm-dd",
+                                type : "error",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }else{
+                        if(validarCampo(document.getElementById('FECHAE')) == false){
+                            swal(
+                                {
+                                    title: "Error!",
+                                    text: "Fecha Entrega vacía: ",
+                                    type: "error",
+                                    confirmButtonText: "Ok"
+                                }
+                            );
+                            respuesta = false;
+                        }else{
+                            if(validarFecha(document.getElementById('FECHAE')) == false){
+                                swal(
+                                    {
+                                        title : "Error!",
+                                        text : "Formato de Fecha Entrega Planificada incorrecto: \n aaaa-mm-dd",
+                                        type : "error",
+                                        confirmButtonText : "Ok"
+                                    }
+                                );
+                                respuesta = false;
+                            }else{
+                                if(validarCampo(document.getElementById('DESCRIPCION')) == false){
+                                    swal(
+                                        {
+                                            title: "Error!",
+                                            text: "Descripción vacía: ",
+                                            type: "error",
+                                            confirmButtonText: "Ok"
+                                        }
+                                    );
+                                    respuesta = false;
+                                }else{
+                                    if(evitarProhibidos(document.getElementById('DESCRIPCION')) == false){
+                                        swal(
+                                            {
+                                                title: "Error!",
+                                                text: "La descripción no puede contener los caracteres: \n · # $ ^ & *",
+                                                type: "error",
+                                                confirmButtonText: "Ok"
+                                            }
+                                        );
+                                        respuesta = false;
+                                    }else{
+                                        if(longitud200(document.getElementById('DESCRIPCION')) == false){
+                                            swal(
+                                                {
+                                                    title: "Error!",
+                                                    text: "La descripción no puede pasar de 200 caracteres: ",
+                                                    type: "error",
+                                                    confirmButtonText: "Ok"
+                                                }
+                                            );
+                                            respuesta = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            );
-            respuesta = false;
-        }else{
-            swal(
-                {
-                    title : "Error!",
-                    text : "Contraseña vacía: ",
-                    // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
-                    type : "error",
-                    confirmButtonText : "Ok"
-                }
-            );
-            respuesta = false;
-        }
-        /*swal(
-         {
-         title : "OK!",
-         text : "Acceso permitido! ",
-         // text: <?php idioma("Password must be between 3 and 15 characters lenght")?>,
-         type : "success",
-         confirmButtonText : "Ok"
-         }
-         );
-         respuesta = false;*/
+            }
     }
     return respuesta;
+}
+
+function validarFormEditEntregable() {
+    var respuesta;
+
+    if(
+        validarNombreEntregable(document.getElementById('nombre'))
+        && evitarProhibidos(document.getElementById('archivo'))
+        && validarCampo(document.getElementById('archivo'))
+    ){
+        swal(
+            {
+                title : "Entregable modificado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarNombreEntregable(document.getElementById('nombre')) == false){
+                swal(
+                    {
+                        title: "Error!",
+                        text: "Nombre de entregable inválido, no puede tener los caracteres: \n · # $ ^ & * \n (Longitud máxima 20 caracteres.)",
+                        type: "error",
+                        confirmButtonText: "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(evitarProhibidos(document.getElementById('archivo')) == false){
+                    swal(
+                        {
+                            title : "Error!",
+                            text : "La ruta del archivo no puede contener los caracteres: \n · # $ ^ & *",
+                            type : "error",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(validarCampo(document.getElementById('archivo')) == false){
+                        swal(
+                            {
+                                title: "Error!",
+                                text: "Archivo vacío: ",
+                                type: "error",
+                                confirmButtonText: "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }
+                }
+            }
+    }
+    return respuesta;
+}
+
+function validarFormAddEntregable(){
+    var respuesta = true;
+
+    if(validarNombreEntregable() == true){
+        swal(
+            {
+                title : "Entregable añadido con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+        swal(
+            {
+                title: "Error!",
+                text: "Nombre de entregable inválido, no puede tener los caracteres: \n · # $ ^ & * \n (Longitud máxima 20 caracteres.)",
+                type: "error",
+                confirmButtonText: "Ok"
+            }
+        );
+        respuesta = false;
+    }
+return respuesta;
 }

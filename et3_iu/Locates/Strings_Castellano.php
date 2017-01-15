@@ -315,6 +315,13 @@ $strings = array(
     "No se ha podido subir el fichero" => "No se ha podido subir el fichero",
 
 	//SUBTAREAS
-    "Subtareas" => "Subtareas"
+    "Subtareas" => "Subtareas",
+    "Desea eliminar su perfil" => "Desea eliminar su perfil",
+    "Entregable_id" => "ID entregable",
+    "url" => "URL",
+    "Realizado Por" => "Realizado por",
+    "Fecha" => "Fecha",
+    "Eliminar Entregable" => "Eliminar Entregable",
+	"Desea eliminar el entregable" => "Desea eliminar el entregable"
 )
 ?>

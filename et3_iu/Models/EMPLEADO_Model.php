@@ -237,12 +237,18 @@ function Modificar()
 		$result = $this->mysqli->query($sql);
 		if ($result->num_rows == 1 ){
 			$tupla = $result->fetch_array();
-			if ($tupla['EMP_PASSWORD'] == md5($this->EMP_PASSWORD)){
+			if ($tupla['EMP_ESTADO'] == "Activo" && $tupla['EMP_PASSWORD'] == md5($this->EMP_PASSWORD)){
 				return true;
 			}
-			else{
+
+            if($tupla['EMP_ESTADO'] == "Inactivo"){
+                return 'El empleado no existe';
+            }
+
+            if($tupla['EMP_PASSWORD'] != md5($this->EMP_PASSWORD)){
 				return 'La contraseña para este empleado es errónea';
 			}
+
 		}
 		else{
 			return "El empleado no existe";

@@ -308,7 +308,15 @@ $strings = array(
     "Estado" => "Status",
 	"Archivo" => "File",
     "Modificado con éxito" => "Succesfully updated",
-    "No se ha podido subir el fichero" => "The file hasn't been uploaded"
+    "No se ha podido subir el fichero" => "The file hasn't been uploaded",
+    "Desea eliminar su perfil" => "Are you sure to delete your profile",
+    "Entregable_id" => "Delivery ID",
+	"url" => "URL",
+	"Realizado Por" => "Made by",
+	"Fecha" => "Date",
+	"Eliminar Entregable" => "Delete Delivery",
+	"Eliminado con éxito" => "Successfully deleted",
+    "Desea eliminar el entregable" => "Are you sure to delete the delivery"
 
 
 

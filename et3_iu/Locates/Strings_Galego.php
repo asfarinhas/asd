@@ -311,7 +311,15 @@ $strings = array(
     "No se ha podido subir el fichero" => "O ficheiro non se puido subir",
     "Estado" => "Estado",
 	"Archivo" => "Arquivo",
-    "Modificado con éxito" => "Modificado con éxito"
+    "Modificado con éxito" => "Modificado con éxito",
+    "Desea eliminar su perfil" => "Desea eliminar o seu perfil",
+	"Entregable_id" => "ID entrega",
+    "url" => "URL",
+    "Realizado Por" => "Feito por",
+    "Fecha" => "Data",
+	"Eliminar Entregable" => "Eliminar Entrega",
+	"Eliminado con éxito" => "Eliminado correctamente",
+    "Desea eliminar el entregable" => "Seguro que desexa borrar a entrega"
 
 )
 ?>
