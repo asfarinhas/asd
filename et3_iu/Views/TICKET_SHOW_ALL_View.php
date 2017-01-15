@@ -1,107 +1,104 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: abhermida
+ * Date: 04/01/2017
+ * Time: 20:56
+ */
 
-class TICKET_Default{
-    //VISTA PARA LISTAR TICKETS
+class TICKET_SHOW_ALL_Vista{
 
-    private $datos;
-    private $volver;
+    private $subtareas;
 
+    function __construct($subtareas){
+        $this->subtareas = $subtareas;
 
-
-    function __construct($array, $volver){
-    $this->datos = $array;
-    $this->volver = $volver;
-    $this->render();
-
-
+        $this->render();
     }
 
-
-
     function render(){
+
+        $subtareas = $this -> subtareas;
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma){
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
         ?>
 
-        <p>
-            <h2>
-                <div>
-                    <head><link rel="stylesheet" href="../../../../../Users/Ismael/Downloads/ET3_Grupo4-master/et3_iu/Styles/styles.css" type="text/css" media="screen" />
-                        <?php   include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
-                    </head>
-                    <div id="wrapper">
-                        <nav>
-                            <div class="menu">
-                                <ul>
-                                    <li><a href="../../../../../Users/Ismael/Downloads/ET3_Grupo4-master/et3_iu/Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
-                                    <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
 
-                                </ul>
+        <div>
+            <head><link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
+                <?php   include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
+            </head>
 
-                                <?php echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>"; ?></li>
-                                <a href='./TICKET_Controller.php?accion=<?php echo $strings['Consultar']?>'><?php echo $strings['Consultar']?></a>
-                                <a href='./TICKET_Controller.php?accion=<?php echo $strings['Insertar']?>'><?php echo $strings['Insertar']?></a>
-                                <a href='./TICKET_Controller.php?accion=<?php echo $strings['ConsultarBorrados']?>'><?php echo $strings['ConsultarBorrados']?></a>
-                            </div>
-                        </nav>
-                        <table id="btable" border = 1>
-                            <tr>
-                                <th>  <?=$strings['NOMBRE'] ?> </th>
-                                <th>  <?=$strings['ID_TICKET'] ?> </th>
-
-                                <th>  'NOMBRE_PROYECTO' </th>
-                                <th>  <?=$strings['FECHAI'] ?> </th>
-                                <th>  <?=$strings['FECHAE'] ?> </th>
-                                <th>  <?=$strings['NUMEROHORAS'] ?> </th>
-                                <th>  BORRADO</th>
-
-
-
-
-
-                            </tr>
-                            <?php
-                            foreach($this->datos as $TICKET){
-                                echo "<tr><td> " . $TICKET['NOMBRE']."</td>";
-                                echo "<td> " . $TICKET['ID_TICKET']."</td>";
-                                echo "<td> " . $TICKET['ID_PROYECTO']."</td>";
-                                echo "<td> " . $TICKET['FECHAI']."</td>";
-                                echo "<td> " . $TICKET['NUMEROHORAS']."</td>";
-                                echo "<td> " . $TICKET['BORRADO']."</td>";
-
-
-
-
-
-
-                            ?>
-
-
-                            <td>
-                                <a href='TICKET_Controller.php?ID_TICKET=<?php echo $TICKET['ID_TICKET'] . '&accion='.$strings['Modificar']; ?>'><?php echo $strings['Modificar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='TICKET_Controller.php?ID_TICKET=<?php echo $TICKET['ID_TICKET'] . '&accion='.$strings['Borrar']; ?>'><?php echo $strings['Borrar'] ?></a>
-                            </td>
-                            <td>
-                                <a href='TICKET_Controller.php?ID_TICKET=<?php echo $TICKET['ID_TICKET'] . '&accion='.$strings['Ver']; ?>'><?php echo $strings['Ver'] ?></a>
-                            </td>
-
-                            </tr>
-    <?php                        }
-                            ?>
-                        </table>
-
+            <div id="wrapper">
+                <nav>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="../Functions/Desconectar.php"><?php echo  $strings['Cerrar Sesión']; ?></a></li>
+                            <li><?php echo $strings['Usuario'].": ". $_SESSION['login']; ?></li>
+                        </ul>
+                        <a href="./TICKET_Controller.php?accion=showall&proyecto_id=<?=$_REQUEST['proyecto_id']?>"><?=$strings['Volver']?> </a>
+                        <a href='./TICKET_Controller.php?accion=add&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'> <?php echo $strings['Insertar']?></a>
                     </div>
-                    <h3>
-        <p>
-            <?php
-            echo '<a class="form-link" href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-            ?>
-            </h3>
-        </p>
+                </nav>
+                <table id="btable" border = 1>
+                    <thead>
+                    <th>  <?=$strings['NOMBRE'] ?> </th>
+                    <th>  <?=$strings['asignado'] ?> </th>
+                    <th>  <?=$strings['fecha_I_P'] ?> </th>
+                    <th>  <?=$strings['fecha_E_P'] ?> </th>
+                    <th>  <?=$strings['horas_P'] ?> </th>
+                    </thead>
+
+                    <?php
+                    if(empty($this -> subtareas)){
+                        //Vista con mensaje de vacio
+                    }else {
+
+                        foreach ($subtareas as $tarea) {
+                            echo "<tr><td> " . $tarea->getNombre() . "</td>";
+                            echo "<td>" . $tarea->getMiembro()->getNombre() . "</td>";
+                            echo "<td> " . $tarea->getFechaInicioPlan() . "</td>";
+                            echo "<td> " . $tarea->getFechaEntregaPlan() . "</td>";
+                            echo "<td> " . $tarea->getHorasPlan() . "</td>";
+                            ?>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=edit&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Modificar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=delete&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Borrar'] ?></a>
+                            </td>
+                            <td>
+                                <a href='TAREA_Controller.php?accion=show&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>&amp;proyecto_id=<?=$_REQUEST['proyecto_id']?>'><?php echo $strings['Ver'] ?></a>
+                            </td>
+                            <td>
+                                <a href='ENTREGABLE_Controller.php?accion=showall&amp;ID_TAREA=<?php echo $tarea->getIdTarea()?>'><?php echo $strings['Entregables'] ?></a>
+                            </td>
+
+                            <?php
+                        }
+                    }
+                    ?>
+                </table>
+            </div>
 
         </div>
 
         <?php
-    } //fin metodo render
+    }
 
+
+    //fin metodo mostrarSubtareas
 }
+
+?>

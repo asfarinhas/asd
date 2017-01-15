@@ -397,7 +397,7 @@ class TAREA_Mapper{
     function listarTareasPadreProyecto($idProyecto){
         $this->conectarBD();
 
-        $sql = "SELECT * FROM TAREA WHERE NOMBRE != 'Tickets' AND PADRE IS NULL AND ID_PROYECTO = '{$idProyecto}' ";
+        $sql = "SELECT * FROM TAREA WHERE PADRE IS NULL AND ID_PROYECTO = '{$idProyecto}' ";
 
         if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
