@@ -43,7 +43,7 @@ class ENTREGABLE_EDIT_Vista
             <div>
                 <label><?php echo $strings['Nombre']; ?>:</label>
                 <input type="text" name="nombre" value="<?php echo $entregable -> getNOMBRE(); ?>" id="nombre" required
-                       maxlength="15"><br/>
+                       maxlength="20"><br/>
             </div>
 
             <div>

@@ -140,9 +140,9 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 
 CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 `ID_ENTREGABLE` int(11) NOT NULL,
-  `NOMBRE` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
+  `NOMBRE` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` varchar(25) NOT NULL,
-  `URL` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `URL` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `ID_MIEMBRO` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `FECHASUBIDA` date NOT NULL,
   `ID_TAREA` int(11) NOT NULL
@@ -150,8 +150,11 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 --
 -- Volcado de datos para la tabla `ENTREGABLE`
 --
-INSERT INTO `ENTREGABLE` (`ID_ENTREGABLE`, `NOMBRE`,`URL`,`ID_MIEMBRO`,`FECHASUBIDA`,`ID_TAREA`) VALUES
-  (1,'Informe requisitos','./algunsitio/pepe.png','ADMIN','2017-01-03',1);
+INSERT INTO `ENTREGABLE` (`ID_ENTREGABLE`, `NOMBRE`,`ESTADO`,`URL`,`ID_MIEMBRO`,`FECHASUBIDA`,`ID_TAREA`) VALUES
+  (1,'Informe requisitos','entregado','../Archivos/inf.docx','ADMIN','2017-01-03',1),
+(2,'Informe auxiliar','entregado','../Archivos/aux.docx','ADMIN','2017-01-03',1),
+(3,'Informe subtarea','entregado','../Archivos/subtarea.docx','ADMIN','2017-01-03',2),
+(4,'Informe auxiliar','entregado','../Archivos/auxs.docx','ADMIN','2017-01-03',2);
 -- --------------------------------------------------------
 
 --
