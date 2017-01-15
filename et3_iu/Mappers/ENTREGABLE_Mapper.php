@@ -14,7 +14,7 @@
         private $mysqli;
 
         public function __construct() {
-            $this->mysqli = $this -> ConectarBD();
+            $this -> ConectarBD();
         }
 
         //Extraer esta función
@@ -83,24 +83,24 @@
          */
         public function consultarEntregablesTarea($id_tarea) {
             $this->ConectarBD();
-            $sql = "SELECT * FROM entregable where id_tarea = '{$id_tarea}' ";
+            $sql = "SELECT * FROM ENTREGABLE where ID_TAREA = '{$id_tarea}' ";
 
             $resultado = $this -> mysqli -> query($sql);
 
-            if($resultado == false || $resultado -> num_rows == 0) return false;
-
-            $miembro_mapper = new MiembroMapper();
-            $tarea_mapper = new TAREA_Mapper();
             $toret = array();
+            if($resultado != false ) {
 
-            while($obj = $resultado->fetch_object()){
+                $miembro_mapper = new MiembroMapper();
+                $tarea_mapper = new TAREA_Mapper();
 
-                $aux = new Entregable($obj -> ID_ENTREGABLE, $obj -> NOMBRE, $obj -> ESTADO, $obj -> URL, $miembro_mapper-> buscarMiembroPorUsuario($obj -> ID_MIEMBRO),
-                    new DateTime( $obj -> FECHASUBIDA), $tarea_mapper->buscarTareaId($obj -> ID_TAREA));
+                while ($obj = $resultado->fetch_object()) {
 
-                array_push($toret, $aux);
+                    $aux = new Entregable($obj->ID_ENTREGABLE, $obj->NOMBRE, $obj->ESTADO, $obj->URL, $miembro_mapper->buscarMiembroPorUsuario($obj->ID_MIEMBRO),
+                        new DateTime($obj->FECHASUBIDA), $tarea_mapper->buscarTareaId($obj->ID_TAREA));
+
+                    array_push($toret, $aux);
+                }
             }
-
             return $toret;
         }
 
@@ -141,12 +141,10 @@
             $sql = "INSERT INTO `ENTREGABLE` (`NOMBRE`, `ESTADO`, `URL`, `ID_MIEMBRO`, `FECHASUBIDA`, `ID_TAREA`)
                                                VALUES ('{$entregable -> getNombre()}', '{$entregable -> getEstado()}',
                                                        '{$entregable -> getURL()}', '{$entregable -> getMiembro()->getUsuario()}', 
-                                                       '{$entregable -> getFechaSubida()->format("Y-m-d H:i:s")}', '{$entregable -> getTarea()->getIdTarea()}')";
-            echo $sql;
+                                                       '{$entregable -> getFecha()->format("Y-m-d H:i:s")}', '{$entregable -> getTarea()->getIdTarea()}')";
             $res = $this -> mysqli -> query($sql);
-            var_dump($this -> mysqli-> error);
             $this -> mysqli-> close();
-            return $res;
+            return "Creado con éxito";
         }
 
 
