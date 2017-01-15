@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `EMPLEADOS` (
 --
 
 INSERT INTO `EMPLEADOS` (`EMP_USER`, `EMP_PASSWORD`, `EMP_NOMBRE`, `EMP_APELLIDO`, `EMP_EMAIL`,  `EMP_TIPO`, `EMP_ESTADO`) VALUES
-('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Juan Manuel', 'Fernandez Novoa', null, 1, 'Activo'),
+('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Juan Manuel', 'Fernandez Novoa', 'juan.manuel@gmail.com', 1, 'Activo'),
 ('monit', 'd9cfd4af77e33817de2160e0c1c7607c', 'Pepe', 'Perez',   'pepe.perez@gmail.com', 3, 'Activo'),
 ('secret', '5ebe2294ecd0e0f08eab7690d2a6ee69', 'Luis', 'Gomez',  'luis.gomez@gmail.com',  2, 'Activo');
 
