@@ -299,6 +299,7 @@ $strings = array(
 	"Eliminar Tarea" => "Borrar tarea",
 	"Tarea padre" => "Tarea padre",
 	"descripcion" => "Descrición",
+    "Engadir Tarefa" => "Engadir tarefa",
 
 	//ENTREGABLES
 	"Entregables" => "Entregables",

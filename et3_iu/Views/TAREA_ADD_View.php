@@ -16,7 +16,19 @@
      }
 
     public function render(){
-        include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma){
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
         ?>
             <head>
                 <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>

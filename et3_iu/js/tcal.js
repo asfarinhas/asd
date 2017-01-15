@@ -17,8 +17,8 @@ var A_TCALCONF = {
     'nextyear'   : 'Next Year',
     'prevmonth'  : 'Previous Month',
     'nextmonth'  : 'Next Month',
-    'today'		: '02/03/2010',
-    'format'     : 'Y/m/d' // 'd-m-Y', Y-m-d', 'l, F jS Y'
+    'today'		: '02-03-2010',
+    'format'     : 'Y-m-d' // 'd-m-Y', Y-m-d', 'l, F jS Y'
 };
 
 var A_TCALTOKENS = [

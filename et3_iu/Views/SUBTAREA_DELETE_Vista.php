@@ -17,12 +17,24 @@ class SUBTAREA_DELETE_Vista{
     }
 
     public function render(){
-
+         $idioma = $_SESSION['IDIOMA'];
+            switch ($idioma){
+                case "Castellano":
+                    include '../Locates/Strings_Castellano.php';
+                    break;
+                case "English":
+                    include '../Locates/Strings_English.php';
+                    break;
+                case "Galego":
+                    include '../Locates/Strings_Galego.php';
+                default:
+                    include '../Locates/Strings_Castellano.php';
+            }
         ?>
         <html>
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
-            <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
+
         </head>
         <body>
         <p>

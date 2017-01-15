@@ -23,23 +23,24 @@ class TAREA_SHOW_CURRENT_Vista{
         $tarea= $this->getTarea();
         $proyecto = $tarea->getProyecto();
         //$auxMiembro = $tarea->getMiembro();
+        $idioma = $_SESSION['IDIOMA'];
+        switch ($idioma){
+            case "Castellano":
+                include '../Locates/Strings_Castellano.php';
+                break;
+            case "English":
+                include '../Locates/Strings_English.php';
+                break;
+            case "Galego":
+                include '../Locates/Strings_Galego.php';
+            default:
+                include '../Locates/Strings_Castellano.php';
+        }
         ?>
         <html>
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
-            <?php $idioma = $_SESSION['IDIOMA'];
-            switch ($idioma){
-                case "Castellano":
-                    include '../Locates/Strings_Castellano.php';
-                    break;
-                case "English":
-                    include '../Locates/Strings_English.php';
-                    break;
-                case "Galego":
-                    include '../Locates/Strings_Galego.php';
-                default:
-                    include '../Locates/Strings_Castellano.php';
-            } ?>
+
         </head>
         <body>
         <p>

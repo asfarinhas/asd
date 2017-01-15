@@ -299,6 +299,7 @@ $strings = array(
     "Gestión de Tareas" => "Gestión de Tareas",
     "Eliminar Tarea" => "Eliminar Tarea",
 	"Tarea padre" => "Tarea padre",
+    "Insertar Tarea" => "Insertar tarea",
 
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables",

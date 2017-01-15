@@ -152,7 +152,7 @@ class Subtarea_edit{
 
         <div>
             <?=$strings['comentarios']?><br/>
-            <textarea type="textarea" name="comentario" value="<?= $datos->getComentario()?>" onblur="validarCampo(document.formEditSubtarea.comentario);evitarProhibidos(document.formEditSubtarea.comentario);longitud100(document.formEditSubtarea.comentario)"></textarea>
+            <textarea type="textarea" name="comentario" id="comentario" value="<?= $datos->getComentario()?>" onblur="validarCampo(document.formEditSubtarea.comentario);evitarProhibidos(document.formEditSubtarea.comentario);longitud100(document.formEditSubtarea.comentario)"></textarea>
         </div>
 
 
