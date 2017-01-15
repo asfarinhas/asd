@@ -81,7 +81,9 @@
 
                         <!-- type button value solo para mostrar en pantalla, no se pasa por request -->
                         <input type='submit' name='accion'  onClick="return confirm('<?php echo $strings['Desea eliminar su perfil'] . "?";?>')" value='<?php echo $strings['Borrar']; ?>'>
-                        <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
+                        <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent">
+                            <input type="button" value="<?php echo $strings['Volver']; ?>">
+                        </a>
                     </ul>
 
 
