@@ -300,8 +300,12 @@ $strings = array(
 
 	//ENTREGABLES
 	"Entregables" => "Deliverables",
+    "Insertar Entregable" => "Insert Delivery",
+    "Modificar Entregable" => "Update Delivery",
+    "entregado" => "deliverable",
     "Estado" => "Status",
 	"Archivo" => "File",
+    "Modificado con éxito" => "Succesfully updated"
 
 
 

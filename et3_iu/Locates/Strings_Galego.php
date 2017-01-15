@@ -303,8 +303,12 @@ $strings = array(
 
 	//ENTREGABLES
 	"Entregables" => "Entregables",
+	"Insertar Entregable" => "Insertar Entrega",
+	"Modificar Entregable" => "Modificar Entrega",
+    "entregado" => "entregado",
     "Estado" => "Estado",
 	"Archivo" => "Arquivo",
+    "Modificado con éxito" => "Modificado con éxito"
 
 )
 ?>

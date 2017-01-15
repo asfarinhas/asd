@@ -50,7 +50,7 @@ class ENTREGABLE_EDIT_Vista
                 <label><?php echo $strings['Estado']; ?>:</label>
                 <select required name="estado">
                     <option <?php if($entregable -> getEstado() == "pendiente"){ echo "selected"; }?> value="pendiente"><?php echo $strings['pendiente']; ?></option>
-                    <option value="entregado"> <?php echo $strings['entregado']; ?></option>
+                    <option <?php if($entregable -> getEstado() == "entregado"){ echo "selected"; }?> value="entregado"> <?php echo $strings['entregado']; ?></option>
                 </select>
             </div>
 
@@ -76,49 +76,5 @@ class ENTREGABLE_EDIT_Vista
         </html>
         <?php
     }
-
-    function vistaMiembroProyecto()
-    {
-        ?>
-
-        <html>
-        <head>
-        </head>
-        <body>
-
-        <form action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post" onsubmit=" ">
-
-            <div>
-                <label><?php echo $strings['nombre'];?>:</label>
-                <input readonly type="text" name="nombre" id="nombre" required><br/>
-            </div>
-
-            <div>
-                <label><?php echo $strings['estado'];?>:</label>
-                <select required name="estado">
-                    <option value="entregado"> <?php echo $strings['entregado'];?></option>
-                </select>
-            </div>
-
-            <div>
-                <label>Url: </label> <br/>
-            </div>
-
-            <div>
-                <label>FECHASUBIDA: </label><br/>
-            </div>
-
-
-            <input type="submit" name="accion" value="Añadir"><?//= $strings['Add']
-            ?>
-
-
-        </body>
-        </html>
-
-
-        <?php
-    }
 }
-
 ?>
