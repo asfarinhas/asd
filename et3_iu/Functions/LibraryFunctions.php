@@ -1484,15 +1484,12 @@ function añadirFuncionalidades($NOM) {
                       break;
 
                 case "GESTION PERFIL":
-                    ?><a style="font-size:20px;" href='../Controllers/MIEMBRO_Controller.php'><?php echo $strings['Gestión de Perfil'] ?></a><br><br> <?php
                     break;
 
                 case "GESTION TAREAS":
-                    ?><a style="font-size:20px;" href='../Controllers/TAREA_Controller.php'><?php echo $strings['Gestión de Tareas'] ?></a><br><br> <?php
                     break;
 
                 case "GESTION ENTREGABLES":
-                    ?><a style="font-size:20px;" href='../Controllers/Entregable_Controller.php'><?php echo $strings['Gestión de Entregables'] ?></a><br><br> <?php
                     break;
 
                 default:

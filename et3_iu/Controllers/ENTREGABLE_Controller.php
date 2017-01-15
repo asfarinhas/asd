@@ -13,6 +13,18 @@
     $mapper = new ENTREGABLE_Mapper();
     $m_mapper= new MiembroMapper();
     $t_mapper = new TAREA_Mapper();
+
+    function showall_entregable(){
+        $mapper = new ENTREGABLE_Mapper();
+        $t_mapper = new TAREA_Mapper();
+        $tarea = $t_mapper->buscarTareaId($_REQUEST["ID_TAREA"]);
+        $entregables = $mapper->consultarEntregablesTarea($tarea->getIdTarea());
+        if($tarea->getTareaPadre() == null)
+            $volver = "TAREA_Controller.php?accion=ID_TAREA={$tarea->getIdTarea()}&proyecto_id={$tarea->getProyecto()->getIDPROYECTO()}";
+        else
+            $volver = "TAREA_Controller.php?accion=showall_subtarea&ID_TAREA={$tarea->getTareaPadre()->getIdTarea()}&proyecto_id={$tarea->getProyecto()->getIDPROYECTO()}";
+        new ENTEGABLE_SHOW_Vista($entregables,$volver);
+    }
     
     $accion = '';
     if(isset($_REQUEST["accion"]))
@@ -80,10 +92,41 @@
     
         case "edit_entregable": //editar tarea
 
-            /*$nombreArchivo=$_FILES['archivo']['name'];
-            $ruta=$_FILES['archivo']['tmp_name'];
-            $destino="../Archivos/".$nombreArchivo;
-            copy($ruta,$destino);*/
+            //echo "hello";
+            if(isset($_REQUEST['nombre']) && isset($_REQUEST['estado'])){
+
+                $nombre = $_REQUEST['nombre'];
+                $estado = $_REQUEST['estado'];
+                $tarea = $t_mapper ->buscarTareaId($_REQUEST['ID_TAREA']);
+                $idTarea = $_REQUEST['ID_TAREA'];
+                $nombreDirectorio = "";
+                $nombreFichero = "";
+                $entregable = $mapper ->buscarEntregablePorID($_REQUEST['entregable_ID']);
+                $miembro = $entregable -> getMiembro();
+
+                if (is_uploaded_file($_FILES['archivo']['tmp_name']))
+                {
+                    $nombreDirectorio = "../Archivos/";
+                    $nombreFichero = $_FILES['archivo']['name'];
+
+                    $nombreCompleto = $nombreDirectorio . $nombreFichero;
+                    if (is_file($nombreCompleto))
+                    {
+                        $idUnico = time();
+                        $nombreFichero = $idUnico . "-" . $nombreFichero;
+                    }
+
+                    move_uploaded_file($_FILES['archivo']['tmp_name'], $nombreDirectorio.$nombreFichero);
+
+                }else{
+                    new Mensaje("No se ha podido subir el fichero","./ENTREGABLE_Controller.php?accion=edit_entregable_menu&entregable_ID=".$_REQUEST['entregable_ID']);
+                }
+
+                $entregable = new Entregable($_REQUEST['entregable_ID'],$nombre,"entregado",$nombreDirectorio.$nombreFichero,$miembro,new DateTime("now"),$tarea);
+                $mapper ->updateEntregable($entregable);
+                new Mensaje("Modificado con éxito", "ENTREGABLE_Controller.php?showall_entregable&ID_TAREA=$idTarea");
+            }
+
             break;
     
         case "delete_entregable": //eliminar tarea
@@ -104,6 +147,8 @@
             new ENTEGABLE_SHOW_Vista($entregables,$volver);
     
     }
+
+
 ?>
 
 

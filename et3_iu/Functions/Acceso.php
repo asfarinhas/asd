@@ -3,14 +3,10 @@
 	include '../Views/MIEMBRO_ADD_View.php';
 	if (isset($_REQUEST['accion'])){
 
-
 		if ($_REQUEST['accion'] == 'Registro'){
-            header("Location:../Controllers/MIEMBRO_Controller.php");
-            die();
-        }
-
-        if ($_REQUEST['accion'] == 'Instalar BD'){
-            header("Location: ./../../install.php");
+			session_start();
+            $_SESSION['IDIOMA'] = $_REQUEST["IDIOMA"];
+            new MiembroAddVista();
             die();
         }
 

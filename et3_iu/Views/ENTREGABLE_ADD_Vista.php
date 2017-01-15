@@ -47,7 +47,7 @@ class ENTREGABLE_ADD_Vista
             <ul class="form-style-1">
             <div>
                 <label> <?php echo $strings['Nombre']; ?>:</label>
-                <input type="text" name="nombre" placeholder="Nombre" id="nombre" required maxlength="15"><br/>
+                <input type="text" name="nombre" placeholder="Nombre" id="nombre" required maxlength="20"><br/>
             </div>
 
             <div>

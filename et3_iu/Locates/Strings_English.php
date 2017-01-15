@@ -298,11 +298,17 @@ $strings = array(
 	"Tarea padre" => "Main task",
 	"descripcion" => "Description",
 	"Insertar Tarea" => "Add task",
+    "Mostrar Tareas" => "Show Tasks",
 
 	//ENTREGABLES
 	"Entregables" => "Deliverables",
+    "Insertar Entregable" => "Insert Delivery",
+    "Modificar Entregable" => "Update Delivery",
+    "entregado" => "deliverable",
     "Estado" => "Status",
 	"Archivo" => "File",
+    "Modificado con éxito" => "Succesfully updated",
+    "No se ha podido subir el fichero" => "The file hasn't been uploaded"
 
 
 

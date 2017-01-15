@@ -107,7 +107,11 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 21),
 ('ADMIN', 22),
 ('ADMIN', 23),
-('ADMIN', 400),
+('ADMIN', 100),
+('ADMIN', 101),
+('ADMIN', 102),
+('ADMIN', 103),
+('ADMIN', 104),
 ('secret', 400),
 ('ADMIN', 401),
 ('secret', 401),
@@ -131,7 +135,67 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 ('ADMIN', 504),
 ('ADMIN', 600),
 ('ADMIN', 601),
-('ADMIN', 602);
+('ADMIN', 602),
+('ADMIN', 700),
+('ADMIN', 701),
+('ADMIN', 702),
+('ADMIN', 703),
+('ADMIN', 704),
+('ADMIN', 710),
+('ADMIN', 711),
+('ADMIN', 712),
+('ADMIN', 713),
+('ADMIN', 714),
+('ADMIN', 800),
+('ADMIN', 801),
+('ADMIN', 802),
+('ADMIN', 803),
+('ADMIN', 804),
+('ADMIN', 850),
+('ADMIN', 851),
+('ADMIN', 852),
+('ADMIN', 853),
+('ADMIN', 854),
+('secret', 700),
+('secret', 701),
+('secret', 702),
+('secret', 703),
+('secret', 704),
+('secret', 710),
+('secret', 711),
+('secret', 712),
+('secret', 713),
+('secret', 714),
+('secret', 800),
+('secret', 801),
+('secret', 802),
+('secret', 803),
+('secret', 804),
+('secret', 850),
+('secret', 851),
+('secret', 852),
+('secret', 853),
+('secret', 854),
+('monit', 700),
+('monit', 701),
+('monit', 702),
+('monit', 703),
+('monit', 704),
+('monit', 710),
+('monit', 711),
+('monit', 712),
+('monit', 713),
+('monit', 714),
+('monit', 800),
+('monit', 801),
+('monit', 802),
+('monit', 803),
+('monit', 804),
+('monit', 850),
+('monit', 851),
+('monit', 852),
+('monit', 853),
+('monit', 854);
 -- --------------------------------------------------------
 
 --
@@ -140,9 +204,9 @@ INSERT INTO `EMPLEADOS_PAGINA` (`EMP_USER`, `PAGINA_ID`) VALUES
 
 CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 `ID_ENTREGABLE` int(11) NOT NULL,
-  `NOMBRE` varchar(15) COLLATE latin1_spanish_ci NOT NULL,
+  `NOMBRE` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` varchar(25) NOT NULL,
-  `URL` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `URL` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   `ID_MIEMBRO` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `FECHASUBIDA` date NOT NULL,
   `ID_TAREA` int(11) NOT NULL
@@ -150,8 +214,11 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 --
 -- Volcado de datos para la tabla `ENTREGABLE`
 --
-INSERT INTO `ENTREGABLE` (`ID_ENTREGABLE`, `NOMBRE`,`URL`,`ID_MIEMBRO`,`FECHASUBIDA`,`ID_TAREA`) VALUES
-  (1,'Informe requisitos','./algunsitio/pepe.png','ADMIN','2017-01-03',1);
+INSERT INTO `ENTREGABLE` (`ID_ENTREGABLE`, `NOMBRE`,`ESTADO`,`URL`,`ID_MIEMBRO`,`FECHASUBIDA`,`ID_TAREA`) VALUES
+  (1,'Informe requisitos','entregado','../Archivos/inf.docx','ADMIN','2017-01-03',1),
+(2,'Informe auxiliar','entregado','../Archivos/aux.docx','ADMIN','2017-01-03',1),
+(3,'Informe subtarea','entregado','../Archivos/subtarea.docx','ADMIN','2017-01-03',2),
+(4,'Informe auxiliar','entregado','../Archivos/auxs.docx','ADMIN','2017-01-03',2);
 -- --------------------------------------------------------
 
 --
@@ -248,8 +315,7 @@ INSERT INTO `FUNCIONALIDAD_PAGINA` (`FUNCIONALIDAD_ID`, `PAGINA_ID`) VALUES
 (702, 850),
 (702, 851),
 (702, 852),
-(702, 853),
-(702, 854);
+(702, 853);
 
 -- --------------------------------------------------------
 
@@ -306,6 +372,7 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (21, '../Views/ROL_SHOW_ALL_Vista.php', 'ROL SHOW ALL'),
 (22, '../Views/ROL_SHOW_FUNCIONES_Vista.php', 'ROL SHOW FUNCIONES'),
 (23, '../Views/ROL_SHOW_Vista.php', 'ROL SHOW'),
+
 (400, '../Views/PROYECTO_ADD_Vista.php', 'PROYECTO ADD'),
 (401, '../Views/PROYECTO_DELETE_Vista.php', 'PROYECTO DELETE'),
 (402, '../Views/PROYECTO_EDIT_Vista.php', 'PROYECTO EDIT'),
@@ -325,12 +392,12 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (700, '../Views/TAREA_ADD_View.php', 'TAREA ADD '),
 (701, '../Views/TAREA_EDIT_View.php', 'TAREA EDIT'),
 (702, '../Views/TAREA_DELETE_View.php', 'TAREA DELETE'),
-(703, '../Views/TAREA_SHOW_Vista.php', 'TAREA SHOW'),
-(704, '../Views/TAREA_SHOW_ALL_View.php', 'TAREA SHOW ALL'),
+(703, '../Views/TAREA_SHOW_CURRENT_Vista.php', 'TAREA SHOW'),
+(704, '../Views/TAREA_SHOW_ALL_Vista.php', 'TAREA SHOW ALL'),
 (710, '../Views/SUBTAREA_ADD_View.php', 'SUBTAREA ADD'),
 (711, '../Views/SUBTAREA_EDIT_View.php', 'SUBTAREA EDIT'),
 (712, '../Views/SUBTAREA_DELETE_Vista.php', 'SUBTAREA DELETE'),
-(713, '../Views/SUBTAREA_SHOW_Vista.php', 'SUBTAREA SHOW'),
+(713, '../Views/SUBTAREA_SHOW_CURRENT_Vista.php', 'SUBTAREA SHOW'),
 (714, '../Views/SUBTAREA_SHOW_ALL_Vista.php', 'SUBTAREA SHOW ALL'),
 (800, '../Views/MIEMBRO_ADD_View.php', 'MIEMBRO ADD'),
 (801, '../Views/MIEMBRO_EDIT_View.php', 'MIEMBRO EDIT'),
@@ -340,7 +407,11 @@ INSERT INTO `PAGINA` (`PAGINA_ID`, `PAGINA_LINK`, `PAGINA_NOM`) VALUES
 (851, '../Views/ENTREGABLE_EDIT_Vista.php', 'ENTREGABLE EDIT'),
 (852, '../Views/ENTREGABLE_DELETE_Vista.php', 'ENTREGABLE DELETE'),
 (853, '../Views/ENTREGABLE_SHOW_Vista.php', 'ENTREGABLE SHOW'),
-(854, '../Views/ENTREGABLE_SHOW_ALL_Vista.php', 'ENTREGABLE SHOW ALL');
+(100, '../Views/TICKET_ADD_View.php', 'TICKETS ADD'),
+(101, '../Views/TICKET_DELETE_View.php', 'TICKETS DELETe'),
+(102, '../Views/TICKET_EDIT_View.php', 'TICKETS EDIT'),
+(103, '../Views/TICKET_SHOW_View.php', 'TICKETS SHOW'),
+(104, '../Views/TICKET_SHOW_ALL_View.php', 'TICKETS SHOW ALL');
 
 -- --------------------------------------------------------
 
@@ -466,7 +537,9 @@ CREATE TABLE IF NOT EXISTS `TAREA` (
 
 INSERT INTO `TAREA` (`PADRE`, `ID_TAREA`, `NOMBRE`, `FECHAIP`, `FECHAIR`, `FECHAEP`, `FECHAER`, `HORASP`, `HORASR`, `ID_MIEMBRO`, `ID_PROYECTO`, `DESCRIPCION`, `ESTADO`, `COMENTARIO`) VALUES
   (NULL, 1, 'TAREA1', '2017-01-02', '2017-01-03', '2017-01-18', '2017-01-18', 20, 15, 'ADMIN', 1, 'EJEMPLO', 'PENDIENTE', 'EJEMPLO'),
-  (1, 2, 'SUBTAREA1', '2017-01-10', '2017-01-10', '2017-01-16', '2017-01-15', 2, 2, 'ADMIN', 1, 'EJEMPLO', 'FINALIZADO', 'EJEMPLO');
+  (1, 2, 'SUBTAREA1', '2017-01-10', '2017-01-10', '2017-01-16', '2017-01-15', 2, 2, 'ADMIN', 1, 'EJEMPLO', 'FINALIZADO', 'EJEMPLO'),
+  (NULL ,3,'Tickets','0000-00-00','0000-00-00','0000-00-00','0000-00-00',0,0,'ADMIN',1,'Tickets','Pendiente',''),
+  (NULL ,4,'Tickets','0000-00-00','0000-00-00','0000-00-00','0000-00-00',0,0,'ADMIN',2,'Tickets','Pendiente','');
 
 
 --

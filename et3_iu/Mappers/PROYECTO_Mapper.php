@@ -343,7 +343,12 @@ public function buscarMiembro(Miembro $miembro)
                     $proyecto3= $resultado->fetch_array();
                     $sql2 = "INSERT INTO PROYECTO_MIEMBRO ( ID_PROYECTO,EMP_USER) VALUES ('" . $proyecto3['ID_PROYECTO'] ."' , '" . $miembroUser ."');";
                     if($this->mysqli->query($sql2) === TRUE){
-                        return "creado exito";
+                        $sql3 = "INSERT INTO TAREA (ID_PROYECTO,NOMBRE,ID_MIEMBRO) VALUES ('" . $proyecto3['ID_PROYECTO'] . "','Tickets','" . $miembroUser . "')";
+                        if($this->mysqli->query($sql3)=== TRUE){
+                            return "creado exito";
+                        }else{
+                            return "error creado";
+                        }
                     }else{
                         return "error creado";
                     }

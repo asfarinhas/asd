@@ -195,7 +195,6 @@ $strings = array(
 	'USUARIO' => 'Usuario',
     'Consultar Miembro' => 'Consultar Miembro',
     'Insertar Miembro' => 'Insertar Miembro',
-    'ConsultarBorrados' => 'ConsultarBorrados',
     'Añadir Miembro' => 'Añadir Miembro',
     'Eliminar Miembros' => 'Eliminar Miembros',
     'Borrar Miembro' => 'Borrar miembro',
@@ -302,12 +301,18 @@ $strings = array(
     "Eliminar Tarea" => "Eliminar Tarea",
 	"Tarea padre" => "Tarea padre",
     "Insertar Tarea" => "Insertar tarea",
+	"Mostrar Tareas" => "Mostrar Tareas",
 
 	//ENTREGABLES
     "Gestión de Entregables" => "Gestión de Entregables",
 	"Entregables" => "Entregables",
+    "Insertar Entregable" => "Insertar Entregable",
+    "Modificar Entregable" => "Modificar Entregable",
+    "entregado" => "entregado",
 	"Estado" => "Estado",
 	"Archivo" => "Arquivo",
+	"Modificado con éxito" => "Modificado con éxito",
+    "No se ha podido subir el fichero" => "No se ha podido subir el fichero",
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas"
