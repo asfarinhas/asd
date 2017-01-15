@@ -322,6 +322,7 @@ $strings = array(
     "Realizado Por" => "Realizado por",
     "Fecha" => "Fecha",
     "Eliminar Entregable" => "Eliminar Entregable",
-	"Desea eliminar el entregable" => "Desea eliminar el entregable"
+	"Desea eliminar el entregable" => "Desea eliminar el entregable",
+	"Perfil" => "Perfil"
 )
 ?>

@@ -21,14 +21,14 @@ class MIEMBRO_SHOW_Vista{
     public function render(){
 
         ?>
-        <html>
+        <html xmlns="http://www.w3.org/1999/html">
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen" />
             <?php include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php'; ?>
         </head>
         <body>
-
-        <h2>
+        </div>
+            <h1><span class="form-title"><?=$strings['Perfil']?></h1>
 
             <form action="MIEMBRO_Controller.php" method="post">
                 <br><br>
@@ -84,7 +84,7 @@ class MIEMBRO_SHOW_Vista{
 
             </form>
 
-        </h2>
+        </div>
         </body>
         </html>
         <?php

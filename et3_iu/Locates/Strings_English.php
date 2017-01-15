@@ -316,7 +316,8 @@ $strings = array(
 	"Fecha" => "Date",
 	"Eliminar Entregable" => "Delete Delivery",
 	"Eliminado con éxito" => "Successfully deleted",
-    "Desea eliminar el entregable" => "Are you sure to delete the delivery"
+    "Desea eliminar el entregable" => "Are you sure to delete the delivery",
+    "Perfil" => "Profile"
 
 
 
