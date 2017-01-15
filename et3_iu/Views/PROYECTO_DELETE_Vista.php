@@ -121,7 +121,7 @@ class Proyecto_Borrar{
                             <input type="text" readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                     </div>
                     <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
-                    <input type='submit' name='accion' value='<?php echo $strings['Borrar']; ?>'>
+                    <input type='submit' name='accion'  onClick="return confirm('DESEA ELIMINAR LA TAREA?')" value='<?php echo $strings['Borrar']; ?>'>
 
             </form>
 

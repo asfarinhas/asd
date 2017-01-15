@@ -43,7 +43,7 @@ class Proyecto_Modificar{
             </h1>
             <h3>
 
-                <form action='PROYECTO_Controller.php' method='post'>
+                <form action='PROYECTO_Controller.php' method='post' name="formEditProyecto" onsubmit="return validarFormEditProyecto()">
                     <ul class="form-style-1">
                         <!-- Campo Nombre -->
                         <div class="form-group">
@@ -51,7 +51,7 @@ class Proyecto_Modificar{
                                 <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NOMBRE'];?>"class="form-control" name="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text"  value="<?php echo $this->datos['NOMBRE'];?>"class="form-control" name="PROYECTO_NOMBRE" id="PROYECTO_NOMBRE"  title="<?php echo $strings['error trabajador']; ?>" onblur="validarCampo(document.formEditProyecto.PROYECTO_NOMBRE);validarNombreTarea(document.formEditProyecto.PROYECTO_NOMBRE);evitarProhibidos(document.formEditProyecto.PROYECTO_NOMBRE)">
                             </div>
                         </div>
                         <!-- Campo ID -->
@@ -60,7 +60,7 @@ class Proyecto_Modificar{
                                 <label for="id" class="control-label"><?php echo $strings['ID_PROYECTO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" readonly class="form-control"  name="ID_PROYECTO"  value="<?php echo $this->datos['ID_PROYECTO'];?>" title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="text" readonly class="form-control"  name="ID_PROYECTO" id="ID_PROYECTO" value="<?php echo $this->datos['ID_PROYECTO'];?>" title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Descripción -->
@@ -69,7 +69,7 @@ class Proyecto_Modificar{
                                 <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="PROYECTO_DESCRIPCION"  rows="10" cols="40"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
+                                <textarea name="PROYECTO_DESCRIPCION" id="PROYECTO_DESCRIPCION" onblur="validarCampo(document.formEditProyecto.PROYECTO_DESCRIPCION);evitarProhibidos(document.formEditProyecto.PROYECTO_DESCRIPCION);longitud200(document.formEditProyecto.PROYECTO_DESCRIPCION)"><?php echo $this->datos['DESCRIPCION'];?></textarea>                      </div>
                         </div>
                         <!-- Campo Fecha Inicio -->
                         <div class="form-group">
@@ -77,7 +77,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date"  value="<?php echo $this->datos['FECHAI'];?>"class="tcal" name="PROYECTO_FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date" value="<?php echo $this->datos['FECHAI'];?>" class="tcal" name="PROYECTO_FECHAI" id="PROYECTO_FECHAI" title="<?php echo $strings['error trabajador']; ?>" onblur="validarCampo(document.formEditProyecto.PROYECTO_FECHAI);validarFecha(document.formEditProyecto.PROYECTO_FECHAI)">
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -86,7 +86,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date"  value="<?php echo $this->datos['FECHAE'];?>"class="tcal" name="PROYECTO_FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAE'];?>"class="tcal" name="PROYECTO_FECHAE" id="PROYECTO_FECHAE" title="<?php echo $strings['error trabajador']; ?>" onblur="validarCampo(document.formEditProyecto.PROYECTO_FECHAE);validarFecha(document.formEditProyecto.PROYECTO_FECHAE)">
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date"  value="<?php echo $this->datos['FECHAIP'];?>"class="tcal" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAIP'];?>"class="tcal" name="PROYECTO_FECHAIP" id="PROYECTO_FECHAIP" title="<?php echo $strings['error trabajador']; ?>" onblur="validarCampo(document.formEditProyecto.PROYECTO_FECHAIP);validarFecha(document.formEditProyecto.PROYECTO_FECHAIP)">
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date"  value="<?php echo $this->datos['FECHAFP'];?>"class="tcal" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAFP'];?>"class="tcal" name="PROYECTO_FECHAFP" id="PROYECTO_FECHAFP" title="<?php echo $strings['error trabajador']; ?>" onblur="validarCampo(document.formEditProyecto.PROYECTO_FECHAFP);validarFecha(document.formEditProyecto.PROYECTO_FECHAFP)">
                             </div>
                         </div>
 
@@ -116,7 +116,7 @@ class Proyecto_Modificar{
                                 <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROMIEMBROS'];?>"class="form-control" name="PROYECTO_NUMEROMIEMBROS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  value="<?php echo $this->datos['NUMEROMIEMBROS'];?>"class="form-control" name="PROYECTO_NUMEROMIEMBROS" id="PROYECTO_NUMEROMIEMBROS" title="<?php echo $strings['error trabajador']; ?>" onblur="validarNumMiembros(document.formEditProyecto.PROYECTO_NUMEROMIEMBROS)">                            </div>
                         </div>
                         <!-- Campo Numero horas -->
                         <div class="form-group">
@@ -124,7 +124,7 @@ class Proyecto_Modificar{
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_MUMEROHORAS"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_MUMEROHORAS" id="PROYECTO_MUMEROHORAS" title="<?php echo $strings['error trabajador']; ?>" onblur="validarNumHoras(document.formEditProyecto.PROYECTO_MUMEROHORAS)">                            </div>
                         </div>
 
                         <!-- Campo Director -->
@@ -133,7 +133,7 @@ class Proyecto_Modificar{
                                 <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="PROYECTO_DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="PROYECTO_DIRECTOR" id="PROYECTO_DIRECTOR" title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
                         <!-- Campo Borrado -->
                         <div class="form-group">
@@ -154,7 +154,7 @@ class Proyecto_Modificar{
 
 
                             <input type='submit' name='accion' value='<?php echo $strings['Volver']; ?>'>
-                        <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="return valida_envia()" >
+                        <input type = 'submit' name = 'accion' value = '<?php echo $strings['Modificar'] ?>'  onclick="valida_envia()" >
                 </form>
         </p>
 

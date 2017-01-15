@@ -42,7 +42,7 @@ class Proyecto_Add
             </h1>
 
 
-                <form action='PROYECTO_Controller.php' method='post'>
+                <form action='PROYECTO_Controller.php' id="form" name="formAddProyecto" method='post' onsubmit="return validarFormAddProyecto()">
                     <ul class="form-style-1">
                         <!-- Campo Nombre -->
                         <div class="form-group">
@@ -50,7 +50,7 @@ class Proyecto_Add
                                 <label for="nombre" class="control-label"><?php echo $strings['NOMBRE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NOMBRE"   >
+                                <input type="text" class="form-control" name="PROYECTO_NOMBRE" id="PROYECTO_NOMBRE" onblur="validarCampo(document.formAddProyecto.PROYECTO_NOMBRE);validarNombreTarea(document.formAddProyecto.PROYECTO_NOMBRE);evitarProhibidos(document.formAddProyecto.PROYECTO_NOMBRE)" >
                             </div>
                         </div>
                         <!-- Campo Descripcion -->
@@ -59,7 +59,7 @@ class Proyecto_Add
                                 <label for="descripcion" class="control-label"><?php echo $strings['DESCRIPCION']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="PROYECTO_DESCRIPCION" rows="10" cols="40"></textarea>
+                                <textarea name="PROYECTO_DESCRIPCION" id="PROYECTO_DESCRIPCION" onblur="validarCampo(document.formAddProyecto.PROYECTO_DESCRIPCION);evitarProhibidos(document.formAddProyecto.PROYECTO_DESCRIPCION);longitud200(document.formAddProyecto.PROYECTO_DESCRIPCION)"></textarea>
                             </div>
                         </div>
                         <!-- Campo Fecha Inicio -->
@@ -68,7 +68,7 @@ class Proyecto_Add
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input class="tcal"  placeholder="<?php $strings['FECHAI'];?>" type="date" name="PROYECTO_FECHAI"  >
+                                <input class="tcal"  placeholder="<?php $strings['FECHAI'];?>" type="date" name="PROYECTO_FECHAI" value="<?php echo date("Y-m-d",mktime()) ?>" id="PROYECTO_FECHAI" onblur="validarCampo(document.formAddProyecto.PROYECTO_FECHAI);validarFecha(document.formAddProyecto.PROYECTO_FECHAI)">
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -77,7 +77,7 @@ class Proyecto_Add
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="tcal" name="PROYECTO_FECHAE"   >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAE" value="<?php echo date("Y-m-d",mktime()) ?>"  id="PROYECTO_FECHAE" onblur="validarCampo(document.formAddProyecto.PROYECTO_FECHAE);validarFecha(document.formAddProyecto.PROYECTO_FECHAE)">
                             </div>
                         </div>
 
@@ -87,7 +87,7 @@ class Proyecto_Add
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="tcal" name="PROYECTO_FECHAIP"   >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAIP" id="PROYECTO_FECHAIP" value="<?php echo date("Y-m-d",mktime()) ?>"  onblur="validarCampo(document.formAddProyecto.PROYECTO_FECHAIP);validarFecha(document.formAddProyecto.PROYECTO_FECHAIP)">
                             </div>
                         </div>
 
@@ -97,7 +97,7 @@ class Proyecto_Add
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="date" class="tcal" name="PROYECTO_FECHAFP"   >
+                                <input type="date" class="tcal" name="PROYECTO_FECHAFP" id="PROYECTO_FECHAFP" value="<?php echo date("Y-m-d",mktime()) ?>" onblur="validarCampo(document.formAddProyecto.PROYECTO_FECHAFP);validarFecha(document.formAddProyecto.PROYECTO_FECHAFP)">
                             </div>
                         </div>
 
@@ -107,7 +107,7 @@ class Proyecto_Add
                                 <label for="numeromiembros" class="control-label"><?php echo $strings['NUMEROMIEMBROS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS"  >
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROMIEMBROS" id="PROYECTO_NUMEROMIEMBROS" onblur="validarCampo(document.formAddProyecto.PROYECTO_NUMEROMIEMBROS);validarNumMiembros(document.formAddProyecto.PROYECTO_NUMEROMIEMBROS)">
                             </div>
                         </div>
                         <!-- Campo Numero horas -->
@@ -116,7 +116,7 @@ class Proyecto_Add
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS"  >
+                                <input type="text" class="form-control" name="PROYECTO_NUMEROHORAS" id="PROYECTO_NUMEROHORAS" onblur="validarCampo(document.formAddProyecto.PROYECTO_NUMEROHORAS);validarNumHoras(document.formAddProyecto.PROYECTO_NUMEROHORAS)"></li>
                             </div>
                         </div><!-- Campo Director -->
                         <div class="form-group">
