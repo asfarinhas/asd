@@ -429,8 +429,12 @@ public function buscarMiembro(Miembro $miembro)
    */
   public function borrar(Proyecto $proyecto) {
       $this->conectarBD();
-      
-      $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE()."';";
+      $hayTareas =  $this->listarTareasProyecto($proyecto->getIDPROYECTO());
+      if($hayTareas==1) {
+          $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE() . "';";
+      }else{
+          $sql = "DELETE FROM PROYECTO WHERE ID_PROYECTO = '" . $proyecto->getIDPROYECTO() ."';";
+      }
       
       if($this->mysqli->query($sql) === TRUE){
           return "El proyecto ha sido borrado correctamente";
@@ -439,6 +443,21 @@ public function buscarMiembro(Miembro $miembro)
       }
       
     
+  }
+
+
+  public function listarTareasProyecto($idProyecto){
+      $this->conectarBD();
+
+      $sql = "SELECT * FROM TAREA WHERE ID_PROYECTO = '" . $idProyecto . "';";
+      $resultado = $this->mysqli->query($sql);
+
+      if ($resultado->num_rows != 0) {
+          return 1;
+      }else{
+          return 0;
+      }
+
   }
 
 }
