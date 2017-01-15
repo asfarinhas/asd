@@ -169,7 +169,7 @@
          */
         public function eliminarEntregable(Entregable $entregable) {
             $this->ConectarBD();
-            $sql = "DELETE FROM entregable WHERE id_entregable = '{$entregable->getID()}' ";
+            $sql = "DELETE FROM ENTREGABLE WHERE id_entregable = '{$entregable->getID()}' ";
             $res = $this -> mysqli -> query($sql);
             $this -> mysqli-> close();
             return $res;
