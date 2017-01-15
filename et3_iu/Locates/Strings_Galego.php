@@ -311,7 +311,8 @@ $strings = array(
     "No se ha podido subir el fichero" => "O ficheiro non se puido subir",
     "Estado" => "Estado",
 	"Archivo" => "Arquivo",
-    "Modificado con éxito" => "Modificado con éxito"
+    "Modificado con éxito" => "Modificado con éxito",
+    "Desea eliminar su perfil" => "Desea eliminar o seu perfil"
 
 )
 ?>

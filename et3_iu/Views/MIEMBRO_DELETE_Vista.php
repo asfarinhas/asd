@@ -35,9 +35,7 @@
         </head>
         <body>
             <p>
-                <h1><span class="form-title">
-                    ELIMINAR PERFIL
-                 </h1>
+                <h1><span class="form-title">ELIMINAR PERFIL</h1>
             </p>
 
                 <h2>
@@ -82,7 +80,7 @@
                         <input type="hidden" name="accion" value='<?php echo $strings['Borrar']; ?>'>
 
                         <!-- type button value solo para mostrar en pantalla, no se pasa por request -->
-                        <input type='button' id="deleteButton" name='accion' onClick="return confirmarBorrado();" value='<?php echo $strings['Borrar']; ?>' >
+                        <input type='submit' name='accion'  onClick="return confirm('<?php echo $strings['Desea eliminar su perfil'] . "?";?>')" value='<?php echo $strings['Borrar']; ?>'>
                         <a href="../Controllers/MIEMBRO_Controller.php?accion=showcurrent"> <?php echo $strings['Volver']; ?> </a>
                     </ul>
 

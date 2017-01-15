@@ -315,6 +315,7 @@ $strings = array(
     "No se ha podido subir el fichero" => "No se ha podido subir el fichero",
 
 	//SUBTAREAS
-    "Subtareas" => "Subtareas"
+    "Subtareas" => "Subtareas",
+    "Desea eliminar su perfil" => "Desea eliminar su perfil"
 )
 ?>

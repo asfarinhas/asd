@@ -308,7 +308,8 @@ $strings = array(
     "Estado" => "Status",
 	"Archivo" => "File",
     "Modificado con éxito" => "Succesfully updated",
-    "No se ha podido subir el fichero" => "The file hasn't been uploaded"
+    "No se ha podido subir el fichero" => "The file hasn't been uploaded",
+    "Desea eliminar su perfil" => "Are you sure to delete your profile"
 
 
 
