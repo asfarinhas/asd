@@ -310,6 +310,7 @@ $strings = array(
 	"Estado" => "Estado",
 	"Archivo" => "Arquivo",
 	"Modificado con éxito" => "Modificado con éxito",
+    "No se ha podido subir el fichero" => "No se ha podido subir el fichero",
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas"

@@ -306,6 +306,7 @@ $strings = array(
 	"Insertar Entregable" => "Insertar Entrega",
 	"Modificar Entregable" => "Modificar Entrega",
     "entregado" => "entregado",
+    "No se ha podido subir el fichero" => "O ficheiro non se puido subir",
     "Estado" => "Estado",
 	"Archivo" => "Arquivo",
     "Modificado con éxito" => "Modificado con éxito"
