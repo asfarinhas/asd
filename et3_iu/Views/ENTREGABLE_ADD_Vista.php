@@ -41,7 +41,7 @@ class ENTREGABLE_ADD_Vista
         </head>
 
         <div>
-            <h1><span class="form-title"><?=$strings['Registro']?></h1>
+            <h1><span class="form-title"><?=$strings['Insertar Entregable']?></h1>
 
         <form enctype="multipart/form-data" action="ENTREGABLE_Controller.php" name="formAddEntregable" method="post">
             <ul class="form-style-1">
