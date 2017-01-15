@@ -100,7 +100,7 @@ class Proyecto
     /**
      * @param null $DESCRIOCION
      */
-    public function setDESCRIPCION($DESCRIOCION)
+    public function setDESCRIPCION($DESCRIPCION)
     {
         $this->DESCRIPCION = $DESCRIPCION;
     }
