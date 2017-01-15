@@ -152,15 +152,15 @@
          * Actualiza un entregable en la BBDD
          * @param Entregable $entregable, el entregable con los nuevos datos
          */
-        public function updateEntregable(Entregable $entregable) {
+        public function updateEntregable(Entregable $entregable)
+        {
             $this->ConectarBD();
             $time = new DateTime("now");
             $sql = "UPDATE `ENTREGABLE` SET `NOMBRE` = '{$entregable -> getNombre()}', `ESTADO` = '{$entregable -> getEstado()}', 
-                                          `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$time}',
+                                          `URL` = '{$entregable -> getUrl()}', `ID_MIEMBRO` = '{$entregable -> getMiembro()->getUsuario()}', `FECHASUBIDA` = '{$entregable -> getFecha()->format("Y-m-d H:i:s")}',
                                           `ID_TAREA` = '{$entregable -> getTarea()->getIdTarea()}' WHERE ID_ENTREGABLE = '{$entregable -> getID()}' ";
-            $res = $this -> mysqli -> query($sql);
-            $this -> mysqli-> close();
-            return $res;
+            $this->mysqli->query($sql);
+            $this->mysqli->close();
         }
 
         /**
