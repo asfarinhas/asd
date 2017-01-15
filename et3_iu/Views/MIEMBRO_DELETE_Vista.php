@@ -93,7 +93,6 @@
     </html>
 <?php
     }
- /*echo $idiom['DeleteAlumno'] . ": " . $consulta["DNI"] . "?"; */
 }
 
 
