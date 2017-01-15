@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `ENTREGABLE` (
 `ID_ENTREGABLE` int(11) NOT NULL,
   `NOMBRE` varchar(20) COLLATE latin1_spanish_ci NOT NULL,
   `ESTADO` varchar(25) NOT NULL,
-  `URL` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `URL` varchar(120) COLLATE latin1_spanish_ci NOT NULL,
   `ID_MIEMBRO` varchar(25) COLLATE latin1_spanish_ci NOT NULL,
   `FECHASUBIDA` date NOT NULL,
   `ID_TAREA` int(11) NOT NULL
