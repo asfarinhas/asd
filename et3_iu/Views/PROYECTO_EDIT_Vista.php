@@ -19,6 +19,12 @@ class Proyecto_Modificar{
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
             <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+            <link href="../Styles/sweetalert.css" rel="stylesheet">
+            <script src="../js/sweetalert.min.js"></script>
+            <script src="../js/validaciones.js"></script>
+            <script src="../js/md5.js"></script>
+            <link href="../Styles/tcal.css" rel="stylesheet">
+            <script src="../js/tcal.js"></script>
         </head>
         <div>
             <p>
@@ -71,7 +77,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAI" class="control-label"><?php echo $strings['FECHAI']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAI'];?>"class="form-control" name="PROYECTO_FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAI'];?>"class="tcal" name="PROYECTO_FECHAI"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
                         <!-- Campo Fecha Entrega -->
@@ -80,7 +86,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAE" class="control-label"><?php echo $strings['FECHAE']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAE'];?>"class="form-control" name="PROYECTO_FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAE'];?>"class="tcal" name="PROYECTO_FECHAE"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -90,7 +96,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAIP" class="control-label"><?php echo $strings['FECHAIP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAIP'];?>"class="form-control" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAIP'];?>"class="tcal" name="PROYECTO_FECHAIP"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -100,7 +106,7 @@ class Proyecto_Modificar{
                                 <label for="FECHAFP" class="control-label"><?php echo $strings['FECHAFP']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['FECHAFP'];?>"class="form-control" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error trabajador']; ?>" >
+                                <input type="date"  value="<?php echo $this->datos['FECHAFP'];?>"class="tcal" name="PROYECTO_FECHAFP"  title="<?php echo $strings['error trabajador']; ?>" >
                             </div>
                         </div>
 
@@ -127,7 +133,7 @@ class Proyecto_Modificar{
                                 <label for="director" class="control-label"><?php echo $strings['DIRECTOR']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="PROYECTO_DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
+                                <input type="text"  readonly value="<?php echo $this->datos['DIRECTOR'];?>"class="form-control" name="PROYECTO_DIRECTOR"  title="<?php echo $strings['error trabajador']; ?>" >                            </div>
                         </div>
                         <!-- Campo Borrado -->
                         <div class="form-group">
