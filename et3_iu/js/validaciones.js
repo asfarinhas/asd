@@ -2306,7 +2306,7 @@ function validarFormEditProyecto(){
         && validarCampo(document.getElementById('PROYECTO_FECHAFP'))
         && validarFecha(document.getElementById('PROYECTO_FECHAFP'))
         && validarNumMiembros(document.getElementById('PROYECTO_NUMEROMIEMBROS'))
-        && validarNumHoras(document.getElementById('PROYECTO_MUMEROHORAS'))
+        && validarNumHoras(document.getElementById('PROYECTO_NUMEROHORAS'))
     ){
         swal(
             {
@@ -2482,7 +2482,7 @@ function validarFormEditProyecto(){
                                                                             );
                                                                             respuesta = false;
                                                                         }else{
-                                                                            if(validarNumHoras(document.getElementById('PROYECTO_MUMEROHORAS')) == false){
+                                                                            if(validarNumHoras(document.getElementById('PROYECTO_NUMEROHORAS')) == false){
                                                                                 swal(
                                                                                     {
                                                                                         title : "Error!",

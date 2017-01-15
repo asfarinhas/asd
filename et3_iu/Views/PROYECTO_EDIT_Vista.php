@@ -124,7 +124,7 @@ class Proyecto_Modificar{
                                 <label for="numerohoras" class="control-label"><?php echo $strings['NUMEROHORAS']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_MUMEROHORAS" id="PROYECTO_MUMEROHORAS" title="<?php echo $strings['error trabajador']; ?>" onblur="validarNumHoras(document.formEditProyecto.PROYECTO_MUMEROHORAS)">                            </div>
+                                <input type="text"  value="<?php echo $this->datos['NUMEROHORAS'];?>"class="form-control" name="PROYECTO_NUMEROHORAS" id="PROYECTO_NUMEROHORAS" title="<?php echo $strings['error trabajador']; ?>" onblur="validarNumHoras(document.formEditProyecto.PROYECTO_NUMEROHORAS)">                            </div>
                         </div>
 
                         <!-- Campo Director -->
