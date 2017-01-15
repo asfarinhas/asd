@@ -381,6 +381,121 @@ function desviacionHoras(){
 
 }
 
+function validarChecksReceptor()
+{
+    respuesta = true;
+    formulario = document.getElementById("formAddCorreo");
+    for (var i = 0; i < formulario.elements.length; i++)
+    {
+        var elemento = formulario.elements[i];
+        if (elemento.type == "checkbox")
+        {
+            if (!elemento.checked)
+            {
+                swal(
+                    {
+                        title : "Error!",
+                        text : "Seleccione a quien se lo quiere enviar: ",
+                        type : "error",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }
+        }
+    }
+    return respuesta;
+}
+
+function validarAsunto(asunto){
+    var respuesta = true;
+    var expresion = /[·$&#^*]+/;
+
+    if (asunto.value == ""){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + asunto.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+    if(expresion.test(asunto.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + asunto.name + " no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    if (asunto.length > 50){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Longitud máxima del asunto 50 caracteres",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+    return respuesta;
+}
+
+function validarContenidoCorreo(campo){
+    var respuesta;
+    var expresion = /[·$&#^*]+/;
+
+    if (campo.value == ""){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Introduce " + campo.name + ":",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+    if(expresion.test(campo.value)){
+        swal(
+            {
+                title : "Error!",
+                text : "El " + campo.name + " no puede contener los caracteres: \n · # $ ^ & *",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+
+        respuesta = false;
+    }
+    if (campo.length > 50){
+
+        swal(
+            {
+                title : "Error!",
+                text : "Longitud máxima del asunto 50 caracteres",
+                type : "error",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = false;
+
+    }
+    return respuesta;
+}
 
 function validarFecha(fecha)
 {
@@ -2582,3 +2697,55 @@ function validarformAddMiembroProyecto(){
     return respuesta;
 }
 
+function validarFormAddCorreo(){
+    var respuesta = true;
+
+    if(
+        validarChecksReceptor()
+        && validarAsunto(document.getElementById('ASUNTO'))
+        && validarContenidoCorreo(document.getElementById('CONTENIDO'))
+    ){
+        swal(
+            {
+                title : "Correo enviado con éxito!",
+                type : "success",
+                confirmButtonText : "Ok"
+            }
+        );
+        respuesta = true;
+    }else{
+            if(validarChecksReceptor() == false){
+                swal(
+                    {
+                        title : "Seleccione al menos un receptor",
+                        type : "success",
+                        confirmButtonText : "Ok"
+                    }
+                );
+                respuesta = false;
+            }else{
+                if(validarAsunto(document.getElementById('ASUNTO')) == false){
+                    swal(
+                        {
+                            title : "El asunto no puede estar vacío, exceder de los 50 caracteres ni contener los caracteres: \n · # $ ^ & *",
+                            type : "success",
+                            confirmButtonText : "Ok"
+                        }
+                    );
+                    respuesta = false;
+                }else{
+                    if(validarContenidoCorreo(document.getElementById('CONTENIDO')) == false){
+                        swal(
+                            {
+                                title : "El contenido no puede estar vacío, exceder de los 50 caracteres ni contener los caracteres: \n · # $ ^ & *",
+                                type : "success",
+                                confirmButtonText : "Ok"
+                            }
+                        );
+                        respuesta = false;
+                    }
+                }
+            }
+    }
+    return respuesta;
+}

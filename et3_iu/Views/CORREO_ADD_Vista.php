@@ -16,6 +16,12 @@ class Correo_Add
         <head>
             <link rel="stylesheet" href="../Styles/styles.css" type="text/css" media="screen"/>
             <script type="text/javascript" src="../js/<?php echo $_SESSION['IDIOMA'] ?>_validate.js"></script>
+            <link href="../Styles/sweetalert.css" rel="stylesheet">
+            <script src="../js/sweetalert.min.js"></script>
+            <script src="../js/validaciones.js"></script>
+            <script src="../js/md5.js"></script>
+            <link href="../Styles/tcal.css" rel="stylesheet">
+            <script src="../js/tcal.js"></script>
         </head>
         <div>
             <p>
@@ -32,7 +38,7 @@ class Correo_Add
             </h1>
             <h3>
 
-                <form action='CORREO_Controller.php' method='post'>
+                <form action='CORREO_Controller.php' method='post' name="formAddCorreo" onsubmit="return validarFormAddCorreo()">
                     <ul class="form-style-1">
                         <!-- Campo Receptor -->
                         <div class="form-group">
@@ -54,7 +60,7 @@ class Correo_Add
                                 <label for="Receptor" class="control-label"><?php echo $strings['Asunto']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="ASUNTO" name="ASUNTO"  title="<?php echo $strings['error asunto']; ?>" required>
+                                <input type="text" class="form-control" id="ASUNTO" name="ASUNTO"  title="<?php echo $strings['error asunto']; ?>" required onblur="validarAsunto(document.formAddCorreo.ASUNTO)">
                             </div>
                         </div>
                         <!-- Campo Descripcion -->
@@ -63,7 +69,7 @@ class Correo_Add
                                 <label for="Contenido" class="control-label"><?php echo $strings['CONTENIDO']; ?>:</label>
                             </div>
                             <div class="col-sm-4">
-                                <textarea name="CONTENIDO" id="CONTENIDO" rows="10"  required cols="40"></textarea >
+                                <textarea name="CONTENIDO" id="CONTENIDO" onblur="validarContenidoCorreo(document.formAddCorreo.CONTENIDO)"></textarea >
                             </div>
                         </div>
 
