@@ -4,6 +4,7 @@
     include "../Models/MIEMBRO_Model.php";
     include "../Mappers/ENTREGABLE_Mapper.php";
     include "../Views/MENSAJE_Vista.php";
+    include "../Functions/LibraryFunctions.php";
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
@@ -15,7 +16,6 @@ for ($z=0;$z<count($pags);$z++){
     include $pags[$z];
 }
 
-session_start();
     $mapper = new ENTREGABLE_Mapper();
     $m_mapper= new MiembroMapper();
     $t_mapper = new TAREA_Mapper();
@@ -40,24 +40,24 @@ session_start();
     
         //Viene de clicar en añadir tarea; hay que crear la vista en cuestión
         case "add_entregable_menu":
+            if(!tienePermisos('ENTREGABLE_ADD_Vista'))
+                new Mensaje('No tienes los permisos necesarios','../Views/DEFAULT_Vista.php');
             new ENTREGABLE_ADD_Vista();
             break;
     
         //Viene de clicar en editar tarea; hay que crear la vista en cuestión
         case "edit_entregable_menu":
+            if(!tienePermisos('ENTREGABLE_EDIT_Vista'))
+                new Mensaje('No tienes los permisos necesarios','../Views/DEFAULT_Vista.php');
             $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
             new ENTREGABLE_EDIT_Vista($entregable);
             break;
-    
-        //Viene de clicar en consultar en detalle tarea; hay que crear la vista en cuestión
-        case "show_entregable_menu":
-            echo "<h1>VISTA ENTREGABLE SHOW</h1>";
-            break;
-    
+
         //Viene de clicar en eliminar tarea; hay que crear la vista en cuestión
         case "delete_entregable_menu":
+            if(!tienePermisos('ENTREGABLE_DELETE_Vista'))
+                new Mensaje('No tienes los permisos necesarios','../Views/DEFAULT_Vista.php');
             $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
-
             new ENTREGABLE_DELETE_Vista($entregable,"./ENTREGABLE_Controller.php?ID_TAREA=".$entregable->getTarea()->getIDTAREA());
             break;
     
@@ -137,8 +137,10 @@ session_start();
     
         case "delete_entregable": //eliminar tarea
             $entregable = $mapper->buscarEntregablePorID($_REQUEST["entregable_ID"]);
-                if($mapper->eliminarEntregable($entregable))
+                if($mapper->eliminarEntregable($entregable)){
                     $mensaje = "Eliminado con éxito";
+                    unlink($entregable->getURL());
+                }
                 else
                     $mensaje = "Error en la consulta sobre la base de datos";
             new Mensaje($mensaje,"./ENTREGABLE_Controller.php?ID_TAREA=".$entregable->getTarea()->getIDTAREA());
@@ -146,10 +148,14 @@ session_start();
         default:
             $tarea = $t_mapper->buscarTareaId($_REQUEST["ID_TAREA"]);
             $entregables = $mapper->consultarEntregablesTarea($tarea->getIdTarea());
+
             if($tarea->getTareaPadre() == null)
                 $volver = "TAREA_Controller.php?accion=ID_TAREA={$tarea->getIdTarea()}&proyecto_id={$tarea->getProyecto()->getIDPROYECTO()}";
             else
                 $volver = "TAREA_Controller.php?accion=showall_subtarea&ID_TAREA={$tarea->getTareaPadre()->getIdTarea()}&proyecto_id={$tarea->getProyecto()->getIDPROYECTO()}";
+
+            if(!tienePermisos('ENTEGABLE_SHOW_Vista'))
+                new Mensaje('No tienes los permisos necesarios',$volver);
             new ENTEGABLE_SHOW_Vista($entregables,$volver);
     
     }
