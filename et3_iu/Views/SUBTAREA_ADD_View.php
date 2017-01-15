@@ -54,7 +54,7 @@ class Subtarea_add
                     <h1><span class="form-title"><?= $strings['InsertarSubtarea'] ?></h1>
 
 
-                    <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit=" ">
+                    <form action="../Controllers/TAREA_Controller.php" name="formAddSubtarea" enctype="multipart/form-data" method="post" onsubmit="return validarFormAddSubtarea()">
                         <ul class="form-style-1">
                         <div> <!-- ID de la tarea padre-->
                             <input type="number" hidden name="tarea_padre" value="<?=$_REQUEST['tarea_padre']?>">
@@ -108,7 +108,7 @@ class Subtarea_add
                         </div>
 
                         <input type="hidden" name="accion" value="add_subtarea">
-                        <input type='submit' onclick="DoSubmit()" value="<?= $strings['Insertar'] ?>"><br/><br/>
+                        <input type='submit' onclick="validarFormAddSubtarea()" value="<?= $strings['Insertar'] ?>"><br/><br/>
                         </ul>
                     </form>
                     <a class="form-link" href='<?=$this->volver?>'><?= $strings['Volver'] ?> </a>
