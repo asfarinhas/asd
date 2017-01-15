@@ -312,7 +312,11 @@ $strings = array(
     "Estado" => "Estado",
 	"Archivo" => "Arquivo",
     "Modificado con éxito" => "Modificado con éxito",
-    "Desea eliminar su perfil" => "Desea eliminar o seu perfil"
+    "Desea eliminar su perfil" => "Desea eliminar o seu perfil",
+	"Entregable_id" => "ID entrega",
+    "url" => "URL",
+    "Realizado Por" => "Feito por",
+    "Fecha" => "Data"
 
 )
 ?>

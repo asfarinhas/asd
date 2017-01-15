@@ -240,7 +240,7 @@ function Modificar()
 			if ($tupla['EMP_ESTADO'] == "Activo" && $tupla['EMP_PASSWORD'] == md5($this->EMP_PASSWORD)){
 				return true;
 			}
-			
+
             if($tupla['EMP_ESTADO'] == "Inactivo"){
                 return 'El empleado no existe';
             }

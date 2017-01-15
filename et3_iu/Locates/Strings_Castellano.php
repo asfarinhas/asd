@@ -316,6 +316,10 @@ $strings = array(
 
 	//SUBTAREAS
     "Subtareas" => "Subtareas",
-    "Desea eliminar su perfil" => "Desea eliminar su perfil"
+    "Desea eliminar su perfil" => "Desea eliminar su perfil",
+    "Entregable_id" => "ID entregable",
+    "url" => "URL",
+    "Realizado Por" => "Realizado por",
+    "Fecha" => "Fecha"
 )
 ?>
