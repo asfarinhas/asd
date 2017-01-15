@@ -210,19 +210,46 @@ public function buscarMiembro(Miembro $miembro)
 
     public function consultarMiembros($idProyecto) {
         $this ->conectarBD();
-        $sql = "SELECT * FROM EMPLEADOS WHERE EMPLEADOS.EMP_USER NOT IN ( SELECT EMPLEADOS.EMP_USER FROM EMPLEADOS,PROYECTO_MIEMBRO WHERE PROYECTO_MIEMBRO.ID_PROYECTO=2)";
+        $sql = "SELECT  EMP_USER FROM PROYECTO_MIEMBRO WHERE ID_PROYECTO = $idProyecto";
 
-        if (!($resultado = $this->mysqli->query($sql))){
+        if (!($resultado = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
-        }else {
-            $miembros_proyecto = array();
-            while($obj = $resultado -> fetch_object()) {
+        } else {
 
-                $miembro = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
-                array_push($miembros_proyecto, $miembro);
+            $toret = array();
+            while ($obj = $resultado->fetch_object()) {
+                $miembro = $this->buscarMiembroPorUsuario($obj->EMP_USER);
+                array_push($toret, $miembro);
             }
-            return $miembros_proyecto;
+            $miembros = array();
+            $miembros = $this->listarMiembros();
+            $miembros_libres = array();
+
+            foreach ($miembros as $valor){
+                if(!in_array($valor,$toret)){
+                    array_push($miembros_libres,$valor);
+                }
+            }
+            return $miembros_libres;
         }
+
+    }
+
+    public function listarMiembros(){
+        $this ->conectarBD();
+        $sql = "SELECT * FROM EMPLEADOS;";
+
+
+        $resultado = $this->mysqli->query($sql);
+
+        $toret = array();
+        while ($obj = $resultado->fetch_object()) {
+            $proyectoEncontrado = new Miembro($obj->EMP_NOMBRE, $obj->EMP_APELLIDO, $obj->EMP_USER, $obj->EMP_PASSWORD, $obj->EMP_EMAIL);
+            array_push($toret, $proyectoEncontrado);
+        }
+
+        return $toret;
+
     }
 
 
@@ -269,7 +296,7 @@ public function buscarMiembro(Miembro $miembro)
         $sql = "DELETE FROM PROYECTO_MIEMBRO WHERE EMP_USER = '" . $miembro->getUsuario(). "' AND ID_PROYECTO='" . $proyecto->getIDPROYECTO() . "';";
 
         if($this->mysqli->query($sql) === TRUE){
-            return "El proyecto ha sido borrado correctamente";
+            return "El miembro ha sido borrado correctamente";
         }else{
             return "error borrado";
         }
@@ -402,6 +429,7 @@ public function buscarMiembro(Miembro $miembro)
    */
   public function borrar(Proyecto $proyecto) {
       $this->conectarBD();
+      
       $sql = "UPDATE PROYECTO SET BORRADO = '1' WHERE NOMBRE= '" . $proyecto->getNOMBRE()."';";
       
       if($this->mysqli->query($sql) === TRUE){

@@ -103,7 +103,7 @@ class ProyectoMiembro_Add
                 </tr>
                 <?php
                 foreach($this->datos1 as $miembro) {
-                    if (strcmp($miembro->getUsuario(),'ADMIN') != 0 || strcmp($miembro->getUsuario(), $_SESSION['login']) != 0 ) {
+
                         echo "<tr><td> " . $miembro->getNombre() . "</td>";
                         echo "<td>" . $miembro->getApellidos() . "</td>";
                         echo "<td> " . $miembro->getCorreo() . "</td>";
@@ -118,7 +118,7 @@ class ProyectoMiembro_Add
                         </td>
 
                         </tr>
-                    <?php }
+                    <?php
                 }?>
             </table>
 
