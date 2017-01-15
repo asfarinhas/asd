@@ -27,7 +27,7 @@ $lista = array('EMP_USER', 'EMP_PASSWORD','IDIOMA');
 	<div class="login">
 		<div class="login-triangle"></div>
 
-		<h2 class="login-header"><img src="./images/logo_moovett1.png"</h2>
+		<h2 class="login-header"><img src="./images/proyecto.PNG"</h2>
 
 		<form class="login-container" action='./Functions/Acceso.php' method='post' name="login" >
 			<p><input type="text" name='EMP_USER' placeholder="User"></p>
