@@ -5,10 +5,11 @@
  * Date: 28/12/2016
  * Time: 20:00
  */
-include '../Functions/LibraryFunctions.php';
+//include '../Functions/LibraryFunctions.php';
+include '../Models/FUNCIONALIDAD_Model.php';
 include '../Models/TAREA_Model.php';
 include '../Mappers/TAREA_Mapper.php';
-include '../Views/MENSAJE_Vista.php';
+include '../Views/MENSAJE_Vista.php';/*
 include '../Views/TAREA_EDIT_View.php';
 include '../Views/TAREA_ADD_View.php';
 include '../Views/TAREA_SHOW_CURRENT_Vista.php';
@@ -18,7 +19,7 @@ include '../Views/SUBTAREA_EDIT_View.php';
 include '../Views/SUBTAREA_ADD_View.php';
 include '../Views/SUBTAREA_SHOW_ALL_Vista.php';
 include '../Views/SUBTAREA_SHOW_CURRENT_Vista.php';
-include '../Views/SUBTAREA_DELETE_Vista.php';
+include '../Views/SUBTAREA_DELETE_Vista.php';*/
 include '../Mappers/MIEMBRO_Mapper.php'; //necesario para obtener todos los datos de miembro para usar modelo de este tipo
 //include '../Mappers/PROYECTO_Mapper.php';
 
@@ -26,6 +27,12 @@ if (!IsAuthenticated()){
     header('Location:../index.php');
 }
 include '../Locates/Strings_'.$_SESSION['IDIOMA'].'.php';
+
+//Genera los includes según las páginas a las que tiene acceso
+$pags=generarIncludes();
+for ($z=0;$z<count($pags);$z++){
+    include $pags[$z];
+}
 
 function add_tarea(){
     $miembro_mapper = new MiembroMapper();
@@ -179,9 +186,13 @@ function add_subtarea(){
 
     }else{
         $miembros_proyecto = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
+        if (!tienePermisos('Subtarea_add')) {
+            new Mensaje('No tienes los permisos necesarios', 'TAREA_Controller.php');
+        } else {
+            $vista_addsubtarea = new Subtarea_add($miembros_proyecto, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
+            $vista_addsubtarea->showView();
+        }
 
-        $vista_addsubtarea = new Subtarea_add($miembros_proyecto, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
-        $vista_addsubtarea->showView();
     }//fin parametros
 }//fin funcion
 
@@ -221,9 +232,13 @@ function edit_subtarea()
         }else{
             $miembros = $miembroMapper->listarMiembrosProyecto($_REQUEST['proyecto_id']);
             $tarea = $tareaMapper->buscarTareaId($_REQUEST["ID_TAREA"]);
+                if (!tienePermisos('Subtarea_edit')) {
+                    new Mensaje('No tienes los permisos necesarios', 'TAREA_Controller.php');
+                } else {
+                    $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
+                    $vista_subtarea_edit->showView();
+                }
 
-            $vista_subtarea_edit =new Subtarea_edit($tarea, $miembros, "TAREA_Controller.php?proyecto_id=".$proyecto->getIDPROYECTO());
-            $vista_subtarea_edit->showView();
         }
 
 }
